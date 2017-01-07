@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project default="test" name="lcov">
+  <property name="version" value="0.1.0"/>
+
+  <target name="clean" description="Deletes all generated files and reset any saved state.">
+    <delete>
+      <fileset dir="var" includes="**/*" excludes=".gitkeep"/>
+    </delete>
+  </target>
+
+  <target name="coverage" depends="test" description="Sends the results of the code coverage.">
+    <exec executable="vendor/bin/coveralls" passthru="true">
+      <arg value="--coverage_clover=var/coverage.xml"/>
+    </exec>
+  </target>
+
+  <target name="doc" description="Builds the documentation.">
+    <delete dir="doc/api" quiet="true"/>
+    <exec executable="vendor/bin/phpdoc" passthru="true"/>
+  </target>
+
+  <target name="lint" description="Performs static analysis of source code.">
+    <exec executable="vendor/bin/phpmd" passthru="true">
+      <arg value="lib,test"/>
+      <arg value="text"/>
+      <arg value="codesize,controversial,design,naming,unusedcode"/>
+    </exec>
+  </target>
+
+  <target name="test" description="Runs the unit tests.">
+    <exec executable="vendor/bin/phpunit" passthru="true"/>
+  </target>
+</project>
