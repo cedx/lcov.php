@@ -26,7 +26,8 @@
     "test"
   ],
   "require": {
-    "php": ">=7.0.0"
+    "php": ">=7.0.0",
+    "cedx/enum": "^1.2.0"
   },
   "require-dev": {
     "phing/phing": "^2.16.0",
