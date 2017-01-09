@@ -3,7 +3,6 @@
  * Implementation of the `lcov\coverage\BranchData` class.
  */
 namespace lcov\coverage;
-
 use lcov\{Token};
 
 /**
