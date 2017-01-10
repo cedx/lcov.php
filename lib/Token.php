@@ -49,7 +49,7 @@ final class Token {
   /**
    * @var string The number of functions hit.
    */
-  const FUNCTIONS_HIT = 'FNR';
+  const FUNCTIONS_HIT = 'FNH';
 
   /**
    * @var string The coverage data of a line.
