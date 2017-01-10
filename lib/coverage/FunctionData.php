@@ -16,14 +16,14 @@ class FunctionData {
   private $executionCount = 0;
 
   /**
+   * @var string The function name.
+   */
+  private $functionName = '';
+
+  /**
    * @var int The line number of the function start.
    */
   private $lineNumber = 0;
-
-  /**
-   * @var string The function name.
-   */
-  private $name = '';
 
   /**
    * Initializes a new instance of the class.
@@ -44,7 +44,7 @@ class FunctionData {
   public function __toString(bool $asDefinition = false): string {
     $token = $asDefinition ? Token::FUNCTION_NAME : Token::FUNCTION_DATA;
     $number = $asDefinition ? $this->getLineNumber() : $this->getExecutionCount();
-    return "$token:$number,{$this->getName()}";
+    return "$token:$number,{$this->getFunctionName()}";
   }
 
   /**
@@ -56,8 +56,8 @@ class FunctionData {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
       'executionCount' => isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
-      'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0,
-      'name' => isset($map->name) && is_string($map->name) ? $map->name : ''
+      'functionName' => isset($map->name) && is_string($map->name) ? $map->name : '',
+      'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0
     ]);
   }
 
@@ -70,19 +70,19 @@ class FunctionData {
   }
 
   /**
+   * Gets the function name.
+   * @return string The function name.
+   */
+  public function getFunctionName(): string {
+    return $this->functionName;
+  }
+
+  /**
    * Gets the line number of the function start.
    * @return int The line number of the function start.
    */
   public function getLineNumber(): int {
     return $this->lineNumber;
-  }
-
-  /**
-   * Gets the function name.
-   * @return string The function name.
-   */
-  public function getName(): string {
-    return $this->name;
   }
 
   /**
@@ -93,7 +93,7 @@ class FunctionData {
     return (object) [
       'hit' => $this->getExecutionCount(),
       'line' => $this->getLineNumber(),
-      'name' => $this->getName()
+      'name' => $this->getFunctionName()
     ];
   }
 
@@ -108,22 +108,22 @@ class FunctionData {
   }
 
   /**
+   * Sets the function name.
+   * @param string $value The new function name.
+   * @return FunctionData This instance.
+   */
+  public function setFunctionName(string $value): self {
+    $this->functionName = $value;
+    return $this;
+  }
+
+  /**
    * Sets the line number of the function start.
    * @param int $value The new line number.
    * @return FunctionData This instance.
    */
   public function setLineNumber(int $value): self {
     $this->lineNumber = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the function name.
-   * @param string $value The new function name.
-   * @return FunctionData This instance.
-   */
-  public function setName(string $value): self {
-    $this->name = $value;
     return $this;
   }
 }
