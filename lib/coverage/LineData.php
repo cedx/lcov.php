@@ -6,14 +6,14 @@ namespace lcov\coverage;
 use lcov\{Token};
 
 /**
- * Provides details for branch coverage.
+ * Provides details for line coverage.
  */
 class LineData {
 
   /**
-   * @var int The data checksum.
+   * @var string The data checksum.
    */
-  private $checksum = 0;
+  private $checksum = '';
 
   /**
    * @var int The execution count.
@@ -41,36 +41,36 @@ class LineData {
    * @return string The string representation of this object.
    */
   public function __toString(): string {
-    $token = Token::BRANCH_DATA;
-    $value = "$token:{$this->getLineNumber()},{$this->getExecutionCount()},{$this->getChecksum()}";
-    return ($taken = $this->getTaken()) > 0 ? "$value,$taken" : "$value,-";
+    $token = Token::LINE_DATA;
+    $value = "$token:{$this->getLineNumber()},{$this->getExecutionCount()}";
+    return mb_strlen($checksum = $this->getChecksum()) ? "$value,$checksum" : $value;
   }
 
   /**
-   * Creates a new branch data from the specified JSON map.
-   * @param mixed $map A JSON map representing a branch data.
+   * Creates a new line data from the specified JSON map.
+   * @param mixed $map A JSON map representing a line data.
    * @return LineData The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
-      'checksum' => isset($map->branch) && is_int($map->branch) ? $map->branch : '',
-      'executionCount' => isset($map->block) && is_int($map->block) ? $map->block : 0,
+      'checksum' => isset($map->checksum) && is_string($map->checksum) ? $map->checksum : '',
+      'executionCount' => isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
       'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0
     ]);
   }
 
   /**
-   * Gets the branch number.
-   * @return int The branch number.
+   * Gets the data checksum.
+   * @return string The data checksum.
    */
-  public function getChecksum(): int {
+  public function getChecksum(): string {
     return $this->checksum;
   }
 
   /**
-   * Gets the block number.
-   * @return int The block number.
+   * Gets the execution count.
+   * @return int The execution count.
    */
   public function getExecutionCount(): int {
     return $this->executionCount;
@@ -90,25 +90,25 @@ class LineData {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'branch' => $this->getChecksum(),
-      'block' => $this->getExecutionCount(),
+      'checksum' => $this->getChecksum(),
+      'hit' => $this->getExecutionCount(),
       'line' => $this->getLineNumber()
     ];
   }
 
   /**
-   * Sets the branch number.
-   * @param int $value The new branch number.
+   * Sets the data checksum.
+   * @param string $value The new data checksum.
    * @return LineData This instance.
    */
-  public function setChecksum(int $value): self {
+  public function setChecksum(string $value): self {
     $this->checksum = $value;
     return $this;
   }
 
   /**
-   * Sets the block number.
-   * @param int $value The new block number.
+   * Sets the execution count.
+   * @param int $value The new execution count.
    * @return LineData This instance.
    */
   public function setExecutionCount(int $value): self {
