@@ -6,7 +6,7 @@ namespace lcov\coverage;
 use lcov\{Token};
 
 /**
- * Provides details for line coverage.
+ * Provides details for function coverage.
  */
 class FunctionData {
 
@@ -38,7 +38,7 @@ class FunctionData {
 
   /**
    * Returns a string representation of this object.
-   * @param bool $asDefinition Value indicating whether to return the function definition (e.g. name and start line) instead of its data (e.g. name and execution count).
+   * @param bool $asDefinition Value indicating whether to return the function definition (e.g. name and line number) instead of its data (e.g. name and execution count).
    * @return string The string representation of this object.
    */
   public function __toString(bool $asDefinition = false): string {
