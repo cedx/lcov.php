@@ -42,13 +42,9 @@ class FunctionData {
    * @return string The string representation of this object.
    */
   public function __toString(bool $asDefinition = false): string {
-    if ($asDefinition) {
-      $token = Token::FUNCTION_NAME;
-      return "$token:{$this->getLineNumber()},{$this->getName()}";
-    }
-
-    $token = Token::FUNCTION_DATA;
-    return "$token:{$this->getExecutionCount()},{$this->getName()}";
+    $token = $asDefinition ? Token::FUNCTION_NAME : Token::FUNCTION_DATA;
+    $number = $asDefinition ? $this->getLineNumber() : $this->getExecutionCount();
+    return "$token:$number,{$this->getName()}";
   }
 
   /**
