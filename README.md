@@ -13,6 +13,12 @@ $ composer require cedx/lcov
 ## Usage
 TODO
 
+### Parse coverage data from a LCOV file
+The parser produces a data structure compatible with the format used by the [lcov-parse](https://github.com/davglass/lcov-parse) library.
+
+### Format coverage data to the LCOV format
+TODO
+
 ## See also
 - [Code coverage](https://coveralls.io/github/cedx/lcov.php)
 - [Continuous integration](https://travis-ci.org/cedx/lcov.php)
