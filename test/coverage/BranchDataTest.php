@@ -15,14 +15,14 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
    */
   public function testConstructor() {
     $data = new BranchData([
-      'branchNumber' => 2,
       'blockNumber' => 3,
+      'branchNumber' => 2,
       'lineNumber' => 127,
       'taken' => 1
     ]);
 
-    $this->assertEquals(2, $data->getBranchNumber());
     $this->assertEquals(3, $data->getBlockNumber());
+    $this->assertEquals(2, $data->getBranchNumber());
     $this->assertEquals(127, $data->getLineNumber());
     $this->assertEquals(1, $data->getTaken());
   }
@@ -34,14 +34,14 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull(BranchData::fromJSON('foo'));
 
     $data = BranchData::fromJSON([]);
-    $this->assertEquals(0, $data->getBranchNumber());
     $this->assertEquals(0, $data->getBlockNumber());
+    $this->assertEquals(0, $data->getBranchNumber());
     $this->assertEquals(0, $data->getLineNumber());
     $this->assertEquals(0, $data->getTaken());
 
     $data = BranchData::fromJSON(['branch' => 2, 'block' => 3, 'line' => 127, 'taken' => 1]);
-    $this->assertEquals(2, $data->getBranchNumber());
     $this->assertEquals(3, $data->getBlockNumber());
+    $this->assertEquals(2, $data->getBranchNumber());
     $this->assertEquals(127, $data->getLineNumber());
     $this->assertEquals(1, $data->getTaken());
   }
@@ -52,21 +52,21 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
   public function testJsonSerialize() {
     $data = (new BranchData())->jsonSerialize();
     $this->assertEquals(count(get_object_vars($data)), 4);
-    $this->assertEquals(0, $data->branch);
     $this->assertEquals(0, $data->block);
+    $this->assertEquals(0, $data->branch);
     $this->assertEquals(0, $data->line);
     $this->assertEquals(0, $data->taken);
 
     $data = (new BranchData([
-      'branchNumber' => 2,
       'blockNumber' => 3,
+      'branchNumber' => 2,
       'lineNumber' => 127,
       'taken' => 1
     ]))->jsonSerialize();
 
     $this->assertEquals(count(get_object_vars($data)), 4);
-    $this->assertEquals(2, $data->branch);
     $this->assertEquals(3, $data->block);
+    $this->assertEquals(2, $data->branch);
     $this->assertEquals(127, $data->line);
     $this->assertEquals(1, $data->taken);
   }
@@ -78,7 +78,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
     $data = new BranchData();
     $this->assertEquals('BRDA:0,0,0,-', (string) $data);
 
-    $data = new BranchData(['branchNumber' => 2, 'blockNumber' => 3, 'lineNumber' => 127, 'taken' => 1]);
+    $data = new BranchData(['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
     $this->assertEquals('BRDA:127,3,2,1', (string) $data);
   }
 }

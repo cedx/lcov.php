@@ -11,14 +11,14 @@ use lcov\{Token};
 class BranchData {
 
   /**
-   * @var int The branch number.
-   */
-  private $branchNumber = 0;
-
-  /**
    * @var int The block number.
    */
   private $blockNumber = 0;
+
+  /**
+   * @var int The branch number.
+   */
+  private $branchNumber = 0;
 
   /**
    * @var int The line number.
@@ -59,19 +59,11 @@ class BranchData {
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
-      'branchNumber' => isset($map->branch) && is_int($map->branch) ? $map->branch : 0,
       'blockNumber' => isset($map->block) && is_int($map->block) ? $map->block : 0,
+      'branchNumber' => isset($map->branch) && is_int($map->branch) ? $map->branch : 0,
       'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0,
       'taken' => isset($map->taken) && is_int($map->taken) ? $map->taken : 0
     ]);
-  }
-
-  /**
-   * Gets the branch number.
-   * @return int The branch number.
-   */
-  public function getBranchNumber(): int {
-    return $this->branchNumber;
   }
 
   /**
@@ -80,6 +72,14 @@ class BranchData {
    */
   public function getBlockNumber(): int {
     return $this->blockNumber;
+  }
+
+  /**
+   * Gets the branch number.
+   * @return int The branch number.
+   */
+  public function getBranchNumber(): int {
+    return $this->branchNumber;
   }
 
   /**
@@ -104,21 +104,11 @@ class BranchData {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'branch' => $this->getBranchNumber(),
       'block' => $this->getBlockNumber(),
+      'branch' => $this->getBranchNumber(),
       'line' => $this->getLineNumber(),
       'taken' => $this->getTaken()
     ];
-  }
-
-  /**
-   * Sets the branch number.
-   * @param int $value The new branch number.
-   * @return BranchData This instance.
-   */
-  public function setBranchNumber(int $value): self {
-    $this->branchNumber = $value;
-    return $this;
   }
 
   /**
@@ -128,6 +118,16 @@ class BranchData {
    */
   public function setBlockNumber(int $value): self {
     $this->blockNumber = $value;
+    return $this;
+  }
+
+  /**
+   * Sets the branch number.
+   * @param int $value The new branch number.
+   * @return BranchData This instance.
+   */
+  public function setBranchNumber(int $value): self {
+    $this->branchNumber = $value;
     return $this;
   }
 
