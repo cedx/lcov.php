@@ -52,11 +52,11 @@ class Record {
   public function __toString(): string {
     $token = Token::SOURCE_FILE;
     $output = ["$token:{$this->getSourceFile()}"];
-    if (this.functions) output.push(this.functions.toString());
-    if (this.branches) output.push(this.branches.toString());
-    if (this.lines) output.push(this.lines.toString());
+    if ($this->functions) $output[] = (string) $this->functions;
+    if ($this->branches) $output[] = (string) $this->branches;
+    if ($this->lines) $output[] = (string) $this->lines;
     $output[] = Token::END_OF_RECORD;
-    return output.join('\n');
+    return implode(PHP_EOL, $output);
   }
 
   /**
@@ -67,34 +67,43 @@ class Record {
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
-      'checksum' => isset($map->checksum) && is_string($map->checksum) ? $map->checksum : '',
-      'executionCount' => isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
-      'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0
+      'branches' => isset($map->branches) ? BranchCoverage::fromJSON($map->branches) : null,
+      'functions' => isset($map->functions) ? FunctionCoverage::fromJSON($map->functions) : null,
+      'lines' => isset($map->lines) ? LineCoverage::fromJSON($map->lines) : null,
+      'sourceFile' => isset($map->file) && is_string($map->file) ? $map->file : ''
     ]);
   }
 
   /**
-   * Gets the data checksum.
-   * @return string The data checksum.
+   * Gets the branch coverage.
+   * @return BranchCoverage The branch coverage.
    */
-  public function getChecksum(): string {
-    return $this->checksum;
+  public function getBranches() {
+    return $this->branches;
   }
 
   /**
-   * Gets the execution count.
-   * @return int The execution count.
+   * Gets the function coverage.
+   * @return FunctionCoverage The function coverage.
    */
-  public function getExecutionCount(): int {
-    return $this->executionCount;
+  public function getFunctions() {
+    return $this->functions;
   }
 
   /**
-   * Gets the line number.
-   * @return int The line number.
+   * Gets the line coverage.
+   * @return LineCoverage The line coverage.
    */
-  public function getLineNumber(): int {
-    return $this->lineNumber;
+  public function getLines() {
+    return $this->lines;
+  }
+
+  /**
+   * Gets the path to the source file.
+   * @return string The path to the source file.
+   */
+  public function getSourceFile(): string {
+    return $this->sourceFile;
   }
 
   /**
@@ -103,39 +112,50 @@ class Record {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'checksum' => $this->getChecksum(),
-      'hit' => $this->getExecutionCount(),
-      'line' => $this->getLineNumber()
+      'file' => $this->getSourceFile(),
+      'branches' => ($branches = $this->getBranches()) ? $branches->jsonSerialize() : null,
+      'functions' => ($functions = $this->getFunctions()) ? $functions->jsonSerialize() : null,
+      'lines' => ($lines = $this->getLines()) ? $lines->jsonSerialize() : null
     ];
   }
 
   /**
-   * Sets the data checksum.
-   * @param string $value The new data checksum.
+   * Sets the branch coverage.
+   * @param BranchCoverage $value The new branch coverage.
    * @return Record This instance.
    */
-  public function setChecksum(string $value): self {
-    $this->checksum = $value;
+  public function setChecksum(BranchCoverage $value = null): self {
+    $this->branches = $value;
     return $this;
   }
 
   /**
-   * Sets the execution count.
-   * @param int $value The new execution count.
+   * Sets the function coverage.
+   * @param FunctionCoverage $value The new function coverage.
    * @return Record This instance.
    */
-  public function setExecutionCount(int $value): self {
-    $this->executionCount = $value;
+  public function setExecutionCount(FunctionCoverage $value = null): self {
+    $this->functions = $value;
     return $this;
   }
 
   /**
-   * Sets the line number.
-   * @param int $value The new line number.
+   * Sets the line coverage.
+   * @param LineCoverage $value The new line coverage.
    * @return Record This instance.
    */
-  public function setLineNumber(int $value): self {
-    $this->lineNumber = $value;
+  public function setLineNumber(LineCoverage $value = null): self {
+    $this->lines = $value;
+    return $this;
+  }
+
+  /**
+   * Sets the path to the source file.
+   * @param string $value The new path to the source file.
+   * @return Record This instance.
+   */
+  public function setSourceFile(string $value): self {
+    $this->sourceFile = $value;
     return $this;
   }
 }
