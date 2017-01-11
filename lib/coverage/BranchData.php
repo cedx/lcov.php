@@ -6,7 +6,7 @@ namespace lcov\coverage;
 use lcov\{Token};
 
 /**
- * Provides the coverage data of branches.
+ * Provides details for branch coverage.
  */
 class BranchData {
 

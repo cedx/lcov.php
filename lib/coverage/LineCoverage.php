@@ -60,7 +60,7 @@ class LineCoverage {
 
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
-      'data' => isset($map->details) && is_array($map->details) ? $transform($map->details) : [],
+      'data' => isset($map->data) && is_array($map->data) ? $transform($map->data) : [],
       'found' => isset($map->found) && is_int($map->found) ? $map->found : 0,
       'hit' => isset($map->hit) && is_int($map->hit) ? $map->hit : 0
     ]);
@@ -96,7 +96,7 @@ class LineCoverage {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'details' => array_map(function(LineData $item) { return $item->jsonSerialize(); }, $this->getData()),
+      'data' => array_map(function(LineData $item) { return $item->jsonSerialize(); }, $this->getData()),
       'found' => $this->getFound(),
       'hit' => $this->getHit()
     ];
