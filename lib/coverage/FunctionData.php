@@ -38,13 +38,10 @@ class FunctionData {
 
   /**
    * Returns a string representation of this object.
-   * @param bool $asDefinition Value indicating whether to return the function definition (e.g. name and line number) instead of its data (e.g. name and execution count).
    * @return string The string representation of this object.
    */
-  public function __toString(bool $asDefinition = false): string {
-    $token = $asDefinition ? Token::FUNCTION_NAME : Token::FUNCTION_DATA;
-    $number = $asDefinition ? $this->getLineNumber() : $this->getExecutionCount();
-    return "$token:$number,{$this->getFunctionName()}";
+  public function __toString(): string {
+    return $this->toString();
   }
 
   /**
@@ -125,5 +122,16 @@ class FunctionData {
   public function setLineNumber(int $value): self {
     $this->lineNumber = $value;
     return $this;
+  }
+
+  /**
+   * Returns a string representation of this object.
+   * @param bool $asDefinition Value indicating whether to return the function definition (e.g. name and line number) instead of its data (e.g. name and execution count).
+   * @return string The string representation of this object.
+   */
+  public function toString(bool $asDefinition = false): string {
+    $token = $asDefinition ? Token::FUNCTION_NAME : Token::FUNCTION_DATA;
+    $number = $asDefinition ? $this->getLineNumber() : $this->getExecutionCount();
+    return "$token:$number,{$this->getFunctionName()}";
   }
 }

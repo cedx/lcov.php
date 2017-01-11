@@ -43,8 +43,8 @@ class FunctionCoverage {
   public function __toString(): string {
     $data = $this->getData();
 
-    $lines = array_map(function(FunctionData $item) { return $item->__toString(true); }, $data);
-    $lines = array_merge($lines, array_map(function(FunctionData $item) { return $item->__toString(false); }, $data));
+    $lines = array_map(function(FunctionData $item) { return $item->toString(true); }, $data);
+    $lines = array_merge($lines, array_map(function(FunctionData $item) { return $item->toString(false); }, $data));
     $lines[] = Token::FUNCTIONS_FOUND.":{$this->getFound()}";
     $lines[] = Token::FUNCTIONS_HIT.":{$this->getHit()}";
 
