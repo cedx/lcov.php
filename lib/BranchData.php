@@ -1,9 +1,8 @@
 <?php
 /**
- * Implementation of the `lcov\coverage\BranchData` class.
+ * Implementation of the `lcov\BranchData` class.
  */
-namespace lcov\coverage;
-use lcov\{Token};
+namespace lcov;
 
 /**
  * Provides details for branch coverage.

@@ -1,9 +1,8 @@
 <?php
 /**
- * Implementation of the `lcov\coverage\Report` class.
+ * Implementation of the `lcov\Report` class.
  */
-namespace lcov\coverage;
-use lcov\{Token};
+namespace lcov;
 
 /**
  * Provides the coverage data of a source file.
@@ -83,8 +82,19 @@ class Report {
   public function jsonSerialize(): \stdClass {
     return (object) [
       'test' => $this->getTestName(),
-      'records' => $this->getRecords()
+      'records' => array_map(function(Record $item) { return $item->jsonSerialize(); }, $this->getRecords())
     ];
+  }
+
+  /**
+   * Parses the specified coverage data in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
+   * @param string $coverage The coverage data.
+   * @return Report The resulting coverage report.
+   * @throws \UnexpectedValueException A parsing error occurred.
+   */
+  public static function parse(string $coverage): Report {
+    // TODO
+    return null;
   }
 
   /**
@@ -92,7 +102,7 @@ class Report {
    * @param Record[] $value The new record list.
    * @return Report This instance.
    */
-  public function setChecksum(array $value): self {
+  public function setRecords(array $value): self {
     $this->records = $value;
     return $this;
   }
@@ -102,7 +112,7 @@ class Report {
    * @param string $value The new test name.
    * @return Report This instance.
    */
-  public function setExecutionCount(string $value): self {
+  public function setTestName(string $value): self {
     $this->testName = $value;
     return $this;
   }

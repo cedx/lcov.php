@@ -1,9 +1,8 @@
 <?php
 /**
- * Implementation of the `lcov\coverage\Record` class.
+ * Implementation of the `lcov\Record` class.
  */
-namespace lcov\coverage;
-use lcov\{Token};
+namespace lcov;
 
 /**
  * Provides the coverage data of a source file.
@@ -21,7 +20,7 @@ class Record {
   private $functions;
 
   /**
-   * @var int The line coverage.
+   * @var LineCoverage The line coverage.
    */
   private $lines;
 
@@ -120,7 +119,7 @@ class Record {
    * @param BranchCoverage $value The new branch coverage.
    * @return Record This instance.
    */
-  public function setChecksum(BranchCoverage $value = null): self {
+  public function setBranches(BranchCoverage $value = null): self {
     $this->branches = $value;
     return $this;
   }
@@ -130,7 +129,7 @@ class Record {
    * @param FunctionCoverage $value The new function coverage.
    * @return Record This instance.
    */
-  public function setExecutionCount(FunctionCoverage $value = null): self {
+  public function setFunctions(FunctionCoverage $value = null): self {
     $this->functions = $value;
     return $this;
   }
@@ -140,7 +139,7 @@ class Record {
    * @param LineCoverage $value The new line coverage.
    * @return Record This instance.
    */
-  public function setLineNumber(LineCoverage $value = null): self {
+  public function setLines(LineCoverage $value = null): self {
     $this->lines = $value;
     return $this;
   }

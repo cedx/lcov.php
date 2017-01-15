@@ -1,9 +1,8 @@
 <?php
 /**
- * Implementation of the `lcov\coverage\LineData` class.
+ * Implementation of the `lcov\LineData` class.
  */
-namespace lcov\coverage;
-use lcov\{Token};
+namespace lcov;
 
 /**
  * Provides details for line coverage.

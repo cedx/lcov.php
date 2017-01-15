@@ -1,9 +1,8 @@
 <?php
 /**
- * Implementation of the `lcov\coverage\FunctionData` class.
+ * Implementation of the `lcov\FunctionData` class.
  */
-namespace lcov\coverage;
-use lcov\{Token};
+namespace lcov;
 
 /**
  * Provides details for function coverage.

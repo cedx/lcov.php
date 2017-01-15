@@ -1,27 +1,26 @@
 <?php
 /**
- * Implementation of the `lcov\coverage\FunctionCoverage` class.
+ * Implementation of the `lcov\BranchCoverage` class.
  */
-namespace lcov\coverage;
-use lcov\{Token};
+namespace lcov;
 
 /**
- * Provides the coverage data of functions.
+ * Provides the coverage data of branches.
  */
-class FunctionCoverage {
+class BranchCoverage {
 
   /**
-   * @var FunctionData[] The coverage data.
+   * @var BranchData[] The coverage data.
    */
   private $data = [];
 
   /**
-   * @var int The number of functions found.
+   * @var int The number of branches found.
    */
   private $found = 0;
 
   /**
-   * @var int The number of functions hit.
+   * @var int The number of branches hit.
    */
   private $hit = 0;
 
@@ -41,24 +40,20 @@ class FunctionCoverage {
    * @return string The string representation of this object.
    */
   public function __toString(): string {
-    $data = $this->getData();
-
-    $lines = array_map(function(FunctionData $item) { return $item->toString(true); }, $data);
-    $lines = array_merge($lines, array_map(function(FunctionData $item) { return $item->toString(false); }, $data));
-    $lines[] = Token::FUNCTIONS_FOUND.":{$this->getFound()}";
-    $lines[] = Token::FUNCTIONS_HIT.":{$this->getHit()}";
-
+    $lines = array_map(function($item) { return (string) $item; }, $this->getData());
+    $lines[] = Token::BRANCHES_FOUND.":{$this->getFound()}";
+    $lines[] = Token::BRANCHES_HIT.":{$this->getHit()}";
     return implode(PHP_EOL, $lines);
   }
 
   /**
    * Creates a new branch data from the specified JSON map.
    * @param mixed $map A JSON map representing a branch data.
-   * @return FunctionCoverage The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return BranchCoverage The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJSON($map) {
     $transform = function(array $data) {
-      $items = array_map(function($item) { return FunctionData::fromJSON($item); }, $data);
+      $items = array_map(function($item) { return BranchData::fromJSON($item); }, $data);
       return array_filter($items, function($item) { return isset($item); });
     };
 
@@ -72,23 +67,23 @@ class FunctionCoverage {
 
   /**
    * Gets the coverage data.
-   * @return FunctionData[] The coverage data.
+   * @return BranchData[] The coverage data.
    */
   public function getData(): array {
     return $this->data;
   }
 
   /**
-   * Gets the number of functions found.
-   * @return int The number of functions found.
+   * Gets the number of branches found.
+   * @return int The number of branches found.
    */
   public function getFound(): int {
     return $this->found;
   }
 
   /**
-   * Gets the number of functions hit.
-   * @return int The number of functions hit.
+   * Gets the number of branches hit.
+   * @return int The number of branches hit.
    */
   public function getHit(): int {
     return $this->hit;
@@ -100,7 +95,7 @@ class FunctionCoverage {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'data' => array_map(function(FunctionData $item) { return $item->jsonSerialize(); }, $this->getData()),
+      'data' => array_map(function(BranchData $item) { return $item->jsonSerialize(); }, $this->getData()),
       'found' => $this->getFound(),
       'hit' => $this->getHit()
     ];
@@ -108,8 +103,8 @@ class FunctionCoverage {
 
   /**
    * Sets the coverage data.
-   * @param FunctionData[] $value The new coverage data.
-   * @return FunctionCoverage This instance.
+   * @param BranchData[] $value The new coverage data.
+   * @return BranchCoverage This instance.
    */
   public function setData(array $value): self {
     $this->data = $value;
@@ -119,7 +114,7 @@ class FunctionCoverage {
   /**
    * Sets the number of branches found.
    * @param int $value The new number of branches found.
-   * @return FunctionCoverage This instance.
+   * @return BranchCoverage This instance.
    */
   public function setFound(int $value): self {
     $this->found = $value;
@@ -129,7 +124,7 @@ class FunctionCoverage {
   /**
    * Sets the number of branches hit.
    * @param int $value The new number of branches hit.
-   * @return FunctionCoverage This instance.
+   * @return BranchCoverage This instance.
    */
   public function setHit(int $value): self {
     $this->hit = $value;

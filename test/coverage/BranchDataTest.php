@@ -1,12 +1,12 @@
 <?php
 /**
- * Implementation of the `lcov\test\coverage\BranchDataTest` class.
+ * Implementation of the `lcov\test\BranchDataTest` class.
  */
 namespace lcov\test;
-use lcov\coverage\{BranchData};
+use lcov\{BranchData};
 
 /**
- * Tests the features of the `lcov\coverage\BranchData` class.
+ * Tests the features of the `lcov\BranchData` class.
  */
 class BranchDataTest extends \PHPUnit_Framework_TestCase {
 
