@@ -35,10 +35,6 @@ class Record {
    * @param array $config Name-value pairs that will be used to initialize the object properties.
    */
   public function __construct(array $config = []) {
-    $this->branches = new BranchCoverage();
-    $this->functions = new FunctionCoverage();
-    $this->lines = new LineCoverage();
-
     foreach ($config as $property => $value) {
       $setter = "set$property";
       if(method_exists($this, $setter)) $this->$setter($value);
