@@ -53,8 +53,7 @@ class BranchCoverage {
    */
   public static function fromJSON($map) {
     $transform = function(array $data) {
-      $items = array_map(function($item) { return BranchData::fromJSON($item); }, $data);
-      return array_filter($items, function($item) { return isset($item); });
+      return array_filter(array_map(function($item) { return BranchData::fromJSON($item); }, $data));
     };
 
     if (is_array($map)) $map = (object) $map;
