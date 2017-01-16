@@ -26,7 +26,7 @@ class Report {
   public function __construct(array $config = []) {
     foreach ($config as $property => $value) {
       $setter = "set$property";
-      if(method_exists($this, $setter)) $this->$setter($value);
+      if (method_exists($this, $setter)) $this->$setter($value);
     }
   }
 
@@ -92,9 +92,33 @@ class Report {
    * @return Report The resulting coverage report.
    * @throws \UnexpectedValueException A parsing error occurred.
    */
-  public static function parse(string $coverage): Report {
-    // TODO
-    return null;
+  public static function parse(string $coverage): self {
+    $report = new static();
+    $record = new Record([
+      'branches' => new BranchCoverage(),
+      'functions' => new FunctionCoverage(),
+      'lines' => new LineCoverage()
+    ]);
+
+    try {
+      foreach (preg_split('/\r?\n/', $coverage) as $line) {
+        $parts = explode(':', trim($line));
+
+        $token = mb_strtoupper(array_shift($parts));
+        $data = explode(',', implode(':', $parts));
+
+        switch ($token) {
+
+        }
+      }
+    }
+
+    catch (\Throwable $e) {
+      throw new \UnexpectedValueException('The coverage data has an invalid LCOV format.');
+    }
+
+    if (!count($report->getRecords())) throw new \UnexpectedValueException('The coverage data is empty.');
+    return $report;
   }
 
   /**
