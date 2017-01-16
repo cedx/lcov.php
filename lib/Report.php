@@ -107,7 +107,75 @@ class Report {
         $data = explode(',', implode(':', $parts));
 
         switch ($token) {
+          case Token::TEST_NAME:
+            $report->setTestName($data[0]);
+            break;
 
+          case Token::SOURCE_FILE:
+            $record->setSourceFile($data[0]);
+            break;
+
+          case Token::FUNCTION_NAME:
+            $record->getFunctions()->getData()[] = new FunctionData([
+              'functionName' => $data[1],
+              'lineNumber' => (int) $data[0]
+            ]);
+            break;
+
+          case Token::FUNCTION_DATA:
+            foreach ($record->getFunctions()->getData() as $item) {
+              if ($item->getFunctionName() == $data[1]) {
+                $item->setExecutionCount((int) $data[0]);
+                break;
+              }
+            }
+            break;
+
+          case Token::FUNCTIONS_FOUND:
+            $record->getFunctions()->setFound((int) $data[0]);
+            break;
+
+          case Token::FUNCTIONS_HIT:
+            $record->getFunctions()->setHit((int) $data[0]);
+            break;
+
+          case Token::BRANCH_DATA:
+            $record->getBranches()->getData()[] = new BranchData([
+              'lineNumber' => (int) $data[0],
+              'blockNumber' => (int) $data[1],
+              'branchNumber' => (int) $data[2],
+              'taken' => $data[3] == '-' ? 0 : (int) $data[3]
+            ]);
+            break;
+
+          case Token::BRANCHES_FOUND:
+            $record->getBranches()->setFound((int) $data[0]);
+            break;
+
+          case Token::BRANCHES_HIT:
+            $record->getBranches()->setHit((int) $data[0]);
+            break;
+
+          case Token::LINE_DATA:
+            $record->getLines()->getData()[] = new LineData([
+              'lineNumber' => (int) $data[0],
+              'executionCount' => (int) $data[1],
+              'checksum' => count($data) >= 3 ? $data[2] : null
+            ]);
+            break;
+
+          case Token::LINES_FOUND:
+            $record->getLines()->setFound((int) $data[0]);
+            break;
+
+          case Token::LINES_HIT:
+            $record->getLines()->setHit((int) $data[0]);
+            break;
+
+          case Token::END_OF_RECORD:
+            $report->getRecords()[] = $record;
+            $record = new Record();
+            break;
         }
       }
     }
