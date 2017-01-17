@@ -14,13 +14,17 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
    * Tests the `BranchCoverage` constructor.
    */
   public function testConstructor() {
+    $data = new BranchData();
     $coverage = new BranchCoverage([
-      'data' => [new BranchData()],
+      'data' => [$data],
       'found' => 23,
       'hit' => 11
     ]);
 
-    $this->assertCount(1, $coverage->getData());
+    $entries = $coverage->getData();
+    $this->assertCount(1, $entries);
+    $this->assertSame($data, $entries[0]);
+
     $this->assertEquals(23, $coverage->getFound());
     $this->assertEquals(11, $coverage->getHit());
   }
@@ -32,14 +36,19 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull(BranchCoverage::fromJSON('foo'));
 
     $coverage = BranchCoverage::fromJSON([]);
+    $this->assertInstanceOf(BranchCoverage::class, $coverage);
     $this->assertCount(0, $coverage->getData());
     $this->assertEquals(0, $coverage->getFound());
     $this->assertEquals(0, $coverage->getHit());
 
-    $data = new BranchData();
-    $coverage = BranchCoverage::fromJSON(['data' => [$data], 'line' => 23, 'hit' => 11]);
-    $this->assertCount(1, $coverage->getData()); // TODO extract getData()
-    $this->assertSame($data, $coverage->getData()[0]);
+    $coverage = BranchCoverage::fromJSON(['data' => [['line' => 127]], 'found' => 23, 'hit' => 11]);
+    $this->assertInstanceOf(BranchCoverage::class, $coverage);
+
+    $entries = $coverage->getData();
+    $this->assertCount(1, $entries);
+    $this->assertInstanceOf(BranchData::class, $entries[0]);
+    $this->assertEquals(127, $entries[0]->getLineNumber());
+
     $this->assertEquals(23, $coverage->getFound());
     $this->assertEquals(11, $coverage->getHit());
   }
@@ -51,7 +60,7 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
     $map = (new BranchCoverage())->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(0, $map->data);
-    $this->assertEquals(0, $map->line);
+    $this->assertEquals(0, $map->found);
     $this->assertEquals(0, $map->hit);
 
     $map = (new BranchCoverage([
@@ -62,7 +71,9 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
 
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
-    $this->assertEquals(23, $map->line);
+    $this->assertInstanceOf(\stdClass::class, $map->data[0]);
+    $this->assertObjectHasAttribute('line', $map->data[0]);
+    $this->assertEquals(23, $map->found);
     $this->assertEquals(11, $map->hit);
   }
 

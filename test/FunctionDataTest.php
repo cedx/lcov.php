@@ -32,11 +32,13 @@ class FunctionDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull(FunctionData::fromJSON('foo'));
 
     $data = FunctionData::fromJSON([]);
+    $this->assertInstanceOf(FunctionData::class, $data);
     $this->assertEquals(0, $data->getExecutionCount());
     $this->assertEquals('', $data->getFunctionName());
     $this->assertEquals(0, $data->getLineNumber());
 
     $data = FunctionData::fromJSON(['count' => 3, 'name' => 'main', 'line' => 127]);
+    $this->assertInstanceOf(FunctionData::class, $data);
     $this->assertEquals(3, $data->getExecutionCount());
     $this->assertEquals('main', $data->getFunctionName());
     $this->assertEquals(127, $data->getLineNumber());

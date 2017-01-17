@@ -32,11 +32,13 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull(LineData::fromJSON('foo'));
 
     $data = LineData::fromJSON([]);
+    $this->assertInstanceOf(LineData::class, $data);
     $this->assertEquals('', $data->getChecksum());
     $this->assertEquals(0, $data->getExecutionCount());
     $this->assertEquals(0, $data->getLineNumber());
 
     $data = LineData::fromJSON(['checksum' => 'ed076287532e86365e841e92bfc50d8c', 'count' => 3, 'line' => 127]);
+    $this->assertInstanceOf(LineData::class, $data);
     $this->assertEquals('ed076287532e86365e841e92bfc50d8c', $data->getChecksum());
     $this->assertEquals(3, $data->getExecutionCount());
     $this->assertEquals(127, $data->getLineNumber());

@@ -34,12 +34,14 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull(BranchData::fromJSON('foo'));
 
     $data = BranchData::fromJSON([]);
+    $this->assertInstanceOf(BranchData::class, $data);
     $this->assertEquals(0, $data->getBlockNumber());
     $this->assertEquals(0, $data->getBranchNumber());
     $this->assertEquals(0, $data->getLineNumber());
     $this->assertEquals(0, $data->getTaken());
 
     $data = BranchData::fromJSON(['block' => 3, 'branch' => 2, 'line' => 127, 'taken' => 1]);
+    $this->assertInstanceOf(BranchData::class, $data);
     $this->assertEquals(3, $data->getBlockNumber());
     $this->assertEquals(2, $data->getBranchNumber());
     $this->assertEquals(127, $data->getLineNumber());
