@@ -10,9 +10,9 @@ namespace lcov;
 class LineCoverage {
 
   /**
-   * @var LineData[] The coverage data.
+   * @var \ArrayObject The coverage data.
    */
-  private $data = [];
+  private $data;
 
   /**
    * @var int The number of lines found.
@@ -29,6 +29,8 @@ class LineCoverage {
    * @param array $config Name-value pairs that will be used to initialize the object properties.
    */
   public function __construct(array $config = []) {
+    $this->data = new \ArrayObject();
+
     foreach ($config as $property => $value) {
       $setter = "set$property";
       if (method_exists($this, $setter)) $this->$setter($value);
@@ -40,7 +42,7 @@ class LineCoverage {
    * @return string The string representation of this object.
    */
   public function __toString(): string {
-    $lines = array_map(function($item) { return (string) $item; }, $this->getData());
+    $lines = array_map(function($item) { return (string) $item; }, $this->getData()->getArrayCopy());
     $lines[] = Token::LINES_FOUND.":{$this->getFound()}";
     $lines[] = Token::LINES_HIT.":{$this->getHit()}";
     return implode(PHP_EOL, $lines);
@@ -66,9 +68,9 @@ class LineCoverage {
 
   /**
    * Gets the coverage data.
-   * @return LineData[] The coverage data.
+   * @return \ArrayObject The coverage data.
    */
-  public function getData(): array {
+  public function getData(): \ArrayObject {
     return $this->data;
   }
 
@@ -94,7 +96,7 @@ class LineCoverage {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'data' => array_map(function(LineData $item) { return $item->jsonSerialize(); }, $this->getData()),
+      'data' => array_map(function(LineData $item) { return $item->jsonSerialize(); }, $this->getData()->getArrayCopy()),
       'found' => $this->getFound(),
       'hit' => $this->getHit()
     ];
@@ -106,7 +108,7 @@ class LineCoverage {
    * @return LineCoverage This instance.
    */
   public function setData(array $value): self {
-    $this->data = $value;
+    $this->getData()->exchangeArray($value);
     return $this;
   }
 

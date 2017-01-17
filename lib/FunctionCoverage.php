@@ -10,9 +10,9 @@ namespace lcov;
 class FunctionCoverage {
 
   /**
-   * @var FunctionData[] The coverage data.
+   * @var \ArrayObject The coverage data.
    */
-  private $data = [];
+  private $data;
 
   /**
    * @var int The number of functions found.
@@ -29,6 +29,8 @@ class FunctionCoverage {
    * @param array $config Name-value pairs that will be used to initialize the object properties.
    */
   public function __construct(array $config = []) {
+    $this->data = new \ArrayObject();
+
     foreach ($config as $property => $value) {
       $setter = "set$property";
       if (method_exists($this, $setter)) $this->$setter($value);
@@ -40,7 +42,7 @@ class FunctionCoverage {
    * @return string The string representation of this object.
    */
   public function __toString(): string {
-    $data = $this->getData();
+    $data = $this->getData()->getArrayCopy();
 
     $lines = array_map(function(FunctionData $item) { return $item->toString(true); }, $data);
     $lines = array_merge($lines, array_map(function(FunctionData $item) { return $item->toString(false); }, $data));
@@ -70,9 +72,9 @@ class FunctionCoverage {
 
   /**
    * Gets the coverage data.
-   * @return FunctionData[] The coverage data.
+   * @return \ArrayObject The coverage data.
    */
-  public function getData(): array {
+  public function getData(): \ArrayObject {
     return $this->data;
   }
 
@@ -98,7 +100,7 @@ class FunctionCoverage {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'data' => array_map(function(FunctionData $item) { return $item->jsonSerialize(); }, $this->getData()),
+      'data' => array_map(function(FunctionData $item) { return $item->jsonSerialize(); }, $this->getData()->getArrayCopy()),
       'found' => $this->getFound(),
       'hit' => $this->getHit()
     ];
@@ -110,7 +112,7 @@ class FunctionCoverage {
    * @return FunctionCoverage This instance.
    */
   public function setData(array $value): self {
-    $this->data = $value;
+    $this->getData()->exchangeArray($value);
     return $this;
   }
 

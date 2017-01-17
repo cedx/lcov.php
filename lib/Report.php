@@ -10,9 +10,9 @@ namespace lcov;
 class Report {
 
   /**
-   * @var Record[] The record list.
+   * @var \ArrayObject The record list.
    */
-  private $records = [];
+  private $records;
 
   /**
    * @var string The test name.
@@ -24,6 +24,8 @@ class Report {
    * @param array $config Name-value pairs that will be used to initialize the object properties.
    */
   public function __construct(array $config = []) {
+    $this->records = new \ArrayObject();
+
     foreach ($config as $property => $value) {
       $setter = "set$property";
       if (method_exists($this, $setter)) $this->$setter($value);
@@ -37,7 +39,7 @@ class Report {
   public function __toString(): string {
     $token = Token::TEST_NAME;
     $lines = ["$token:{$this->getTestName()}"];
-    $lines = array_merge($lines, array_map(function($item) { return (string) $item; }, $this->getRecords()));
+    $lines = array_merge($lines, array_map(function($item) { return (string) $item; }, $this->getRecords()->getArrayCopy()));
     return implode(PHP_EOL, $lines);
   }
 
@@ -60,9 +62,9 @@ class Report {
 
   /**
    * Gets the record list.
-   * @return Record[] The record list.
+   * @return \ArrayObject The record list.
    */
-  public function getRecords(): array {
+  public function getRecords(): \ArrayObject {
     return $this->records;
   }
 
@@ -81,7 +83,7 @@ class Report {
   public function jsonSerialize(): \stdClass {
     return (object) [
       'test' => $this->getTestName(),
-      'records' => array_map(function(Record $item) { return $item->jsonSerialize(); }, $this->getRecords())
+      'records' => array_map(function(Record $item) { return $item->jsonSerialize(); }, $this->getRecords()->getArrayCopy())
     ];
   }
 
@@ -92,7 +94,7 @@ class Report {
    * @throws \UnexpectedValueException A parsing error occurred.
    */
   public static function parse(string $coverage): self {
-    $report = new static();
+    $report = new self();
     $record = new Record([
       'branches' => new BranchCoverage(),
       'functions' => new FunctionCoverage(),
@@ -116,10 +118,10 @@ class Report {
             break;
 
           case Token::FUNCTION_NAME:
-            $record->getFunctions()->getData()[] = new FunctionData([
+            $record->getFunctions()->getData()->append(new FunctionData([
               'functionName' => $data[1],
               'lineNumber' => (int) $data[0]
-            ]);
+            ]));
             break;
 
           case Token::FUNCTION_DATA:
@@ -140,12 +142,12 @@ class Report {
             break;
 
           case Token::BRANCH_DATA:
-            $record->getBranches()->getData()[] = new BranchData([
+            $record->getBranches()->getData()->append(new BranchData([
               'lineNumber' => (int) $data[0],
               'blockNumber' => (int) $data[1],
               'branchNumber' => (int) $data[2],
               'taken' => $data[3] == '-' ? 0 : (int) $data[3]
-            ]);
+            ]));
             break;
 
           case Token::BRANCHES_FOUND:
@@ -157,11 +159,11 @@ class Report {
             break;
 
           case Token::LINE_DATA:
-            $record->getLines()->getData()[] = new LineData([
+            $record->getLines()->getData()->append(new LineData([
               'lineNumber' => (int) $data[0],
               'executionCount' => (int) $data[1],
               'checksum' => count($data) >= 3 ? $data[2] : null
-            ]);
+            ]));
             break;
 
           case Token::LINES_FOUND:
@@ -173,7 +175,7 @@ class Report {
             break;
 
           case Token::END_OF_RECORD:
-            $report->getRecords()[] = $record;
+            $report->getRecords()->append($record);
             $record = new Record();
             break;
         }
@@ -194,7 +196,7 @@ class Report {
    * @return Report This instance.
    */
   public function setRecords(array $value): self {
-    $this->records = $value;
+    $this->getRecords()->exchangeArray($value);
     return $this;
   }
 
