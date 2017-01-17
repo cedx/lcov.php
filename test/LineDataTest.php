@@ -37,7 +37,7 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $data->getExecutionCount());
     $this->assertEquals(0, $data->getLineNumber());
 
-    $data = LineData::fromJSON(['checksum' => 'ed076287532e86365e841e92bfc50d8c', 'count' => 3, 'line' => 127]);
+    $data = LineData::fromJSON(['checksum' => 'ed076287532e86365e841e92bfc50d8c', 'executionCount' => 3, 'lineNumber' => 127]);
     $this->assertInstanceOf(LineData::class, $data);
     $this->assertEquals('ed076287532e86365e841e92bfc50d8c', $data->getChecksum());
     $this->assertEquals(3, $data->getExecutionCount());
@@ -51,8 +51,8 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
     $data = (new LineData())->jsonSerialize();
     $this->assertCount(3, get_object_vars($data));
     $this->assertEquals('', $data->checksum);
-    $this->assertEquals(0, $data->count);
-    $this->assertEquals(0, $data->line);
+    $this->assertEquals(0, $data->executionCount);
+    $this->assertEquals(0, $data->lineNumber);
 
     $data = (new LineData([
       'checksum' => 'ed076287532e86365e841e92bfc50d8c',
@@ -62,8 +62,8 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
 
     $this->assertCount(3, get_object_vars($data));
     $this->assertEquals('ed076287532e86365e841e92bfc50d8c', $data->checksum);
-    $this->assertEquals(3, $data->count);
-    $this->assertEquals(127, $data->line);
+    $this->assertEquals(3, $data->executionCount);
+    $this->assertEquals(127, $data->lineNumber);
   }
 
   /**

@@ -37,7 +37,7 @@ class FunctionDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('', $data->getFunctionName());
     $this->assertEquals(0, $data->getLineNumber());
 
-    $data = FunctionData::fromJSON(['count' => 3, 'name' => 'main', 'line' => 127]);
+    $data = FunctionData::fromJSON(['executionCount' => 3, 'functionName' => 'main', 'lineNumber' => 127]);
     $this->assertInstanceOf(FunctionData::class, $data);
     $this->assertEquals(3, $data->getExecutionCount());
     $this->assertEquals('main', $data->getFunctionName());
@@ -50,9 +50,9 @@ class FunctionDataTest extends \PHPUnit_Framework_TestCase {
   public function testJsonSerialize() {
     $data = (new FunctionData())->jsonSerialize();
     $this->assertCount(3, get_object_vars($data));
-    $this->assertEquals(0, $data->count);
-    $this->assertEquals('', $data->name);
-    $this->assertEquals(0, $data->line);
+    $this->assertEquals(0, $data->executionCount);
+    $this->assertEquals('', $data->functionName);
+    $this->assertEquals(0, $data->lineNumber);
 
     $data = (new FunctionData([
       'executionCount' => 3,
@@ -61,9 +61,9 @@ class FunctionDataTest extends \PHPUnit_Framework_TestCase {
     ]))->jsonSerialize();
 
     $this->assertCount(3, get_object_vars($data));
-    $this->assertEquals(3, $data->count);
-    $this->assertEquals('main', $data->name);
-    $this->assertEquals(127, $data->line);
+    $this->assertEquals(3, $data->executionCount);
+    $this->assertEquals('main', $data->functionName);
+    $this->assertEquals(127, $data->lineNumber);
   }
 
   /**

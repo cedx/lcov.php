@@ -58,9 +58,9 @@ class BranchData {
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
-      'blockNumber' => isset($map->block) && is_int($map->block) ? $map->block : 0,
-      'branchNumber' => isset($map->branch) && is_int($map->branch) ? $map->branch : 0,
-      'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0,
+      'blockNumber' => isset($map->blockNumber) && is_int($map->blockNumber) ? $map->blockNumber : 0,
+      'branchNumber' => isset($map->branchNumber) && is_int($map->branchNumber) ? $map->branchNumber : 0,
+      'lineNumber' => isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
       'taken' => isset($map->taken) && is_int($map->taken) ? $map->taken : 0
     ]);
   }
@@ -103,9 +103,9 @@ class BranchData {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'block' => $this->getBlockNumber(),
-      'branch' => $this->getBranchNumber(),
-      'line' => $this->getLineNumber(),
+      'blockNumber' => $this->getBlockNumber(),
+      'branchNumber' => $this->getBranchNumber(),
+      'lineNumber' => $this->getLineNumber(),
       'taken' => $this->getTaken()
     ];
   }

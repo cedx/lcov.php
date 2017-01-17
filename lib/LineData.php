@@ -54,8 +54,8 @@ class LineData {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
       'checksum' => isset($map->checksum) && is_string($map->checksum) ? $map->checksum : '',
-      'executionCount' => isset($map->count) && is_int($map->count) ? $map->count : 0,
-      'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0
+      'executionCount' => isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
+      'lineNumber' => isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0
     ]);
   }
 
@@ -90,8 +90,8 @@ class LineData {
   public function jsonSerialize(): \stdClass {
     return (object) [
       'checksum' => $this->getChecksum(),
-      'count' => $this->getExecutionCount(),
-      'line' => $this->getLineNumber()
+      'executionCount' => $this->getExecutionCount(),
+      'lineNumber' => $this->getLineNumber()
     ];
   }
 

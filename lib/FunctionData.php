@@ -51,9 +51,9 @@ class FunctionData {
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
-      'executionCount' => isset($map->count) && is_int($map->count) ? $map->count : 0,
-      'functionName' => isset($map->name) && is_string($map->name) ? $map->name : '',
-      'lineNumber' => isset($map->line) && is_int($map->line) ? $map->line : 0
+      'executionCount' => isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
+      'functionName' => isset($map->functionName) && is_string($map->functionName) ? $map->functionName : '',
+      'lineNumber' => isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0
     ]);
   }
 
@@ -87,9 +87,9 @@ class FunctionData {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'count' => $this->getExecutionCount(),
-      'line' => $this->getLineNumber(),
-      'name' => $this->getFunctionName()
+      'executionCount' => $this->getExecutionCount(),
+      'functionName' => $this->getFunctionName(),
+      'lineNumber' => $this->getLineNumber()
     ];
   }
 

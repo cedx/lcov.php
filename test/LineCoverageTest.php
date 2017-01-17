@@ -41,7 +41,7 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $coverage->getFound());
     $this->assertEquals(0, $coverage->getHit());
 
-    $coverage = LineCoverage::fromJSON(['data' => [['line' => 127]], 'found' => 23, 'hit' => 11]);
+    $coverage = LineCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
     $this->assertInstanceOf(LineCoverage::class, $coverage);
 
     $entries = $coverage->getData();
@@ -72,7 +72,7 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
     $this->assertInstanceOf(\stdClass::class, $map->data[0]);
-    $this->assertObjectHasAttribute('line', $map->data[0]);
+    $this->assertObjectHasAttribute('lineNumber', $map->data[0]);
     $this->assertEquals(23, $map->found);
     $this->assertEquals(11, $map->hit);
   }
@@ -90,6 +90,6 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
     ]);
 
     $coverage = new LineCoverage(['data' => [$data], 'found' => 23, 'hit' => 11]);
-    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'DA:127,3{{eol}}LF:23{{eol}}LH:11'), (string) $coverage);
+    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}LF:23{{eol}}LH:11"), (string) $coverage);
   }
 }

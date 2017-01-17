@@ -41,7 +41,7 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $coverage->getFound());
     $this->assertEquals(0, $coverage->getHit());
 
-    $coverage = BranchCoverage::fromJSON(['data' => [['line' => 127]], 'found' => 23, 'hit' => 11]);
+    $coverage = BranchCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
     $this->assertInstanceOf(BranchCoverage::class, $coverage);
 
     $entries = $coverage->getData();
@@ -72,7 +72,7 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
     $this->assertInstanceOf(\stdClass::class, $map->data[0]);
-    $this->assertObjectHasAttribute('line', $map->data[0]);
+    $this->assertObjectHasAttribute('lineNumber', $map->data[0]);
     $this->assertEquals(23, $map->found);
     $this->assertEquals(11, $map->hit);
   }
@@ -91,6 +91,6 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
     ]);
 
     $coverage = new BranchCoverage(['data' => [$data], 'found' => 23, 'hit' => 11]);
-    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'BRDA:127,3,2,-{{eol}}BRF:23{{eol}}BRH:11'), (string) $coverage);
+    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}BRF:23{{eol}}BRH:11"), (string) $coverage);
   }
 }

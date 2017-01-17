@@ -40,7 +40,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $data->getLineNumber());
     $this->assertEquals(0, $data->getTaken());
 
-    $data = BranchData::fromJSON(['block' => 3, 'branch' => 2, 'line' => 127, 'taken' => 1]);
+    $data = BranchData::fromJSON(['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
     $this->assertInstanceOf(BranchData::class, $data);
     $this->assertEquals(3, $data->getBlockNumber());
     $this->assertEquals(2, $data->getBranchNumber());
@@ -54,9 +54,9 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
   public function testJsonSerialize() {
     $data = (new BranchData())->jsonSerialize();
     $this->assertCount(4, get_object_vars($data));
-    $this->assertEquals(0, $data->block);
-    $this->assertEquals(0, $data->branch);
-    $this->assertEquals(0, $data->line);
+    $this->assertEquals(0, $data->blockNumber);
+    $this->assertEquals(0, $data->branchNumber);
+    $this->assertEquals(0, $data->lineNumber);
     $this->assertEquals(0, $data->taken);
 
     $data = (new BranchData([
@@ -67,9 +67,9 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
     ]))->jsonSerialize();
 
     $this->assertCount(4, get_object_vars($data));
-    $this->assertEquals(3, $data->block);
-    $this->assertEquals(2, $data->branch);
-    $this->assertEquals(127, $data->line);
+    $this->assertEquals(3, $data->blockNumber);
+    $this->assertEquals(2, $data->branchNumber);
+    $this->assertEquals(127, $data->lineNumber);
     $this->assertEquals(1, $data->taken);
   }
 

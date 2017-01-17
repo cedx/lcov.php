@@ -56,7 +56,7 @@ class Report {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static([
       'records' => isset($map->records) && is_array($map->records) ? $transform($map->records) : [],
-      'testName' => isset($map->test) && is_string($map->test) ? $map->test : ''
+      'testName' => isset($map->testName) && is_string($map->testName) ? $map->testName : ''
     ]);
   }
 
@@ -82,7 +82,7 @@ class Report {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'test' => $this->getTestName(),
+      'testName' => $this->getTestName(),
       'records' => array_map(function(Record $item) { return $item->jsonSerialize(); }, $this->getRecords()->getArrayCopy())
     ];
   }
@@ -94,7 +94,7 @@ class Report {
    * @throws \UnexpectedValueException A parsing error occurred.
    */
   public static function parse(string $coverage): self {
-    $report = new self();
+    $report = new static();
     $record = new Record([
       'branches' => new BranchCoverage(),
       'functions' => new FunctionCoverage(),

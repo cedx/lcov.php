@@ -50,7 +50,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
       'branches' => [],
       'functions' => [],
       'lines' => [],
-      'file' => '/home/cedx/lcov.php'
+      'sourceFile' => '/home/cedx/lcov.php'
     ]);
 
     $this->assertInstanceOf(Record::class, $record);
@@ -69,7 +69,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull($map->branches);
     $this->assertNull($map->functions);
     $this->assertNull($map->lines);
-    $this->assertEquals('', $map->file);
+    $this->assertEquals('', $map->sourceFile);
 
     $map = (new Record([
       'branches' => new BranchCoverage(),
@@ -82,7 +82,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
     $this->assertInstanceOf(\stdClass::class, $map->branches);
     $this->assertInstanceOf(\stdClass::class, $map->functions);
     $this->assertInstanceOf(\stdClass::class, $map->lines);
-    $this->assertEquals('/home/cedx/lcov.php', $map->file);
+    $this->assertEquals('/home/cedx/lcov.php', $map->sourceFile);
   }
 
   /**
@@ -99,7 +99,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
       'sourceFile' => '/home/cedx/lcov.php'
     ]);
 
-    $format = 'SF:/home/cedx/lcov.php{{eol}}FNF:0{{eol}}FNH:0{{eol}}BRF:0{{eol}}BRH:0{{eol}}LF:0{{eol}}LH:0{{eol}}end_of_record';
+    $format = "SF:/home/cedx/lcov.php{{eol}}$functions{{eol}}$branches{{eol}}$lines{{eol}}end_of_record";
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, $format), (string) $record);
   }
 }

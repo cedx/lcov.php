@@ -47,9 +47,9 @@ class Record {
   public function __toString(): string {
     $token = Token::SOURCE_FILE;
     $output = ["$token:{$this->getSourceFile()}"];
-    if ($this->functions) $output[] = (string) $this->functions;
-    if ($this->branches) $output[] = (string) $this->branches;
-    if ($this->lines) $output[] = (string) $this->lines;
+    if ($functions = $this->getFunctions()) $output[] = (string) $functions;
+    if ($branches = $this->getBranches()) $output[] = (string) $branches;
+    if ($lines = $this->getLines()) $output[] = (string) $lines;
     $output[] = Token::END_OF_RECORD;
     return implode(PHP_EOL, $output);
   }
@@ -65,7 +65,7 @@ class Record {
       'branches' => isset($map->branches) ? BranchCoverage::fromJSON($map->branches) : null,
       'functions' => isset($map->functions) ? FunctionCoverage::fromJSON($map->functions) : null,
       'lines' => isset($map->lines) ? LineCoverage::fromJSON($map->lines) : null,
-      'sourceFile' => isset($map->file) && is_string($map->file) ? $map->file : ''
+      'sourceFile' => isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : ''
     ]);
   }
 
@@ -107,7 +107,7 @@ class Record {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'file' => $this->getSourceFile(),
+      'sourceFile' => $this->getSourceFile(),
       'branches' => ($branches = $this->getBranches()) ? $branches->jsonSerialize() : null,
       'functions' => ($functions = $this->getFunctions()) ? $functions->jsonSerialize() : null,
       'lines' => ($lines = $this->getLines()) ? $lines->jsonSerialize() : null

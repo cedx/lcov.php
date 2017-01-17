@@ -41,7 +41,7 @@ class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $coverage->getFound());
     $this->assertEquals(0, $coverage->getHit());
 
-    $coverage = FunctionCoverage::fromJSON(['data' => [['line' => 127]], 'found' => 23, 'hit' => 11]);
+    $coverage = FunctionCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
     $this->assertInstanceOf(FunctionCoverage::class, $coverage);
 
     $entries = $coverage->getData();
@@ -72,7 +72,7 @@ class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
     $this->assertInstanceOf(\stdClass::class, $map->data[0]);
-    $this->assertObjectHasAttribute('line', $map->data[0]);
+    $this->assertObjectHasAttribute('lineNumber', $map->data[0]);
     $this->assertEquals(23, $map->found);
     $this->assertEquals(11, $map->hit);
   }
