@@ -184,7 +184,7 @@ class Report {
       throw new \UnexpectedValueException('The coverage data has an invalid LCOV format.');
     }
 
-    if (!count($report->getRecords())) throw new \UnexpectedValueException('The coverage data is empty.');
+    if (!$report->getRecords()) throw new \UnexpectedValueException('The coverage data is empty.');
     return $report;
   }
 

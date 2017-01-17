@@ -47,7 +47,7 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
    */
   public function testJsonSerialize() {
     $data = (new LineData())->jsonSerialize();
-    $this->assertEquals(count(get_object_vars($data)), 3);
+    $this->assertCount(3, get_object_vars($data));
     $this->assertEquals('', $data->checksum);
     $this->assertEquals(0, $data->count);
     $this->assertEquals(0, $data->line);
@@ -58,7 +58,7 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
       'lineNumber' => 127
     ]))->jsonSerialize();
 
-    $this->assertEquals(count(get_object_vars($data)), 3);
+    $this->assertCount(3, get_object_vars($data));
     $this->assertEquals('ed076287532e86365e841e92bfc50d8c', $data->checksum);
     $this->assertEquals(3, $data->count);
     $this->assertEquals(127, $data->line);

@@ -51,7 +51,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
    */
   public function testJsonSerialize() {
     $data = (new BranchData())->jsonSerialize();
-    $this->assertEquals(count(get_object_vars($data)), 4);
+    $this->assertCount(4, get_object_vars($data));
     $this->assertEquals(0, $data->block);
     $this->assertEquals(0, $data->branch);
     $this->assertEquals(0, $data->line);
@@ -64,7 +64,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
       'taken' => 1
     ]))->jsonSerialize();
 
-    $this->assertEquals(count(get_object_vars($data)), 4);
+    $this->assertCount(4, get_object_vars($data));
     $this->assertEquals(3, $data->block);
     $this->assertEquals(2, $data->branch);
     $this->assertEquals(127, $data->line);
