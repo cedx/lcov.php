@@ -5,6 +5,7 @@
 .gitignore text
 .travis.yml text
 
+*.info text
 *.json text
 *.md text
 *.php text diff=php

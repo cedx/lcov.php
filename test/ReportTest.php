@@ -3,7 +3,7 @@
  * Implementation of the `lcov\test\ReportTest` class.
  */
 namespace lcov\test;
-use lcov\{Record, Report};
+use lcov\{BranchData, FunctionData, LineData, Record, Report};
 
 /**
  * Tests the features of the `lcov\Report` class.
@@ -78,7 +78,45 @@ class ReportTest extends \PHPUnit_Framework_TestCase {
    * Tests the `Report::parse()` method.
    */
   public function testParse() {
-    // TODO
+    $report = Report::parse(file_get_contents(__DIR__.'/lcov.info'));
+    $this->assertEquals('Example', $report->getTestName());
+
+    $records = $report->getRecords();
+    $this->assertCount(3, $records);
+    $this->assertInstanceOf(Record::class, $records[0]);
+    $this->assertEquals('/home/cedx/lcov.php/fixture.php', $records[0]->getSourceFile());
+    $this->assertEquals('/home/cedx/lcov.php/func1.php', $records[1]->getSourceFile());
+    $this->assertEquals('/home/cedx/lcov.php/func2.php', $records[2]->getSourceFile());
+
+    $branches = $records[1]->getBranches();
+    $this->assertEquals(4, $branches->getFound());
+    $this->assertEquals(4, $branches->getHit());
+
+    $data = $branches->getData();
+    $this->assertCount(4, $data);
+    $this->assertInstanceOf(BranchData::class, $data[0]);
+    $this->assertEquals(8, $data[0]->getLineNumber());
+
+    $functions = $records[1]->getFunctions();
+    $this->assertEquals(1, $functions->getFound());
+    $this->assertEquals(1, $functions->getHit());
+
+    $data = $functions->getData();
+    $this->assertCount(1, $data);
+    $this->assertInstanceOf(FunctionData::class, $data[0]);
+    $this->assertEquals('func1', $data[0]->getFunctionName());
+
+    $lines = $records[1]->getLines();
+    $this->assertEquals(9, $lines->getFound());
+    $this->assertEquals(9, $lines->getHit());
+
+    $data = $lines->getData();
+    $this->assertCount(9, $data);
+    $this->assertInstanceOf(LineData::class, $data[0]);
+    $this->assertEquals('5kX7OTfHFcjnS98fjeVqNA', $data[0]->getChecksum());
+
+    $this->expectException(\UnexpectedValueException::class);
+    Report::parse('TN:Example');
   }
 
   /**

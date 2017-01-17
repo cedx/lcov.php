@@ -95,17 +95,24 @@ class Report {
    */
   public static function parse(string $coverage): self {
     $report = new static();
-    $record = new Record([
-      'branches' => new BranchCoverage(),
-      'functions' => new FunctionCoverage(),
-      'lines' => new LineCoverage()
-    ]);
+    $records = $report->getRecords();
 
     try {
-      foreach (preg_split('/\r?\n/', $coverage) as $line) {
-        $parts = explode(':', trim($line));
+      $record = new Record([
+        'branches' => new BranchCoverage(),
+        'functions' => new FunctionCoverage(),
+        'lines' => new LineCoverage()
+      ]);
 
-        $token = mb_strtoupper(array_shift($parts));
+      foreach (preg_split('/\r?\n/', $coverage) as $line) {
+        $line = trim($line);
+        if (!mb_strlen($line)) continue;
+
+        $parts = explode(':', $line);
+        if (count($parts) < 2 && $parts[0] != Token::END_OF_RECORD)
+          throw new \UnexpectedValueException('Invalid LCOV line.');
+
+        $token = array_shift($parts);
         $data = explode(',', implode(':', $parts));
 
         switch ($token) {
@@ -175,8 +182,12 @@ class Report {
             break;
 
           case Token::END_OF_RECORD:
-            $report->getRecords()->append($record);
-            $record = new Record();
+            $records->append($record);
+            $record = new Record([
+              'branches' => new BranchCoverage(),
+              'functions' => new FunctionCoverage(),
+              'lines' => new LineCoverage()
+            ]);
             break;
         }
       }
@@ -186,7 +197,7 @@ class Report {
       throw new \UnexpectedValueException('The coverage data has an invalid LCOV format.');
     }
 
-    if (!$report->getRecords()) throw new \UnexpectedValueException('The coverage data is empty.');
+    if (!count($records)) throw new \UnexpectedValueException('The coverage data is empty.');
     return $report;
   }
 
