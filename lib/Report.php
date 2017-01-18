@@ -109,11 +109,11 @@ class Report {
         if (!mb_strlen($line)) continue;
 
         $parts = explode(':', $line);
-        if (count($parts) < 2 && $parts[0] != Token::END_OF_RECORD)
-          throw new \UnexpectedValueException('Invalid LCOV line.');
+        if (count($parts) < 2 && $parts[0] != Token::END_OF_RECORD) throw new \DomainException('Invalid token format.');
 
         $token = array_shift($parts);
         $data = explode(',', implode(':', $parts));
+        $length = count($data);
 
         switch ($token) {
           case Token::TEST_NAME:
@@ -125,6 +125,7 @@ class Report {
             break;
 
           case Token::FUNCTION_NAME:
+            if ($length < 2) throw new \DomainException('Invalid function name.');
             $record->getFunctions()->getData()->append(new FunctionData([
               'functionName' => $data[1],
               'lineNumber' => (int) $data[0]
@@ -132,6 +133,7 @@ class Report {
             break;
 
           case Token::FUNCTION_DATA:
+            if ($length < 2) throw new \DomainException('Invalid function data.');
             foreach ($record->getFunctions()->getData() as $item) {
               if ($item->getFunctionName() == $data[1]) {
                 $item->setExecutionCount((int) $data[0]);
@@ -149,6 +151,7 @@ class Report {
             break;
 
           case Token::BRANCH_DATA:
+            if ($length < 4) throw new \DomainException('Invalid branch data.');
             $record->getBranches()->getData()->append(new BranchData([
               'lineNumber' => (int) $data[0],
               'blockNumber' => (int) $data[1],
@@ -166,10 +169,11 @@ class Report {
             break;
 
           case Token::LINE_DATA:
+            if ($length < 3) throw new \DomainException('Invalid line data.');
             $record->getLines()->getData()->append(new LineData([
               'lineNumber' => (int) $data[0],
               'executionCount' => (int) $data[1],
-              'checksum' => count($data) >= 3 ? $data[2] : null
+              'checksum' => $length >= 3 ? $data[2] : null
             ]));
             break;
 
