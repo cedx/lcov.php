@@ -79,8 +79,9 @@ All you have to do is to create the adequate structure using these different cla
 ```php
 use lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
 
-$lineCoverage = new LineCoverage(4, 4, [
-  new LineData(6, 2, 'PF4Rz2r7RTliO9u6bZ7h6g')
+$lineCoverage = new LineCoverage(2, 2, [
+  new LineData(6, 2, 'PF4Rz2r7RTliO9u6bZ7h6g'),
+  new LineData(7, 2, 'yGMB6FhEEAd8OyASe3Ni1w')
 ]);
 
 $record = (new Record('/home/cedx/lcov.php/fixture.php'))
@@ -99,8 +100,9 @@ SF:/home/cedx/lcov.dart/fixture.dart
 FNF:1
 FNH:1
 DA:6,2,PF4Rz2r7RTliO9u6bZ7h6g
-LF:4
-LH:4
+DA:7,2,yGMB6FhEEAd8OyASe3Ni1w
+LF:2
+LH:2
 end_of_record
 ```
 
