@@ -96,7 +96,7 @@ The `Report::__toString()` method will return a LCOV report formatted like this:
 
 ```
 TN:Example
-SF:/home/cedx/lcov.dart/fixture.dart
+SF:/home/cedx/lcov.dart/fixture.php
 FNF:1
 FNH:1
 DA:6,2,PF4Rz2r7RTliO9u6bZ7h6g
