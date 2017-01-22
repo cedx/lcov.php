@@ -28,7 +28,7 @@ class BranchCoverage {
    * Initializes a new instance of the class.
    * @param int $found The number of branches found.
    * @param int $hit The number of branches hit.
-   * @param array $data The coverage data.
+   * @param BranchData[] $data The coverage data.
    */
   public function __construct(int $found = 0, int $hit = 0, array $data = []) {
     $this->data = new \ArrayObject($data);

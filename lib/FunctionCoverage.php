@@ -28,7 +28,7 @@ class FunctionCoverage {
    * Initializes a new instance of the class.
    * @param int $found The number of functions found.
    * @param int $hit The number of functions hit.
-   * @param array $data The coverage data.
+   * @param FunctionData[] $data The coverage data.
    */
   public function __construct(int $found = 0, int $hit = 0, array $data = []) {
     $this->data = new \ArrayObject($data);

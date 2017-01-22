@@ -28,7 +28,7 @@ class LineCoverage {
    * Initializes a new instance of the class.
    * @param int $found The number of lines found.
    * @param int $hit The number of lines hit.
-   * @param array $data The coverage data.
+   * @param LineData[] $data The coverage data.
    */
   public function __construct(int $found = 0, int $hit = 0, array $data = []) {
     $this->data = new \ArrayObject($data);

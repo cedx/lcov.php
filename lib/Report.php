@@ -22,7 +22,7 @@ class Report {
   /**
    * Initializes a new instance of the class.
    * @param string $testName The test name.
-   * @param array $records The record list.
+   * @param Record[] $records The record list.
    */
   public function __construct(string $testName = '', array $records = []) {
     $this->records = new \ArrayObject($records);
