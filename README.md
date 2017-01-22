@@ -18,32 +18,6 @@ $ composer require cedx/lcov
 This package provides a set of classes representing a coverage report and its data.
 The [`locv\Report`](https://github.com/cedx/lcov.php/blob/master/lib/Report.php) class, the main one, provides the parsing and formatting features.
 
-### Class instantiation
-The provided classes have standard getters and setters to access their properties.
-To ease the initialization of these classes, their constructor accepts an associative array of property values (`"property" => "value"`), and their setters have a fluent interface:
-
-```php
-use lcov\{Record, Report};
-
-// Using an associative array with the constructor.
-$record = new Record([
-  'sourceFile' => '/home/cedx/lcov.php'
-]);
-
-$report = new Report([
-  'records' => [$record],
-  'testName' => 'Example'
-]);
-
-// Using the fluent interface of the setters.
-$record = (new Record())
-  ->setSourceFile('/home/cedx/lcov.php');
-
-$report = (new Report())
-  ->setRecords([$record])
-  ->setTestName('Example');
-```
-
 ### Parse coverage data from a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) file
 The `Report::parse()` static method parses a coverage report provided as string, and returns a `Report` instance giving detailed information about this coverage report:
 
@@ -105,29 +79,15 @@ All you have to do is to create the adequate structure using these different cla
 ```php
 use lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
 
-$lineData = new LineData([
-  'checksum' => 'PF4Rz2r7RTliO9u6bZ7h6g',
-  'executionCount' => 2,
-  'lineNumber' => 6
+$lineCoverage = new LineCoverage(4, 4, [
+  new LineData(6, 2, 'PF4Rz2r7RTliO9u6bZ7h6g')
 ]);
 
-$lineCoverage = new LineCoverage([
-  'data' => [$lineData, ...],
-  'found' => 4,
-  'hit' => 4
-]);
+$record = (new Record('/home/cedx/lcov.php/fixture.php'))
+  ->setFunctions(new FunctionCoverage(1, 1))
+  ->setLines($lineCoverage);
 
-$record = new Record([
-  'functions' => new FunctionCoverage(['data' => [...], 'found' => 1, 'hit' => 1]),
-  'lines' => $lineCoverage,
-  'sourceFile' => '/home/cedx/lcov.php/fixture.php'
-]);
-
-$report = new Report([
-  'records' => [$record],
-  'testName' => 'Example'
-]);
-
+$report = new Report('Example', [$record]);
 echo $report;
 ```
 
@@ -135,15 +95,10 @@ It will return a LCOV report formatted like this:
 
 ```
 TN:Example
-SF:/home/cedx/lcov.php/fixture.php
-FN:4,main
-FNDA:2,main
+SF:/home/cedx/lcov.dart/fixture.dart
 FNF:1
 FNH:1
 DA:6,2,PF4Rz2r7RTliO9u6bZ7h6g
-DA:7,2,yGMB6FhEEAd8OyASe3Ni1w
-DA:8,2,8F2cpOfOtP7xrzoeUaNfTg
-DA:9,2,y7GE3Y4FyXCeXcrtqgSVzw
 LF:4
 LH:4
 end_of_record
