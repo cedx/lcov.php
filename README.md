@@ -74,7 +74,7 @@ The `Report::jsonSerialize()` instance method will return a map like this:
 
 ### Format coverage data to the [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format
 Each provided class has a dedicated `__toString()` instance method returning the corresponding data formatted as LCOV string.
-All you have to do is to create the adequate structure using these different classes, and to export the final result using the `Report::__toString()` method:
+All you have to do is to create the adequate structure using these different classes, and to export the final result:
 
 ```php
 use lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
@@ -92,7 +92,7 @@ $report = new Report('Example', [$record]);
 echo $report;
 ```
 
-It will return a LCOV report formatted like this:
+The `Report::__toString()` method will return a LCOV report formatted like this:
 
 ```
 TN:Example
