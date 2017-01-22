@@ -11,23 +11,6 @@ use lcov\{BranchData};
 class BranchDataTest extends \PHPUnit_Framework_TestCase {
 
   /**
-   * Tests the `BranchData` constructor.
-   */
-  public function testConstructor() {
-    $data = new BranchData([
-      'blockNumber' => 3,
-      'branchNumber' => 2,
-      'lineNumber' => 127,
-      'taken' => 1
-    ]);
-
-    $this->assertEquals(3, $data->getBlockNumber());
-    $this->assertEquals(2, $data->getBranchNumber());
-    $this->assertEquals(127, $data->getLineNumber());
-    $this->assertEquals(1, $data->getTaken());
-  }
-
-  /**
    * Tests the `BranchData::fromJSON()` method.
    */
   public function testFromJSON() {
@@ -59,13 +42,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $data->lineNumber);
     $this->assertEquals(0, $data->taken);
 
-    $data = (new BranchData([
-      'blockNumber' => 3,
-      'branchNumber' => 2,
-      'lineNumber' => 127,
-      'taken' => 1
-    ]))->jsonSerialize();
-
+    $data = (new BranchData(127, 3, 2, 1))->jsonSerialize();
     $this->assertCount(4, get_object_vars($data));
     $this->assertEquals(3, $data->blockNumber);
     $this->assertEquals(2, $data->branchNumber);
@@ -77,10 +54,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
    * Tests the `BranchData::__toString()` method.
    */
   public function testToString() {
-    $data = new BranchData();
-    $this->assertEquals('BRDA:0,0,0,-', (string) $data);
-
-    $data = new BranchData(['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
-    $this->assertEquals('BRDA:127,3,2,1', (string) $data);
+    $this->assertEquals('BRDA:0,0,0,-', (string) new BranchData());
+    $this->assertEquals('BRDA:127,3,2,1', (string) new BranchData(127, 3, 2, 1));
   }
 }

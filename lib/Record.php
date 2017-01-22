@@ -27,17 +27,14 @@ class Record {
   /**
    * @var string The path to the source file.
    */
-  private $sourceFile = '';
+  private $sourceFile;
 
   /**
    * Initializes a new instance of the class.
-   * @param array $config Name-value pairs that will be used to initialize the object properties.
+   * @param string $sourceFile The path to the source file.
    */
-  public function __construct(array $config = []) {
-    foreach ($config as $property => $value) {
-      $setter = "set$property";
-      if (method_exists($this, $setter)) $this->$setter($value);
-    }
+  public function __construct(string $sourceFile = '') {
+    $this->setSourceFile($sourceFile);
   }
 
   /**
@@ -61,12 +58,10 @@ class Record {
    */
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static([
-      'branches' => isset($map->branches) ? BranchCoverage::fromJSON($map->branches) : null,
-      'functions' => isset($map->functions) ? FunctionCoverage::fromJSON($map->functions) : null,
-      'lines' => isset($map->lines) ? LineCoverage::fromJSON($map->lines) : null,
-      'sourceFile' => isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : ''
-    ]);
+    return !is_object($map) ? null : (new static(isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : ''))
+      ->setBranches(isset($map->branches) ? BranchCoverage::fromJSON($map->branches) : null)
+      ->setFunctions(isset($map->functions) ? FunctionCoverage::fromJSON($map->functions) : null)
+      ->setLines(isset($map->lines) ? LineCoverage::fromJSON($map->lines) : null);
   }
 
   /**

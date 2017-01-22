@@ -11,29 +11,6 @@ use lcov\{BranchCoverage, FunctionCoverage, LineCoverage, Record};
 class RecordTest extends \PHPUnit_Framework_TestCase {
 
   /**
-   * Tests the `Record` constructor.
-   */
-  public function testConstructor() {
-    $record = new Record();
-    $this->assertNull($record->getBranches());
-    $this->assertNull($record->getFunctions());
-    $this->assertNull($record->getLines());
-    $this->assertEquals('', $record->getSourceFile());
-
-    $record = new Record([
-      'branches' => $branches = new BranchCoverage(),
-      'functions' => $functions = new FunctionCoverage(),
-      'lines' => $lines = new LineCoverage(),
-      'sourceFile' => '/home/cedx/lcov.php'
-    ]);
-
-    $this->assertSame($branches, $record->getBranches());
-    $this->assertSame($functions, $record->getFunctions());
-    $this->assertSame($lines, $record->getLines());
-    $this->assertEquals('/home/cedx/lcov.php', $record->getSourceFile());
-  }
-
-  /**
    * Tests the `Record::fromJSON()` method.
    */
   public function testFromJSON() {
@@ -44,7 +21,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull($record->getBranches());
     $this->assertNull($record->getFunctions());
     $this->assertNull($record->getLines());
-    $this->assertEquals('', $record->getSourceFile());
+    $this->assertEmpty($record->getSourceFile());
 
     $record = Record::fromJSON([
       'branches' => [],
@@ -69,14 +46,13 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
     $this->assertNull($map->branches);
     $this->assertNull($map->functions);
     $this->assertNull($map->lines);
-    $this->assertEquals('', $map->sourceFile);
+    $this->assertEmpty($map->sourceFile);
 
-    $map = (new Record([
-      'branches' => new BranchCoverage(),
-      'functions' => new FunctionCoverage(),
-      'lines' => new LineCoverage(),
-      'sourceFile' => '/home/cedx/lcov.php'
-    ]))->jsonSerialize();
+    $map = (new Record('/home/cedx/lcov.php'))
+      ->setBranches(new BranchCoverage())
+      ->setFunctions(new FunctionCoverage())
+      ->setLines(new LineCoverage())
+      ->jsonSerialize();
 
     $this->assertCount(4, get_object_vars($map));
     $this->assertInstanceOf(\stdClass::class, $map->branches);
@@ -89,17 +65,14 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
    * Tests the `Record::__toString()` method.
    */
   public function testToString() {
-    $record = new Record();
-    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'), (string) $record);
+    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'), (string) new Record());
 
-    $record = new Record([
-      'branches' => $branches = new BranchCoverage(),
-      'functions' => $functions = new FunctionCoverage(),
-      'lines' => $lines = new LineCoverage(),
-      'sourceFile' => '/home/cedx/lcov.php'
-    ]);
+    $record = (new Record('/home/cedx/lcov.php'))
+      ->setBranches(new BranchCoverage())
+      ->setFunctions(new FunctionCoverage())
+      ->setLines(new LineCoverage());
 
-    $format = "SF:/home/cedx/lcov.php{{eol}}$functions{{eol}}$branches{{eol}}$lines{{eol}}end_of_record";
+    $format = "SF:/home/cedx/lcov.php{{eol}}{$record->getFunctions()}{{eol}}{$record->getBranches()}{{eol}}{$record->getLines()}{{eol}}end_of_record";
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, $format), (string) $record);
   }
 }

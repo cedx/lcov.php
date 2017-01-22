@@ -11,25 +11,6 @@ use lcov\{FunctionCoverage, FunctionData};
 class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
 
   /**
-   * Tests the `FunctionCoverage` constructor.
-   */
-  public function testConstructor() {
-    $data = new FunctionData();
-    $coverage = new FunctionCoverage([
-      'data' => [$data],
-      'found' => 23,
-      'hit' => 11
-    ]);
-
-    $entries = $coverage->getData();
-    $this->assertCount(1, $entries);
-    $this->assertSame($data, $entries[0]);
-
-    $this->assertEquals(23, $coverage->getFound());
-    $this->assertEquals(11, $coverage->getHit());
-  }
-
-  /**
    * Tests the `FunctionCoverage::fromJSON()` method.
    */
   public function testFromJSON() {
@@ -63,12 +44,7 @@ class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $map->found);
     $this->assertEquals(0, $map->hit);
 
-    $map = (new FunctionCoverage([
-      'data' => [new FunctionData()],
-      'found' => 23,
-      'hit' => 11
-    ]))->jsonSerialize();
-
+    $map = (new FunctionCoverage(23, 11, [new FunctionData()]))->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
     $this->assertInstanceOf(\stdClass::class, $map->data[0]);
@@ -81,16 +57,9 @@ class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
    * Tests the `FunctionCoverage::__toString()` method.
    */
   public function testToString() {
-    $coverage = new FunctionCoverage();
-    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'), (string) $coverage);
+    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'), (string) new FunctionCoverage());
 
-    $data = new FunctionData([
-      'executionCount' => 3,
-      'functionName' => 'main',
-      'lineNumber' => 127
-    ]);
-
-    $coverage = new FunctionCoverage(['data' => [$data], 'found' => 23, 'hit' => 11]);
+    $coverage = new FunctionCoverage(23, 11, [new FunctionData('main', 127, 3)]);
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'FN:127,main{{eol}}FNDA:3,main{{eol}}FNF:23{{eol}}FNH:11'), (string) $coverage);
   }
 }

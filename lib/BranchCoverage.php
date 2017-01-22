@@ -17,24 +17,23 @@ class BranchCoverage {
   /**
    * @var int The number of branches found.
    */
-  private $found = 0;
+  private $found;
 
   /**
    * @var int The number of branches hit.
    */
-  private $hit = 0;
+  private $hit;
 
   /**
    * Initializes a new instance of the class.
-   * @param array $config Name-value pairs that will be used to initialize the object properties.
+   * @param int $found The number of branches found.
+   * @param int $hit The number of branches hit.
+   * @param array $data The coverage data.
    */
-  public function __construct(array $config = []) {
-    $this->data = new \ArrayObject();
-
-    foreach ($config as $property => $value) {
-      $setter = "set$property";
-      if (method_exists($this, $setter)) $this->$setter($value);
-    }
+  public function __construct(int $found = 0, int $hit = 0, array $data = []) {
+    $this->data = new \ArrayObject($data);
+    $this->setFound($found);
+    $this->setHit($hit);
   }
 
   /**
@@ -59,11 +58,11 @@ class BranchCoverage {
     };
 
     if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static([
-      'data' => isset($map->data) && is_array($map->data) ? $transform($map->data) : [],
-      'found' => isset($map->found) && is_int($map->found) ? $map->found : 0,
-      'hit' => isset($map->hit) && is_int($map->hit) ? $map->hit : 0
-    ]);
+    return !is_object($map) ? null : new static(
+      isset($map->found) && is_int($map->found) ? $map->found : 0,
+      isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
+      isset($map->data) && is_array($map->data) ? $transform($map->data) : []
+    );
   }
 
   /**

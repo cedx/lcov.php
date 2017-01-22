@@ -12,32 +12,35 @@ class BranchData {
   /**
    * @var int The block number.
    */
-  private $blockNumber = 0;
+  private $blockNumber;
 
   /**
    * @var int The branch number.
    */
-  private $branchNumber = 0;
+  private $branchNumber;
 
   /**
    * @var int The line number.
    */
-  private $lineNumber = 0;
+  private $lineNumber;
 
   /**
    * @var int A number indicating how often this branch was taken.
    */
-  private $taken = 0;
+  private $taken;
 
   /**
    * Initializes a new instance of the class.
-   * @param array $config Name-value pairs that will be used to initialize the object properties.
+   * @param int $lineNumber The line number.
+   * @param int $blockNumber The block number.
+   * @param int $branchNumber The branch number.
+   * @param int $taken A number indicating how often this branch was taken.
    */
-  public function __construct(array $config = []) {
-    foreach ($config as $property => $value) {
-      $setter = "set$property";
-      if (method_exists($this, $setter)) $this->$setter($value);
-    }
+  public function __construct(int $lineNumber = 0, int $blockNumber = 0, int $branchNumber = 0, int $taken = 0) {
+    $this->setLineNumber($lineNumber);
+    $this->setBlockNumber($blockNumber);
+    $this->setBranchNumber($branchNumber);
+    $this->setTaken($taken);
   }
 
   /**
@@ -57,12 +60,12 @@ class BranchData {
    */
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static([
-      'blockNumber' => isset($map->blockNumber) && is_int($map->blockNumber) ? $map->blockNumber : 0,
-      'branchNumber' => isset($map->branchNumber) && is_int($map->branchNumber) ? $map->branchNumber : 0,
-      'lineNumber' => isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
-      'taken' => isset($map->taken) && is_int($map->taken) ? $map->taken : 0
-    ]);
+    return !is_object($map) ? null : new static(
+      isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
+      isset($map->blockNumber) && is_int($map->blockNumber) ? $map->blockNumber : 0,
+      isset($map->branchNumber) && is_int($map->branchNumber) ? $map->branchNumber : 0,
+      isset($map->taken) && is_int($map->taken) ? $map->taken : 0
+    );
   }
 
   /**

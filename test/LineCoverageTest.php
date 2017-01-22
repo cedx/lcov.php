@@ -11,25 +11,6 @@ use lcov\{LineCoverage, LineData};
 class LineCoverageTest extends \PHPUnit_Framework_TestCase {
 
   /**
-   * Tests the `LineCoverage` constructor.
-   */
-  public function testConstructor() {
-    $data = new LineData();
-    $coverage = new LineCoverage([
-      'data' => [$data],
-      'found' => 23,
-      'hit' => 11
-    ]);
-
-    $entries = $coverage->getData();
-    $this->assertCount(1, $entries);
-    $this->assertSame($data, $entries[0]);
-
-    $this->assertEquals(23, $coverage->getFound());
-    $this->assertEquals(11, $coverage->getHit());
-  }
-
-  /**
    * Tests the `LineCoverage::fromJSON()` method.
    */
   public function testFromJSON() {
@@ -63,12 +44,7 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $map->found);
     $this->assertEquals(0, $map->hit);
 
-    $map = (new LineCoverage([
-      'data' => [new LineData()],
-      'found' => 23,
-      'hit' => 11
-    ]))->jsonSerialize();
-
+    $map = (new LineCoverage(23, 11, [new LineData()]))->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
     $this->assertInstanceOf(\stdClass::class, $map->data[0]);
@@ -81,15 +57,10 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
    * Tests the `LineCoverage::__toString()` method.
    */
   public function testToString() {
-    $coverage = new LineCoverage();
-    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'), (string) $coverage);
+    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'), (string) new LineCoverage());
 
-    $data = new LineData([
-      'executionCount' => 3,
-      'lineNumber' => 127
-    ]);
-
-    $coverage = new LineCoverage(['data' => [$data], 'found' => 23, 'hit' => 11]);
+    $data = new LineData(127, 3);
+    $coverage = new LineCoverage(23, 11, [$data]);
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}LF:23{{eol}}LH:11"), (string) $coverage);
   }
 }

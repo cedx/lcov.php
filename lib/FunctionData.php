@@ -12,27 +12,28 @@ class FunctionData {
   /**
    * @var int The execution count.
    */
-  private $executionCount = 0;
+  private $executionCount;
 
   /**
    * @var string The function name.
    */
-  private $functionName = '';
+  private $functionName;
 
   /**
    * @var int The line number of the function start.
    */
-  private $lineNumber = 0;
+  private $lineNumber;
 
   /**
    * Initializes a new instance of the class.
-   * @param array $config Name-value pairs that will be used to initialize the object properties.
+   * @param string $functionName The function name.
+   * @param int $lineNumber The line number of the function start.
+   * @param int $executionCount The execution count.
    */
-  public function __construct(array $config = []) {
-    foreach ($config as $property => $value) {
-      $setter = "set$property";
-      if (method_exists($this, $setter)) $this->$setter($value);
-    }
+  public function __construct(string $functionName = '', int $lineNumber = 0, int $executionCount = 0) {
+    $this->setFunctionName($functionName);
+    $this->setLineNumber($lineNumber);
+    $this->setExecutionCount($executionCount);
   }
 
   /**
@@ -50,11 +51,11 @@ class FunctionData {
    */
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static([
-      'executionCount' => isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
-      'functionName' => isset($map->functionName) && is_string($map->functionName) ? $map->functionName : '',
-      'lineNumber' => isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0
-    ]);
+    return !is_object($map) ? null : new static(
+      isset($map->functionName) && is_string($map->functionName) ? $map->functionName : '',
+      isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
+      isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0
+    );
   }
 
   /**

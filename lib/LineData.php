@@ -12,27 +12,28 @@ class LineData {
   /**
    * @var string The data checksum.
    */
-  private $checksum = '';
+  private $checksum;
 
   /**
    * @var int The execution count.
    */
-  private $executionCount = 0;
+  private $executionCount;
 
   /**
    * @var int The line number.
    */
-  private $lineNumber = 0;
+  private $lineNumber;
 
   /**
    * Initializes a new instance of the class.
-   * @param array $config Name-value pairs that will be used to initialize the object properties.
+   * @param int $lineNumber The line number.
+   * @param int $executionCount The execution count.
+   * @param string $checksum The data checksum.
    */
-  public function __construct(array $config = []) {
-    foreach ($config as $property => $value) {
-      $setter = "set$property";
-      if (method_exists($this, $setter)) $this->$setter($value);
-    }
+  public function __construct(int $lineNumber = 0, int $executionCount = 0, string $checksum = '') {
+    $this->setLineNumber($lineNumber);
+    $this->setExecutionCount($executionCount);
+    $this->setChecksum($checksum);
   }
 
   /**
@@ -52,11 +53,11 @@ class LineData {
    */
   public static function fromJSON($map) {
     if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static([
-      'checksum' => isset($map->checksum) && is_string($map->checksum) ? $map->checksum : '',
-      'executionCount' => isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
-      'lineNumber' => isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0
-    ]);
+    return !is_object($map) ? null : new static(
+      isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
+      isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
+      isset($map->checksum) && is_string($map->checksum) ? $map->checksum : ''
+    );
   }
 
   /**

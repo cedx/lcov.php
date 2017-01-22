@@ -11,25 +11,6 @@ use lcov\{BranchCoverage, BranchData};
 class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
 
   /**
-   * Tests the `BranchCoverage` constructor.
-   */
-  public function testConstructor() {
-    $data = new BranchData();
-    $coverage = new BranchCoverage([
-      'data' => [$data],
-      'found' => 23,
-      'hit' => 11
-    ]);
-
-    $entries = $coverage->getData();
-    $this->assertCount(1, $entries);
-    $this->assertSame($data, $entries[0]);
-
-    $this->assertEquals(23, $coverage->getFound());
-    $this->assertEquals(11, $coverage->getHit());
-  }
-
-  /**
    * Tests the `BranchCoverage::fromJSON()` method.
    */
   public function testFromJSON() {
@@ -63,12 +44,7 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(0, $map->found);
     $this->assertEquals(0, $map->hit);
 
-    $map = (new BranchCoverage([
-      'data' => [new BranchData()],
-      'found' => 23,
-      'hit' => 11
-    ]))->jsonSerialize();
-
+    $map = (new BranchCoverage(23, 11, [new BranchData()]))->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
     $this->assertInstanceOf(\stdClass::class, $map->data[0]);
@@ -81,16 +57,10 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
    * Tests the `BranchCoverage::__toString()` method.
    */
   public function testToString() {
-    $coverage = new BranchCoverage();
-    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'), (string) $coverage);
+    $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'), (string) new BranchCoverage());
 
-    $data = new BranchData([
-      'blockNumber' => 3,
-      'branchNumber' => 2,
-      'lineNumber' => 127
-    ]);
-
-    $coverage = new BranchCoverage(['data' => [$data], 'found' => 23, 'hit' => 11]);
+    $data = new BranchData(127, 3, 2);
+    $coverage = new BranchCoverage(23, 11, [$data]);
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}BRF:23{{eol}}BRH:11"), (string) $coverage);
   }
 }

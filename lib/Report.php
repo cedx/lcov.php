@@ -17,19 +17,16 @@ class Report {
   /**
    * @var string The test name.
    */
-  private $testName = '';
+  private $testName;
 
   /**
    * Initializes a new instance of the class.
-   * @param array $config Name-value pairs that will be used to initialize the object properties.
+   * @param string $testName The test name.
+   * @param array $records The record list.
    */
-  public function __construct(array $config = []) {
-    $this->records = new \ArrayObject();
-
-    foreach ($config as $property => $value) {
-      $setter = "set$property";
-      if (method_exists($this, $setter)) $this->$setter($value);
-    }
+  public function __construct(string $testName = '', array $records = []) {
+    $this->records = new \ArrayObject($records);
+    $this->setTestName($testName);
   }
 
   /**
@@ -38,7 +35,7 @@ class Report {
    */
   public function __toString(): string {
     $token = Token::TEST_NAME;
-    $lines = ["$token:{$this->getTestName()}"];
+    $lines = mb_strlen($testName = $this->getTestName()) ? ["$token:$testName"] : [];
     $lines = array_merge($lines, array_map(function($item) { return (string) $item; }, $this->getRecords()->getArrayCopy()));
     return implode(PHP_EOL, $lines);
   }
@@ -54,10 +51,10 @@ class Report {
     };
 
     if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static([
-      'records' => isset($map->records) && is_array($map->records) ? $transform($map->records) : [],
-      'testName' => isset($map->testName) && is_string($map->testName) ? $map->testName : ''
-    ]);
+    return !is_object($map) ? null : new static(
+      isset($map->testName) && is_string($map->testName) ? $map->testName : '',
+      isset($map->records) && is_array($map->records) ? $transform($map->records) : []
+    );
   }
 
   /**
@@ -98,11 +95,10 @@ class Report {
     $records = $report->getRecords();
 
     try {
-      $record = new Record([
-        'branches' => new BranchCoverage(),
-        'functions' => new FunctionCoverage(),
-        'lines' => new LineCoverage()
-      ]);
+      $record = (new Record())
+        ->setBranches(new BranchCoverage())
+        ->setFunctions(new FunctionCoverage())
+        ->setLines(new LineCoverage());
 
       foreach (preg_split('/\r?\n/', $coverage) as $line) {
         $line = trim($line);
@@ -126,10 +122,7 @@ class Report {
 
           case Token::FUNCTION_NAME:
             if ($length < 2) throw new \DomainException('Invalid function name.');
-            $record->getFunctions()->getData()->append(new FunctionData([
-              'functionName' => $data[1],
-              'lineNumber' => (int) $data[0]
-            ]));
+            $record->getFunctions()->getData()->append(new FunctionData($data[1], (int) $data[0]));
             break;
 
           case Token::FUNCTION_DATA:
@@ -152,12 +145,12 @@ class Report {
 
           case Token::BRANCH_DATA:
             if ($length < 4) throw new \DomainException('Invalid branch data.');
-            $record->getBranches()->getData()->append(new BranchData([
-              'lineNumber' => (int) $data[0],
-              'blockNumber' => (int) $data[1],
-              'branchNumber' => (int) $data[2],
-              'taken' => $data[3] == '-' ? 0 : (int) $data[3]
-            ]));
+            $record->getBranches()->getData()->append(new BranchData(
+              (int) $data[0],
+              (int) $data[1],
+              (int) $data[2],
+              $data[3] == '-' ? 0 : (int) $data[3]
+            ));
             break;
 
           case Token::BRANCHES_FOUND:
@@ -170,11 +163,11 @@ class Report {
 
           case Token::LINE_DATA:
             if ($length < 3) throw new \DomainException('Invalid line data.');
-            $record->getLines()->getData()->append(new LineData([
-              'lineNumber' => (int) $data[0],
-              'executionCount' => (int) $data[1],
-              'checksum' => $length >= 3 ? $data[2] : null
-            ]));
+            $record->getLines()->getData()->append(new LineData(
+              (int) $data[0],
+              (int) $data[1],
+              $length >= 3 ? $data[2] : null
+            ));
             break;
 
           case Token::LINES_FOUND:
@@ -187,11 +180,10 @@ class Report {
 
           case Token::END_OF_RECORD:
             $records->append($record);
-            $record = new Record([
-              'branches' => new BranchCoverage(),
-              'functions' => new FunctionCoverage(),
-              'lines' => new LineCoverage()
-            ]);
+            $record = (new Record())
+              ->setBranches(new BranchCoverage())
+              ->setFunctions(new FunctionCoverage())
+              ->setLines(new LineCoverage());
             break;
         }
       }
