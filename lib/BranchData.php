@@ -7,7 +7,7 @@ namespace lcov;
 /**
  * Provides details for branch coverage.
  */
-class BranchData {
+class BranchData implements \JsonSerializable {
 
   /**
    * @var int The block number.

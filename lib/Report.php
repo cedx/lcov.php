@@ -7,7 +7,7 @@ namespace lcov;
 /**
  * Provides the coverage data of a source file.
  */
-class Report {
+class Report implements \JsonSerializable {
 
   /**
    * @var \ArrayObject The record list.

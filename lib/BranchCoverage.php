@@ -7,7 +7,7 @@ namespace lcov;
 /**
  * Provides the coverage data of branches.
  */
-class BranchCoverage {
+class BranchCoverage implements \JsonSerializable {
 
   /**
    * @var \ArrayObject The coverage data.

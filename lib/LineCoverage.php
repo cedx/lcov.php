@@ -7,7 +7,7 @@ namespace lcov;
 /**
  * Provides the coverage data of lines.
  */
-class LineCoverage {
+class LineCoverage implements \JsonSerializable {
 
   /**
    * @var \ArrayObject The coverage data.

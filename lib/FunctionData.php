@@ -7,7 +7,7 @@ namespace lcov;
 /**
  * Provides details for function coverage.
  */
-class FunctionData {
+class FunctionData implements \JsonSerializable {
 
   /**
    * @var int The execution count.
