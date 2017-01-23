@@ -3,6 +3,7 @@ This file contains highlights of what changes on each version of the [LCOV Repor
 
 ## Version 0.3.0
 - All classes now implement the `JsonSerializable` interface.
+- Updated the package dependencies.
 
 ## Version 0.2.0
 - Breaking change: changed the signature of most constructors.
