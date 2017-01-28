@@ -61,9 +61,9 @@ class Record implements \JsonSerializable {
     if (!is_object($map)) return null;
 
     return (new static(isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : ''))
-      ->setBranches(isset($map->branches) ? BranchCoverage::fromJSON($map->branches) : null)
-      ->setFunctions(isset($map->functions) ? FunctionCoverage::fromJSON($map->functions) : null)
-      ->setLines(isset($map->lines) ? LineCoverage::fromJSON($map->lines) : null);
+      ->setBranches(BranchCoverage::fromJSON($map->branches ?? null))
+      ->setFunctions(FunctionCoverage::fromJSON($map->functions ?? null))
+      ->setLines(LineCoverage::fromJSON($map->lines ?? null));
   }
 
   /**

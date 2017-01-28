@@ -46,8 +46,8 @@ class Report implements \JsonSerializable {
    * @return Report The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJSON($map) {
-    $transform = function(array $data) {
-      return array_filter(array_map(function($item) { return Record::fromJSON($item); }, $data));
+    $transform = function(array $records) {
+      return array_filter(array_map(function($item) { return Record::fromJSON($item); }, $records));
     };
 
     if (is_array($map)) $map = (object) $map;
