@@ -1,6 +1,9 @@
 # Changelog
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
+## Version 0.4.0
+- Updated the package dependencies.
+
 ## Version 0.3.0
 - All classes now implement the `JsonSerializable` interface.
 - Updated the package dependencies.

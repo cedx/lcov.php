@@ -25,7 +25,7 @@ The `Report::parse()` static method parses a coverage report provided as string,
 use lcov\{Report};
 
 try {
-  $coverage = file_get_contents('lcov.info');
+  $coverage = @file_get_contents('lcov.info');
   $report = Report::parse($coverage);
   
   $count = count($report->getRecords());
