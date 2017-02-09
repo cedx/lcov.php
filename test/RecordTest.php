@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\RecordTest` class.
  */
 namespace lcov\test;
+
 use lcov\{BranchCoverage, FunctionCoverage, LineCoverage, Record};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\Record` class.
+ * @coversDefaultClass \lcov\Record` class.
  */
-class RecordTest extends \PHPUnit_Framework_TestCase {
+class RecordTest extends TestCase {
 
   /**
-   * Tests the `Record::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(Record::fromJSON('foo'));
@@ -38,7 +40,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `Record::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $map = (new Record())->jsonSerialize();
@@ -62,7 +64,7 @@ class RecordTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `Record::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'), (string) new Record());

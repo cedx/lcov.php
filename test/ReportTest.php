@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\ReportTest` class.
  */
 namespace lcov\test;
+
 use lcov\{BranchData, FunctionData, LineData, Record, Report};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\Report` class.
+ * @coversDefaultClass \lcov\Report` class.
  */
-class ReportTest extends \PHPUnit_Framework_TestCase {
+class ReportTest extends TestCase {
 
   /**
-   * Tests the `Report::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(Report::fromJSON('foo'));
@@ -35,7 +37,7 @@ class ReportTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `Report::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $map = (new Report())->jsonSerialize();
@@ -51,10 +53,10 @@ class ReportTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `Report::parse()` method.
+   * @test ::parse
    */
   public function testParse() {
-    $report = Report::parse(file_get_contents(__DIR__.'/lcov.info'));
+    $report = Report::parse(@file_get_contents(__DIR__.'/fixtures/lcov.info'));
     $this->assertEquals('Example', $report->getTestName());
 
     $records = $report->getRecords();
@@ -96,7 +98,7 @@ class ReportTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `Report::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEmpty((string) new Report());

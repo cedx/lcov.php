@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\LineCoverageTest` class.
  */
 namespace lcov\test;
+
 use lcov\{LineCoverage, LineData};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\LineCoverage` class.
+ * @coversDefaultClass \lcov\LineCoverage` class.
  */
-class LineCoverageTest extends \PHPUnit_Framework_TestCase {
+class LineCoverageTest extends TestCase {
 
   /**
-   * Tests the `LineCoverage::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(LineCoverage::fromJSON('foo'));
@@ -35,7 +37,7 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `LineCoverage::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $map = (new LineCoverage())->jsonSerialize();
@@ -54,7 +56,7 @@ class LineCoverageTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `LineCoverage::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'), (string) new LineCoverage());

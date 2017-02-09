@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\BranchCoverageTest` class.
  */
 namespace lcov\test;
+
 use lcov\{BranchCoverage, BranchData};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\BranchCoverage` class.
+ * @coversDefaultClass \lcov\BranchCoverage` class.
  */
-class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
+class BranchCoverageTest extends TestCase {
 
   /**
-   * Tests the `BranchCoverage::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(BranchCoverage::fromJSON('foo'));
@@ -35,7 +37,7 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `BranchCoverage::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $map = (new BranchCoverage())->jsonSerialize();
@@ -54,7 +56,7 @@ class BranchCoverageTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `BranchCoverage::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'), (string) new BranchCoverage());

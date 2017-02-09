@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\FunctionDataTest` class.
  */
 namespace lcov\test;
+
 use lcov\{FunctionData};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\FunctionData` class.
+ * @coversDefaultClass \lcov\FunctionData` class.
  */
-class FunctionDataTest extends \PHPUnit_Framework_TestCase {
+class FunctionDataTest extends TestCase {
 
   /**
-   * Tests the `FunctionData::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(FunctionData::fromJSON('foo'));
@@ -30,7 +32,7 @@ class FunctionDataTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `FunctionData::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $data = (new FunctionData())->jsonSerialize();
@@ -47,7 +49,7 @@ class FunctionDataTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `FunctionData::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $data = new FunctionData();

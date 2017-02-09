@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\BranchDataTest` class.
  */
 namespace lcov\test;
+
 use lcov\{BranchData};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\BranchData` class.
+ * @coversDefaultClass \lcov\BranchData` class.
  */
-class BranchDataTest extends \PHPUnit_Framework_TestCase {
+class BranchDataTest extends TestCase {
 
   /**
-   * Tests the `BranchData::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(BranchData::fromJSON('foo'));
@@ -32,7 +34,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `BranchData::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $data = (new BranchData())->jsonSerialize();
@@ -51,7 +53,7 @@ class BranchDataTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `BranchData::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEquals('BRDA:0,0,0,-', (string) new BranchData());

@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\LineDataTest` class.
  */
 namespace lcov\test;
+
 use lcov\{LineData};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\LineData` class.
+ * @coversDefaultClass \lcov\LineData` class.
  */
-class LineDataTest extends \PHPUnit_Framework_TestCase {
+class LineDataTest extends TestCase {
 
   /**
-   * Tests the `LineData::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(LineData::fromJSON('foo'));
@@ -30,7 +32,7 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `LineData::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $data = (new LineData())->jsonSerialize();
@@ -47,7 +49,7 @@ class LineDataTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `LineData::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEquals('DA:0,0', (string) new LineData());

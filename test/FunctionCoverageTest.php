@@ -3,15 +3,17 @@
  * Implementation of the `lcov\test\FunctionCoverageTest` class.
  */
 namespace lcov\test;
+
 use lcov\{FunctionCoverage, FunctionData};
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests the features of the `lcov\FunctionCoverage` class.
+ * @coversDefaultClass \lcov\FunctionCoverage` class.
  */
-class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
+class FunctionCoverageTest extends TestCase {
 
   /**
-   * Tests the `FunctionCoverage::fromJSON()` method.
+   * @test ::fromJSON
    */
   public function testFromJSON() {
     $this->assertNull(FunctionCoverage::fromJSON('foo'));
@@ -35,7 +37,7 @@ class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `FunctionCoverage::jsonSerialize()` method.
+   * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
     $map = (new FunctionCoverage())->jsonSerialize();
@@ -54,7 +56,7 @@ class FunctionCoverageTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `FunctionCoverage::__toString()` method.
+   * @test ::__toString
    */
   public function testToString() {
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'), (string) new FunctionCoverage());
