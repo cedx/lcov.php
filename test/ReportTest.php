@@ -5,7 +5,7 @@
 namespace lcov\test;
 
 use lcov\{BranchData, FunctionData, LineData, Record, Report};
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{TestCase};
 
 /**
  * @coversDefaultClass \lcov\Report` class.

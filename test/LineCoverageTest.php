@@ -5,7 +5,7 @@
 namespace lcov\test;
 
 use lcov\{LineCoverage, LineData};
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{TestCase};
 
 /**
  * @coversDefaultClass \lcov\LineCoverage` class.

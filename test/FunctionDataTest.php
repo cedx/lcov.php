@@ -5,7 +5,7 @@
 namespace lcov\test;
 
 use lcov\{FunctionData};
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{TestCase};
 
 /**
  * @coversDefaultClass \lcov\FunctionData` class.

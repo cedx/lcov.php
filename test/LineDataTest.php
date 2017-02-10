@@ -5,7 +5,7 @@
 namespace lcov\test;
 
 use lcov\{LineData};
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{TestCase};
 
 /**
  * @coversDefaultClass \lcov\LineData` class.

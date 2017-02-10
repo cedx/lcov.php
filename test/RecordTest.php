@@ -5,7 +5,7 @@
 namespace lcov\test;
 
 use lcov\{BranchCoverage, FunctionCoverage, LineCoverage, Record};
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\{TestCase};
 
 /**
  * @coversDefaultClass \lcov\Record` class.
