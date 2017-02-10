@@ -8,7 +8,7 @@ use lcov\{BranchCoverage, BranchData};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\BranchCoverage` class.
+ * @coversDefaultClass \lcov\BranchCoverage
  */
 class BranchCoverageTest extends TestCase {
 

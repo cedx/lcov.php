@@ -8,7 +8,7 @@ use lcov\{LineCoverage, LineData};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\LineCoverage` class.
+ * @coversDefaultClass \lcov\LineCoverage
  */
 class LineCoverageTest extends TestCase {
 

@@ -8,7 +8,7 @@ use lcov\{LineData};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\LineData` class.
+ * @coversDefaultClass \lcov\LineData
  */
 class LineDataTest extends TestCase {
 

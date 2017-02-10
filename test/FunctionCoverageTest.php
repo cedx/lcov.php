@@ -8,7 +8,7 @@ use lcov\{FunctionCoverage, FunctionData};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\FunctionCoverage` class.
+ * @coversDefaultClass \lcov\FunctionCoverage
  */
 class FunctionCoverageTest extends TestCase {
 

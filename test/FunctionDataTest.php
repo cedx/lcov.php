@@ -8,7 +8,7 @@ use lcov\{FunctionData};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\FunctionData` class.
+ * @coversDefaultClass \lcov\FunctionData
  */
 class FunctionDataTest extends TestCase {
 

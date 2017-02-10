@@ -8,7 +8,7 @@ use lcov\{BranchData, FunctionData, LineData, Record, Report};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\Report` class.
+ * @coversDefaultClass \lcov\Report
  */
 class ReportTest extends TestCase {
 

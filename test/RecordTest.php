@@ -8,7 +8,7 @@ use lcov\{BranchCoverage, FunctionCoverage, LineCoverage, Record};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\Record` class.
+ * @coversDefaultClass \lcov\Record
  */
 class RecordTest extends TestCase {
 
