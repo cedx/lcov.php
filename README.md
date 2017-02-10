@@ -22,7 +22,6 @@ The [`lcov\Report`](https://github.com/cedx/lcov.php/blob/master/lib/Report.php)
 The `Report::parse()` static method parses a coverage report provided as string, and returns a `Report` instance giving detailed information about this coverage report:
 
 ```php
-<?php
 use lcov\{Report};
 
 try {
@@ -78,7 +77,6 @@ Each provided class has a dedicated `__toString()` instance method returning the
 All you have to do is to create the adequate structure using these different classes, and to export the final result:
 
 ```php
-<?php
 use lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
 
 $lineCoverage = new LineCoverage(2, 2, [
