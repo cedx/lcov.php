@@ -162,7 +162,7 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::LINE_DATA:
-            if ($length < 3) throw new \DomainException('Invalid line data.');
+            if ($length < 2) throw new \DomainException('Invalid line data.');
             $record->getLines()->getData()->append(new LineData(
               (int) $data[0],
               (int) $data[1],

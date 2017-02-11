@@ -1,6 +1,9 @@
 # Changelog
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
+## Version 0.4.1
+- Fixed a bug in `Report::parse()` method.
+
 ## Version 0.4.0
 - Updated the package dependencies.
 
