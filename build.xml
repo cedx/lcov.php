@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <project default="test" name="lcov">
-  <property name="version" value="0.4.0"/>
-
   <target name="clean" description="Deletes all generated files and reset any saved state.">
     <delete>
       <fileset dir="var" includes="**/*" excludes=".gitkeep"/>
