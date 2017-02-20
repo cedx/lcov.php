@@ -16,13 +16,16 @@ class ReportTest extends TestCase {
    * @test ::fromJSON
    */
   public function testFromJSON() {
+    // Should return a null reference with a non-object value.
     $this->assertNull(Report::fromJSON('foo'));
 
+    // Should return an instance with default values for an empty map.
     $report = Report::fromJSON([]);
     $this->assertInstanceOf(Report::class, $report);
     $this->assertCount(0, $report->getRecords());
     $this->assertEmpty($report->getTestName());
 
+    // Should return an initialized instance for a non-empty map.
     $report = Report::fromJSON([
       'records' => [[]],
       'testName' => 'LcovTest'
@@ -40,11 +43,13 @@ class ReportTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
+    // Should return a map with default values for a newly created instance.
     $map = (new Report())->jsonSerialize();
     $this->assertCount(2, get_object_vars($map));
     $this->assertCount(0, $map->records);
     $this->assertEmpty($map->testName);
 
+    // Should return a non-empty map for an initialized instance.
     $map = (new Report('LcovTest', [new Record()]))->jsonSerialize();
     $this->assertCount(2, get_object_vars($map));
     $this->assertCount(1, $map->records);
@@ -57,8 +62,11 @@ class ReportTest extends TestCase {
    */
   public function testParse() {
     $report = Report::parse(@file_get_contents(__DIR__.'/fixtures/lcov.info'));
+
+    // Should have a test name.
     $this->assertEquals('Example', $report->getTestName());
 
+    // Should contain three records.
     $records = $report->getRecords();
     $this->assertCount(3, $records);
     $this->assertInstanceOf(Record::class, $records[0]);
@@ -66,6 +74,7 @@ class ReportTest extends TestCase {
     $this->assertEquals('/home/cedx/lcov.php/func1.php', $records[1]->getSourceFile());
     $this->assertEquals('/home/cedx/lcov.php/func2.php', $records[2]->getSourceFile());
 
+    // Should have detailed branch coverage.
     $branches = $records[1]->getBranches();
     $this->assertEquals(4, $branches->getFound());
     $this->assertEquals(4, $branches->getHit());
@@ -75,6 +84,7 @@ class ReportTest extends TestCase {
     $this->assertInstanceOf(BranchData::class, $data[0]);
     $this->assertEquals(8, $data[0]->getLineNumber());
 
+    // Should have detailed function coverage.
     $functions = $records[1]->getFunctions();
     $this->assertEquals(1, $functions->getFound());
     $this->assertEquals(1, $functions->getHit());
@@ -84,6 +94,7 @@ class ReportTest extends TestCase {
     $this->assertInstanceOf(FunctionData::class, $data[0]);
     $this->assertEquals('func1', $data[0]->getFunctionName());
 
+    // Should have detailed line coverage.
     $lines = $records[1]->getLines();
     $this->assertEquals(9, $lines->getFound());
     $this->assertEquals(9, $lines->getHit());
@@ -93,6 +104,7 @@ class ReportTest extends TestCase {
     $this->assertInstanceOf(LineData::class, $data[0]);
     $this->assertEquals('5kX7OTfHFcjnS98fjeVqNA', $data[0]->getChecksum());
 
+    // Should throw an error if the input is invalid.
     $this->expectException(\UnexpectedValueException::class);
     Report::parse('TN:Example');
   }
@@ -101,6 +113,7 @@ class ReportTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
+    // Should return a format like "TN:<testName>".
     $this->assertEmpty((string) new Report());
 
     $record = new Record();

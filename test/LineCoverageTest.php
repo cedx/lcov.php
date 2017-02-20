@@ -16,14 +16,17 @@ class LineCoverageTest extends TestCase {
    * @test ::fromJSON
    */
   public function testFromJSON() {
+    // Should return a null reference with a non-object value.
     $this->assertNull(LineCoverage::fromJSON('foo'));
 
+    // Should return an instance with default values for an empty map.
     $coverage = LineCoverage::fromJSON([]);
     $this->assertInstanceOf(LineCoverage::class, $coverage);
     $this->assertCount(0, $coverage->getData());
     $this->assertEquals(0, $coverage->getFound());
     $this->assertEquals(0, $coverage->getHit());
 
+    // Should return an initialized instance for a non-empty map.
     $coverage = LineCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
     $this->assertInstanceOf(LineCoverage::class, $coverage);
 
@@ -40,12 +43,14 @@ class LineCoverageTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
+    // Should return a map with default values for a newly created instance.
     $map = (new LineCoverage())->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(0, $map->data);
     $this->assertEquals(0, $map->found);
     $this->assertEquals(0, $map->hit);
 
+    // Should return a non-empty map for an initialized instance.
     $map = (new LineCoverage(23, 11, [new LineData()]))->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
@@ -59,6 +64,7 @@ class LineCoverageTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
+    // Should return a format like "LF:<found>\\n,LH:<hit>".
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'), (string) new LineCoverage());
 
     $data = new LineData(127, 3);

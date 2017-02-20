@@ -16,8 +16,10 @@ class RecordTest extends TestCase {
    * @test ::fromJSON
    */
   public function testFromJSON() {
+    // Should return a null reference with a non-object value.
     $this->assertNull(Record::fromJSON('foo'));
 
+    // Should return an instance with default values for an empty map.
     $record = Record::fromJSON([]);
     $this->assertInstanceOf(Record::class, $record);
     $this->assertNull($record->getBranches());
@@ -25,6 +27,7 @@ class RecordTest extends TestCase {
     $this->assertNull($record->getLines());
     $this->assertEmpty($record->getSourceFile());
 
+    // Should return an initialized instance for a non-empty map.
     $record = Record::fromJSON([
       'branches' => [],
       'functions' => [],
@@ -43,6 +46,7 @@ class RecordTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
+    // Should return a map with default values for a newly created instance.
     $map = (new Record())->jsonSerialize();
     $this->assertCount(4, get_object_vars($map));
     $this->assertNull($map->branches);
@@ -50,6 +54,7 @@ class RecordTest extends TestCase {
     $this->assertNull($map->lines);
     $this->assertEmpty($map->sourceFile);
 
+    // Should return a non-empty map for an initialized instance.
     $map = (new Record('/home/cedx/lcov.php'))
       ->setBranches(new BranchCoverage())
       ->setFunctions(new FunctionCoverage())
@@ -67,6 +72,7 @@ class RecordTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
+    // Should return a format like "SF:<sourceFile>\\n,end_of_record".
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'), (string) new Record());
 
     $record = (new Record('/home/cedx/lcov.php'))

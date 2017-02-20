@@ -16,14 +16,17 @@ class FunctionCoverageTest extends TestCase {
    * @test ::fromJSON
    */
   public function testFromJSON() {
+    // Should return a null reference with a non-object value.
     $this->assertNull(FunctionCoverage::fromJSON('foo'));
 
+    // Should return an instance with default values for an empty map.
     $coverage = FunctionCoverage::fromJSON([]);
     $this->assertInstanceOf(FunctionCoverage::class, $coverage);
     $this->assertCount(0, $coverage->getData());
     $this->assertEquals(0, $coverage->getFound());
     $this->assertEquals(0, $coverage->getHit());
 
+    // Should return an initialized instance for a non-empty map.
     $coverage = FunctionCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
     $this->assertInstanceOf(FunctionCoverage::class, $coverage);
 
@@ -40,12 +43,14 @@ class FunctionCoverageTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
+    // Should return a map with default values for a newly created instance.
     $map = (new FunctionCoverage())->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(0, $map->data);
     $this->assertEquals(0, $map->found);
     $this->assertEquals(0, $map->hit);
 
+    // Should return a non-empty map for an initialized instance.
     $map = (new FunctionCoverage(23, 11, [new FunctionData()]))->jsonSerialize();
     $this->assertCount(3, get_object_vars($map));
     $this->assertCount(1, $map->data);
@@ -59,6 +64,7 @@ class FunctionCoverageTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
+    // Should return a format like "FNF:<found>\\n,FNH:<hit>".
     $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'), (string) new FunctionCoverage());
 
     $coverage = new FunctionCoverage(23, 11, [new FunctionData('main', 127, 3)]);
