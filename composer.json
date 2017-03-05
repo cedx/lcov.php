@@ -29,8 +29,7 @@
     "php": ">=7.0.0",
     "ext-mbstring": "*",
     "ext-pcre": "*",
-    "ext-spl": "*",
-    "cedx/enum": "^1.3.0"
+    "ext-spl": "*"
   },
   "require-dev": {
     "codeception/specify": "^0.4.6",

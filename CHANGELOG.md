@@ -1,6 +1,9 @@
 # Changelog
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
+## Version 0.5.0
+- Removed the dependency on the `cedx/enum` module.
+
 ## Version 0.4.1
 - Fixed a bug in `Report::parse()` method.
 
