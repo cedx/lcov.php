@@ -19,16 +19,16 @@ class RecordTest extends TestCase {
    */
   public function testFromJSON() {
     $this->specify('should return a null reference with a non-object value', function() {
-      $this->assertNull(Record::fromJSON('foo'));
+      static::assertNull(Record::fromJSON('foo'));
     });
 
     $this->specify('should return an instance with default values for an empty map', function() {
       $record = Record::fromJSON([]);
-      $this->assertInstanceOf(Record::class, $record);
-      $this->assertNull($record->getBranches());
-      $this->assertNull($record->getFunctions());
-      $this->assertNull($record->getLines());
-      $this->assertEmpty($record->getSourceFile());
+      static::assertInstanceOf(Record::class, $record);
+      static::assertNull($record->getBranches());
+      static::assertNull($record->getFunctions());
+      static::assertNull($record->getLines());
+      static::assertEmpty($record->getSourceFile());
     });
 
     $this->specify('should return an initialized instance for a non-empty map', function() {
@@ -39,11 +39,11 @@ class RecordTest extends TestCase {
         'sourceFile' => '/home/cedx/lcov.php'
       ]);
 
-      $this->assertInstanceOf(Record::class, $record);
-      $this->assertInstanceOf(BranchCoverage::class, $record->getBranches());
-      $this->assertInstanceOf(FunctionCoverage::class, $record->getFunctions());
-      $this->assertInstanceOf(LineCoverage::class, $record->getLines());
-      $this->assertEquals('/home/cedx/lcov.php', $record->getSourceFile());
+      static::assertInstanceOf(Record::class, $record);
+      static::assertInstanceOf(BranchCoverage::class, $record->getBranches());
+      static::assertInstanceOf(FunctionCoverage::class, $record->getFunctions());
+      static::assertInstanceOf(LineCoverage::class, $record->getLines());
+      static::assertEquals('/home/cedx/lcov.php', $record->getSourceFile());
     });
   }
 
@@ -53,11 +53,11 @@ class RecordTest extends TestCase {
   public function testJsonSerialize() {
     $this->specify('should return a map with default values for a newly created instance', function() {
       $map = (new Record())->jsonSerialize();
-      $this->assertCount(4, get_object_vars($map));
-      $this->assertNull($map->branches);
-      $this->assertNull($map->functions);
-      $this->assertNull($map->lines);
-      $this->assertEmpty($map->sourceFile);
+      static::assertCount(4, get_object_vars($map));
+      static::assertNull($map->branches);
+      static::assertNull($map->functions);
+      static::assertNull($map->lines);
+      static::assertEmpty($map->sourceFile);
     });
 
     $this->specify('should return a non-empty map for an initialized instance', function() {
@@ -67,11 +67,11 @@ class RecordTest extends TestCase {
         ->setLines(new LineCoverage())
         ->jsonSerialize();
 
-      $this->assertCount(4, get_object_vars($map));
-      $this->assertInstanceOf(\stdClass::class, $map->branches);
-      $this->assertInstanceOf(\stdClass::class, $map->functions);
-      $this->assertInstanceOf(\stdClass::class, $map->lines);
-      $this->assertEquals('/home/cedx/lcov.php', $map->sourceFile);
+      static::assertCount(4, get_object_vars($map));
+      static::assertInstanceOf(\stdClass::class, $map->branches);
+      static::assertInstanceOf(\stdClass::class, $map->functions);
+      static::assertInstanceOf(\stdClass::class, $map->lines);
+      static::assertEquals('/home/cedx/lcov.php', $map->sourceFile);
     });
   }
 
@@ -80,7 +80,7 @@ class RecordTest extends TestCase {
    */
   public function testToString() {
     $this->specify('should return a format like "SF:<sourceFile>\\n,end_of_record"', function() {
-      $this->assertEquals(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'), (string) new Record());
+      static::assertEquals(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'), (string) new Record());
 
       $record = (new Record('/home/cedx/lcov.php'))
         ->setBranches(new BranchCoverage())
@@ -88,7 +88,7 @@ class RecordTest extends TestCase {
         ->setLines(new LineCoverage());
 
       $format = "SF:/home/cedx/lcov.php{{eol}}{$record->getFunctions()}{{eol}}{$record->getBranches()}{{eol}}{$record->getLines()}{{eol}}end_of_record";
-      $this->assertEquals(str_replace('{{eol}}', PHP_EOL, $format), (string) $record);
+      static::assertEquals(str_replace('{{eol}}', PHP_EOL, $format), (string) $record);
     });
   }
 }

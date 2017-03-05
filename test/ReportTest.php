@@ -19,14 +19,14 @@ class ReportTest extends TestCase {
    */
   public function testFromJSON() {
     $this->specify('should return a null reference with a non-object value', function() {
-      $this->assertNull(Report::fromJSON('foo'));
+      static::assertNull(Report::fromJSON('foo'));
     });
 
     $this->specify('should return an instance with default values for an empty map', function() {
       $report = Report::fromJSON([]);
-      $this->assertInstanceOf(Report::class, $report);
-      $this->assertCount(0, $report->getRecords());
-      $this->assertEmpty($report->getTestName());
+      static::assertInstanceOf(Report::class, $report);
+      static::assertCount(0, $report->getRecords());
+      static::assertEmpty($report->getTestName());
     });
 
     $this->specify('should return an initialized instance for a non-empty map', function() {
@@ -35,12 +35,12 @@ class ReportTest extends TestCase {
         'testName' => 'LcovTest'
       ]);
 
-      $this->assertInstanceOf(Report::class, $report);
-      $this->assertEquals('LcovTest', $report->getTestName());
+      static::assertInstanceOf(Report::class, $report);
+      static::assertEquals('LcovTest', $report->getTestName());
 
       $records = $report->getRecords();
-      $this->assertCount(1, $records);
-      $this->assertInstanceOf(Record::class, $records[0]);
+      static::assertCount(1, $records);
+      static::assertInstanceOf(Record::class, $records[0]);
     });
   }
 
@@ -50,17 +50,17 @@ class ReportTest extends TestCase {
   public function testJsonSerialize() {
     $this->specify('should return a map with default values for a newly created instance', function() {
       $map = (new Report())->jsonSerialize();
-      $this->assertCount(2, get_object_vars($map));
-      $this->assertCount(0, $map->records);
-      $this->assertEmpty($map->testName);
+      static::assertCount(2, get_object_vars($map));
+      static::assertCount(0, $map->records);
+      static::assertEmpty($map->testName);
     });
 
     $this->specify('should return a non-empty map for an initialized instance', function() {
       $map = (new Report('LcovTest', [new Record()]))->jsonSerialize();
-      $this->assertCount(2, get_object_vars($map));
-      $this->assertCount(1, $map->records);
-      $this->assertInstanceOf(\stdClass::class, $map->records[0]);
-      $this->assertEquals('LcovTest', $map->testName);
+      static::assertCount(2, get_object_vars($map));
+      static::assertCount(1, $map->records);
+      static::assertInstanceOf(\stdClass::class, $map->records[0]);
+      static::assertEquals('LcovTest', $map->testName);
     });
   }
 
@@ -72,48 +72,48 @@ class ReportTest extends TestCase {
     $records = $report->getRecords();
 
     $this->specify('should have a test name', function() use ($report) {
-      $this->assertEquals('Example', $report->getTestName());
+      static::assertEquals('Example', $report->getTestName());
     });
 
     $this->specify('should contain three records', function() use ($records) {
-      $this->assertCount(3, $records);
-      $this->assertInstanceOf(Record::class, $records[0]);
-      $this->assertEquals('/home/cedx/lcov.php/fixture.php', $records[0]->getSourceFile());
-      $this->assertEquals('/home/cedx/lcov.php/func1.php', $records[1]->getSourceFile());
-      $this->assertEquals('/home/cedx/lcov.php/func2.php', $records[2]->getSourceFile());
+      static::assertCount(3, $records);
+      static::assertInstanceOf(Record::class, $records[0]);
+      static::assertEquals('/home/cedx/lcov.php/fixture.php', $records[0]->getSourceFile());
+      static::assertEquals('/home/cedx/lcov.php/func1.php', $records[1]->getSourceFile());
+      static::assertEquals('/home/cedx/lcov.php/func2.php', $records[2]->getSourceFile());
     });
 
     $this->specify('should have detailed branch coverage', function() use ($records) {
       $branches = $records[1]->getBranches();
-      $this->assertEquals(4, $branches->getFound());
-      $this->assertEquals(4, $branches->getHit());
+      static::assertEquals(4, $branches->getFound());
+      static::assertEquals(4, $branches->getHit());
 
       $data = $branches->getData();
-      $this->assertCount(4, $data);
-      $this->assertInstanceOf(BranchData::class, $data[0]);
-      $this->assertEquals(8, $data[0]->getLineNumber());
+      static::assertCount(4, $data);
+      static::assertInstanceOf(BranchData::class, $data[0]);
+      static::assertEquals(8, $data[0]->getLineNumber());
     });
 
     $this->specify('should have detailed function coverage', function() use ($records) {
       $functions = $records[1]->getFunctions();
-      $this->assertEquals(1, $functions->getFound());
-      $this->assertEquals(1, $functions->getHit());
+      static::assertEquals(1, $functions->getFound());
+      static::assertEquals(1, $functions->getHit());
 
       $data = $functions->getData();
-      $this->assertCount(1, $data);
-      $this->assertInstanceOf(FunctionData::class, $data[0]);
-      $this->assertEquals('func1', $data[0]->getFunctionName());
+      static::assertCount(1, $data);
+      static::assertInstanceOf(FunctionData::class, $data[0]);
+      static::assertEquals('func1', $data[0]->getFunctionName());
     });
 
     $this->specify('should have detailed line coverage', function() use ($records) {
       $lines = $records[1]->getLines();
-      $this->assertEquals(9, $lines->getFound());
-      $this->assertEquals(9, $lines->getHit());
+      static::assertEquals(9, $lines->getFound());
+      static::assertEquals(9, $lines->getHit());
 
       $data = $lines->getData();
-      $this->assertCount(9, $data);
-      $this->assertInstanceOf(LineData::class, $data[0]);
-      $this->assertEquals('5kX7OTfHFcjnS98fjeVqNA', $data[0]->getChecksum());
+      static::assertCount(9, $data);
+      static::assertInstanceOf(LineData::class, $data[0]);
+      static::assertEquals('5kX7OTfHFcjnS98fjeVqNA', $data[0]->getChecksum());
     });
 
     $this->specify('should throw an error if the input is invalid', function() {
@@ -127,10 +127,10 @@ class ReportTest extends TestCase {
    */
   public function testToString() {
     $this->specify('should return a format like "TN:<testName>"', function() {
-      $this->assertEmpty((string) new Report());
+      static::assertEmpty((string) new Report());
 
       $record = new Record();
-      $this->assertEquals(str_replace('{{eol}}', PHP_EOL, "TN:LcovTest{{eol}}$record"), (string) new Report('LcovTest', [$record]));
+      static::assertEquals(str_replace('{{eol}}', PHP_EOL, "TN:LcovTest{{eol}}$record"), (string) new Report('LcovTest', [$record]));
     });
   }
 }
