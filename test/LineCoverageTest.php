@@ -4,7 +4,6 @@
  */
 namespace lcov\test;
 
-use Codeception\{Specify};
 use lcov\{LineCoverage, LineData};
 use PHPUnit\Framework\{TestCase};
 
@@ -12,35 +11,34 @@ use PHPUnit\Framework\{TestCase};
  * @coversDefaultClass \lcov\LineCoverage
  */
 class LineCoverageTest extends TestCase {
-  use Specify;
 
   /**
    * @test ::fromJSON
    */
   public function testFromJSON() {
-    $this->specify('should return a null reference with a non-object value', function() {
-      static::assertNull(LineCoverage::fromJSON('foo'));
+    it('should return a null reference with a non-object value', function() {
+      expect(LineCoverage::fromJSON('foo'))->to->be->null;
     });
 
-    $this->specify('should return an instance with default values for an empty map', function() {
+    it('should return an instance with default values for an empty map', function() {
       $coverage = LineCoverage::fromJSON([]);
-      static::assertInstanceOf(LineCoverage::class, $coverage);
-      static::assertCount(0, $coverage->getData());
-      static::assertEquals(0, $coverage->getFound());
-      static::assertEquals(0, $coverage->getHit());
+      expect($coverage)->to->be->instanceOf(LineCoverage::class);
+      expect($coverage->getData())->to->be->empty;
+      expect($coverage->getFound())->to->equal(0);
+      expect($coverage->getHit())->to->equal(0);
     });
 
-    $this->specify('should return an initialized instance for a non-empty map', function() {
+    it('should return an initialized instance for a non-empty map', function() {
       $coverage = LineCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
-      static::assertInstanceOf(LineCoverage::class, $coverage);
+      expect($coverage)->to->be->instanceOf(LineCoverage::class);
 
       $entries = $coverage->getData();
-      static::assertCount(1, $entries);
-      static::assertInstanceOf(LineData::class, $entries[0]);
-      static::assertEquals(127, $entries[0]->getLineNumber());
+      expect($entries)->to->have->lengthOf(1);
+      expect($entries[0])->to->be->instanceOf(LineData::class);
+      expect($entries[0]->getLineNumber())->to->equal(127);
 
-      static::assertEquals(23, $coverage->getFound());
-      static::assertEquals(11, $coverage->getHit());
+      expect($coverage->getFound())->to->equal(23);
+      expect($coverage->getHit())->to->equal(11);
     });
   }
 
@@ -48,22 +46,22 @@ class LineCoverageTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
-    $this->specify('should return a map with default values for a newly created instance', function() {
+    it('should return a map with default values for a newly created instance', function() {
       $map = (new LineCoverage())->jsonSerialize();
-      static::assertCount(3, get_object_vars($map));
-      static::assertCount(0, $map->data);
-      static::assertEquals(0, $map->found);
-      static::assertEquals(0, $map->hit);
+      expect(get_object_vars($map))->to->have->lengthOf(3);
+      expect($map->data)->to->be->an('array')->and->be->empty;
+      expect($map->found)->to->equal(0);
+      expect($map->hit)->to->equal(0);
     });
 
-    $this->specify('should return a non-empty map for an initialized instance', function() {
+    it('should return a non-empty map for an initialized instance', function() {
       $map = (new LineCoverage(23, 11, [new LineData()]))->jsonSerialize();
-      static::assertCount(3, get_object_vars($map));
-      static::assertCount(1, $map->data);
-      static::assertInstanceOf(\stdClass::class, $map->data[0]);
+      expect(get_object_vars($map))->to->have->lengthOf(3);
+      expect($map->data)->to->be->an('array')->and->have->lengthOf(1);
+      expect($map->data[0])->to->be->an('object'); // TODO ->and->contain->keys('lineNumber');
       static::assertObjectHasAttribute('lineNumber', $map->data[0]);
-      static::assertEquals(23, $map->found);
-      static::assertEquals(11, $map->hit);
+      expect($map->found)->to->equal(23);
+      expect($map->hit)->to->equal(11);
     });
   }
 
@@ -71,12 +69,12 @@ class LineCoverageTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
-    $this->specify('should return a format like "LF:<found>\\n,LH:<hit>"', function() {
-      static::assertEquals(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'), (string) new LineCoverage());
+    it('should return a format like "LF:<found>\\n,LH:<hit>"', function() {
+      expect((string) new LineCoverage())->to->equal(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'));
 
       $data = new LineData(127, 3);
       $coverage = new LineCoverage(23, 11, [$data]);
-      static::assertEquals(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}LF:23{{eol}}LH:11"), (string) $coverage);
+      expect((string) $coverage)->to->equal(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}LF:23{{eol}}LH:11"));
     });
   }
 }

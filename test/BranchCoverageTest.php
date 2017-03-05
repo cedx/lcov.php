@@ -4,7 +4,6 @@
  */
 namespace lcov\test;
 
-use Codeception\{Specify};
 use lcov\{BranchCoverage, BranchData};
 use PHPUnit\Framework\{TestCase};
 
@@ -12,35 +11,34 @@ use PHPUnit\Framework\{TestCase};
  * @coversDefaultClass \lcov\BranchCoverage
  */
 class BranchCoverageTest extends TestCase {
-  use Specify;
 
   /**
    * @test ::fromJSON
    */
   public function testFromJSON() {
-    $this->specify('should return a null reference with a non-object value', function() {
-      static::assertNull(BranchCoverage::fromJSON('foo'));
+    it('should return a null reference with a non-object value', function() {
+      expect(BranchCoverage::fromJSON('foo'))->to->be->null;
     });
 
-    $this->specify('should return an instance with default values for an empty map', function() {
+    it('should return an instance with default values for an empty map', function() {
       $coverage = BranchCoverage::fromJSON([]);
-      static::assertInstanceOf(BranchCoverage::class, $coverage);
-      static::assertCount(0, $coverage->getData());
-      static::assertEquals(0, $coverage->getFound());
-      static::assertEquals(0, $coverage->getHit());
+      expect($coverage)->to->be->instanceOf(BranchCoverage::class);
+      expect($coverage->getData())->to->be->empty;
+      expect($coverage->getFound())->to->equal(0);
+      expect($coverage->getHit())->to->equal(0);
     });
 
-    $this->specify('should return an initialized instance for a non-empty map', function() {
+    it('should return an initialized instance for a non-empty map', function() {
       $coverage = BranchCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
-      static::assertInstanceOf(BranchCoverage::class, $coverage);
+      expect($coverage)->to->be->instanceOf(BranchCoverage::class);
 
       $entries = $coverage->getData();
-      static::assertCount(1, $entries);
-      static::assertInstanceOf(BranchData::class, $entries[0]);
-      static::assertEquals(127, $entries[0]->getLineNumber());
+      expect($entries)->to->have->lengthOf(1);
+      expect($entries[0])->to->be->instanceOf(BranchData::class);
+      expect($entries[0]->getLineNumber())->to->equal(127);
 
-      static::assertEquals(23, $coverage->getFound());
-      static::assertEquals(11, $coverage->getHit());
+      expect($coverage->getFound())->to->equal(23);
+      expect($coverage->getHit())->to->equal(11);
     });
   }
 
@@ -48,22 +46,23 @@ class BranchCoverageTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
-    $this->specify('should return a map with default values for a newly created instance', function() {
+    it('should return a map with default values for a newly created instance', function() {
       $map = (new BranchCoverage())->jsonSerialize();
-      static::assertCount(3, get_object_vars($map));
-      static::assertCount(0, $map->data);
-      static::assertEquals(0, $map->found);
-      static::assertEquals(0, $map->hit);
+      expect(get_object_vars($map))->to->have->lengthOf(3);
+      expect($map->data)->to->be->an('array')->and->be->empty;
+      expect($map->found)->to->equal(0);
+      expect($map->hit)->to->equal(0);
     });
 
-    $this->specify('should return a non-empty map for an initialized instance', function() {
+    it('should return a non-empty map for an initialized instance', function() {
       $map = (new BranchCoverage(23, 11, [new BranchData()]))->jsonSerialize();
-      static::assertCount(3, get_object_vars($map));
-      static::assertCount(1, $map->data);
-      static::assertInstanceOf(\stdClass::class, $map->data[0]);
+      expect(get_object_vars($map))->to->have->lengthOf(3);
+      expect($map->data)->to->be->an('array')->and->have->lengthOf(1);
+      expect($map->data[0])->to->be->an('object'); // TODO ->and->contain->keys('lineNumber');
       static::assertObjectHasAttribute('lineNumber', $map->data[0]);
-      static::assertEquals(23, $map->found);
-      static::assertEquals(11, $map->hit);
+
+      expect($map->found)->to->equal(23);
+      expect($map->hit)->to->equal(11);
     });
   }
 
@@ -71,12 +70,12 @@ class BranchCoverageTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
-    $this->specify('should return a format like "BRF:<found>\\n,BRH:<hit>"', function() {
-      static::assertEquals(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'), (string) new BranchCoverage());
+    it('should return a format like "BRF:<found>\\n,BRH:<hit>"', function() {
+      expect((string) new BranchCoverage())->to->equal(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'));
 
       $data = new BranchData(127, 3, 2);
       $coverage = new BranchCoverage(23, 11, [$data]);
-      static::assertEquals(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}BRF:23{{eol}}BRH:11"), (string) $coverage);
+      expect((string) $coverage)->to->equal(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}BRF:23{{eol}}BRH:11"));
     });
   }
 }

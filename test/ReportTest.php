@@ -4,7 +4,6 @@
  */
 namespace lcov\test;
 
-use Codeception\{Specify};
 use lcov\{BranchData, FunctionData, LineData, Record, Report};
 use PHPUnit\Framework\{TestCase};
 
@@ -12,35 +11,35 @@ use PHPUnit\Framework\{TestCase};
  * @coversDefaultClass \lcov\Report
  */
 class ReportTest extends TestCase {
-  use Specify;
 
   /**
    * @test ::fromJSON
    */
   public function testFromJSON() {
-    $this->specify('should return a null reference with a non-object value', function() {
-      static::assertNull(Report::fromJSON('foo'));
+    it('should return a null reference with a non-object value', function() {
+      expect(Report::fromJSON('foo'))->to->be->null;
     });
 
-    $this->specify('should return an instance with default values for an empty map', function() {
+    it('should return an instance with default values for an empty map', function() {
       $report = Report::fromJSON([]);
-      static::assertInstanceOf(Report::class, $report);
-      static::assertCount(0, $report->getRecords());
-      static::assertEmpty($report->getTestName());
+      expect($report)->to->be->instanceOf(Report::class);
+      expect($report->getRecords())->to->be->empty;
+      expect($report->getTestName())->to->be->empty;
     });
 
-    $this->specify('should return an initialized instance for a non-empty map', function() {
+    it('should return an initialized instance for a non-empty map', function() {
       $report = Report::fromJSON([
         'records' => [[]],
         'testName' => 'LcovTest'
       ]);
 
-      static::assertInstanceOf(Report::class, $report);
-      static::assertEquals('LcovTest', $report->getTestName());
+      expect($report)->to->be->instanceOf(Report::class);
+      expect($report->getTestName())->to->equal('LcovTest');
 
       $records = $report->getRecords();
-      static::assertCount(1, $records);
-      static::assertInstanceOf(Record::class, $records[0]);
+      expect($records)->to->have->lengthOf(1);
+      expect($records[0])->to->be->instanceOf(Record::class);
+      expect($report->getTestName())->to->equal('LcovTest');
     });
   }
 
@@ -48,19 +47,19 @@ class ReportTest extends TestCase {
    * @test ::jsonSerialize
    */
   public function testJsonSerialize() {
-    $this->specify('should return a map with default values for a newly created instance', function() {
+    it('should return a map with default values for a newly created instance', function() {
       $map = (new Report())->jsonSerialize();
-      static::assertCount(2, get_object_vars($map));
-      static::assertCount(0, $map->records);
-      static::assertEmpty($map->testName);
+      expect(get_object_vars($map))->to->have->lengthOf(2);
+      expect($map->records)->to->be->an('array')->and->be->empty;
+      expect($map->testName)->to->be->empty;
     });
 
-    $this->specify('should return a non-empty map for an initialized instance', function() {
+    it('should return a non-empty map for an initialized instance', function() {
       $map = (new Report('LcovTest', [new Record()]))->jsonSerialize();
-      static::assertCount(2, get_object_vars($map));
-      static::assertCount(1, $map->records);
-      static::assertInstanceOf(\stdClass::class, $map->records[0]);
-      static::assertEquals('LcovTest', $map->testName);
+      expect(get_object_vars($map))->to->have->lengthOf(2);
+      expect($map->records)->to->be->an('array')->and->have->lengthOf(1);
+      expect($map->records[0])->to->be->an('object');
+      expect($map->testName)->to->equal('LcovTest');
     });
   }
 
@@ -71,54 +70,53 @@ class ReportTest extends TestCase {
     $report = Report::parse(@file_get_contents(__DIR__.'/fixtures/lcov.info'));
     $records = $report->getRecords();
 
-    $this->specify('should have a test name', function() use ($report) {
-      static::assertEquals('Example', $report->getTestName());
+    it('should have a test name', function() use ($report) {
+      expect($report->getTestName())->to->equal('Example');
     });
 
-    $this->specify('should contain three records', function() use ($records) {
-      static::assertCount(3, $records);
-      static::assertInstanceOf(Record::class, $records[0]);
-      static::assertEquals('/home/cedx/lcov.php/fixture.php', $records[0]->getSourceFile());
-      static::assertEquals('/home/cedx/lcov.php/func1.php', $records[1]->getSourceFile());
-      static::assertEquals('/home/cedx/lcov.php/func2.php', $records[2]->getSourceFile());
+    it('should contain three records', function() use ($records) {
+      expect($records)->to->have->lengthOf(3);
+      expect($records[0])->to->be->instanceOf(Record::class);
+      expect($records[0]->getSourceFile())->to->equal('/home/cedx/lcov.php/fixture.php');
+      expect($records[1]->getSourceFile())->to->equal('/home/cedx/lcov.php/func1.php');
+      expect($records[2]->getSourceFile())->to->equal('/home/cedx/lcov.php/func2.php');
     });
 
-    $this->specify('should have detailed branch coverage', function() use ($records) {
+    it('should have detailed branch coverage', function() use ($records) {
       $branches = $records[1]->getBranches();
-      static::assertEquals(4, $branches->getFound());
-      static::assertEquals(4, $branches->getHit());
+      expect($branches->getFound())->to->equal(4);
+      expect($branches->getHit())->to->equal(4);
 
       $data = $branches->getData();
-      static::assertCount(4, $data);
-      static::assertInstanceOf(BranchData::class, $data[0]);
-      static::assertEquals(8, $data[0]->getLineNumber());
+      expect($data)->to->have->lengthOf(4);
+      expect($data[0])->to->be->instanceOf(BranchData::class);
+      expect($data[0]->getLineNumber())->to->equal(8);
     });
 
-    $this->specify('should have detailed function coverage', function() use ($records) {
+    it('should have detailed function coverage', function() use ($records) {
       $functions = $records[1]->getFunctions();
-      static::assertEquals(1, $functions->getFound());
-      static::assertEquals(1, $functions->getHit());
+      expect($functions->getFound())->to->equal(1);
+      expect($functions->getHit())->to->equal(1);
 
       $data = $functions->getData();
-      static::assertCount(1, $data);
-      static::assertInstanceOf(FunctionData::class, $data[0]);
-      static::assertEquals('func1', $data[0]->getFunctionName());
+      expect($data)->to->have->lengthOf(1);
+      expect($data[0])->to->be->instanceOf(FunctionData::class);
+      expect($data[0]->getFunctionName())->to->equal('func1');
     });
 
-    $this->specify('should have detailed line coverage', function() use ($records) {
+    it('should have detailed line coverage', function() use ($records) {
       $lines = $records[1]->getLines();
-      static::assertEquals(9, $lines->getFound());
-      static::assertEquals(9, $lines->getHit());
+      expect($lines->getFound())->to->equal(9);
+      expect($lines->getHit())->to->equal(9);
 
       $data = $lines->getData();
-      static::assertCount(9, $data);
-      static::assertInstanceOf(LineData::class, $data[0]);
-      static::assertEquals('5kX7OTfHFcjnS98fjeVqNA', $data[0]->getChecksum());
+      expect($data)->to->have->lengthOf(9);
+      expect($data[0])->to->be->instanceOf(LineData::class);
+      expect($data[0]->getChecksum())->to->equal('5kX7OTfHFcjnS98fjeVqNA');
     });
 
-    $this->specify('should throw an error if the input is invalid', function() {
-      $this->expectException(\UnexpectedValueException::class);
-      Report::parse('TN:Example');
+    it('should throw an error if the input is invalid', function() {
+      expect(function() { Report::parse('TN:Example'); })->to->throw(\UnexpectedValueException::class);
     });
   }
 
@@ -126,11 +124,11 @@ class ReportTest extends TestCase {
    * @test ::__toString
    */
   public function testToString() {
-    $this->specify('should return a format like "TN:<testName>"', function() {
-      static::assertEmpty((string) new Report());
+    it('should return a format like "TN:<testName>"', function() {
+      expect((string) new Report())->to->be->empty;
 
       $record = new Record();
-      static::assertEquals(str_replace('{{eol}}', PHP_EOL, "TN:LcovTest{{eol}}$record"), (string) new Report('LcovTest', [$record]));
+      expect((string) new Report('LcovTest', [$record]))->to->equal(str_replace('{{eol}}', PHP_EOL, "TN:LcovTest{{eol}}$record"));
     });
   }
 }
