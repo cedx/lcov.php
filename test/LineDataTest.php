@@ -1,19 +1,14 @@
 <?php
-/**
- * Implementation of the `lcov\test\LineDataTest` class.
- */
-namespace lcov\test;
-
-use lcov\{LineData};
+namespace lcov;
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\LineData
+ * Tests the features of the `lcov\LineData` class.
  */
 class LineDataTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test LineData::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -38,7 +33,7 @@ class LineDataTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test LineData::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -59,7 +54,7 @@ class LineDataTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test LineData::__toString
    */
   public function testToString() {
     it('should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]"', function() {

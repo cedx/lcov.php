@@ -1,19 +1,14 @@
 <?php
-/**
- * Implementation of the `lcov\test\BranchCoverageTest` class.
- */
-namespace lcov\test;
-
-use lcov\{BranchCoverage, BranchData};
+namespace lcov;
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\BranchCoverage
+ * Tests the features of the `lcov\BranchCoverage` class.
  */
 class BranchCoverageTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test BranchCoverage::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -43,7 +38,7 @@ class BranchCoverageTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test BranchCoverage::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -67,7 +62,7 @@ class BranchCoverageTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test BranchCoverage::__toString
    */
   public function testToString() {
     it('should return a format like "BRF:<found>\\n,BRH:<hit>"', function() {

@@ -1,19 +1,14 @@
 <?php
-/**
- * Implementation of the `lcov\test\FunctionDataTest` class.
- */
-namespace lcov\test;
-
-use lcov\{FunctionData};
+namespace lcov;
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\FunctionData
+ * Tests the features of the `lcov\FunctionData` class.
  */
 class FunctionDataTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test FunctionData::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -38,7 +33,7 @@ class FunctionDataTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test FunctionData::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -59,7 +54,7 @@ class FunctionDataTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test FunctionData::__toString
    */
   public function testToString() {
     it('should return a format like "FN:<lineNumber>,<functionName>" when used as definition', function() {

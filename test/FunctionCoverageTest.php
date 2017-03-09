@@ -1,19 +1,14 @@
 <?php
-/**
- * Implementation of the `lcov\test\FunctionCoverageTest` class.
- */
-namespace lcov\test;
-
-use lcov\{FunctionCoverage, FunctionData};
+namespace lcov;
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\FunctionCoverage
+ * Tests the features of the `lcov\FunctionCoverage` class.
  */
 class FunctionCoverageTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test FunctionCoverage::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -43,7 +38,7 @@ class FunctionCoverageTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test FunctionCoverage::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -66,7 +61,7 @@ class FunctionCoverageTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test FunctionCoverage::__toString
    */
   public function testToString() {
     it('should return a format like "FNF:<found>\\n,FNH:<hit>"', function() {

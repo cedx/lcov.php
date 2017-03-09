@@ -1,19 +1,14 @@
 <?php
-/**
- * Implementation of the `lcov\test\LineCoverageTest` class.
- */
-namespace lcov\test;
-
-use lcov\{LineCoverage, LineData};
+namespace lcov;
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\LineCoverage
+ * Tests the features of the `lcov\LineCoverage` class.
  */
 class LineCoverageTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test LineCoverage::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -43,7 +38,7 @@ class LineCoverageTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test LineCoverage::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -66,7 +61,7 @@ class LineCoverageTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test LineCoverage::__toString
    */
   public function testToString() {
     it('should return a format like "LF:<found>\\n,LH:<hit>"', function() {

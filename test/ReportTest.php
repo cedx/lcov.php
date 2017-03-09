@@ -8,12 +8,12 @@ use lcov\{BranchData, FunctionData, LineData, Record, Report};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\Report
+ * Tests the features of the `lcov\Report` class.
  */
 class ReportTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test Report::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -44,7 +44,7 @@ class ReportTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test Report::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -64,7 +64,7 @@ class ReportTest extends TestCase {
   }
 
   /**
-   * @test ::parse
+   * @test Report::parse
    */
   public function testParse() {
     $report = Report::parse(@file_get_contents(__DIR__.'/fixtures/lcov.info'));
@@ -121,7 +121,7 @@ class ReportTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test Report::__toString
    */
   public function testToString() {
     it('should return a format like "TN:<testName>"', function() {

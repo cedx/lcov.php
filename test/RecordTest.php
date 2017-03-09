@@ -1,19 +1,14 @@
 <?php
-/**
- * Implementation of the `lcov\test\RecordTest` class.
- */
-namespace lcov\test;
-
-use lcov\{BranchCoverage, FunctionCoverage, LineCoverage, Record};
+namespace lcov;
 use PHPUnit\Framework\{TestCase};
 
 /**
- * @coversDefaultClass \lcov\Record
+ * Tests the features of the `lcov\Record` class.
  */
 class RecordTest extends TestCase {
 
   /**
-   * @test ::fromJSON
+   * @test Record::fromJSON
    */
   public function testFromJSON() {
     it('should return a null reference with a non-object value', function() {
@@ -46,7 +41,7 @@ class RecordTest extends TestCase {
   }
 
   /**
-   * @test ::jsonSerialize
+   * @test Record::jsonSerialize
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
@@ -74,7 +69,7 @@ class RecordTest extends TestCase {
   }
 
   /**
-   * @test ::__toString
+   * @test Record::__toString
    */
   public function testToString() {
     it('should return a format like "SF:<sourceFile>\\n,end_of_record"', function() {
