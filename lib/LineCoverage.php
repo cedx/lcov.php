@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `lcov\LineCoverage` class.
- */
 namespace lcov;
 
 /**

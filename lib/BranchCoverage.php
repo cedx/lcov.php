@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `lcov\BranchCoverage` class.
- */
 namespace lcov;
 
 /**

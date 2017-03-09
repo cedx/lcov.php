@@ -1,7 +1,4 @@
 <?php
-/**
- * Implementation of the `lcov\Record` class.
- */
 namespace lcov;
 
 /**
