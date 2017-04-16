@@ -1,10 +1,7 @@
 <?php
-/**
- * Implementation of the `lcov\test\ReportTest` class.
- */
 namespace lcov\test;
 
-use lcov\{BranchData, FunctionData, LineData, Record, Report};
+use lcov\{BranchCoverage, BranchData, FunctionCoverage, FunctionData, LineCoverage, LineData, Record, Report};
 use PHPUnit\Framework\{TestCase};
 
 /**
@@ -83,6 +80,7 @@ class ReportTest extends TestCase {
     });
 
     it('should have detailed branch coverage', function() use ($records) {
+      /** @var BranchCoverage $branches */
       $branches = $records[1]->getBranches();
       expect($branches->getFound())->to->equal(4);
       expect($branches->getHit())->to->equal(4);
@@ -94,6 +92,7 @@ class ReportTest extends TestCase {
     });
 
     it('should have detailed function coverage', function() use ($records) {
+      /** @var FunctionCoverage $functions */
       $functions = $records[1]->getFunctions();
       expect($functions->getFound())->to->equal(1);
       expect($functions->getHit())->to->equal(1);
@@ -105,6 +104,7 @@ class ReportTest extends TestCase {
     });
 
     it('should have detailed line coverage', function() use ($records) {
+      /** @var LineCoverage $lines */
       $lines = $records[1]->getLines();
       expect($lines->getFound())->to->equal(9);
       expect($lines->getHit())->to->equal(9);

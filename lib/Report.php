@@ -89,9 +89,11 @@ class Report implements \JsonSerializable {
    */
   public static function parse(string $coverage): self {
     $report = new static();
-    $records = $report->getRecords();
 
     try {
+      /** @var \ArrayObject $records */
+      $records = $report->getRecords();
+
       $record = (new Record())
         ->setBranches(new BranchCoverage())
         ->setFunctions(new FunctionCoverage())
