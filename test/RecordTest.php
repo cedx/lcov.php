@@ -45,7 +45,7 @@ class RecordTest extends TestCase {
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
-      $map = (new Record())->jsonSerialize();
+      $map = (new Record)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(4);
       expect($map->branches)->to->be->null;
       expect($map->functions)->to->be->null;
@@ -55,9 +55,9 @@ class RecordTest extends TestCase {
 
     it('should return a non-empty map for an initialized instance', function() {
       $map = (new Record('/home/cedx/lcov.php'))
-        ->setBranches(new BranchCoverage())
-        ->setFunctions(new FunctionCoverage())
-        ->setLines(new LineCoverage())
+        ->setBranches(new BranchCoverage)
+        ->setFunctions(new FunctionCoverage)
+        ->setLines(new LineCoverage)
         ->jsonSerialize();
 
       expect(get_object_vars($map))->to->have->lengthOf(4);
@@ -73,12 +73,12 @@ class RecordTest extends TestCase {
    */
   public function testToString() {
     it('should return a format like "SF:<sourceFile>\\n,end_of_record"', function() {
-      expect((string) new Record())->to->equal(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'));
+      expect((string) new Record)->to->equal(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'));
 
       $record = (new Record('/home/cedx/lcov.php'))
-        ->setBranches(new BranchCoverage())
-        ->setFunctions(new FunctionCoverage())
-        ->setLines(new LineCoverage());
+        ->setBranches(new BranchCoverage)
+        ->setFunctions(new FunctionCoverage)
+        ->setLines(new LineCoverage);
 
       $format = "SF:/home/cedx/lcov.php{{eol}}{$record->getFunctions()}{{eol}}{$record->getBranches()}{{eol}}{$record->getLines()}{{eol}}end_of_record";
       expect((string) $record)->to->equal(str_replace('{{eol}}', PHP_EOL, $format));

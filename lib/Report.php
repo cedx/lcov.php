@@ -88,16 +88,16 @@ class Report implements \JsonSerializable {
    * @throws \UnexpectedValueException A parsing error occurred.
    */
   public static function parse(string $coverage): self {
-    $report = new static();
+    $report = new static;
 
     try {
       /** @var \ArrayObject $records */
       $records = $report->getRecords();
 
-      $record = (new Record())
-        ->setBranches(new BranchCoverage())
-        ->setFunctions(new FunctionCoverage())
-        ->setLines(new LineCoverage());
+      $record = (new Record)
+        ->setBranches(new BranchCoverage)
+        ->setFunctions(new FunctionCoverage)
+        ->setLines(new LineCoverage);
 
       foreach (preg_split('/\r?\n/', $coverage) as $line) {
         $line = trim($line);
@@ -179,10 +179,10 @@ class Report implements \JsonSerializable {
 
           case Token::END_OF_RECORD:
             $records->append($record);
-            $record = (new Record())
-              ->setBranches(new BranchCoverage())
-              ->setFunctions(new FunctionCoverage())
-              ->setLines(new LineCoverage());
+            $record = (new Record)
+              ->setBranches(new BranchCoverage)
+              ->setFunctions(new FunctionCoverage)
+              ->setLines(new LineCoverage);
             break;
         }
       }

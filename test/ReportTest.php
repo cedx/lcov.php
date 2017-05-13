@@ -45,14 +45,14 @@ class ReportTest extends TestCase {
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
-      $map = (new Report())->jsonSerialize();
+      $map = (new Report)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(2);
       expect($map->records)->to->be->an('array')->and->be->empty;
       expect($map->testName)->to->be->empty;
     });
 
     it('should return a non-empty map for an initialized instance', function() {
-      $map = (new Report('LcovTest', [new Record()]))->jsonSerialize();
+      $map = (new Report('LcovTest', [new Record]))->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(2);
       expect($map->records)->to->be->an('array')->and->have->lengthOf(1);
       expect($map->records[0])->to->be->an('object');
@@ -125,9 +125,9 @@ class ReportTest extends TestCase {
    */
   public function testToString() {
     it('should return a format like "TN:<testName>"', function() {
-      expect((string) new Report())->to->be->empty;
+      expect((string) new Report)->to->be->empty;
 
-      $record = new Record();
+      $record = new Record;
       expect((string) new Report('LcovTest', [$record]))->to->equal(str_replace('{{eol}}', PHP_EOL, "TN:LcovTest{{eol}}$record"));
     });
   }

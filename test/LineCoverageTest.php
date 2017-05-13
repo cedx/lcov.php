@@ -42,7 +42,7 @@ class LineCoverageTest extends TestCase {
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
-      $map = (new LineCoverage())->jsonSerialize();
+      $map = (new LineCoverage)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
       expect($map->data)->to->be->an('array')->and->be->empty;
       expect($map->found)->to->equal(0);
@@ -50,7 +50,7 @@ class LineCoverageTest extends TestCase {
     });
 
     it('should return a non-empty map for an initialized instance', function() {
-      $map = (new LineCoverage(23, 11, [new LineData()]))->jsonSerialize();
+      $map = (new LineCoverage(23, 11, [new LineData]))->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
       expect($map->data)->to->be->an('array')->and->have->lengthOf(1);
       expect($map->data[0])->to->be->an('object')->and->have->property('lineNumber')->that->is->an('int');
@@ -64,7 +64,7 @@ class LineCoverageTest extends TestCase {
    */
   public function testToString() {
     it('should return a format like "LF:<found>\\n,LH:<hit>"', function() {
-      expect((string) new LineCoverage())->to->equal(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'));
+      expect((string) new LineCoverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'));
 
       $data = new LineData(127, 3);
       $coverage = new LineCoverage(23, 11, [$data]);

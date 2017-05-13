@@ -42,7 +42,7 @@ class FunctionCoverageTest extends TestCase {
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
-      $map = (new FunctionCoverage())->jsonSerialize();
+      $map = (new FunctionCoverage)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
       expect($map->data)->to->be->an('array')->and->be->empty;
       expect($map->found)->to->equal(0);
@@ -50,7 +50,7 @@ class FunctionCoverageTest extends TestCase {
     });
 
     it('should return a non-empty map for an initialized instance', function() {
-      $map = (new FunctionCoverage(23, 11, [new FunctionData()]))->jsonSerialize();
+      $map = (new FunctionCoverage(23, 11, [new FunctionData]))->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
       expect($map->data)->to->an('array')->and->have->lengthOf(1);
       expect($map->data[0])->to->be->an('object')->and->have->property('lineNumber')->that->is->an('int');
@@ -64,7 +64,7 @@ class FunctionCoverageTest extends TestCase {
    */
   public function testToString() {
     it('should return a format like "FNF:<found>\\n,FNH:<hit>"', function() {
-      expect((string) new FunctionCoverage())->to->equal(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'));
+      expect((string) new FunctionCoverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'));
 
       $coverage = new FunctionCoverage(23, 11, [new FunctionData('main', 127, 3)]);
       expect((string) $coverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'FN:127,main{{eol}}FNDA:3,main{{eol}}FNF:23{{eol}}FNH:11'));
