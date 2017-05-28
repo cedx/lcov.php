@@ -2,6 +2,7 @@
 namespace lcov\test;
 
 use lcov\{BranchCoverage, BranchData, FunctionCoverage, FunctionData, LineCoverage, LineData, Record, Report};
+use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 /**
