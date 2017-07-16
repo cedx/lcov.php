@@ -1,6 +1,10 @@
 # Changelog
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
+## Version 1.1.0
+- Replaced [phpDocumentor](https://www.phpdoc.org) documentation generator by [ApiGen](https://github.com/ApiGen/ApiGen).
+- Updated the package dependencies.
+
 ## Version 1.0.0
 - Ported the unit test assertions from [TDD](https://en.wikipedia.org/wiki/Test-driven_development) to [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development).
 - Removed the dependency on the `cedx/enum` module.

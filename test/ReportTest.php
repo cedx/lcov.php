@@ -65,7 +65,7 @@ class ReportTest extends TestCase {
    * @test Report::parse
    */
   public function testParse() {
-    $report = Report::parse(@file_get_contents(__DIR__.'/fixtures/lcov.info'));
+    $report = Report::parse(file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
     it('should have a test name', function() use ($report) {
