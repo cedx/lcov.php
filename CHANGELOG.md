@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
 ## Version 1.1.0
+- Enabled the strict typing.
 - Replaced [phpDocumentor](https://www.phpdoc.org) documentation generator by [ApiGen](https://github.com/ApiGen/ApiGen).
 - Updated the package dependencies.
 

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace lcov\test;
 
 use lcov\{BranchCoverage, BranchData, FunctionCoverage, FunctionData, LineCoverage, LineData, Record, Report};
