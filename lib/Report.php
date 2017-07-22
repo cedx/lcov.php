@@ -83,7 +83,9 @@ class Report implements \JsonSerializable {
   public function jsonSerialize(): \stdClass {
     return (object) [
       'testName' => $this->getTestName(),
-      'records' => array_map(function(Record $item) { return $item->jsonSerialize(); }, $this->getRecords()->getArrayCopy())
+      'records' => array_map(function(Record $item) {
+        return $item->jsonSerialize();
+      }, $this->getRecords()->getArrayCopy())
     ];
   }
 

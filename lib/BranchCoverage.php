@@ -38,7 +38,10 @@ class BranchCoverage implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   public function __toString(): string {
-    $lines = array_map(function($item) { return (string) $item; }, $this->getData()->getArrayCopy());
+    $lines = array_map(function($item) {
+      return (string) $item;
+    }, $this->getData()->getArrayCopy());
+
     $lines[] = Token::BRANCHES_FOUND.":{$this->getFound()}";
     $lines[] = Token::BRANCHES_HIT.":{$this->getHit()}";
     return implode(PHP_EOL, $lines);
@@ -51,7 +54,9 @@ class BranchCoverage implements \JsonSerializable {
    */
   public static function fromJSON($map) {
     $transform = function(array $data) {
-      return array_filter(array_map(function($item) { return BranchData::fromJSON($item); }, $data));
+      return array_filter(array_map(function($item) {
+        return BranchData::fromJSON($item);
+      }, $data));
     };
 
     if (is_array($map)) $map = (object) $map;
@@ -92,7 +97,9 @@ class BranchCoverage implements \JsonSerializable {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'data' => array_map(function(BranchData $item) { return $item->jsonSerialize(); }, $this->getData()->getArrayCopy()),
+      'data' => array_map(function(BranchData $item) {
+        return $item->jsonSerialize();
+      }, $this->getData()->getArrayCopy()),
       'found' => $this->getFound(),
       'hit' => $this->getHit()
     ];

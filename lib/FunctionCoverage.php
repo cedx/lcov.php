@@ -40,8 +40,14 @@ class FunctionCoverage implements \JsonSerializable {
   public function __toString(): string {
     $data = $this->getData()->getArrayCopy();
 
-    $lines = array_map(function(FunctionData $item) { return $item->toString(true); }, $data);
-    $lines = array_merge($lines, array_map(function(FunctionData $item) { return $item->toString(false); }, $data));
+    $lines = array_map(function(FunctionData $item) {
+      return $item->toString(true);
+    }, $data);
+
+    $lines = array_merge($lines, array_map(function(FunctionData $item) {
+      return $item->toString(false);
+    }, $data));
+
     $lines[] = Token::FUNCTIONS_FOUND.":{$this->getFound()}";
     $lines[] = Token::FUNCTIONS_HIT.":{$this->getHit()}";
 
@@ -55,7 +61,9 @@ class FunctionCoverage implements \JsonSerializable {
    */
   public static function fromJSON($map) {
     $transform = function(array $data) {
-      return array_filter(array_map(function($item) { return FunctionData::fromJSON($item); }, $data));
+      return array_filter(array_map(function($item) {
+        return FunctionData::fromJSON($item);
+      }, $data));
     };
 
     if (is_array($map)) $map = (object) $map;
@@ -96,7 +104,9 @@ class FunctionCoverage implements \JsonSerializable {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'data' => array_map(function(FunctionData $item) { return $item->jsonSerialize(); }, $this->getData()->getArrayCopy()),
+      'data' => array_map(function(FunctionData $item) {
+        return $item->jsonSerialize();
+      }, $this->getData()->getArrayCopy()),
       'found' => $this->getFound(),
       'hit' => $this->getHit()
     ];
