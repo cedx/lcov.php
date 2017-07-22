@@ -32,8 +32,12 @@ class Report implements \JsonSerializable {
    */
   public function __toString(): string {
     $token = Token::TEST_NAME;
+
     $lines = mb_strlen($testName = $this->getTestName()) ? ["$token:$testName"] : [];
-    $lines = array_merge($lines, array_map(function($item) { return (string) $item; }, $this->getRecords()->getArrayCopy()));
+    $lines = array_merge($lines, array_map(function(Record $item): string {
+      return (string) $item;
+    }, $this->getRecords()->getArrayCopy()));
+
     return implode(PHP_EOL, $lines);
   }
 
@@ -44,7 +48,9 @@ class Report implements \JsonSerializable {
    */
   public static function fromJSON($map) {
     $transform = function(array $records) {
-      return array_filter(array_map(function($item) { return Record::fromJSON($item); }, $records));
+      return array_filter(array_map(function($item) {
+        return Record::fromJSON($item);
+      }, $records));
     };
 
     if (is_array($map)) $map = (object) $map;
