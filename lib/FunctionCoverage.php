@@ -62,9 +62,9 @@ class FunctionCoverage implements \JsonSerializable {
    */
   public static function fromJSON($map) {
     $transform = function(array $data) {
-      return array_filter(array_map(function($item) {
+      return array_values(array_filter(array_map(function($item) {
         return FunctionData::fromJSON($item);
-      }, $data));
+      }, $data)));
     };
 
     if (is_array($map)) $map = (object) $map;

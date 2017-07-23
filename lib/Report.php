@@ -49,9 +49,9 @@ class Report implements \JsonSerializable {
    */
   public static function fromJSON($map) {
     $transform = function(array $records) {
-      return array_filter(array_map(function($item) {
+      return array_values(array_filter(array_map(function($item) {
         return Record::fromJSON($item);
-      }, $records));
+      }, $records)));
     };
 
     if (is_array($map)) $map = (object) $map;
