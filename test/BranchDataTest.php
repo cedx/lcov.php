@@ -11,15 +11,15 @@ use PHPUnit\Framework\{TestCase};
 class BranchDataTest extends TestCase {
 
   /**
-   * @test BranchData::fromJSON
+   * @test BranchData::fromJson
    */
-  public function testFromJSON() {
+  public function testFromJson() {
     it('should return a null reference with a non-object value', function() {
-      expect(BranchData::fromJSON('foo'))->to->be->null;
+      expect(BranchData::fromJson('foo'))->to->be->null;
     });
 
     it('should return an instance with default values for an empty map', function() {
-      $data = BranchData::fromJSON([]);
+      $data = BranchData::fromJson([]);
       expect($data)->to->be->instanceOf(BranchData::class);
       expect($data->getBlockNumber())->to->equal(0);
       expect($data->getBranchNumber())->to->equal(0);
@@ -28,7 +28,7 @@ class BranchDataTest extends TestCase {
     });
 
     it('should return an initialized instance for a non-empty map', function() {
-      $data = BranchData::fromJSON(['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
+      $data = BranchData::fromJson(['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
       expect($data)->to->be->instanceOf(BranchData::class);
       expect($data->getBlockNumber())->to->equal(3);
       expect($data->getBranchNumber())->to->equal(2);

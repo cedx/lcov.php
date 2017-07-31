@@ -35,7 +35,7 @@ class Report implements \JsonSerializable {
     $token = Token::TEST_NAME;
 
     $lines = mb_strlen($testName = $this->getTestName()) ? ["$token:$testName"] : [];
-    $lines = array_merge($lines, array_map(function(Record $item): string {
+    $lines = array_merge($lines, array_map(function($item) {
       return (string) $item;
     }, $this->getRecords()->getArrayCopy()));
 
@@ -47,10 +47,10 @@ class Report implements \JsonSerializable {
    * @param mixed $map A JSON map representing a line data.
    * @return Report The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJSON($map) {
+  public static function fromJson($map) {
     $transform = function(array $records) {
       return array_values(array_filter(array_map(function($item) {
-        return Record::fromJSON($item);
+        return Record::fromJson($item);
       }, $records)));
     };
 
@@ -100,9 +100,7 @@ class Report implements \JsonSerializable {
     $report = new static;
 
     try {
-      /** @var \ArrayObject $records */
       $records = $report->getRecords();
-
       $record = (new Record)
         ->setBranches(new BranchCoverage)
         ->setFunctions(new FunctionCoverage)
@@ -174,7 +172,7 @@ class Report implements \JsonSerializable {
             $record->getLines()->getData()->append(new LineData(
               (int) $data[0],
               (int) $data[1],
-              $length >= 3 ? $data[2] : null
+              $length >= 3 ? $data[2] : ''
             ));
             break;
 

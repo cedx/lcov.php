@@ -11,15 +11,15 @@ use PHPUnit\Framework\{TestCase};
 class LineDataTest extends TestCase {
 
   /**
-   * @test LineData::fromJSON
+   * @test LineData::fromJson
    */
-  public function testFromJSON() {
+  public function testFromJson() {
     it('should return a null reference with a non-object value', function() {
-      expect(LineData::fromJSON('foo'))->to->be->null;
+      expect(LineData::fromJson('foo'))->to->be->null;
     });
 
     it('should return an instance with default values for an empty map', function() {
-      $data = LineData::fromJSON([]);
+      $data = LineData::fromJson([]);
       expect($data)->to->be->instanceOf(LineData::class);
       expect($data->getChecksum())->to->be->empty;
       expect($data->getExecutionCount())->to->equal(0);
@@ -27,7 +27,7 @@ class LineDataTest extends TestCase {
     });
 
     it('should return an initialized instance for a non-empty map', function() {
-      $data = LineData::fromJSON(['checksum' => 'ed076287532e86365e841e92bfc50d8c', 'executionCount' => 3, 'lineNumber' => 127]);
+      $data = LineData::fromJson(['checksum' => 'ed076287532e86365e841e92bfc50d8c', 'executionCount' => 3, 'lineNumber' => 127]);
       expect($data)->to->be->instanceOf(LineData::class);
       expect($data->getChecksum())->to->equal('ed076287532e86365e841e92bfc50d8c');
       expect($data->getExecutionCount())->to->equal(3);

@@ -11,15 +11,15 @@ use PHPUnit\Framework\{TestCase};
 class RecordTest extends TestCase {
 
   /**
-   * @test Record::fromJSON
+   * @test Record::fromJson
    */
-  public function testFromJSON() {
+  public function testFromJson() {
     it('should return a null reference with a non-object value', function() {
-      expect(Record::fromJSON('foo'))->to->be->null;
+      expect(Record::fromJson('foo'))->to->be->null;
     });
 
     it('should return an instance with default values for an empty map', function() {
-      $record = Record::fromJSON([]);
+      $record = Record::fromJson([]);
       expect($record)->to->be->instanceOf(Record::class);
       expect($record->getBranches())->to->be->null;
       expect($record->getFunctions())->to->be->null;
@@ -28,7 +28,7 @@ class RecordTest extends TestCase {
     });
 
     it('should return an initialized instance for a non-empty map', function() {
-      $record = Record::fromJSON([
+      $record = Record::fromJson([
         'branches' => [],
         'functions' => [],
         'lines' => [],

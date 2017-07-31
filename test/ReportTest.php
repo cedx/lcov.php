@@ -11,22 +11,22 @@ use PHPUnit\Framework\{TestCase};
 class ReportTest extends TestCase {
 
   /**
-   * @test Report::fromJSON
+   * @test Report::fromJson
    */
-  public function testFromJSON() {
+  public function testFromJson() {
     it('should return a null reference with a non-object value', function() {
-      expect(Report::fromJSON('foo'))->to->be->null;
+      expect(Report::fromJson('foo'))->to->be->null;
     });
 
     it('should return an instance with default values for an empty map', function() {
-      $report = Report::fromJSON([]);
+      $report = Report::fromJson([]);
       expect($report)->to->be->instanceOf(Report::class);
       expect($report->getRecords())->to->be->empty;
       expect($report->getTestName())->to->be->empty;
     });
 
     it('should return an initialized instance for a non-empty map', function() {
-      $report = Report::fromJSON([
+      $report = Report::fromJson([
         'records' => [[]],
         'testName' => 'LcovTest'
       ]);

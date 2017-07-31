@@ -11,15 +11,15 @@ use PHPUnit\Framework\{TestCase};
 class FunctionDataTest extends TestCase {
 
   /**
-   * @test FunctionData::fromJSON
+   * @test FunctionData::fromJson
    */
-  public function testFromJSON() {
+  public function testFromJson() {
     it('should return a null reference with a non-object value', function() {
-      expect(FunctionData::fromJSON('foo'))->to->be->null;
+      expect(FunctionData::fromJson('foo'))->to->be->null;
     });
 
     it('should return an instance with default values for an empty map', function() {
-      $data = FunctionData::fromJSON([]);
+      $data = FunctionData::fromJson([]);
       expect($data)->to->be->instanceOf(FunctionData::class);
       expect($data->getExecutionCount())->to->equal(0);
       expect($data->getFunctionName())->to->be->empty;
@@ -27,7 +27,7 @@ class FunctionDataTest extends TestCase {
     });
 
     it('should return an initialized instance for a non-empty map', function() {
-      $data = FunctionData::fromJSON(['executionCount' => 3, 'functionName' => 'main', 'lineNumber' => 127]);
+      $data = FunctionData::fromJson(['executionCount' => 3, 'functionName' => 'main', 'lineNumber' => 127]);
       expect($data)->to->be->instanceOf(FunctionData::class);
       expect($data->getExecutionCount())->to->equal(3);
       expect($data->getFunctionName())->to->equal('main');

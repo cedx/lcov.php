@@ -49,7 +49,7 @@ class LineData implements \JsonSerializable {
    * @param mixed $map A JSON map representing a line data.
    * @return LineData The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJSON($map) {
+  public static function fromJson($map) {
     if (is_array($map)) $map = (object) $map;
     return !is_object($map) ? null : new static(
       isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,

@@ -11,15 +11,15 @@ use PHPUnit\Framework\{TestCase};
 class FunctionCoverageTest extends TestCase {
 
   /**
-   * @test FunctionCoverage::fromJSON
+   * @test FunctionCoverage::fromJson
    */
-  public function testFromJSON() {
+  public function testFromJson() {
     it('should return a null reference with a non-object value', function() {
-      expect(FunctionCoverage::fromJSON('foo'))->to->be->null;
+      expect(FunctionCoverage::fromJson('foo'))->to->be->null;
     });
 
     it('should return an instance with default values for an empty map', function() {
-      $coverage = FunctionCoverage::fromJSON([]);
+      $coverage = FunctionCoverage::fromJson([]);
       expect($coverage)->to->be->instanceOf(FunctionCoverage::class);
       expect($coverage->getData())->to->be->empty;
       expect($coverage->getFound())->to->equal(0);
@@ -27,7 +27,7 @@ class FunctionCoverageTest extends TestCase {
     });
 
     it('should return an initialized instance for a non-empty map', function() {
-      $coverage = FunctionCoverage::fromJSON(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
+      $coverage = FunctionCoverage::fromJson(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
       expect($coverage)->to->be->instanceOf(FunctionCoverage::class);
 
       $entries = $coverage->getData();

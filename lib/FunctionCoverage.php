@@ -60,10 +60,10 @@ class FunctionCoverage implements \JsonSerializable {
    * @param mixed $map A JSON map representing a branch data.
    * @return FunctionCoverage The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJSON($map) {
-    $transform = function(array $data) {
+  public static function fromJson($map) {
+    $transform = function($data) {
       return array_values(array_filter(array_map(function($item) {
-        return FunctionData::fromJSON($item);
+        return FunctionData::fromJson($item);
       }, $data)));
     };
 
