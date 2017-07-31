@@ -16,13 +16,13 @@ $ composer require cedx/lcov
 
 ## Usage
 This package provides a set of classes representing a coverage report and its data.
-The [`lcov\Report`](https://github.com/cedx/lcov.php/blob/master/lib/Report.php) class, the main one, provides the parsing and formatting features.
+The [`Lcov\Report`](https://github.com/cedx/lcov.php/blob/master/lib/Report.php) class, the main one, provides the parsing and formatting features.
 
 ### Parse coverage data from a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) file
 The `Report::parse()` static method parses a coverage report provided as string, and returns a `Report` instance giving detailed information about this coverage report:
 
 ```php
-use lcov\{Report};
+use Lcov\{Report};
 
 try {
   $coverage = file_get_contents('lcov.info');
@@ -77,7 +77,7 @@ Each provided class has a dedicated `__toString()` instance method returning the
 All you have to do is to create the adequate structure using these different classes, and to export the final result:
 
 ```php
-use lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
+use Lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
 
 $lineCoverage = new LineCoverage(2, 2, [
   new LineData(6, 2, 'PF4Rz2r7RTliO9u6bZ7h6g'),

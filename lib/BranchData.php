@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace lcov;
+namespace Lcov;
 
 /**
  * Provides details for branch coverage.

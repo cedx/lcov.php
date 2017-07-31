@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
-namespace lcov;
+namespace Lcov;
 
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * Tests the features of the `lcov\BranchData` class.
+ * Tests the features of the `Lcov\BranchData` class.
  */
 class BranchDataTest extends TestCase {
 

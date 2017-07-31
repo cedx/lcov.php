@@ -11,7 +11,7 @@
     "name": "Cédric Belin"
   }],
   "autoload": {
-    "psr-4": {"lcov\\": "lib/"}
+    "psr-4": {"Lcov\\": "lib/"}
   },
   "config": {
     "optimize-autoloader": true

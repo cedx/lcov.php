@@ -1,13 +1,12 @@
 <?php
 declare(strict_types=1);
-namespace lcov\test;
+namespace Lcov;
 
-use lcov\{BranchCoverage, BranchData, FunctionCoverage, FunctionData, LineCoverage, LineData, Record, Report};
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 /**
- * Tests the features of the `lcov\Report` class.
+ * Tests the features of the `Lcov\Report` class.
  */
 class ReportTest extends TestCase {
 
