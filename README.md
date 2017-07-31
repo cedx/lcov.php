@@ -69,7 +69,6 @@ The `Report::jsonSerialize()` instance method will return a map like this:
     }
   ]
 }
-
 ```
 
 ### Format coverage data to the [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format
