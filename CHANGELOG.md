@@ -3,6 +3,10 @@ This file contains highlights of what changes on each version of the [LCOV Repor
 
 ## Version 2.0.0
 - Breaking change: renamed the `lcov` namespace to `Lcov`.
+- Breaking change: renamed the `fromJSON()` static methods to `fromJson`.
+- Breaking change: renamed the `Report::parse()` static method to `fromCoverage`.
+- Changed the naming convention: acronyms and abbreviations are capitalized like regular words, except for two-letter acronyms.
+- Updated the package dependencies.
 
 ## Version 1.1.0
 - Enabled the strict typing.

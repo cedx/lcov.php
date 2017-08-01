@@ -11,61 +11,10 @@ use PHPUnit\Framework\{TestCase};
 class ReportTest extends TestCase {
 
   /**
-   * @test Report::fromJson
+   * @test Report::fromCoverage
    */
-  public function testFromJson() {
-    it('should return a null reference with a non-object value', function() {
-      expect(Report::fromJson('foo'))->to->be->null;
-    });
-
-    it('should return an instance with default values for an empty map', function() {
-      $report = Report::fromJson([]);
-      expect($report)->to->be->instanceOf(Report::class);
-      expect($report->getRecords())->to->be->empty;
-      expect($report->getTestName())->to->be->empty;
-    });
-
-    it('should return an initialized instance for a non-empty map', function() {
-      $report = Report::fromJson([
-        'records' => [[]],
-        'testName' => 'LcovTest'
-      ]);
-
-      expect($report)->to->be->instanceOf(Report::class);
-      expect($report->getTestName())->to->equal('LcovTest');
-
-      $records = $report->getRecords();
-      expect($records)->to->have->lengthOf(1);
-      expect($records[0])->to->be->instanceOf(Record::class);
-      expect($report->getTestName())->to->equal('LcovTest');
-    });
-  }
-
-  /**
-   * @test Report::jsonSerialize
-   */
-  public function testJsonSerialize() {
-    it('should return a map with default values for a newly created instance', function() {
-      $map = (new Report)->jsonSerialize();
-      expect(get_object_vars($map))->to->have->lengthOf(2);
-      expect($map->records)->to->be->an('array')->and->be->empty;
-      expect($map->testName)->to->be->empty;
-    });
-
-    it('should return a non-empty map for an initialized instance', function() {
-      $map = (new Report('LcovTest', [new Record]))->jsonSerialize();
-      expect(get_object_vars($map))->to->have->lengthOf(2);
-      expect($map->records)->to->be->an('array')->and->have->lengthOf(1);
-      expect($map->records[0])->to->be->an('object');
-      expect($map->testName)->to->equal('LcovTest');
-    });
-  }
-
-  /**
-   * @test Report::parse
-   */
-  public function testParse() {
-    $report = Report::parse(file_get_contents('test/fixtures/lcov.info'));
+  public function testFromCoverage() {
+    $report = Report::fromCoverage(file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
     it('should have a test name', function() use ($report) {
@@ -117,7 +66,58 @@ class ReportTest extends TestCase {
     });
 
     it('should throw an error if the input is invalid', function() {
-      expect(function() { Report::parse('TN:Example'); })->to->throw(\UnexpectedValueException::class);
+      expect(function() { Report::fromCoverage('TN:Example'); })->to->throw(\UnexpectedValueException::class);
+    });
+  }
+
+  /**
+   * @test Report::fromJson
+   */
+  public function testFromJson() {
+    it('should return a null reference with a non-object value', function() {
+      expect(Report::fromJson('foo'))->to->be->null;
+    });
+
+    it('should return an instance with default values for an empty map', function() {
+      $report = Report::fromJson([]);
+      expect($report)->to->be->instanceOf(Report::class);
+      expect($report->getRecords())->to->be->empty;
+      expect($report->getTestName())->to->be->empty;
+    });
+
+    it('should return an initialized instance for a non-empty map', function() {
+      $report = Report::fromJson([
+        'records' => [[]],
+        'testName' => 'LcovTest'
+      ]);
+
+      expect($report)->to->be->instanceOf(Report::class);
+      expect($report->getTestName())->to->equal('LcovTest');
+
+      $records = $report->getRecords();
+      expect($records)->to->have->lengthOf(1);
+      expect($records[0])->to->be->instanceOf(Record::class);
+      expect($report->getTestName())->to->equal('LcovTest');
+    });
+  }
+
+  /**
+   * @test Report::jsonSerialize
+   */
+  public function testJsonSerialize() {
+    it('should return a map with default values for a newly created instance', function() {
+      $map = (new Report)->jsonSerialize();
+      expect(get_object_vars($map))->to->have->lengthOf(2);
+      expect($map->records)->to->be->an('array')->and->be->empty;
+      expect($map->testName)->to->be->empty;
+    });
+
+    it('should return a non-empty map for an initialized instance', function() {
+      $map = (new Report('LcovTest', [new Record]))->jsonSerialize();
+      expect(get_object_vars($map))->to->have->lengthOf(2);
+      expect($map->records)->to->be->an('array')->and->have->lengthOf(1);
+      expect($map->records[0])->to->be->an('object');
+      expect($map->testName)->to->equal('LcovTest');
     });
   }
 

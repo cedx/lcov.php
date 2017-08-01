@@ -43,60 +43,12 @@ class Report implements \JsonSerializable {
   }
 
   /**
-   * Creates a new line data from the specified JSON map.
-   * @param mixed $map A JSON map representing a line data.
-   * @return Report The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
-   */
-  public static function fromJson($map) {
-    $transform = function(array $records) {
-      return array_values(array_filter(array_map(function($item) {
-        return Record::fromJson($item);
-      }, $records)));
-    };
-
-    if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static(
-      isset($map->testName) && is_string($map->testName) ? $map->testName : '',
-      isset($map->records) && is_array($map->records) ? $transform($map->records) : []
-    );
-  }
-
-  /**
-   * Gets the record list.
-   * @return \ArrayObject The record list.
-   */
-  public function getRecords(): \ArrayObject {
-    return $this->records;
-  }
-
-  /**
-   * Gets the test name.
-   * @return string The test name.
-   */
-  public function getTestName(): string {
-    return $this->testName;
-  }
-
-  /**
-   * Converts this object to a map in JSON format.
-   * @return \stdClass The map in JSON format corresponding to this object.
-   */
-  public function jsonSerialize(): \stdClass {
-    return (object) [
-      'testName' => $this->getTestName(),
-      'records' => array_map(function(Record $item) {
-        return $item->jsonSerialize();
-      }, $this->getRecords()->getArrayCopy())
-    ];
-  }
-
-  /**
    * Parses the specified coverage data in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
    * @param string $coverage The coverage data.
    * @return Report The resulting coverage report.
    * @throws \UnexpectedValueException A parsing error occurred.
    */
-  public static function parse(string $coverage): self {
+  public static function fromCoverage(string $coverage): self {
     $report = new static;
 
     try {
@@ -201,6 +153,54 @@ class Report implements \JsonSerializable {
 
     if (!count($records)) throw new \UnexpectedValueException('The coverage data is empty.');
     return $report;
+  }
+
+  /**
+   * Creates a new line data from the specified JSON map.
+   * @param mixed $map A JSON map representing a line data.
+   * @return Report The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   */
+  public static function fromJson($map) {
+    $transform = function(array $records) {
+      return array_values(array_filter(array_map(function($item) {
+        return Record::fromJson($item);
+      }, $records)));
+    };
+
+    if (is_array($map)) $map = (object) $map;
+    return !is_object($map) ? null : new static(
+      isset($map->testName) && is_string($map->testName) ? $map->testName : '',
+      isset($map->records) && is_array($map->records) ? $transform($map->records) : []
+    );
+  }
+
+  /**
+   * Gets the record list.
+   * @return \ArrayObject The record list.
+   */
+  public function getRecords(): \ArrayObject {
+    return $this->records;
+  }
+
+  /**
+   * Gets the test name.
+   * @return string The test name.
+   */
+  public function getTestName(): string {
+    return $this->testName;
+  }
+
+  /**
+   * Converts this object to a map in JSON format.
+   * @return \stdClass The map in JSON format corresponding to this object.
+   */
+  public function jsonSerialize(): \stdClass {
+    return (object) [
+      'testName' => $this->getTestName(),
+      'records' => array_map(function(Record $item) {
+        return $item->jsonSerialize();
+      }, $this->getRecords()->getArrayCopy())
+    ];
   }
 
   /**

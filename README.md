@@ -19,14 +19,14 @@ This package provides a set of classes representing a coverage report and its da
 The [`Lcov\Report`](https://github.com/cedx/lcov.php/blob/master/lib/Report.php) class, the main one, provides the parsing and formatting features.
 
 ### Parse coverage data from a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) file
-The `Report::parse()` static method parses a coverage report provided as string, and returns a `Report` instance giving detailed information about this coverage report:
+The `Report::fromCoverage()` static method parses a coverage report provided as string, and returns a `Report` instance giving detailed information about this coverage report:
 
 ```php
 use Lcov\{Report};
 
 try {
   $coverage = file_get_contents('lcov.info');
-  $report = Report::parse($coverage);
+  $report = Report::fromCoverage($coverage);
   
   $count = count($report->getRecords());
   echo "The coverage report contains $count records:";
