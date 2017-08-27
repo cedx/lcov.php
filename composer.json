@@ -1,11 +1,9 @@
 {
   "description": "Parse and format LCOV coverage reports.",
   "homepage": "https://github.com/cedx/lcov.php",
-  "name": "cedx/lcov",
-
   "license": "Apache-2.0",
+  "name": "cedx/lcov",
   "type": "library",
-
   "authors": [{
     "email": "cedric@belin.io",
     "name": "Cédric Belin"
