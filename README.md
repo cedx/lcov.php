@@ -111,4 +111,4 @@ end_of_record
 - [Continuous integration](https://travis-ci.org/cedx/lcov.php)
 
 ## License
-[LCOV Reports for PHP](https://github.com/cedx/lcov.php) is distributed under the Apache License, version 2.0.
+[LCOV Reports for PHP](https://github.com/cedx/lcov.php) is distributed under the MIT License.
