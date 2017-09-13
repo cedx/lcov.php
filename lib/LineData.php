@@ -28,10 +28,10 @@ class LineData implements \JsonSerializable {
    * @param int $executionCount The execution count.
    * @param string $checksum The data checksum.
    */
-  public function __construct(int $lineNumber = 0, int $executionCount = 0, string $checksum = '') {
-    $this->setLineNumber($lineNumber);
+  public function __construct(int $lineNumber, int $executionCount = 0, string $checksum = '') {
+    $this->lineNumber = max(0, $lineNumber);
     $this->setExecutionCount($executionCount);
-    $this->setChecksum($checksum);
+    $this->checksum = $checksum;
   }
 
   /**

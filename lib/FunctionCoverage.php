@@ -117,7 +117,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @return FunctionCoverage This instance.
    */
   public function setFound(int $value): self {
-    $this->found = $value;
+    $this->found = max(0, $value);
     return $this;
   }
 
@@ -127,7 +127,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @return FunctionCoverage This instance.
    */
   public function setHit(int $value): self {
-    $this->hit = $value;
+    $this->hit = max(0, $value);
     return $this;
   }
 }
