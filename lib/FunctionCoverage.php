@@ -112,16 +112,6 @@ class FunctionCoverage implements \JsonSerializable {
   }
 
   /**
-   * Sets the coverage data.
-   * @param FunctionData[] $value The new coverage data.
-   * @return FunctionCoverage This instance.
-   */
-  public function setData(array $value): self {
-    $this->getData()->exchangeArray($value);
-    return $this;
-  }
-
-  /**
    * Sets the number of branches found.
    * @param int $value The new number of branches found.
    * @return FunctionCoverage This instance.
