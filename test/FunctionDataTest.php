@@ -40,7 +40,7 @@ class FunctionDataTest extends TestCase {
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
-      $data = (new FunctionData)->jsonSerialize();
+      $data = (new FunctionData('', 0))->jsonSerialize();
       expect(get_object_vars($data))->to->have->lengthOf(3);
       expect($data->executionCount)->to->equal(0);
       expect($data->functionName)->to->be->empty;
@@ -61,7 +61,7 @@ class FunctionDataTest extends TestCase {
    */
   public function testToString() {
     it('should return a format like "FN:<lineNumber>,<functionName>" when used as definition', function() {
-      $data = new FunctionData;
+      $data = new FunctionData('', 0);
       expect($data->toString(false))->to->equal('FNDA:0,');
       expect($data->toString(true))->to->equal('FN:0,');
     });

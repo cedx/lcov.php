@@ -29,7 +29,7 @@ class FunctionData implements \JsonSerializable {
    * @param int $executionCount The execution count.
    */
   public function __construct(string $functionName, int $lineNumber, int $executionCount = 0) {
-    $this->functionName = max(0, $functionName);
+    $this->functionName = $functionName;
     $this->lineNumber = max(0, $lineNumber);
     $this->setExecutionCount($executionCount);
   }

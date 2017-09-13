@@ -53,7 +53,7 @@ class LineCoverageTest extends TestCase {
     });
 
     it('should return a non-empty map for an initialized instance', function() {
-      $map = (new LineCoverage(23, 11, [new LineData]))->jsonSerialize();
+      $map = (new LineCoverage(23, 11, [new LineData(0)]))->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
       expect($map->data)->to->be->an('array')->and->have->lengthOf(1);
       expect($map->data[0])->to->be->an('object')->and->have->property('lineNumber')->that->is->an('int');

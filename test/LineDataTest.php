@@ -40,7 +40,7 @@ class LineDataTest extends TestCase {
    */
   public function testJsonSerialize() {
     it('should return a map with default values for a newly created instance', function() {
-      $data = (new LineData)->jsonSerialize();
+      $data = (new LineData(0))->jsonSerialize();
       expect(get_object_vars($data))->to->have->lengthOf(3);
       expect($data->checksum)->to->be->empty;
       expect($data->executionCount)->to->equal(0);
@@ -61,7 +61,7 @@ class LineDataTest extends TestCase {
    */
   public function testToString() {
     it('should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]"', function() {
-      expect((string) new LineData)->to->equal('DA:0,0');
+      expect((string) new LineData(0))->to->equal('DA:0,0');
       expect((string) new LineData(127, 3, 'ed076287532e86365e841e92bfc50d8c'))->to->equal('DA:127,3,ed076287532e86365e841e92bfc50d8c');
     });
   }
