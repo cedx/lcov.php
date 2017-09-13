@@ -93,11 +93,11 @@ class BranchCoverage implements \JsonSerializable {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
+      'found' => $this->getFound(),
+      'hit' => $this->getHit(),
       'data' => array_map(function(BranchData $item) {
         return $item->jsonSerialize();
-      }, $this->getData()->getArrayCopy()),
-      'found' => $this->getFound(),
-      'hit' => $this->getHit()
+      }, $this->getData()->getArrayCopy())
     ];
   }
 

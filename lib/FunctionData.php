@@ -86,9 +86,9 @@ class FunctionData implements \JsonSerializable {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'executionCount' => $this->getExecutionCount(),
       'functionName' => $this->getFunctionName(),
-      'lineNumber' => $this->getLineNumber()
+      'lineNumber' => $this->getLineNumber(),
+      'executionCount' => $this->getExecutionCount()
     ];
   }
 

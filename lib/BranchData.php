@@ -104,9 +104,9 @@ class BranchData implements \JsonSerializable {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
+      'lineNumber' => $this->getLineNumber(),
       'blockNumber' => $this->getBlockNumber(),
       'branchNumber' => $this->getBranchNumber(),
-      'lineNumber' => $this->getLineNumber(),
       'taken' => $this->getTaken()
     ];
   }

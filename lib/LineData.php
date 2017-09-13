@@ -88,9 +88,9 @@ class LineData implements \JsonSerializable {
    */
   public function jsonSerialize(): \stdClass {
     return (object) [
-      'checksum' => $this->getChecksum(),
+      'lineNumber' => $this->getLineNumber(),
       'executionCount' => $this->getExecutionCount(),
-      'lineNumber' => $this->getLineNumber()
+      'checksum' => $this->getChecksum()
     ];
   }
 
