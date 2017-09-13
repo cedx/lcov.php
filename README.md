@@ -47,24 +47,24 @@ The `Report::jsonSerialize()` instance method will return a map like this:
     {
       "sourceFile": "/home/cedx/lcov.php/fixture.php",
       "branches": {
-        "data": [],
         "found": 0,
-        "hit": 0
+        "hit": 0,
+        "data": []
       },
       "functions": {
-        "data": [
-          {"executionCount": 2, "functionName": "main", "lineNumber": 4}
-        ],
         "found": 1,
-        "hit": 1
+        "hit": 1,
+        "data": [
+          {"functionName": "main", "lineNumber": 4, "executionCount": 2}
+        ]
       },
       "lines": {
-        "data": [
-          {"checksum": "PF4Rz2r7RTliO9u6bZ7h6g", "executionCount": 2, "lineNumber": 6},
-          {"checksum": "y7GE3Y4FyXCeXcrtqgSVzw", "executionCount": 2, "lineNumber": 9}
-        ],
         "found": 2,
-        "hit": 2
+        "hit": 2,
+        "data": [
+          {"lineNumber": 6, "executionCount": 2, "checksum": "PF4Rz2r7RTliO9u6bZ7h6g"},
+          {"lineNumber": 9, "executionCount": 2, "checksum": "y7GE3Y4FyXCeXcrtqgSVzw"}
+        ]
       }
     }
   ]

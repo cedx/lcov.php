@@ -1,6 +1,8 @@
 # Changelog
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
+## Version 3.0.0
+
 ## Version 2.0.0
 - Breaking change: renamed the `lcov` namespace to `Lcov`.
 - Breaking change: renamed the `fromJSON()` static methods to `fromJson`.
