@@ -198,16 +198,6 @@ class Report implements \JsonSerializable {
   }
 
   /**
-   * Sets the record list.
-   * @param Record[] $value The new record list.
-   * @return Report This instance.
-   */
-  public function setRecords(array $value): self {
-    $this->getRecords()->exchangeArray($value);
-    return $this;
-  }
-
-  /**
    * Sets the test name.
    * @param string $value The new test name.
    * @return Report This instance.
