@@ -98,27 +98,7 @@ class FunctionData implements \JsonSerializable {
    * @return FunctionData This instance.
    */
   public function setExecutionCount(int $value): self {
-    $this->executionCount = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the function name.
-   * @param string $value The new function name.
-   * @return FunctionData This instance.
-   */
-  public function setFunctionName(string $value): self {
-    $this->functionName = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the line number of the function start.
-   * @param int $value The new line number.
-   * @return FunctionData This instance.
-   */
-  public function setLineNumber(int $value): self {
-    $this->lineNumber = $value;
+    $this->executionCount = max(0, $value);
     return $this;
   }
 

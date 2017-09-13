@@ -46,14 +46,10 @@ class Report implements \JsonSerializable {
    */
   public static function fromCoverage(string $coverage): self {
     $report = new static;
+    $records = $report->getRecords();
 
     try {
-      $records = $report->getRecords();
-      $record = (new Record)
-        ->setBranches(new BranchCoverage)
-        ->setFunctions(new FunctionCoverage)
-        ->setLines(new LineCoverage);
-
+      $record = null;
       foreach (preg_split('/\r?\n/', $coverage) as $line) {
         $line = trim($line);
         if (!mb_strlen($line)) continue;
@@ -71,7 +67,7 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::SOURCE_FILE:
-            $record->setSourceFile($data[0]);
+            $record = new Record($data[0], new FunctionCoverage, new BranchCoverage, new LineCoverage);
             break;
 
           case Token::FUNCTION_NAME:
@@ -134,10 +130,6 @@ class Report implements \JsonSerializable {
 
           case Token::END_OF_RECORD:
             $records->append($record);
-            $record = (new Record)
-              ->setBranches(new BranchCoverage)
-              ->setFunctions(new FunctionCoverage)
-              ->setLines(new LineCoverage);
             break;
         }
       }

@@ -2,6 +2,10 @@
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
 ## Version 3.0.0
+- Breaking change: changed the signature of the data class constructors.
+- Breaking change: most properties of data classes are now read-only.
+- Breaking change: removed the `setData()` methods from the coverage classes.
+- Breaking change: removed the `setRecords()` method from the `Report` class.
 
 ## Version 2.0.0
 - Breaking change: renamed the `lcov` namespace to `Lcov`.

@@ -30,9 +30,15 @@ class Record implements \JsonSerializable {
   /**
    * Initializes a new instance of the class.
    * @param string $sourceFile The path to the source file.
+   * @param FunctionCoverage $functions The function coverage.
+   * @param BranchCoverage $branches The branch coverage.
+   * @param LineCoverage $lines The line coverage.
    */
-  public function __construct(string $sourceFile = '') {
-    $this->setSourceFile($sourceFile);
+  public function __construct(string $sourceFile, FunctionCoverage $functions = null, BranchCoverage $branches = null, LineCoverage $lines = null) {
+    $this->sourceFile = $sourceFile;
+    $this->setFunctions($functions);
+    $this->setBranches($branches);
+    $this->setLines($lines);
   }
 
   /**
@@ -58,10 +64,12 @@ class Record implements \JsonSerializable {
     if (is_array($map)) $map = (object) $map;
     if (!is_object($map)) return null;
 
-    return (new static(isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : ''))
-      ->setBranches(BranchCoverage::fromJson($map->branches ?? null))
-      ->setFunctions(FunctionCoverage::fromJson($map->functions ?? null))
-      ->setLines(LineCoverage::fromJson($map->lines ?? null));
+    return new static(
+      isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : '',
+      FunctionCoverage::fromJson($map->functions ?? null),
+      BranchCoverage::fromJson($map->branches ?? null),
+      LineCoverage::fromJson($map->lines ?? null)
+    );
   }
 
   /**
@@ -136,16 +144,6 @@ class Record implements \JsonSerializable {
    */
   public function setLines(LineCoverage $value = null): self {
     $this->lines = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the path to the source file.
-   * @param string $value The new path to the source file.
-   * @return Record This instance.
-   */
-  public function setSourceFile(string $value): self {
-    $this->sourceFile = $value;
     return $this;
   }
 }

@@ -95,32 +95,12 @@ class LineData implements \JsonSerializable {
   }
 
   /**
-   * Sets the data checksum.
-   * @param string $value The new data checksum.
-   * @return LineData This instance.
-   */
-  public function setChecksum(string $value): self {
-    $this->checksum = $value;
-    return $this;
-  }
-
-  /**
    * Sets the execution count.
    * @param int $value The new execution count.
    * @return LineData This instance.
    */
   public function setExecutionCount(int $value): self {
-    $this->executionCount = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the line number.
-   * @param int $value The new line number.
-   * @return LineData This instance.
-   */
-  public function setLineNumber(int $value): self {
-    $this->lineNumber = $value;
+    $this->executionCount = max(0, $value);
     return $this;
   }
 }

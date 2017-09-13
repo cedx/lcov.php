@@ -112,36 +112,6 @@ class BranchData implements \JsonSerializable {
   }
 
   /**
-   * Sets the block number.
-   * @param int $value The new block number.
-   * @return BranchData This instance.
-   */
-  public function setBlockNumber(int $value): self {
-    $this->blockNumber = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the branch number.
-   * @param int $value The new branch number.
-   * @return BranchData This instance.
-   */
-  public function setBranchNumber(int $value): self {
-    $this->branchNumber = $value;
-    return $this;
-  }
-
-  /**
-   * Sets the line number.
-   * @param int $value The new line number.
-   * @return BranchData This instance.
-   */
-  public function setLineNumber(int $value): self {
-    $this->lineNumber = $value;
-    return $this;
-  }
-
-  /**
    * Sets a number indicating how often this branch was taken.
    * @param int $value The new number indicating how often this branch was taken.
    * @return BranchData This instance.
