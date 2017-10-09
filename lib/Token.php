@@ -5,7 +5,7 @@ namespace Lcov;
 /**
  * Provides the list of tokens supported by the parser.
  */
-final class Token {
+abstract class Token {
 
   /**
    * @var string The coverage data of a branch.
