@@ -60,7 +60,7 @@ class Record implements \JsonSerializable {
    * @param mixed $map A JSON map representing a line data.
    * @return Record The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map) {
+  public static function fromJson($map): ?self {
     if (is_array($map)) $map = (object) $map;
     if (!is_object($map)) return null;
 
@@ -76,7 +76,7 @@ class Record implements \JsonSerializable {
    * Gets the branch coverage.
    * @return BranchCoverage The branch coverage.
    */
-  public function getBranches() {
+  public function getBranches(): ?BranchCoverage {
     return $this->branches;
   }
 
@@ -84,7 +84,7 @@ class Record implements \JsonSerializable {
    * Gets the function coverage.
    * @return FunctionCoverage The function coverage.
    */
-  public function getFunctions() {
+  public function getFunctions(): ?FunctionCoverage {
     return $this->functions;
   }
 
@@ -92,7 +92,7 @@ class Record implements \JsonSerializable {
    * Gets the line coverage.
    * @return LineCoverage The line coverage.
    */
-  public function getLines() {
+  public function getLines(): ?LineCoverage {
     return $this->lines;
   }
 

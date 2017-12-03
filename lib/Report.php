@@ -148,7 +148,7 @@ class Report implements \JsonSerializable {
    * @param mixed $map A JSON map representing a line data.
    * @return Report The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map) {
+  public static function fromJson($map): ?self {
     $transform = function(array $records) {
       return array_values(array_filter(array_map([Record::class, 'fromJson'], $records)));
     };

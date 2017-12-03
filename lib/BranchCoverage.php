@@ -50,7 +50,7 @@ class BranchCoverage implements \JsonSerializable {
    * @param mixed $map A JSON map representing a branch data.
    * @return BranchCoverage The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map) {
+  public static function fromJson($map): ?self {
     $transform = function($data) {
       return array_values(array_filter(array_map([BranchData::class, 'fromJson'], $data)));
     };
