@@ -13,7 +13,7 @@ class BranchCoverageTest extends TestCase {
   /**
    * @test BranchCoverage::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(BranchCoverage::fromJson('foo'))->to->be->null;
     });
@@ -43,7 +43,7 @@ class BranchCoverageTest extends TestCase {
   /**
    * @test BranchCoverage::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new BranchCoverage)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
@@ -66,7 +66,7 @@ class BranchCoverageTest extends TestCase {
   /**
    * @test BranchCoverage::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "BRF:<found>\\n,BRH:<hit>"', function() {
       expect((string) new BranchCoverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'));
 

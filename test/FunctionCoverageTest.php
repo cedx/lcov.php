@@ -13,7 +13,7 @@ class FunctionCoverageTest extends TestCase {
   /**
    * @test FunctionCoverage::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(FunctionCoverage::fromJson('foo'))->to->be->null;
     });
@@ -43,7 +43,7 @@ class FunctionCoverageTest extends TestCase {
   /**
    * @test FunctionCoverage::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new FunctionCoverage)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(3);
@@ -65,7 +65,7 @@ class FunctionCoverageTest extends TestCase {
   /**
    * @test FunctionCoverage::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "FNF:<found>\\n,FNH:<hit>"', function() {
       expect((string) new FunctionCoverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0'));
 

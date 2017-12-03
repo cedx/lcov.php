@@ -13,7 +13,7 @@ class FunctionDataTest extends TestCase {
   /**
    * @test FunctionData::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(FunctionData::fromJson('foo'))->to->be->null;
     });
@@ -38,7 +38,7 @@ class FunctionDataTest extends TestCase {
   /**
    * @test FunctionData::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $data = (new FunctionData('', 0))->jsonSerialize();
       expect(get_object_vars($data))->to->have->lengthOf(3);
@@ -59,7 +59,7 @@ class FunctionDataTest extends TestCase {
   /**
    * @test FunctionData::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "FN:<lineNumber>,<functionName>" when used as definition', function() {
       $data = new FunctionData('', 0);
       expect($data->toString(false))->to->equal('FNDA:0,');

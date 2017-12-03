@@ -13,7 +13,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::fromCoverage
    */
-  public function testFromCoverage() {
+  public function testFromCoverage(): void {
     $report = Report::fromCoverage(file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
@@ -73,7 +73,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(Report::fromJson('foo'))->to->be->null;
     });
@@ -104,7 +104,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new Report)->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(2);
@@ -124,7 +124,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "TN:<testName>"', function() {
       expect((string) new Report)->to->be->empty;
 

@@ -13,7 +13,7 @@ class BranchDataTest extends TestCase {
   /**
    * @test BranchData::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(BranchData::fromJson('foo'))->to->be->null;
     });
@@ -40,7 +40,7 @@ class BranchDataTest extends TestCase {
   /**
    * @test BranchData::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $data = (new BranchData(0, 0, 0))->jsonSerialize();
       expect(get_object_vars($data))->to->have->lengthOf(4);
@@ -63,7 +63,7 @@ class BranchDataTest extends TestCase {
   /**
    * @test BranchData::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>"', function() {
       expect((string) new BranchData(0, 0, 0))->to->equal('BRDA:0,0,0,-');
       expect((string) new BranchData(127, 3, 2, 1))->to->equal('BRDA:127,3,2,1');

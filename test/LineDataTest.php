@@ -13,7 +13,7 @@ class LineDataTest extends TestCase {
   /**
    * @test LineData::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(LineData::fromJson('foo'))->to->be->null;
     });
@@ -38,7 +38,7 @@ class LineDataTest extends TestCase {
   /**
    * @test LineData::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $data = (new LineData(0))->jsonSerialize();
       expect(get_object_vars($data))->to->have->lengthOf(3);
@@ -59,7 +59,7 @@ class LineDataTest extends TestCase {
   /**
    * @test LineData::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]"', function() {
       expect((string) new LineData(0))->to->equal('DA:0,0');
       expect((string) new LineData(127, 3, 'ed076287532e86365e841e92bfc50d8c'))->to->equal('DA:127,3,ed076287532e86365e841e92bfc50d8c');

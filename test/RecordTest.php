@@ -13,7 +13,7 @@ class RecordTest extends TestCase {
   /**
    * @test Record::fromJson
    */
-  public function testFromJson() {
+  public function testFromJson(): void {
     it('should return a null reference with a non-object value', function() {
       expect(Record::fromJson('foo'))->to->be->null;
     });
@@ -46,7 +46,7 @@ class RecordTest extends TestCase {
   /**
    * @test Record::jsonSerialize
    */
-  public function testJsonSerialize() {
+  public function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new Record(''))->jsonSerialize();
       expect(get_object_vars($map))->to->have->lengthOf(4);
@@ -74,7 +74,7 @@ class RecordTest extends TestCase {
   /**
    * @test Record::__toString
    */
-  public function testToString() {
+  public function testToString(): void {
     it('should return a format like "SF:<sourceFile>\\n,end_of_record"', function() {
       expect((string) new Record(''))->to->equal(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'));
 
