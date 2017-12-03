@@ -1,6 +1,10 @@
 # Changelog
 This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
+## Version [4.0.0](https://github.com/cedx/lcov.php/compare/v3.0.0...v4.0.0)
+- Breaking change: raised the required [PHP](https://secure.php.net) version.
+- Breaking change: using PHP 7.1 features, like nullable types and void functions.
+
 ## Version [3.0.0](https://github.com/cedx/lcov.php/compare/v2.0.0...v3.0.0)
 - Breaking change: changed the signature of the data class constructors.
 - Breaking change: most properties of data classes are now read-only.
