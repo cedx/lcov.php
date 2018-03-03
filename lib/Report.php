@@ -55,7 +55,7 @@ class Report implements \JsonSerializable {
         if (!mb_strlen($line)) continue;
 
         $parts = explode(':', $line);
-        if (count($parts) < 2 && $parts[0] != Token::END_OF_RECORD) throw new \DomainException('Invalid token format.');
+        if (count($parts) < 2 && $parts[0] != Token::END_OF_RECORD) throw new \DomainException('Invalid token format');
 
         $token = array_shift($parts);
         $data = explode(',', implode(':', $parts));
@@ -71,12 +71,12 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::FUNCTION_NAME:
-            if ($length < 2) throw new \DomainException('Invalid function name.');
+            if ($length < 2) throw new \DomainException('Invalid function name');
             $record->getFunctions()->getData()->append(new FunctionData($data[1], (int) $data[0]));
             break;
 
           case Token::FUNCTION_DATA:
-            if ($length < 2) throw new \DomainException('Invalid function data.');
+            if ($length < 2) throw new \DomainException('Invalid function data');
             foreach ($record->getFunctions()->getData() as $item) {
               if ($item->getFunctionName() == $data[1]) {
                 $item->setExecutionCount((int) $data[0]);
@@ -94,7 +94,7 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::BRANCH_DATA:
-            if ($length < 4) throw new \DomainException('Invalid branch data.');
+            if ($length < 4) throw new \DomainException('Invalid branch data');
             $record->getBranches()->getData()->append(new BranchData(
               (int) $data[0],
               (int) $data[1],
@@ -112,7 +112,7 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::LINE_DATA:
-            if ($length < 2) throw new \DomainException('Invalid line data.');
+            if ($length < 2) throw new \DomainException('Invalid line data');
             $record->getLines()->getData()->append(new LineData(
               (int) $data[0],
               (int) $data[1],
@@ -136,10 +136,10 @@ class Report implements \JsonSerializable {
     }
 
     catch (\Throwable $e) {
-      throw new \UnexpectedValueException('The coverage data has an invalid LCOV format.');
+      throw new \UnexpectedValueException('The coverage data has an invalid LCOV format');
     }
 
-    if (!count($records)) throw new \UnexpectedValueException('The coverage data is empty.');
+    if (!count($records)) throw new \UnexpectedValueException('The coverage data is empty');
     return $report;
   }
 
