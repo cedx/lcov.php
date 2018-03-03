@@ -1,5 +1,4 @@
 # Changelog
-This file contains highlights of what changes on each version of the [LCOV Reports for PHP](https://github.com/cedx/lcov.php) package.
 
 ## Version [4.0.0](https://github.com/cedx/lcov.php/compare/v3.0.0...v4.0.0)
 - Breaking change: raised the required [PHP](https://secure.php.net) version.
