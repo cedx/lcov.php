@@ -39,6 +39,6 @@ use Lcov\{
   BranchCoverage, BranchData,
   FunctionCoverage, FunctionData,
   LineCoverage, LineData,
-  Record, Report, Token
+  LcovException, Record, Report, Token
 };
 ```
