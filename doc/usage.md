@@ -2,15 +2,15 @@ path: blob/master/lib
 source: Report.php
 
 # Usage
-**LCOV Reports for Dart** provides a set of classes representing a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage report and its data.
+**LCOV Reports for PHP** provides a set of classes representing a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage report and its data.
 The `Lcov\Report` class, the main one, provides the parsing and formatting features.
 
-### Parse coverage data from a LCOV file
+## Parse coverage data from a LCOV file
 The `Report::fromCoverage()` static method parses a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage report provided as string, and creates a `Lcov\Report` instance giving detailed information about this coverage report:
 
 ```php
 <?php
-use Lcov\{Report};
+use Lcov\{LcovException, Report};
 
 try {
   $coverage = file_get_contents('lcov.info');
@@ -21,10 +21,13 @@ try {
   print_r($report->jsonSerialize());
 }
 
-catch (\UnexpectedValueException $e) {
-  echo 'The LCOV report has an invalid format';
+catch (LcovException $e) {
+  echo 'An error occurred: ', $e->getMessage();
 }
 ```
+
+!!! info
+    A `Lcov\LcovException` is thrown if any error occurred while parsing the coverage report.
 
 The `Report->jsonSerialize()` instance method will return a map like this:
 
@@ -59,7 +62,7 @@ The `Report->jsonSerialize()` instance method will return a map like this:
 }
 ```
 
-### Format coverage data to the LCOV format
+## Format coverage data to the LCOV format
 Each provided class has a dedicated `__toString()` instance method returning the corresponding data formatted as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) string.
 All you have to do is to create the adequate structure using these different classes, and to export the final result:
 

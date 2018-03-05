@@ -66,7 +66,11 @@ class ReportTest extends TestCase {
     });
 
     it('should throw an error if the input is invalid', function() {
-      expect(function() { Report::fromCoverage('TN:Example'); })->to->throw(\UnexpectedValueException::class);
+      expect(function() { Report::fromCoverage('ZZ'); })->to->throw(LcovException::class);
+    });
+
+    it('should throw an error if the report is empty', function() {
+      expect(function() { Report::fromCoverage('TN:Example'); })->to->throw(LcovException::class);
     });
   }
 
