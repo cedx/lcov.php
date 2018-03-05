@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [4.2.0](https://github.com/cedx/lcov.php/compare/v4.1.0...v4.2.0)
+- Added the `offset` and `source` properties to the `LcovError` class.
+
 ## Version [4.1.0](https://github.com/cedx/lcov.php/compare/v4.0.0...v4.1.0)
 - Added the `LcovException` class.
 
