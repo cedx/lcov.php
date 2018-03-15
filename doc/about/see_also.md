@@ -6,7 +6,7 @@
 
 ## Testing
 - [Continuous integration](https://travis-ci.org/cedx/lcov.php)
-- [Code coverage](https://coveralls.io/github/cedx/lcov.php)
+- [Code coverage](https://coveralls.io/github/cedx/lcov.php/)
 
 ## Other implementations
 - Dart: [LCOV Reports for Dart](https://cedx.github.io/lcov.dart)
