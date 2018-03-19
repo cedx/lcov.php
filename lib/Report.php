@@ -39,7 +39,7 @@ class Report implements \JsonSerializable {
   }
 
   /**
-   * Parses the specified coverage data in [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) format.
+   * Parses the specified coverage data in LCOV format.
    * @param string $coverage The coverage data.
    * @return Report The resulting coverage report.
    * @throws \UnexpectedValueException A parsing error occurred.
