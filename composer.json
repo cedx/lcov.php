@@ -1,6 +1,6 @@
 {
   "description": "Parse and format LCOV coverage reports.",
-  "homepage": "https://cedx.github.io/lcov.php",
+  "homepage": "https://dev.belin.io/lcov.php",
   "license": "MIT",
   "name": "cedx/lcov",
   "type": "library",
@@ -28,7 +28,7 @@
     "ext-spl": "*"
   },
   "require-dev": {
-    "cedx/phpunit-expect": "^0.4.0",
+    "cedx/phpunit-expect": "^0.5.0",
     "phing/phing": "^2.16.1"
   },
   "scripts": {
@@ -36,7 +36,7 @@
     "test": "phpunit --colors=auto --verbose"
   },
   "support": {
-    "docs": "https://cedx.github.io/lcov.php/api",
+    "docs": "https://dev.belin.io/lcov.php/api",
     "issues": "https://github.com/cedx/lcov.php/issues"
   }
 }

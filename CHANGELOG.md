@@ -4,6 +4,7 @@
 - Breaking change: raised the required [PHP](https://secure.php.net) version.
 - Added the `offset` and `source` properties to the `LcovError` class.
 - Added support for [phpDocumentor](https://www.phpdoc.org).
+- Updated the package dependencies.
 
 ## Version [4.1.0](https://github.com/cedx/lcov.php/compare/v4.0.0...v4.1.0)
 - Added the `LcovException` class.
