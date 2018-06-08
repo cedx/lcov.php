@@ -4,10 +4,10 @@
 Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports, in [PHP](https://secure.php.net).
 
 ## Resources
-- [Documentation](https://cedx.github.io/lcov.php)
-- [API reference](https://cedx.github.io/lcov.php/api)
+- [Documentation](https://dev.belin.io/lcov.php)
+- [API reference](https://dev.belin.io/lcov.php/api)
 - [Packagist package](https://packagist.org/packages/cedx/lcov)
 - [GitHub repository](https://github.com/cedx/lcov.php)
 
 ## License
-[LCOV Reports for PHP](https://cedx.github.io/lcov.php) is distributed under the MIT License.
+[LCOV Reports for PHP](https://dev.belin.io/lcov.php) is distributed under the MIT License.
