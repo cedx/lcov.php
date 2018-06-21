@@ -47,7 +47,7 @@ class LineData implements \JsonSerializable {
   /**
    * Creates a new line data from the specified JSON map.
    * @param mixed $map A JSON map representing a line data.
-   * @return LineData The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJson($map): ?self {
     if (is_array($map)) $map = (object) $map;
@@ -97,7 +97,7 @@ class LineData implements \JsonSerializable {
   /**
    * Sets the execution count.
    * @param int $value The new execution count.
-   * @return LineData This instance.
+   * @return self This instance.
    */
   public function setExecutionCount(int $value): self {
     $this->executionCount = max(0, $value);

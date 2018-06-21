@@ -54,7 +54,7 @@ class BranchData implements \JsonSerializable {
   /**
    * Creates a new branch data from the specified JSON map.
    * @param mixed $map A JSON map representing a branch data.
-   * @return BranchData The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJson($map): ?self {
     if (is_array($map)) $map = (object) $map;
@@ -114,7 +114,7 @@ class BranchData implements \JsonSerializable {
   /**
    * Sets a number indicating how often this branch was taken.
    * @param int $value The new number indicating how often this branch was taken.
-   * @return BranchData This instance.
+   * @return self This instance.
    */
   public function setTaken(int $value): self {
     $this->taken = max(0, $value);

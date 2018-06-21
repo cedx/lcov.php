@@ -41,7 +41,7 @@ class Report implements \JsonSerializable {
   /**
    * Parses the specified coverage data in LCOV format.
    * @param string $coverage The coverage data.
-   * @return Report The resulting coverage report.
+   * @return self The resulting coverage report.
    * @throws \UnexpectedValueException A parsing error occurred.
    */
   public static function fromCoverage(string $coverage): self {
@@ -147,7 +147,7 @@ class Report implements \JsonSerializable {
   /**
    * Creates a new line data from the specified JSON map.
    * @param mixed $map A JSON map representing a line data.
-   * @return Report The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJson($map): ?self {
     $transform = function(array $records) {
@@ -193,7 +193,7 @@ class Report implements \JsonSerializable {
   /**
    * Sets the test name.
    * @param string $value The new test name.
-   * @return Report This instance.
+   * @return self This instance.
    */
   public function setTestName(string $value): self {
     $this->testName = $value;

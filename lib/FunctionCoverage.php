@@ -58,7 +58,7 @@ class FunctionCoverage implements \JsonSerializable {
   /**
    * Creates a new branch data from the specified JSON map.
    * @param mixed $map A JSON map representing a branch data.
-   * @return FunctionCoverage The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   public static function fromJson($map): ?self {
     $transform = function($data) {
@@ -114,7 +114,7 @@ class FunctionCoverage implements \JsonSerializable {
   /**
    * Sets the number of branches found.
    * @param int $value The new number of branches found.
-   * @return FunctionCoverage This instance.
+   * @return self This instance.
    */
   public function setFound(int $value): self {
     $this->found = max(0, $value);
@@ -124,7 +124,7 @@ class FunctionCoverage implements \JsonSerializable {
   /**
    * Sets the number of branches hit.
    * @param int $value The new number of branches hit.
-   * @return FunctionCoverage This instance.
+   * @return self This instance.
    */
   public function setHit(int $value): self {
     $this->hit = max(0, $value);
