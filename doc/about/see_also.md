@@ -5,7 +5,7 @@
 - [Packagist package](https://packagist.org/packages/cedx/lcov)
 
 ## Testing
-- [Continuous integration](https://travis-ci.org/cedx/lcov.php)
+- [Continuous integration](https://travis-ci.com/cedx/lcov.php)
 - [Code coverage](https://coveralls.io/github/cedx/lcov.php/)
 
 ## Other implementations
