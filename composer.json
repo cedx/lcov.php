@@ -1,5 +1,5 @@
 {
-  "description": "Parse and format LCOV coverage reports.",
+  "description": "Parse and format to LCOV your code coverage reports. The best way to share your code coverage stats.",
   "homepage": "https://dev.belin.io/lcov.php",
   "license": "MIT",
   "name": "cedx/lcov",
