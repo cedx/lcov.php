@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Lcov;
 
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 /**
@@ -14,62 +13,55 @@ class FunctionDataTest extends TestCase {
    * @test FunctionData::fromJson
    */
   public function testFromJson(): void {
-    it('should return a null reference with a non-object value', function() {
-      expect(FunctionData::fromJson('foo'))->to->be->null;
-    });
+    // It should return a null reference with a non-object value.
+      assertThat(FunctionData::fromJson('foo'), isNull());
 
-    it('should return an instance with default values for an empty map', function() {
+    // It should return an instance with default values for an empty map.
       $data = FunctionData::fromJson([]);
-      expect($data)->to->be->instanceOf(FunctionData::class);
-      expect($data->getExecutionCount())->to->equal(0);
-      expect($data->getFunctionName())->to->be->empty;
-      expect($data->getLineNumber())->to->equal(0);
-    });
+      assertThat($data, isInstanceOf(FunctionData::class));
+      assertThat($data->getExecutionCount(), equalTo(0));
+      assertThat($data->getFunctionName(), isEmpty());
+      assertThat($data->getLineNumber(), equalTo(0));
 
-    it('should return an initialized instance for a non-empty map', function() {
+    // It should return an initialized instance for a non-empty map.
       $data = FunctionData::fromJson(['executionCount' => 3, 'functionName' => 'main', 'lineNumber' => 127]);
-      expect($data)->to->be->instanceOf(FunctionData::class);
-      expect($data->getExecutionCount())->to->equal(3);
-      expect($data->getFunctionName())->to->equal('main');
-      expect($data->getLineNumber())->to->equal(127);
-    });
+      assertThat($data, isInstanceOf(FunctionData::class));
+      assertThat($data->getExecutionCount(), equalTo(3));
+      assertThat($data->getFunctionName(), equalTo('main'));
+      assertThat($data->getLineNumber(), equalTo(127));
   }
 
   /**
    * @test FunctionData::jsonSerialize
    */
   public function testJsonSerialize(): void {
-    it('should return a map with default values for a newly created instance', function() {
+    // It should return a map with default values for a newly created instance.
       $data = (new FunctionData('', 0))->jsonSerialize();
-      expect(get_object_vars($data))->to->have->lengthOf(3);
-      expect($data->executionCount)->to->equal(0);
-      expect($data->functionName)->to->be->empty;
-      expect($data->lineNumber)->to->equal(0);
-    });
+      assertThat(get_object_vars($data), countOf(3));
+      assertThat($data->executionCount, equalTo(0));
+      assertThat($data->functionName, isEmpty());
+      assertThat($data->lineNumber, equalTo(0));
 
-    it('should return a non-empty map for an initialized instance', function() {
+    // It should return a non-empty map for an initialized instance.
       $data = (new FunctionData('main', 127, 3))->jsonSerialize();
-      expect(get_object_vars($data))->to->have->lengthOf(3);
-      expect($data->executionCount)->to->equal(3);
-      expect($data->functionName)->to->equal('main');
-      expect($data->lineNumber)->to->equal(127);
-    });
+      assertThat(get_object_vars($data), countOf(3));
+      assertThat($data->executionCount, equalTo(3));
+      assertThat($data->functionName, equalTo('main'));
+      assertThat($data->lineNumber, equalTo(127));
   }
 
   /**
    * @test FunctionData::__toString
    */
   public function testToString(): void {
-    it('should return a format like "FN:<lineNumber>,<functionName>" when used as definition', function() {
-      $data = new FunctionData('', 0);
-      expect($data->toString(false))->to->equal('FNDA:0,');
-      expect($data->toString(true))->to->equal('FN:0,');
-    });
+    // It should return a format like "FN:<lineNumber>,<functionName>" when used as definition.
+    $data = new FunctionData('', 0);
+    assertThat($data->toString(false), equalTo('FNDA:0,'));
+    assertThat($data->toString(true), equalTo('FN:0,'));
 
-    it('should return a format like "FNDA:<executionCount>,<functionName>" when used as data', function() {
-      $data = new FunctionData('main', 127, 3);
-      expect($data->toString(false))->to->equal('FNDA:3,main');
-      expect($data->toString(true))->to->equal('FN:127,main');
-    });
+    // It should return a format like "FNDA:<executionCount>,<functionName>" when used as data.
+    $data = new FunctionData('main', 127, 3);
+    assertThat($data->toString(false), equalTo('FNDA:3,main'));
+    assertThat($data->toString(true), equalTo('FN:127,main'));
   }
 }

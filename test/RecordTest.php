@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace Lcov;
 
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
 /**
@@ -14,77 +13,71 @@ class RecordTest extends TestCase {
    * @test Record::fromJson
    */
   public function testFromJson(): void {
-    it('should return a null reference with a non-object value', function() {
-      expect(Record::fromJson('foo'))->to->be->null;
-    });
+    // It should return a null reference with a non-object value.
+    assertThat(Record::fromJson('foo'), isNull());
 
-    it('should return an instance with default values for an empty map', function() {
-      $record = Record::fromJson([]);
-      expect($record)->to->be->instanceOf(Record::class);
-      expect($record->getBranches())->to->be->null;
-      expect($record->getFunctions())->to->be->null;
-      expect($record->getLines())->to->be->null;
-      expect($record->getSourceFile())->to->be->empty;
-    });
+    // It should return an instance with default values for an empty map.
+    $record = Record::fromJson([]);
+    assertThat($record, isInstanceOf(Record::class));
+    assertThat($record->getBranches(), isNull());
+    assertThat($record->getFunctions(), isNull());
+    assertThat($record->getLines(), isNull());
+    assertThat($record->getSourceFile(), isEmpty());
 
-    it('should return an initialized instance for a non-empty map', function() {
-      $record = Record::fromJson([
-        'branches' => [],
-        'functions' => [],
-        'lines' => [],
-        'sourceFile' => '/home/cedx/lcov.php'
-      ]);
+    // It should return an initialized instance for a non-empty map.
+    $record = Record::fromJson([
+      'branches' => [],
+      'functions' => [],
+      'lines' => [],
+      'sourceFile' => '/home/cedx/lcov.php'
+    ]);
 
-      expect($record)->to->be->instanceOf(Record::class);
-      expect($record->getBranches())->to->be->instanceOf(BranchCoverage::class);
-      expect($record->getFunctions())->to->be->instanceOf(FunctionCoverage::class);
-      expect($record->getLines())->to->be->instanceOf(LineCoverage::class);
-      expect($record->getSourceFile())->to->equal('/home/cedx/lcov.php');
-    });
+    assertThat($record, isInstanceOf(Record::class));
+    assertThat($record->getBranches(), isInstanceOf(BranchCoverage::class));
+    assertThat($record->getFunctions(), isInstanceOf(FunctionCoverage::class));
+    assertThat($record->getLines(), isInstanceOf(LineCoverage::class));
+    assertThat($record->getSourceFile(), equalTo('/home/cedx/lcov.php'));
   }
 
   /**
    * @test Record::jsonSerialize
    */
   public function testJsonSerialize(): void {
-    it('should return a map with default values for a newly created instance', function() {
-      $map = (new Record(''))->jsonSerialize();
-      expect(get_object_vars($map))->to->have->lengthOf(4);
-      expect($map->branches)->to->be->null;
-      expect($map->functions)->to->be->null;
-      expect($map->lines)->to->be->null;
-      expect($map->sourceFile)->to->be->empty;
-    });
+    // It should return a map with default values for a newly created instance.
+    $map = (new Record(''))->jsonSerialize();
+    assertThat(get_object_vars($map), countOf(4));
+    assertThat($map->branches, isNull());
+    assertThat($map->functions, isNull());
+    assertThat($map->lines, isNull());
+    assertThat($map->sourceFile, isEmpty());
 
-    it('should return a non-empty map for an initialized instance', function() {
-      $map = (new Record('/home/cedx/lcov.php'))
-        ->setBranches(new BranchCoverage)
-        ->setFunctions(new FunctionCoverage)
-        ->setLines(new LineCoverage)
-        ->jsonSerialize();
+    // It should return a non-empty map for an initialized instance.
+    $map = (new Record('/home/cedx/lcov.php'))
+      ->setBranches(new BranchCoverage)
+      ->setFunctions(new FunctionCoverage)
+      ->setLines(new LineCoverage)
+      ->jsonSerialize();
 
-      expect(get_object_vars($map))->to->have->lengthOf(4);
-      expect($map->branches)->to->be->an('object');
-      expect($map->functions)->to->be->an('object');
-      expect($map->lines)->to->be->an('object');
-      expect($map->sourceFile)->to->equal('/home/cedx/lcov.php');
-    });
+    assertThat(get_object_vars($map), countOf(4));
+    assertThat($map->branches, isType('object'));
+    assertThat($map->functions, isType('object'));
+    assertThat($map->lines, isType('object'));
+    assertThat($map->sourceFile, equalTo('/home/cedx/lcov.php'));
   }
 
   /**
    * @test Record::__toString
    */
   public function testToString(): void {
-    it('should return a format like "SF:<sourceFile>\\n,end_of_record"', function() {
-      expect((string) new Record(''))->to->equal(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'));
+    // It should return a format like "SF:<sourceFile>\\n,end_of_record".
+    assertThat((string) new Record(''), equalTo(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record')));
 
-      $record = (new Record('/home/cedx/lcov.php'))
-        ->setBranches(new BranchCoverage)
-        ->setFunctions(new FunctionCoverage)
-        ->setLines(new LineCoverage);
+    $record = (new Record('/home/cedx/lcov.php'))
+      ->setBranches(new BranchCoverage)
+      ->setFunctions(new FunctionCoverage)
+      ->setLines(new LineCoverage);
 
-      $format = "SF:/home/cedx/lcov.php{{eol}}{$record->getFunctions()}{{eol}}{$record->getBranches()}{{eol}}{$record->getLines()}{{eol}}end_of_record";
-      expect((string) $record)->to->equal(str_replace('{{eol}}', PHP_EOL, $format));
-    });
+    $format = "SF:/home/cedx/lcov.php{{eol}}{$record->getFunctions()}{{eol}}{$record->getBranches()}{{eol}}{$record->getLines()}{{eol}}end_of_record";
+    assertThat((string) $record, equalTo(str_replace('{{eol}}', PHP_EOL, $format)));
   }
 }
