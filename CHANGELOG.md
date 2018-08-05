@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [5.1.0](https://github.com/cedx/lcov.php/compare/v5.0.0...v5.1.0)
+- Dropped the dependency on [PHPUnit-Expect](https://dev.belin.io/phpunit-expect).
+
 ## Version [5.0.0](https://github.com/cedx/lcov.php/compare/v4.1.0...v5.0.0)
 - Breaking change: raised the required [PHP](https://secure.php.net) version.
 - Added the `offset` and `source` properties to the `LcovError` class.
