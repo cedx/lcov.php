@@ -16,17 +16,17 @@ class ReportTest extends TestCase {
     $report = Report::fromCoverage(file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
-    // It should have a test name', function() use ($report) {
+    // It should have a test name.
     assertThat($report->getTestName(), equalTo('Example'));
 
-    // It should contain three records', function() use ($records) {
+    // It should contain three records.
     assertThat($records, countOf(3));
     assertThat($records[0], isInstanceOf(Record::class));
     assertThat($records[0]->getSourceFile(), equalTo('/home/cedx/lcov.php/fixture.php'));
     assertThat($records[1]->getSourceFile(), equalTo('/home/cedx/lcov.php/func1.php'));
     assertThat($records[2]->getSourceFile(), equalTo('/home/cedx/lcov.php/func2.php'));
 
-    // It should have detailed branch coverage', function() use ($records) {
+    // It should have detailed branch coverage.
     /** @var BranchCoverage $branches */
     $branches = $records[1]->getBranches();
     assertThat($branches->getFound(), equalTo(4));
@@ -37,7 +37,7 @@ class ReportTest extends TestCase {
     assertThat($data[0], isInstanceOf(BranchData::class));
     assertThat($data[0]->getLineNumber(), equalTo(8));
 
-    // It should have detailed function coverage', function() use ($records) {
+    // It should have detailed function coverage.
     /** @var FunctionCoverage $functions */
     $functions = $records[1]->getFunctions();
     assertThat($functions->getFound(), equalTo(1));
@@ -48,7 +48,7 @@ class ReportTest extends TestCase {
     assertThat($data[0], isInstanceOf(FunctionData::class));
     assertThat($data[0]->getFunctionName(), equalTo('func1'));
 
-    // It should have detailed line coverage', function() use ($records) {
+    // It should have detailed line coverage.
     /** @var LineCoverage $lines */
     $lines = $records[1]->getLines();
     assertThat($lines->getFound(), equalTo(9));
