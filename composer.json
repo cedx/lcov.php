@@ -11,6 +11,9 @@
   "autoload": {
     "psr-4": {"Lcov\\": "lib/"}
   },
+  "autoload-dev": {
+    "files": ["vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"]
+  },
   "config": {
     "optimize-autoloader": true
   },
@@ -29,8 +32,8 @@
     "ext-spl": "*"
   },
   "require-dev": {
-    "cedx/phpunit-expect": "^0.5.0",
-    "phing/phing": "^2.16.1"
+    "phing/phing": "^2.16.1",
+    "phpunit/phpunit": "^7.3.0"
   },
   "scripts": {
     "coverage": "coveralls var/coverage.xml",
