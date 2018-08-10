@@ -29,7 +29,7 @@ catch (LcovException $e) {
 !!! info
     A `Lcov\LcovException` is thrown if any error occurred while parsing the coverage report.
 
-The `Report->jsonSerialize()` instance method will return a map like this:
+The `Report->jsonSerialize()` instance method will return a [JSON](https://www.json.org) map like this:
 
 ```json
 {
