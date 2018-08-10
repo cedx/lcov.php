@@ -57,18 +57,15 @@ class Record implements \JsonSerializable {
 
   /**
    * Creates a new line data from the specified JSON map.
-   * @param mixed $map A JSON map representing a line data.
+   * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map): ?self {
-    if (is_array($map)) $map = (object) $map;
-    if (!is_object($map)) return null;
-
+  public static function fromJson(object $map): ?self {
     return new static(
       isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : '',
-      FunctionCoverage::fromJson($map->functions ?? null),
-      BranchCoverage::fromJson($map->branches ?? null),
-      LineCoverage::fromJson($map->lines ?? null)
+      isset($map->functions) && is_object($map->functions) ? FunctionCoverage::fromJson($map->functions) : null,
+      isset($map->branches) && is_object($map->branches) ? BranchCoverage::fromJson($map->branches) : null,
+      isset($map->lines) && is_object($map->lines) ? LineCoverage::fromJson($map->lines) : null
     );
   }
 

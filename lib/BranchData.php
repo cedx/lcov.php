@@ -53,12 +53,11 @@ class BranchData implements \JsonSerializable {
 
   /**
    * Creates a new branch data from the specified JSON map.
-   * @param mixed $map A JSON map representing a branch data.
+   * @param object $map A JSON map representing a branch data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map): ?self {
-    if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static(
+  public static function fromJson(object $map): ?self {
+    return new static(
       isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
       isset($map->blockNumber) && is_int($map->blockNumber) ? $map->blockNumber : 0,
       isset($map->branchNumber) && is_int($map->branchNumber) ? $map->branchNumber : 0,

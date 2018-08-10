@@ -47,16 +47,15 @@ class BranchCoverage implements \JsonSerializable {
 
   /**
    * Creates a new branch data from the specified JSON map.
-   * @param mixed $map A JSON map representing a branch data.
+   * @param object $map A JSON map representing a branch data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map): ?self {
+  public static function fromJson(object $map): ?self {
     $transform = function($data) {
-      return array_values(array_filter(array_map([BranchData::class, 'fromJson'], $data)));
+      return array_map([BranchData::class, 'fromJson'], $data);
     };
 
-    if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static(
+    return new static(
       isset($map->found) && is_int($map->found) ? $map->found : 0,
       isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
       isset($map->data) && is_array($map->data) ? $transform($map->data) : []

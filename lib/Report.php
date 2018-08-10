@@ -146,16 +146,15 @@ class Report implements \JsonSerializable {
 
   /**
    * Creates a new line data from the specified JSON map.
-   * @param mixed $map A JSON map representing a line data.
+   * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson($map): ?self {
+  public static function fromJson(object $map): ?self {
     $transform = function(array $records) {
-      return array_values(array_filter(array_map([Record::class, 'fromJson'], $records)));
+      return array_map([Record::class, 'fromJson'], $records);
     };
 
-    if (is_array($map)) $map = (object) $map;
-    return !is_object($map) ? null : new static(
+    return new static(
       isset($map->testName) && is_string($map->testName) ? $map->testName : '',
       isset($map->records) && is_array($map->records) ? $transform($map->records) : []
     );
