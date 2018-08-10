@@ -13,18 +13,15 @@ class FunctionCoverageTest extends TestCase {
    * @test FunctionCoverage::fromJson
    */
   public function testFromJson(): void {
-    // It should return a null reference with a non-object value.
-    assertThat(FunctionCoverage::fromJson('foo'), isNull());
-
     // It should return an instance with default values for an empty map.
-    $coverage = FunctionCoverage::fromJson([]);
+    $coverage = FunctionCoverage::fromJson(new \stdClass);
     assertThat($coverage, isInstanceOf(FunctionCoverage::class));
     assertThat($coverage->getData(), isEmpty());
     assertThat($coverage->getFound(), equalTo(0));
     assertThat($coverage->getHit(), equalTo(0));
 
     // It should return an initialized instance for a non-empty map.
-    $coverage = FunctionCoverage::fromJson(['data' => [['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
+    $coverage = FunctionCoverage::fromJson((object) ['data' => [(object) ['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
     assertThat($coverage, isInstanceOf(FunctionCoverage::class));
 
     $entries = $coverage->getData();

@@ -68,18 +68,15 @@ class ReportTest extends TestCase {
    * @test Report::fromJson
    */
   public function testFromJson(): void {
-    // It should return a null reference with a non-object value.
-    assertThat(Report::fromJson('foo'), isNull());
-
     // It should return an instance with default values for an empty map.
-    $report = Report::fromJson([]);
+    $report = Report::fromJson(new \stdClass);
     assertThat($report, isInstanceOf(Report::class));
     assertThat($report->getRecords(), isEmpty());
     assertThat($report->getTestName(), isEmpty());
 
     // It should return an initialized instance for a non-empty map.
-    $report = Report::fromJson([
-      'records' => [[]],
+    $report = Report::fromJson((object) [
+      'records' => [new \stdClass],
       'testName' => 'LcovTest'
     ]);
 

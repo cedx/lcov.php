@@ -13,11 +13,8 @@ class RecordTest extends TestCase {
    * @test Record::fromJson
    */
   public function testFromJson(): void {
-    // It should return a null reference with a non-object value.
-    assertThat(Record::fromJson('foo'), isNull());
-
     // It should return an instance with default values for an empty map.
-    $record = Record::fromJson([]);
+    $record = Record::fromJson(new \stdClass);
     assertThat($record, isInstanceOf(Record::class));
     assertThat($record->getBranches(), isNull());
     assertThat($record->getFunctions(), isNull());
@@ -25,10 +22,10 @@ class RecordTest extends TestCase {
     assertThat($record->getSourceFile(), isEmpty());
 
     // It should return an initialized instance for a non-empty map.
-    $record = Record::fromJson([
-      'branches' => [],
-      'functions' => [],
-      'lines' => [],
+    $record = Record::fromJson((object) [
+      'branches' => new \stdClass,
+      'functions' => new \stdClass,
+      'lines' => new \stdClass,
       'sourceFile' => '/home/cedx/lcov.php'
     ]);
 

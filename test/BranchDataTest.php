@@ -13,11 +13,8 @@ class BranchDataTest extends TestCase {
    * @test BranchData::fromJson
    */
   public function testFromJson(): void {
-    // It should return a null reference with a non-object value.
-    assertThat(BranchData::fromJson('foo'), isNull());
-
     // It should return an instance with default values for an empty map.
-    $data = BranchData::fromJson([]);
+    $data = BranchData::fromJson(new \stdClass);
     assertThat($data, isInstanceOf(BranchData::class));
     assertThat($data->getBlockNumber(), equalTo(0));
     assertThat($data->getBranchNumber(), equalTo(0));
@@ -25,7 +22,7 @@ class BranchDataTest extends TestCase {
     assertThat($data->getTaken(), equalTo(0));
 
     // It should return an initialized instance for a non-empty map.
-    $data = BranchData::fromJson(['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
+    $data = BranchData::fromJson((object) ['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
     assertThat($data, isInstanceOf(BranchData::class));
     assertThat($data->getBlockNumber(), equalTo(3));
     assertThat($data->getBranchNumber(), equalTo(2));
