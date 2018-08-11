@@ -149,7 +149,7 @@ class Report implements \JsonSerializable {
    * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): ?self {
+  public static function fromJson(object $map): self {
     $transform = function(array $records) {
       return array_map([Record::class, 'fromJson'], $records);
     };

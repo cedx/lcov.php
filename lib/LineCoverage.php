@@ -50,7 +50,7 @@ class LineCoverage implements \JsonSerializable {
    * @param object $map A JSON map representing a branch data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): ?self {
+  public static function fromJson(object $map): self {
     $transform = function($data) {
       return array_map([LineData::class, 'fromJson'], $data);
     };

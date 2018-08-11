@@ -60,7 +60,7 @@ class Record implements \JsonSerializable {
    * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): ?self {
+  public static function fromJson(object $map): self {
     return new static(
       isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : '',
       isset($map->functions) && is_object($map->functions) ? FunctionCoverage::fromJson($map->functions) : null,
