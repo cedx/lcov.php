@@ -1,5 +1,5 @@
-path: blob/master/lib
-source: Report.php
+path: blob/master
+source: lib/Report.php
 
 # Usage
 **LCOV Reports for PHP** provides a set of classes representing a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage report and its data.
