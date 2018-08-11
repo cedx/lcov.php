@@ -119,7 +119,7 @@ class Record implements \JsonSerializable {
    * @param BranchCoverage $value The new branch coverage.
    * @return self This instance.
    */
-  public function setBranches(BranchCoverage $value = null): self {
+  public function setBranches(?BranchCoverage $value): self {
     $this->branches = $value;
     return $this;
   }
@@ -129,7 +129,7 @@ class Record implements \JsonSerializable {
    * @param FunctionCoverage $value The new function coverage.
    * @return self This instance.
    */
-  public function setFunctions(FunctionCoverage $value = null): self {
+  public function setFunctions(?FunctionCoverage $value): self {
     $this->functions = $value;
     return $this;
   }
@@ -139,7 +139,7 @@ class Record implements \JsonSerializable {
    * @param LineCoverage $value The new line coverage.
    * @return self This instance.
    */
-  public function setLines(LineCoverage $value = null): self {
+  public function setLines(?LineCoverage $value): self {
     $this->lines = $value;
     return $this;
   }
