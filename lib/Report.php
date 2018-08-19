@@ -73,12 +73,12 @@ class Report implements \JsonSerializable {
 
           case Token::FUNCTION_NAME:
             if ($length < 2) throw new \DomainException('Invalid function name');
-            $record->getFunctions()->getData()->append(new FunctionData($data[1], (int) $data[0]));
+            if ($functions = $record->getFunctions()) $functions->getData()->append(new FunctionData($data[1], (int) $data[0]));
             break;
 
           case Token::FUNCTION_DATA:
             if ($length < 2) throw new \DomainException('Invalid function data');
-            foreach ($record->getFunctions()->getData() as $item) {
+            if ($functions = $record->getFunctions()) foreach ($functions->getData() as $item) {
               if ($item->getFunctionName() == $data[1]) {
                 $item->setExecutionCount((int) $data[0]);
                 break;
@@ -87,16 +87,16 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::FUNCTIONS_FOUND:
-            $record->getFunctions()->setFound((int) $data[0]);
+            if ($functions = $record->getFunctions()) $functions->setFound((int) $data[0]);
             break;
 
           case Token::FUNCTIONS_HIT:
-            $record->getFunctions()->setHit((int) $data[0]);
+            if ($functions = $record->getFunctions()) $functions->setHit((int) $data[0]);
             break;
 
           case Token::BRANCH_DATA:
             if ($length < 4) throw new \DomainException('Invalid branch data');
-            $record->getBranches()->getData()->append(new BranchData(
+            if ($branches = $record->getBranches()) $branches->getData()->append(new BranchData(
               (int) $data[0],
               (int) $data[1],
               (int) $data[2],
@@ -105,16 +105,16 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::BRANCHES_FOUND:
-            $record->getBranches()->setFound((int) $data[0]);
+            if ($branches = $record->getBranches()) $branches->setFound((int) $data[0]);
             break;
 
           case Token::BRANCHES_HIT:
-            $record->getBranches()->setHit((int) $data[0]);
+            if ($branches = $record->getBranches()) $branches->setHit((int) $data[0]);
             break;
 
           case Token::LINE_DATA:
             if ($length < 2) throw new \DomainException('Invalid line data');
-            $record->getLines()->getData()->append(new LineData(
+            if ($lines = $record->getLines()) $lines->getData()->append(new LineData(
               (int) $data[0],
               (int) $data[1],
               $length >= 3 ? $data[2] : ''
@@ -122,11 +122,11 @@ class Report implements \JsonSerializable {
             break;
 
           case Token::LINES_FOUND:
-            $record->getLines()->setFound((int) $data[0]);
+            if ($lines = $record->getLines()) $lines->setFound((int) $data[0]);
             break;
 
           case Token::LINES_HIT:
-            $record->getLines()->setHit((int) $data[0]);
+            if ($lines = $record->getLines()) $lines->setHit((int) $data[0]);
             break;
 
           case Token::END_OF_RECORD:

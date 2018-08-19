@@ -8,17 +8,17 @@ namespace Lcov;
 class Record implements \JsonSerializable {
 
   /**
-   * @var BranchCoverage The branch coverage.
+   * @var BranchCoverage|null The branch coverage.
    */
   private $branches;
 
   /**
-   * @var FunctionCoverage The function coverage.
+   * @var FunctionCoverage|null The function coverage.
    */
   private $functions;
 
   /**
-   * @var LineCoverage The line coverage.
+   * @var LineCoverage|null The line coverage.
    */
   private $lines;
 
@@ -116,7 +116,7 @@ class Record implements \JsonSerializable {
 
   /**
    * Sets the branch coverage.
-   * @param BranchCoverage $value The new branch coverage.
+   * @param BranchCoverage|null $value The new branch coverage.
    * @return self This instance.
    */
   function setBranches(?BranchCoverage $value): self {
@@ -126,7 +126,7 @@ class Record implements \JsonSerializable {
 
   /**
    * Sets the function coverage.
-   * @param FunctionCoverage $value The new function coverage.
+   * @param FunctionCoverage|null $value The new function coverage.
    * @return self This instance.
    */
   function setFunctions(?FunctionCoverage $value): self {
@@ -136,7 +136,7 @@ class Record implements \JsonSerializable {
 
   /**
    * Sets the line coverage.
-   * @param LineCoverage $value The new line coverage.
+   * @param LineCoverage|null $value The new line coverage.
    * @return self This instance.
    */
   function setLines(?LineCoverage $value): self {
