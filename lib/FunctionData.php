@@ -28,7 +28,7 @@ class FunctionData implements \JsonSerializable {
    * @param int $lineNumber The line number of the function start.
    * @param int $executionCount The execution count.
    */
-  public function __construct(string $functionName, int $lineNumber, int $executionCount = 0) {
+  function __construct(string $functionName, int $lineNumber, int $executionCount = 0) {
     $this->functionName = $functionName;
     $this->lineNumber = max(0, $lineNumber);
     $this->setExecutionCount($executionCount);
@@ -38,7 +38,7 @@ class FunctionData implements \JsonSerializable {
    * Returns a string representation of this object.
    * @return string The string representation of this object.
    */
-  public function __toString(): string {
+  function __toString(): string {
     return $this->toString();
   }
 
@@ -47,7 +47,7 @@ class FunctionData implements \JsonSerializable {
    * @param object $map A JSON map representing a function data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): self {
+  static function fromJson(object $map): self {
     return new static(
       isset($map->functionName) && is_string($map->functionName) ? $map->functionName : '',
       isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
@@ -59,7 +59,7 @@ class FunctionData implements \JsonSerializable {
    * Gets the execution count.
    * @return int The execution count.
    */
-  public function getExecutionCount(): int {
+  function getExecutionCount(): int {
     return $this->executionCount;
   }
 
@@ -67,7 +67,7 @@ class FunctionData implements \JsonSerializable {
    * Gets the function name.
    * @return string The function name.
    */
-  public function getFunctionName(): string {
+  function getFunctionName(): string {
     return $this->functionName;
   }
 
@@ -75,7 +75,7 @@ class FunctionData implements \JsonSerializable {
    * Gets the line number of the function start.
    * @return int The line number of the function start.
    */
-  public function getLineNumber(): int {
+  function getLineNumber(): int {
     return $this->lineNumber;
   }
 
@@ -83,7 +83,7 @@ class FunctionData implements \JsonSerializable {
    * Converts this object to a map in JSON format.
    * @return \stdClass The map in JSON format corresponding to this object.
    */
-  public function jsonSerialize(): \stdClass {
+  function jsonSerialize(): \stdClass {
     return (object) [
       'functionName' => $this->getFunctionName(),
       'lineNumber' => $this->getLineNumber(),
@@ -96,7 +96,7 @@ class FunctionData implements \JsonSerializable {
    * @param int $value The new execution count.
    * @return self This instance.
    */
-  public function setExecutionCount(int $value): self {
+  function setExecutionCount(int $value): self {
     $this->executionCount = max(0, $value);
     return $this;
   }
@@ -106,7 +106,7 @@ class FunctionData implements \JsonSerializable {
    * @param bool $asDefinition Value indicating whether to return the function definition (e.g. name and line number) instead of its data (e.g. name and execution count).
    * @return string The string representation of this object.
    */
-  public function toString(bool $asDefinition = false): string {
+  function toString(bool $asDefinition = false): string {
     $token = $asDefinition ? Token::FUNCTION_NAME : Token::FUNCTION_DATA;
     $number = $asDefinition ? $this->getLineNumber() : $this->getExecutionCount();
     return "$token:$number,{$this->getFunctionName()}";

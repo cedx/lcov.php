@@ -12,7 +12,7 @@ class BranchCoverageTest extends TestCase {
   /**
    * @test BranchCoverage::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = BranchCoverage::fromJson(new \stdClass);
     assertThat($coverage, isInstanceOf(BranchCoverage::class));
@@ -36,7 +36,7 @@ class BranchCoverageTest extends TestCase {
   /**
    * @test BranchCoverage::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new BranchCoverage)->jsonSerialize();
     assertThat(get_object_vars($map), countOf(3));
@@ -56,7 +56,7 @@ class BranchCoverageTest extends TestCase {
   /**
    * @test BranchCoverage::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "BRF:<found>\\n,BRH:<hit>".
     assertThat((string) new BranchCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0')));
 

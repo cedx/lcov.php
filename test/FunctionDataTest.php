@@ -12,7 +12,7 @@ class FunctionDataTest extends TestCase {
   /**
    * @test FunctionData::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = FunctionData::fromJson(new \stdClass);
     assertThat($data, isInstanceOf(FunctionData::class));
@@ -31,7 +31,7 @@ class FunctionDataTest extends TestCase {
   /**
    * @test FunctionData::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $data = (new FunctionData('', 0))->jsonSerialize();
     assertThat(get_object_vars($data), countOf(3));
@@ -50,7 +50,7 @@ class FunctionDataTest extends TestCase {
   /**
    * @test FunctionData::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "FN:<lineNumber>,<functionName>" when used as definition.
     $data = new FunctionData('', 0);
     assertThat($data->toString(false), equalTo('FNDA:0,'));

@@ -28,7 +28,7 @@ class LineData implements \JsonSerializable {
    * @param int $executionCount The execution count.
    * @param string $checksum The data checksum.
    */
-  public function __construct(int $lineNumber, int $executionCount = 0, string $checksum = '') {
+  function __construct(int $lineNumber, int $executionCount = 0, string $checksum = '') {
     $this->lineNumber = max(0, $lineNumber);
     $this->setExecutionCount($executionCount);
     $this->checksum = $checksum;
@@ -38,7 +38,7 @@ class LineData implements \JsonSerializable {
    * Returns a string representation of this object.
    * @return string The string representation of this object.
    */
-  public function __toString(): string {
+  function __toString(): string {
     $token = Token::LINE_DATA;
     $value = "$token:{$this->getLineNumber()},{$this->getExecutionCount()}";
     return mb_strlen($checksum = $this->getChecksum()) ? "$value,$checksum" : $value;
@@ -49,7 +49,7 @@ class LineData implements \JsonSerializable {
    * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): self {
+  static function fromJson(object $map): self {
     return new static(
       isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
       isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
@@ -61,7 +61,7 @@ class LineData implements \JsonSerializable {
    * Gets the data checksum.
    * @return string The data checksum.
    */
-  public function getChecksum(): string {
+  function getChecksum(): string {
     return $this->checksum;
   }
 
@@ -69,7 +69,7 @@ class LineData implements \JsonSerializable {
    * Gets the execution count.
    * @return int The execution count.
    */
-  public function getExecutionCount(): int {
+  function getExecutionCount(): int {
     return $this->executionCount;
   }
 
@@ -77,7 +77,7 @@ class LineData implements \JsonSerializable {
    * Gets the line number.
    * @return int The line number.
    */
-  public function getLineNumber(): int {
+  function getLineNumber(): int {
     return $this->lineNumber;
   }
 
@@ -85,7 +85,7 @@ class LineData implements \JsonSerializable {
    * Converts this object to a map in JSON format.
    * @return \stdClass The map in JSON format corresponding to this object.
    */
-  public function jsonSerialize(): \stdClass {
+  function jsonSerialize(): \stdClass {
     return (object) [
       'lineNumber' => $this->getLineNumber(),
       'executionCount' => $this->getExecutionCount(),
@@ -98,7 +98,7 @@ class LineData implements \JsonSerializable {
    * @param int $value The new execution count.
    * @return self This instance.
    */
-  public function setExecutionCount(int $value): self {
+  function setExecutionCount(int $value): self {
     $this->executionCount = max(0, $value);
     return $this;
   }

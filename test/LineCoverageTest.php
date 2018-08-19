@@ -12,7 +12,7 @@ class LineCoverageTest extends TestCase {
   /**
    * @test LineCoverage::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = LineCoverage::fromJson(new \stdClass);
     assertThat($coverage, isInstanceOf(LineCoverage::class));
@@ -36,7 +36,7 @@ class LineCoverageTest extends TestCase {
   /**
    * @test LineCoverage::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new LineCoverage)->jsonSerialize();
     assertThat(get_object_vars($map), countOf(3));
@@ -56,7 +56,7 @@ class LineCoverageTest extends TestCase {
   /**
    * @test LineCoverage::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "LF:<found>\\n,LH:<hit>".
     assertThat((string) new LineCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0')));
 

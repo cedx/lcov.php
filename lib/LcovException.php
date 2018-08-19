@@ -24,7 +24,7 @@ class LcovException extends \UnexpectedValueException {
    * @param int $offset The offset in `$source` where the error was detected.
    * @param \Throwable $previous The previous exception used for the exception chaining.
    */
-  public function __construct($message, $source = null, int $offset = -1, \Throwable $previous = null) {
+  function __construct($message, $source = null, int $offset = -1, \Throwable $previous = null) {
     parent::__construct($message, 0, $previous);
     $this->offset = $offset;
     $this->source = $source;
@@ -34,7 +34,7 @@ class LcovException extends \UnexpectedValueException {
    * Returns a string representation of this object.
    * @return string The string representation of this object.
    */
-  public function __toString(): string {
+  function __toString(): string {
     $values = ["\"{$this->getMessage()}\""];
     if (($offset = $this->getOffset()) >= 0) $values[] = "offset: $offset";
     return sprintf('%s(%s)', static::class, implode(', ', $values));
@@ -44,7 +44,7 @@ class LcovException extends \UnexpectedValueException {
    * Gets the offset in `$source` where the error was detected.
    * @return int The offset in `$source` where the error was detected.
    */
-  public function getOffset(): int {
+  function getOffset(): int {
     return $this->offset;
   }
 
@@ -52,7 +52,7 @@ class LcovException extends \UnexpectedValueException {
    * Gets the actual source input which caused the error.
    * @return mixed The actual source input which caused the error.
    */
-  public function getSource() {
+  function getSource() {
     return $this->source;
   }
 }

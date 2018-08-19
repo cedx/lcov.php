@@ -34,7 +34,7 @@ class Record implements \JsonSerializable {
    * @param BranchCoverage $branches The branch coverage.
    * @param LineCoverage $lines The line coverage.
    */
-  public function __construct(string $sourceFile, FunctionCoverage $functions = null, BranchCoverage $branches = null, LineCoverage $lines = null) {
+  function __construct(string $sourceFile, FunctionCoverage $functions = null, BranchCoverage $branches = null, LineCoverage $lines = null) {
     $this->sourceFile = $sourceFile;
     $this->setFunctions($functions);
     $this->setBranches($branches);
@@ -45,7 +45,7 @@ class Record implements \JsonSerializable {
    * Returns a string representation of this object.
    * @return string The string representation of this object.
    */
-  public function __toString(): string {
+  function __toString(): string {
     $token = Token::SOURCE_FILE;
     $output = ["$token:{$this->getSourceFile()}"];
     if ($functions = $this->getFunctions()) $output[] = (string) $functions;
@@ -60,7 +60,7 @@ class Record implements \JsonSerializable {
    * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): self {
+  static function fromJson(object $map): self {
     return new static(
       isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : '',
       isset($map->functions) && is_object($map->functions) ? FunctionCoverage::fromJson($map->functions) : null,
@@ -73,7 +73,7 @@ class Record implements \JsonSerializable {
    * Gets the branch coverage.
    * @return BranchCoverage The branch coverage.
    */
-  public function getBranches(): ?BranchCoverage {
+  function getBranches(): ?BranchCoverage {
     return $this->branches;
   }
 
@@ -81,7 +81,7 @@ class Record implements \JsonSerializable {
    * Gets the function coverage.
    * @return FunctionCoverage The function coverage.
    */
-  public function getFunctions(): ?FunctionCoverage {
+  function getFunctions(): ?FunctionCoverage {
     return $this->functions;
   }
 
@@ -89,7 +89,7 @@ class Record implements \JsonSerializable {
    * Gets the line coverage.
    * @return LineCoverage The line coverage.
    */
-  public function getLines(): ?LineCoverage {
+  function getLines(): ?LineCoverage {
     return $this->lines;
   }
 
@@ -97,7 +97,7 @@ class Record implements \JsonSerializable {
    * Gets the path to the source file.
    * @return string The path to the source file.
    */
-  public function getSourceFile(): string {
+  function getSourceFile(): string {
     return $this->sourceFile;
   }
 
@@ -105,7 +105,7 @@ class Record implements \JsonSerializable {
    * Converts this object to a map in JSON format.
    * @return \stdClass The map in JSON format corresponding to this object.
    */
-  public function jsonSerialize(): \stdClass {
+  function jsonSerialize(): \stdClass {
     return (object) [
       'sourceFile' => $this->getSourceFile(),
       'branches' => ($branches = $this->getBranches()) ? $branches->jsonSerialize() : null,
@@ -119,7 +119,7 @@ class Record implements \JsonSerializable {
    * @param BranchCoverage $value The new branch coverage.
    * @return self This instance.
    */
-  public function setBranches(?BranchCoverage $value): self {
+  function setBranches(?BranchCoverage $value): self {
     $this->branches = $value;
     return $this;
   }
@@ -129,7 +129,7 @@ class Record implements \JsonSerializable {
    * @param FunctionCoverage $value The new function coverage.
    * @return self This instance.
    */
-  public function setFunctions(?FunctionCoverage $value): self {
+  function setFunctions(?FunctionCoverage $value): self {
     $this->functions = $value;
     return $this;
   }
@@ -139,7 +139,7 @@ class Record implements \JsonSerializable {
    * @param LineCoverage $value The new line coverage.
    * @return self This instance.
    */
-  public function setLines(?LineCoverage $value): self {
+  function setLines(?LineCoverage $value): self {
     $this->lines = $value;
     return $this;
   }

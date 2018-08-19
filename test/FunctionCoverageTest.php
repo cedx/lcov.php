@@ -12,7 +12,7 @@ class FunctionCoverageTest extends TestCase {
   /**
    * @test FunctionCoverage::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = FunctionCoverage::fromJson(new \stdClass);
     assertThat($coverage, isInstanceOf(FunctionCoverage::class));
@@ -36,7 +36,7 @@ class FunctionCoverageTest extends TestCase {
   /**
    * @test FunctionCoverage::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new FunctionCoverage)->jsonSerialize();
     assertThat(get_object_vars($map), countOf(3));
@@ -56,7 +56,7 @@ class FunctionCoverageTest extends TestCase {
   /**
    * @test FunctionCoverage::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "FNF:<found>\\n,FNH:<hit>".
     assertThat((string) new FunctionCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0')));
 

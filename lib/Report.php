@@ -22,7 +22,7 @@ class Report implements \JsonSerializable {
    * @param string $testName The test name.
    * @param Record[] $records The record list.
    */
-  public function __construct(string $testName = '', array $records = []) {
+  function __construct(string $testName = '', array $records = []) {
     $this->records = new \ArrayObject($records);
     $this->setTestName($testName);
   }
@@ -31,7 +31,7 @@ class Report implements \JsonSerializable {
    * Returns a string representation of this object.
    * @return string The string representation of this object.
    */
-  public function __toString(): string {
+  function __toString(): string {
     $token = Token::TEST_NAME;
     $lines = mb_strlen($testName = $this->getTestName()) ? ["$token:$testName"] : [];
     $lines = array_merge($lines, array_map('strval', $this->getRecords()->getArrayCopy()));
@@ -44,14 +44,14 @@ class Report implements \JsonSerializable {
    * @return self The resulting coverage report.
    * @throws \UnexpectedValueException A parsing error occurred.
    */
-  public static function fromCoverage(string $coverage): self {
+  static function fromCoverage(string $coverage): self {
     $report = new static;
     $records = $report->getRecords();
 
     try {
       /** @var Record $record */
       $record = null;
-      foreach (preg_split('/\r?\n/', $coverage) as $line) {
+      foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
         $line = trim($line);
         if (!mb_strlen($line)) continue;
 
@@ -149,7 +149,7 @@ class Report implements \JsonSerializable {
    * @param object $map A JSON map representing a line data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): self {
+  static function fromJson(object $map): self {
     $transform = function(array $records) {
       return array_map([Record::class, 'fromJson'], $records);
     };
@@ -164,7 +164,7 @@ class Report implements \JsonSerializable {
    * Gets the record list.
    * @return \ArrayObject The record list.
    */
-  public function getRecords(): \ArrayObject {
+  function getRecords(): \ArrayObject {
     return $this->records;
   }
 
@@ -172,7 +172,7 @@ class Report implements \JsonSerializable {
    * Gets the test name.
    * @return string The test name.
    */
-  public function getTestName(): string {
+  function getTestName(): string {
     return $this->testName;
   }
 
@@ -180,7 +180,7 @@ class Report implements \JsonSerializable {
    * Converts this object to a map in JSON format.
    * @return \stdClass The map in JSON format corresponding to this object.
    */
-  public function jsonSerialize(): \stdClass {
+  function jsonSerialize(): \stdClass {
     return (object) [
       'testName' => $this->getTestName(),
       'records' => array_map(function(Record $item) {
@@ -194,7 +194,7 @@ class Report implements \JsonSerializable {
    * @param string $value The new test name.
    * @return self This instance.
    */
-  public function setTestName(string $value): self {
+  function setTestName(string $value): self {
     $this->testName = $value;
     return $this;
   }

@@ -12,7 +12,7 @@ class BranchDataTest extends TestCase {
   /**
    * @test BranchData::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = BranchData::fromJson(new \stdClass);
     assertThat($data, isInstanceOf(BranchData::class));
@@ -33,7 +33,7 @@ class BranchDataTest extends TestCase {
   /**
    * @test BranchData::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $data = (new BranchData(0, 0, 0))->jsonSerialize();
     assertThat(get_object_vars($data), countOf(4));
@@ -54,7 +54,7 @@ class BranchDataTest extends TestCase {
   /**
    * @test BranchData::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>".
     assertThat((string) new BranchData(0, 0, 0), equalTo('BRDA:0,0,0,-'));
     assertThat((string) new BranchData(127, 3, 2, 1), equalTo('BRDA:127,3,2,1'));

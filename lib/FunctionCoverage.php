@@ -28,7 +28,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @param int $hit The number of functions hit.
    * @param FunctionData[] $data The coverage data.
    */
-  public function __construct(int $found = 0, int $hit = 0, array $data = []) {
+  function __construct(int $found = 0, int $hit = 0, array $data = []) {
     $this->data = new \ArrayObject($data);
     $this->setFound($found);
     $this->setHit($hit);
@@ -38,7 +38,7 @@ class FunctionCoverage implements \JsonSerializable {
    * Returns a string representation of this object.
    * @return string The string representation of this object.
    */
-  public function __toString(): string {
+  function __toString(): string {
     $data = $this->getData()->getArrayCopy();
 
     $lineNumbers = array_map(function(FunctionData $item) {
@@ -60,7 +60,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @param object $map A JSON map representing a branch data.
    * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
-  public static function fromJson(object $map): self {
+  static function fromJson(object $map): self {
     $transform = function($data) {
       return array_map([FunctionData::class, 'fromJson'], $data);
     };
@@ -76,7 +76,7 @@ class FunctionCoverage implements \JsonSerializable {
    * Gets the coverage data.
    * @return \ArrayObject The coverage data.
    */
-  public function getData(): \ArrayObject {
+  function getData(): \ArrayObject {
     return $this->data;
   }
 
@@ -84,7 +84,7 @@ class FunctionCoverage implements \JsonSerializable {
    * Gets the number of functions found.
    * @return int The number of functions found.
    */
-  public function getFound(): int {
+  function getFound(): int {
     return $this->found;
   }
 
@@ -92,7 +92,7 @@ class FunctionCoverage implements \JsonSerializable {
    * Gets the number of functions hit.
    * @return int The number of functions hit.
    */
-  public function getHit(): int {
+  function getHit(): int {
     return $this->hit;
   }
 
@@ -100,7 +100,7 @@ class FunctionCoverage implements \JsonSerializable {
    * Converts this object to a map in JSON format.
    * @return \stdClass The map in JSON format corresponding to this object.
    */
-  public function jsonSerialize(): \stdClass {
+  function jsonSerialize(): \stdClass {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
@@ -115,7 +115,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @param int $value The new number of branches found.
    * @return self This instance.
    */
-  public function setFound(int $value): self {
+  function setFound(int $value): self {
     $this->found = max(0, $value);
     return $this;
   }
@@ -125,7 +125,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @param int $value The new number of branches hit.
    * @return self This instance.
    */
-  public function setHit(int $value): self {
+  function setHit(int $value): self {
     $this->hit = max(0, $value);
     return $this;
   }

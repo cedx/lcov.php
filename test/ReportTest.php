@@ -12,8 +12,8 @@ class ReportTest extends TestCase {
   /**
    * @test Report::fromCoverage
    */
-  public function testFromCoverage(): void {
-    $report = Report::fromCoverage(file_get_contents('test/fixtures/lcov.info'));
+  function testFromCoverage(): void {
+    $report = Report::fromCoverage((string) file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
     // It should have a test name.
@@ -67,7 +67,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $report = Report::fromJson(new \stdClass);
     assertThat($report, isInstanceOf(Report::class));
@@ -92,7 +92,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new Report)->jsonSerialize();
     assertThat(get_object_vars($map), countOf(2));
@@ -110,7 +110,7 @@ class ReportTest extends TestCase {
   /**
    * @test Report::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "TN:<testName>".
     assertThat((string) new Report, isEmpty());
 

@@ -12,7 +12,7 @@ class LineDataTest extends TestCase {
   /**
    * @test LineData::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = LineData::fromJson(new \stdClass);
     assertThat($data, isInstanceOf(LineData::class));
@@ -31,7 +31,7 @@ class LineDataTest extends TestCase {
   /**
    * @test LineData::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $data = (new LineData(0))->jsonSerialize();
     assertThat(get_object_vars($data), countOf(3));
@@ -50,7 +50,7 @@ class LineDataTest extends TestCase {
   /**
    * @test LineData::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]".
     assertThat((string) new LineData(0), equalTo('DA:0,0'));
     assertThat((string) new LineData(127, 3, 'ed076287532e86365e841e92bfc50d8c'), equalTo('DA:127,3,ed076287532e86365e841e92bfc50d8c'));

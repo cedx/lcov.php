@@ -12,7 +12,7 @@ class RecordTest extends TestCase {
   /**
    * @test Record::fromJson
    */
-  public function testFromJson(): void {
+  function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $record = Record::fromJson(new \stdClass);
     assertThat($record, isInstanceOf(Record::class));
@@ -39,7 +39,7 @@ class RecordTest extends TestCase {
   /**
    * @test Record::jsonSerialize
    */
-  public function testJsonSerialize(): void {
+  function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new Record(''))->jsonSerialize();
     assertThat(get_object_vars($map), countOf(4));
@@ -65,7 +65,7 @@ class RecordTest extends TestCase {
   /**
    * @test Record::__toString
    */
-  public function testToString(): void {
+  function testToString(): void {
     // It should return a format like "SF:<sourceFile>\\n,end_of_record".
     assertThat((string) new Record(''), equalTo(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record')));
 
