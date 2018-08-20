@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class BranchDataTest extends TestCase {
 
   /**
-   * @test BranchData::fromJson
+   * Tests the `BranchData::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -31,7 +31,7 @@ class BranchDataTest extends TestCase {
   }
 
   /**
-   * @test BranchData::jsonSerialize
+   * Tests the `BranchData::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -52,7 +52,7 @@ class BranchDataTest extends TestCase {
   }
 
   /**
-   * @test BranchData::__toString
+   * Tests the `BranchData::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>".

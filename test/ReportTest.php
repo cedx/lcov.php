@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class ReportTest extends TestCase {
 
   /**
-   * @test Report::fromCoverage
+   * Tests the `Report::fromCoverage()` method.
    */
   function testFromCoverage(): void {
     $report = Report::fromCoverage((string) file_get_contents('test/fixtures/lcov.info'));
@@ -65,7 +65,7 @@ class ReportTest extends TestCase {
   }
 
   /**
-   * @test Report::fromJson
+   * Tests the `Report::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -90,7 +90,7 @@ class ReportTest extends TestCase {
   }
 
   /**
-   * @test Report::jsonSerialize
+   * Tests the `Report::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -108,7 +108,7 @@ class ReportTest extends TestCase {
   }
 
   /**
-   * @test Report::__toString
+   * Tests the `Report::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "TN:<testName>".

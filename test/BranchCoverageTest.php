@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class BranchCoverageTest extends TestCase {
 
   /**
-   * @test BranchCoverage::fromJson
+   * Tests the `BranchCoverage::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -34,7 +34,7 @@ class BranchCoverageTest extends TestCase {
   }
 
   /**
-   * @test BranchCoverage::jsonSerialize
+   * Tests the `BranchCoverage::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -54,7 +54,7 @@ class BranchCoverageTest extends TestCase {
   }
 
   /**
-   * @test BranchCoverage::__toString
+   * Tests the `BranchCoverage::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "BRF:<found>\\n,BRH:<hit>".

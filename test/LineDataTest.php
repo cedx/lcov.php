@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class LineDataTest extends TestCase {
 
   /**
-   * @test LineData::fromJson
+   * Tests the `LineData::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -29,7 +29,7 @@ class LineDataTest extends TestCase {
   }
 
   /**
-   * @test LineData::jsonSerialize
+   * Tests the `LineData::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -48,7 +48,7 @@ class LineDataTest extends TestCase {
   }
 
   /**
-   * @test LineData::__toString
+   * Tests the `LineData::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]".

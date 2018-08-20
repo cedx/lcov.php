@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class RecordTest extends TestCase {
 
   /**
-   * @test Record::fromJson
+   * Tests the `Record::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -37,7 +37,7 @@ class RecordTest extends TestCase {
   }
 
   /**
-   * @test Record::jsonSerialize
+   * Tests the `Record::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -63,7 +63,7 @@ class RecordTest extends TestCase {
   }
 
   /**
-   * @test Record::__toString
+   * Tests the `Record::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "SF:<sourceFile>\\n,end_of_record".

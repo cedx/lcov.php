@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class FunctionDataTest extends TestCase {
 
   /**
-   * @test FunctionData::fromJson
+   * Tests the `FunctionData::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -29,7 +29,7 @@ class FunctionDataTest extends TestCase {
   }
 
   /**
-   * @test FunctionData::jsonSerialize
+   * Tests the `FunctionData::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -48,7 +48,7 @@ class FunctionDataTest extends TestCase {
   }
 
   /**
-   * @test FunctionData::__toString
+   * Tests the `FunctionData::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "FN:<lineNumber>,<functionName>" when used as definition.

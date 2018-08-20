@@ -10,7 +10,7 @@ use PHPUnit\Framework\{TestCase};
 class LineCoverageTest extends TestCase {
 
   /**
-   * @test LineCoverage::fromJson
+   * Tests the `LineCoverage::fromJson()` method.
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -34,7 +34,7 @@ class LineCoverageTest extends TestCase {
   }
 
   /**
-   * @test LineCoverage::jsonSerialize
+   * Tests the `LineCoverage::jsonSerialize()` method.
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -54,7 +54,7 @@ class LineCoverageTest extends TestCase {
   }
 
   /**
-   * @test LineCoverage::__toString
+   * Tests the `LineCoverage::__toString()` method.
    */
   function testToString(): void {
     // It should return a format like "LF:<found>\\n,LH:<hit>".
