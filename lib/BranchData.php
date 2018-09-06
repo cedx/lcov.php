@@ -28,7 +28,7 @@ class BranchData implements \JsonSerializable {
   private $taken;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new branch data.
    * @param int $lineNumber The line number.
    * @param int $blockNumber The block number.
    * @param int $branchNumber The branch number.

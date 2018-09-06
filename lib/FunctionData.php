@@ -23,7 +23,7 @@ class FunctionData implements \JsonSerializable {
   private $lineNumber;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new function data.
    * @param string $functionName The function name.
    * @param int $lineNumber The line number of the function start.
    * @param int $executionCount The execution count.

@@ -18,7 +18,7 @@ class Report implements \JsonSerializable {
   private $testName;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new report.
    * @param string $testName The test name.
    * @param Record[] $records The record list.
    */

@@ -23,7 +23,7 @@ class BranchCoverage implements \JsonSerializable {
   private $hit;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new branch coverage.
    * @param int $found The number of branches found.
    * @param int $hit The number of branches hit.
    * @param BranchData[] $data The coverage data.

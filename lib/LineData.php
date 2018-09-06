@@ -23,7 +23,7 @@ class LineData implements \JsonSerializable {
   private $lineNumber;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new line data.
    * @param int $lineNumber The line number.
    * @param int $executionCount The execution count.
    * @param string $checksum The data checksum.

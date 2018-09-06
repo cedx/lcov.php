@@ -23,7 +23,7 @@ class FunctionCoverage implements \JsonSerializable {
   private $hit;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new function coverage.
    * @param int $found The number of functions found.
    * @param int $hit The number of functions hit.
    * @param FunctionData[] $data The coverage data.

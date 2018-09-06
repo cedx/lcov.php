@@ -28,7 +28,7 @@ class Record implements \JsonSerializable {
   private $sourceFile;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new record.
    * @param string $sourceFile The path to the source file.
    * @param FunctionCoverage $functions The function coverage.
    * @param BranchCoverage $branches The branch coverage.

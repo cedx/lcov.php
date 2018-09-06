@@ -23,7 +23,7 @@ class LineCoverage implements \JsonSerializable {
   private $hit;
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new line coverage.
    * @param int $found The number of lines found.
    * @param int $hit The number of lines hit.
    * @param LineData[] $data The coverage data.
