@@ -11,6 +11,7 @@ class FunctionDataTest extends TestCase {
 
   /**
    * Tests the `FunctionData::fromJson()` method.
+   * @test
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -30,6 +31,7 @@ class FunctionDataTest extends TestCase {
 
   /**
    * Tests the `FunctionData::jsonSerialize()` method.
+   * @test
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -49,6 +51,7 @@ class FunctionDataTest extends TestCase {
 
   /**
    * Tests the `FunctionData::__toString()` method.
+   * @test
    */
   function testToString(): void {
     // It should return a format like "FN:<lineNumber>,<functionName>" when used as definition.

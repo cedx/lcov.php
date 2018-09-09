@@ -11,6 +11,7 @@ class RecordTest extends TestCase {
 
   /**
    * Tests the `Record::fromJson()` method.
+   * @test
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -38,6 +39,7 @@ class RecordTest extends TestCase {
 
   /**
    * Tests the `Record::jsonSerialize()` method.
+   * @test
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -64,6 +66,7 @@ class RecordTest extends TestCase {
 
   /**
    * Tests the `Record::__toString()` method.
+   * @test
    */
   function testToString(): void {
     // It should return a format like "SF:<sourceFile>\\n,end_of_record".

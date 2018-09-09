@@ -11,6 +11,7 @@ class BranchCoverageTest extends TestCase {
 
   /**
    * Tests the `BranchCoverage::fromJson()` method.
+   * @test
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -35,6 +36,7 @@ class BranchCoverageTest extends TestCase {
 
   /**
    * Tests the `BranchCoverage::jsonSerialize()` method.
+   * @test
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -55,6 +57,7 @@ class BranchCoverageTest extends TestCase {
 
   /**
    * Tests the `BranchCoverage::__toString()` method.
+   * @test
    */
   function testToString(): void {
     // It should return a format like "BRF:<found>\\n,BRH:<hit>".

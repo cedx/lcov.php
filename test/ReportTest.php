@@ -11,6 +11,7 @@ class ReportTest extends TestCase {
 
   /**
    * Tests the `Report::fromCoverage()` method.
+   * @test
    */
   function testFromCoverage(): void {
     $report = Report::fromCoverage((string) file_get_contents('test/fixtures/lcov.info'));
@@ -66,6 +67,7 @@ class ReportTest extends TestCase {
 
   /**
    * Tests the `Report::fromJson()` method.
+   * @test
    */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
@@ -91,6 +93,7 @@ class ReportTest extends TestCase {
 
   /**
    * Tests the `Report::jsonSerialize()` method.
+   * @test
    */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
@@ -109,6 +112,7 @@ class ReportTest extends TestCase {
 
   /**
    * Tests the `Report::__toString()` method.
+   * @test
    */
   function testToString(): void {
     // It should return a format like "TN:<testName>".
