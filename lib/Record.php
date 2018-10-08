@@ -58,7 +58,7 @@ class Record implements \JsonSerializable {
   /**
    * Creates a new line data from the specified JSON map.
    * @param object $map A JSON map representing a line data.
-   * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return static The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   static function fromJson(object $map): self {
     return new static(
@@ -117,7 +117,7 @@ class Record implements \JsonSerializable {
   /**
    * Sets the branch coverage.
    * @param BranchCoverage|null $value The new branch coverage.
-   * @return self This instance.
+   * @return $this This instance.
    */
   function setBranches(?BranchCoverage $value): self {
     $this->branches = $value;
@@ -127,7 +127,7 @@ class Record implements \JsonSerializable {
   /**
    * Sets the function coverage.
    * @param FunctionCoverage|null $value The new function coverage.
-   * @return self This instance.
+   * @return $this This instance.
    */
   function setFunctions(?FunctionCoverage $value): self {
     $this->functions = $value;
@@ -137,7 +137,7 @@ class Record implements \JsonSerializable {
   /**
    * Sets the line coverage.
    * @param LineCoverage|null $value The new line coverage.
-   * @return self This instance.
+   * @return $this This instance.
    */
   function setLines(?LineCoverage $value): self {
     $this->lines = $value;

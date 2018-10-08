@@ -45,7 +45,7 @@ class FunctionData implements \JsonSerializable {
   /**
    * Creates a new function data from the specified JSON map.
    * @param object $map A JSON map representing a function data.
-   * @return self The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
+   * @return static The instance corresponding to the specified JSON map, or `null` if a parsing error occurred.
    */
   static function fromJson(object $map): self {
     return new static(
@@ -94,7 +94,7 @@ class FunctionData implements \JsonSerializable {
   /**
    * Sets the execution count.
    * @param int $value The new execution count.
-   * @return self This instance.
+   * @return $this This instance.
    */
   function setExecutionCount(int $value): self {
     $this->executionCount = max(0, $value);
