@@ -150,13 +150,9 @@ class Report implements \JsonSerializable {
    * @return static The instance corresponding to the specified JSON map.
    */
   static function fromJson(object $map): self {
-    $transform = function(array $records) {
-      return array_map([Record::class, 'fromJson'], $records);
-    };
-
     return new static(
       isset($map->testName) && is_string($map->testName) ? $map->testName : '',
-      isset($map->records) && is_array($map->records) ? $transform($map->records) : []
+      isset($map->records) && is_array($map->records) ? array_map([Record::class, 'fromJson'], $map->records) : []
     );
   }
 
