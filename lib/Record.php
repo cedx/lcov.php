@@ -36,9 +36,7 @@ class Record implements \JsonSerializable {
    */
   function __construct(string $sourceFile, FunctionCoverage $functions = null, BranchCoverage $branches = null, LineCoverage $lines = null) {
     $this->sourceFile = $sourceFile;
-    $this->setFunctions($functions);
-    $this->setBranches($branches);
-    $this->setLines($lines);
+    $this->setFunctions($functions)->setBranches($branches)->setLines($lines);
   }
 
   /**

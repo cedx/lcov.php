@@ -30,8 +30,7 @@ class BranchCoverage implements \JsonSerializable {
    */
   function __construct(int $found = 0, int $hit = 0, array $data = []) {
     $this->data = new \ArrayObject($data);
-    $this->setFound($found);
-    $this->setHit($hit);
+    $this->setFound($found)->setHit($hit);
   }
 
   /**
