@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [6.1.0](https://github.com/cedx/lcov.php/compare/v6.0.0...v6.1.0)
+- Replaced the [Phing](https://www.phing.info) build system by [Robo](https://robo.li).
+- Updated the package dependencies.
+
 ## Version [6.0.0](https://github.com/cedx/lcov.php/compare/v5.1.0...v6.0.0)
 - Breaking change: changed the signature of the `fromJson()` methods.
 
