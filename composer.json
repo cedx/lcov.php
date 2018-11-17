@@ -44,6 +44,6 @@
   },
   "support": {
     "docs": "https://dev.belin.io/lcov.php/api",
-    "issues": "https://github.com/cedx/lcov.php/issues"
+    "issues": "https://git.belin.io/cedx/lcov.php/issues"
   }
 }

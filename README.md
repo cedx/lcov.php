@@ -7,7 +7,7 @@ Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage r
 - [Documentation](https://dev.belin.io/lcov.php)
 - [API reference](https://dev.belin.io/lcov.php/api)
 - [Packagist package](https://packagist.org/packages/cedx/lcov)
-- [GitHub repository](https://github.com/cedx/lcov.php)
+- [Git repository](https://git.belin.io/cedx/lcov.php)
 
 ## License
 [LCOV Reports for PHP](https://dev.belin.io/lcov.php) is distributed under the MIT License.
