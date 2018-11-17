@@ -6,7 +6,7 @@ site_url: https://dev.belin.io/lcov.php
 docs_dir: doc
 site_dir: web
 
-repo_name: git.belin.io
+repo_name: Gitea/Belin.io
 repo_url: https://git.belin.io/cedx/lcov.php
 edit_uri: _edit/master/doc/
 
