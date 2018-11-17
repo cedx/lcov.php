@@ -6,9 +6,9 @@ site_url: https://dev.belin.io/lcov.php
 docs_dir: doc
 site_dir: web
 
-repo_name: Git Repository
+repo_name: git.belin.io
 repo_url: https://git.belin.io/cedx/lcov.php
-edit_uri: ''
+edit_uri: _edit/master/doc/
 
 copyright: Copyright &copy; 2017 - 2018 Cédric Belin
 google_analytics:
