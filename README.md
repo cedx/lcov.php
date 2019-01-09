@@ -8,7 +8,7 @@ Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage r
 - [API reference](https://dev.belin.io/lcov.php/api)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/lcov.php)
+- [Git repository](https://github.com/cedx/lcov.php)
 - [Packagist package](https://packagist.org/packages/cedx/lcov)
 - [Submit an issue](https://github.com/cedx/lcov.php/issues)
 
