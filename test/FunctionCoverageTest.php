@@ -50,7 +50,7 @@ class FunctionCoverageTest extends TestCase {
     $map = (new FunctionCoverage(23, 11, [new FunctionData('', 0)]))->jsonSerialize();
     assertThat(get_object_vars($map), countOf(3));
     assertThat($map->data, logicalAnd(isType('array'), self::countOf(1)));
-    assertThat($map->data[0], attributeEqualTo('lineNumber', 0));
+    assertThat($map->data[0]->lineNumber, equalTo(0));
     assertThat($map->found, equalTo(23));
     assertThat($map->hit, equalTo(11));
   }

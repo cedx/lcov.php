@@ -50,7 +50,7 @@ class LineCoverageTest extends TestCase {
     $map = (new LineCoverage(23, 11, [new LineData(0)]))->jsonSerialize();
     assertThat(get_object_vars($map), countOf(3));
     assertThat($map->data, countOf(1));
-    assertThat($map->data[0], attributeEqualTo('lineNumber', 0));
+    assertThat($map->data[0]->lineNumber, equalTo(0));
     assertThat($map->found, equalTo(23));
     assertThat($map->hit, equalTo(11));
   }
