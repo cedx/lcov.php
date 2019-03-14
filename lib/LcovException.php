@@ -22,7 +22,7 @@ class LcovException extends \UnexpectedValueException {
    * @param string $message A message describing the error.
    * @param mixed $source The actual source input which caused the error.
    * @param int $offset The offset in `$source` where the error was detected.
-   * @param \Throwable $previous The previous exception used for the exception chaining.
+   * @param \Throwable|null $previous The previous exception used for the exception chaining.
    */
   function __construct($message, $source = null, int $offset = -1, \Throwable $previous = null) {
     parent::__construct($message, 0, $previous);
