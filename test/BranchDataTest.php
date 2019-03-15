@@ -16,7 +16,6 @@ class BranchDataTest extends TestCase {
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = BranchData::fromJson(new \stdClass);
-    assertThat($data, isInstanceOf(BranchData::class));
     assertThat($data->getBlockNumber(), equalTo(0));
     assertThat($data->getBranchNumber(), equalTo(0));
     assertThat($data->getLineNumber(), equalTo(0));
@@ -24,7 +23,6 @@ class BranchDataTest extends TestCase {
 
     // It should return an initialized instance for a non-empty map.
     $data = BranchData::fromJson((object) ['blockNumber' => 3, 'branchNumber' => 2, 'lineNumber' => 127, 'taken' => 1]);
-    assertThat($data, isInstanceOf(BranchData::class));
     assertThat($data->getBlockNumber(), equalTo(3));
     assertThat($data->getBranchNumber(), equalTo(2));
     assertThat($data->getLineNumber(), equalTo(127));

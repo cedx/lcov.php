@@ -72,7 +72,6 @@ class ReportTest extends TestCase {
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $report = Report::fromJson(new \stdClass);
-    assertThat($report, isInstanceOf(Report::class));
     assertThat($report->getRecords(), isEmpty());
     assertThat($report->getTestName(), isEmpty());
 
@@ -82,7 +81,6 @@ class ReportTest extends TestCase {
       'testName' => 'LcovTest'
     ]);
 
-    assertThat($report, isInstanceOf(Report::class));
     assertThat($report->getTestName(), equalTo('LcovTest'));
 
     $records = $report->getRecords();

@@ -16,7 +16,6 @@ class RecordTest extends TestCase {
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $record = Record::fromJson(new \stdClass);
-    assertThat($record, isInstanceOf(Record::class));
     assertThat($record->getBranches(), isNull());
     assertThat($record->getFunctions(), isNull());
     assertThat($record->getLines(), isNull());
@@ -30,10 +29,9 @@ class RecordTest extends TestCase {
       'sourceFile' => '/home/cedx/lcov.php'
     ]);
 
-    assertThat($record, isInstanceOf(Record::class));
-    assertThat($record->getBranches(), isInstanceOf(BranchCoverage::class));
-    assertThat($record->getFunctions(), isInstanceOf(FunctionCoverage::class));
-    assertThat($record->getLines(), isInstanceOf(LineCoverage::class));
+    assertThat($record->getBranches(), logicalNot(isNull()));
+    assertThat($record->getFunctions(), logicalNot(isNull()));
+    assertThat($record->getLines(), logicalNot(isNull()));
     assertThat($record->getSourceFile(), equalTo('/home/cedx/lcov.php'));
   }
 

@@ -16,14 +16,12 @@ class FunctionDataTest extends TestCase {
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = FunctionData::fromJson(new \stdClass);
-    assertThat($data, isInstanceOf(FunctionData::class));
     assertThat($data->getExecutionCount(), equalTo(0));
     assertThat($data->getFunctionName(), isEmpty());
     assertThat($data->getLineNumber(), equalTo(0));
 
     // It should return an initialized instance for a non-empty map.
     $data = FunctionData::fromJson((object) ['executionCount' => 3, 'functionName' => 'main', 'lineNumber' => 127]);
-    assertThat($data, isInstanceOf(FunctionData::class));
     assertThat($data->getExecutionCount(), equalTo(3));
     assertThat($data->getFunctionName(), equalTo('main'));
     assertThat($data->getLineNumber(), equalTo(127));

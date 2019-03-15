@@ -16,14 +16,12 @@ class LineCoverageTest extends TestCase {
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = LineCoverage::fromJson(new \stdClass);
-    assertThat($coverage, isInstanceOf(LineCoverage::class));
     assertThat($coverage->getData(), isEmpty());
     assertThat($coverage->getFound(), equalTo(0));
     assertThat($coverage->getHit(), equalTo(0));
 
     // It should return an initialized instance for a non-empty map.
     $coverage = LineCoverage::fromJson((object) ['data' => [(object) ['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
-    assertThat($coverage, isInstanceOf(LineCoverage::class));
 
     $entries = $coverage->getData();
     assertThat($entries, countOf(1));
