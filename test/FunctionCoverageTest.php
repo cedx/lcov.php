@@ -3,15 +3,10 @@ namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 
-/**
- * Tests the features of the `Lcov\FunctionCoverage` class.
- */
+/** Tests the features of the `Lcov\FunctionCoverage` class. */
 class FunctionCoverageTest extends TestCase {
 
-  /**
-   * Tests the `FunctionCoverage::fromJson()` method.
-   * @test
-   */
+  /** @test Tests the `FunctionCoverage::fromJson()` method. */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = FunctionCoverage::fromJson(new \stdClass);
@@ -31,10 +26,7 @@ class FunctionCoverageTest extends TestCase {
     assertThat($coverage->getHit(), equalTo(11));
   }
 
-  /**
-   * Tests the `FunctionCoverage::jsonSerialize()` method.
-   * @test
-   */
+  /** @test Tests the `FunctionCoverage::jsonSerialize()` method. */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new FunctionCoverage)->jsonSerialize();
@@ -46,16 +38,13 @@ class FunctionCoverageTest extends TestCase {
     // It should return a non-empty map for an initialized instance.
     $map = (new FunctionCoverage(23, 11, [new FunctionData('', 0)]))->jsonSerialize();
     assertThat(get_object_vars($map), countOf(3));
-    assertThat($map->data, logicalAnd(isType('array'), self::countOf(1)));
+    assertThat($map->data, logicalAnd(isType('array'), countOf(1)));
     assertThat($map->data[0]->lineNumber, equalTo(0));
     assertThat($map->found, equalTo(23));
     assertThat($map->hit, equalTo(11));
   }
 
-  /**
-   * Tests the `FunctionCoverage::__toString()` method.
-   * @test
-   */
+  /** @test Tests the `FunctionCoverage::__toString()` method. */
   function testToString(): void {
     // It should return a format like "FNF:<found>\\n,FNH:<hit>".
     assertThat((string) new FunctionCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'FNF:0{{eol}}FNH:0')));

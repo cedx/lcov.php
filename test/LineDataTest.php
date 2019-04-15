@@ -3,15 +3,10 @@ namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 
-/**
- * Tests the features of the `Lcov\LineData` class.
- */
+/** Tests the features of the `Lcov\LineData` class. */
 class LineDataTest extends TestCase {
 
-  /**
-   * Tests the `LineData::fromJson()` method.
-   * @test
-   */
+  /** @test Tests the `LineData::fromJson()` method. */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = LineData::fromJson(new \stdClass);
@@ -26,10 +21,7 @@ class LineDataTest extends TestCase {
     assertThat($data->getLineNumber(), equalTo(127));
   }
 
-  /**
-   * Tests the `LineData::jsonSerialize()` method.
-   * @test
-   */
+  /** @test Tests the `LineData::jsonSerialize()` method. */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $data = (new LineData(0))->jsonSerialize();
@@ -46,10 +38,7 @@ class LineDataTest extends TestCase {
     assertThat($data->lineNumber, equalTo(127));
   }
 
-  /**
-   * Tests the `LineData::__toString()` method.
-   * @test
-   */
+  /** @test Tests the `LineData::__toString()` method. */
   function testToString(): void {
     // It should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]".
     assertThat((string) new LineData(0), equalTo('DA:0,0'));

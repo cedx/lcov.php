@@ -1,24 +1,16 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides details for function coverage.
- */
+/** Provides details for function coverage. */
 class FunctionData implements \JsonSerializable {
 
-  /**
-   * @var int The execution count.
-   */
+  /** @var int The execution count. */
   private $executionCount;
 
-  /**
-   * @var string The function name.
-   */
+  /** @var string The function name. */
   private $functionName;
 
-  /**
-   * @var int The line number of the function start.
-   */
+  /** @var int The line number of the function start. */
   private $lineNumber;
 
   /**

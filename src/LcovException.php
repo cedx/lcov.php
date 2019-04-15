@@ -1,19 +1,13 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * An exception caused by a parsing error.
- */
+/** An exception caused by a parsing error. */
 class LcovException extends \UnexpectedValueException {
 
-  /**
-   * @var int The offset in `$source` where the error was detected.
-   */
+  /** @var int The offset in `$source` where the error was detected. */
   private $offset;
 
-  /**
-   * @var mixed The actual source input which caused the error.
-   */
+  /** @var mixed The actual source input which caused the error. */
   private $source;
 
   /**

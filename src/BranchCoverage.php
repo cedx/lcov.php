@@ -1,24 +1,16 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides the coverage data of branches.
- */
+/** Provides the coverage data of branches. */
 class BranchCoverage implements \JsonSerializable {
 
-  /**
-   * @var \ArrayObject The coverage data.
-   */
+  /** @var \ArrayObject The coverage data. */
   private $data;
 
-  /**
-   * @var int The number of branches found.
-   */
+  /** @var int The number of branches found. */
   private $found;
 
-  /**
-   * @var int The number of branches hit.
-   */
+  /** @var int The number of branches hit. */
   private $hit;
 
   /**

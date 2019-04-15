@@ -3,15 +3,10 @@ namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 
-/**
- * Tests the features of the `Lcov\Report` class.
- */
+/** Tests the features of the `Lcov\Report` class. */
 class ReportTest extends TestCase {
 
-  /**
-   * Tests the `Report::fromCoverage()` method.
-   * @test
-   */
+  /** @test Tests the `Report::fromCoverage()` method. */
   function testFromCoverage(): void {
     $report = Report::fromCoverage((string) file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
@@ -64,10 +59,7 @@ class ReportTest extends TestCase {
     Report::fromCoverage('TN:Example');
   }
 
-  /**
-   * Tests the `Report::fromJson()` method.
-   * @test
-   */
+  /** @test Tests the `Report::fromJson()` method. */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $report = Report::fromJson(new \stdClass);
@@ -88,10 +80,7 @@ class ReportTest extends TestCase {
     assertThat($report->getTestName(), equalTo('LcovTest'));
   }
 
-  /**
-   * Tests the `Report::jsonSerialize()` method.
-   * @test
-   */
+  /** @test Tests the `Report::jsonSerialize()` method. */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new Report)->jsonSerialize();
@@ -107,10 +96,7 @@ class ReportTest extends TestCase {
     assertThat($map->testName, equalTo('LcovTest'));
   }
 
-  /**
-   * Tests the `Report::__toString()` method.
-   * @test
-   */
+  /** @test Tests the `Report::__toString()` method. */
   function testToString(): void {
     // It should return a format like "TN:<testName>".
     assertThat((string) new Report, isEmpty());

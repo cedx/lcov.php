@@ -3,15 +3,10 @@ namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 
-/**
- * Tests the features of the `Lcov\Record` class.
- */
+/** Tests the features of the `Lcov\Record` class. */
 class RecordTest extends TestCase {
 
-  /**
-   * Tests the `Record::fromJson()` method.
-   * @test
-   */
+  /** @test Tests the `Record::fromJson()` method. */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $record = Record::fromJson(new \stdClass);
@@ -34,10 +29,7 @@ class RecordTest extends TestCase {
     assertThat($record->getSourceFile(), equalTo('/home/cedx/lcov.php'));
   }
 
-  /**
-   * Tests the `Record::jsonSerialize()` method.
-   * @test
-   */
+  /** @test Tests the `Record::jsonSerialize()` method. */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new Record(''))->jsonSerialize();
@@ -61,10 +53,7 @@ class RecordTest extends TestCase {
     assertThat($map->sourceFile, equalTo('/home/cedx/lcov.php'));
   }
 
-  /**
-   * Tests the `Record::__toString()` method.
-   * @test
-   */
+  /** @test Tests the `Record::__toString()` method. */
   function testToString(): void {
     // It should return a format like "SF:<sourceFile>\\n,end_of_record".
     assertThat((string) new Record(''), equalTo(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record')));

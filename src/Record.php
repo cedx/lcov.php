@@ -1,29 +1,19 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides the coverage data of a source file.
- */
+/** Provides the coverage data of a source file. */
 class Record implements \JsonSerializable {
 
-  /**
-   * @var BranchCoverage|null The branch coverage.
-   */
+  /** @var BranchCoverage|null The branch coverage. */
   private $branches;
 
-  /**
-   * @var FunctionCoverage|null The function coverage.
-   */
+  /** @var FunctionCoverage|null The function coverage. */
   private $functions;
 
-  /**
-   * @var LineCoverage|null The line coverage.
-   */
+  /** @var LineCoverage|null The line coverage. */
   private $lines;
 
-  /**
-   * @var string The path to the source file.
-   */
+  /** @var string The path to the source file. */
   private $sourceFile;
 
   /**

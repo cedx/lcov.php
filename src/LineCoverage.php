@@ -1,24 +1,16 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides the coverage data of lines.
- */
+/** Provides the coverage data of lines.*/
 class LineCoverage implements \JsonSerializable {
 
-  /**
-   * @var \ArrayObject The coverage data.
-   */
+  /** @var \ArrayObject The coverage data. */
   private $data;
 
-  /**
-   * @var int The number of lines found.
-   */
+  /** @var int The number of lines found. */
   private $found;
 
-  /**
-   * @var int The number of lines hit.
-   */
+  /** @var int The number of lines hit. */
   private $hit;
 
   /**

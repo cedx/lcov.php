@@ -1,29 +1,19 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides details for branch coverage.
- */
+/** Provides details for branch coverage. */
 class BranchData implements \JsonSerializable {
 
-  /**
-   * @var int The block number.
-   */
+  /** @var int The block number. */
   private $blockNumber;
 
-  /**
-   * @var int The branch number.
-   */
+  /** @var int The branch number. */
   private $branchNumber;
 
-  /**
-   * @var int The line number.
-   */
+  /** @var int The line number. */
   private $lineNumber;
 
-  /**
-   * @var int A number indicating how often this branch was taken.
-   */
+  /** @var int A number indicating how often this branch was taken. */
   private $taken;
 
   /**

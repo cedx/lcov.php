@@ -1,24 +1,16 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides details for line coverage.
- */
+/** Provides details for line coverage.*/
 class LineData implements \JsonSerializable {
 
-  /**
-   * @var string The data checksum.
-   */
+  /** @var string The data checksum. */
   private $checksum;
 
-  /**
-   * @var int The execution count.
-   */
+  /** @var int The execution count. */
   private $executionCount;
 
-  /**
-   * @var int The line number.
-   */
+  /** @var int The line number. */
   private $lineNumber;
 
   /**

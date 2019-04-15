@@ -3,15 +3,10 @@ namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 
-/**
- * Tests the features of the `Lcov\BranchData` class.
- */
+/** Tests the features of the `Lcov\BranchData` class. */
 class BranchDataTest extends TestCase {
 
-  /**
-   * Tests the `BranchData::fromJson()` method.
-   * @test
-   */
+  /** @test Tests the `BranchData::fromJson()` method. */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = BranchData::fromJson(new \stdClass);
@@ -28,10 +23,7 @@ class BranchDataTest extends TestCase {
     assertThat($data->getTaken(), equalTo(1));
   }
 
-  /**
-   * Tests the `BranchData::jsonSerialize()` method.
-   * @test
-   */
+  /** @test Tests the `BranchData::jsonSerialize()` method. */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $data = (new BranchData(0, 0, 0))->jsonSerialize();
@@ -50,10 +42,7 @@ class BranchDataTest extends TestCase {
     assertThat($data->taken, equalTo(1));
   }
 
-  /**
-   * Tests the `BranchData::__toString()` method.
-   * @test
-   */
+  /** @test Tests the `BranchData::__toString()` method. */
   function testToString(): void {
     // It should return a format like "BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>".
     assertThat((string) new BranchData(0, 0, 0), equalTo('BRDA:0,0,0,-'));

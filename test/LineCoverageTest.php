@@ -3,15 +3,10 @@ namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 
-/**
- * Tests the features of the `Lcov\LineCoverage` class.
- */
+/** Tests the features of the `Lcov\LineCoverage` class. */
 class LineCoverageTest extends TestCase {
 
-  /**
-   * Tests the `LineCoverage::fromJson()` method.
-   * @test
-   */
+  /** @test Tests the `LineCoverage::fromJson()` method. */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = LineCoverage::fromJson(new \stdClass);
@@ -31,10 +26,7 @@ class LineCoverageTest extends TestCase {
     assertThat($coverage->getHit(), equalTo(11));
   }
 
-  /**
-   * Tests the `LineCoverage::jsonSerialize()` method.
-   * @test
-   */
+  /** @test Tests the `LineCoverage::jsonSerialize()` method. */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new LineCoverage)->jsonSerialize();
@@ -52,10 +44,7 @@ class LineCoverageTest extends TestCase {
     assertThat($map->hit, equalTo(11));
   }
 
-  /**
-   * Tests the `LineCoverage::__toString()` method.
-   * @test
-   */
+  /** @test Tests the `LineCoverage::__toString()` method. */
   function testToString(): void {
     // It should return a format like "LF:<found>\\n,LH:<hit>".
     assertThat((string) new LineCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0')));

@@ -1,24 +1,16 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides the coverage data of functions.
- */
+/** Provides the coverage data of functions. */
 class FunctionCoverage implements \JsonSerializable {
 
-  /**
-   * @var \ArrayObject The coverage data.
-   */
+  /** @var \ArrayObject The coverage data. */
   private $data;
 
-  /**
-   * @var int The number of functions found.
-   */
+  /** @var int The number of functions found. */
   private $found;
 
-  /**
-   * @var int The number of functions hit.
-   */
+  /** @var int The number of functions hit. */
   private $hit;
 
   /**
@@ -38,14 +30,8 @@ class FunctionCoverage implements \JsonSerializable {
    */
   function __toString(): string {
     $data = $this->getData()->getArrayCopy();
-
-    $lineNumbers = array_map(function(FunctionData $item) {
-      return $item->toString(true);
-    }, $data);
-
-    $executionCounts = array_map(function(FunctionData $item) {
-      return $item->toString(false);
-    }, $data);
+    $lineNumbers = array_map(function(FunctionData $item) { return $item->toString(true); }, $data);
+    $executionCounts = array_map(function(FunctionData $item) { return $item->toString(false); }, $data);
 
     $lines = array_merge($lineNumbers, $executionCounts);
     $lines[] = Token::FUNCTIONS_FOUND.":{$this->getFound()}";

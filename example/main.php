@@ -1,9 +1,7 @@
 <?php declare(strict_types=1);
 use Lcov\{FunctionCoverage, LcovException, LineCoverage, LineData, Record, Report};
 
-/**
- * Formats coverage data as LCOV report.
- */
+/** Formats coverage data as LCOV report. */
 function formatReport(): void {
   $lineCoverage = new LineCoverage(2, 2, [
     new LineData(6, 2, 'PF4Rz2r7RTliO9u6bZ7h6g'),
@@ -18,9 +16,7 @@ function formatReport(): void {
   echo $report;
 }
 
-/**
- * Parses a LCOV report to coverage data.
- */
+/** Parses a LCOV report to coverage data. */
 function parseReport(): void {
   try {
     $coverage = file_get_contents('lcov.info');

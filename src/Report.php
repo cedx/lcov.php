@@ -1,19 +1,13 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/**
- * Provides the coverage data of a source file.
- */
+/** Provides the coverage data of a source file. */
 class Report implements \JsonSerializable {
 
-  /**
-   * @var \ArrayObject The record list.
-   */
+  /** @var \ArrayObject The record list. */
   private $records;
 
-  /**
-   * @var string The test name.
-   */
+  /** @var string The test name. */
   private $testName;
 
   /**
