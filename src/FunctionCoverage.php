@@ -34,8 +34,8 @@ class FunctionCoverage implements \JsonSerializable {
     $executionCounts = array_map(function(FunctionData $item) { return $item->toString(false); }, $data);
 
     $lines = array_merge($lineNumbers, $executionCounts);
-    $lines[] = Token::FUNCTIONS_FOUND.":{$this->getFound()}";
-    $lines[] = Token::FUNCTIONS_HIT.":{$this->getHit()}";
+    $lines[] = Token::functionsFound.":{$this->getFound()}";
+    $lines[] = Token::functionsHit.":{$this->getHit()}";
     return implode(PHP_EOL, $lines);
   }
 

@@ -33,12 +33,12 @@ class Record implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function __toString(): string {
-    $token = Token::SOURCE_FILE;
+    $token = Token::sourceFile;
     $output = ["$token:{$this->getSourceFile()}"];
     if ($functions = $this->getFunctions()) $output[] = (string) $functions;
     if ($branches = $this->getBranches()) $output[] = (string) $branches;
     if ($lines = $this->getLines()) $output[] = (string) $lines;
-    $output[] = Token::END_OF_RECORD;
+    $output[] = Token::endOfRecord;
     return implode(PHP_EOL, $output);
   }
 

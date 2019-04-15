@@ -30,8 +30,8 @@ class BranchCoverage implements \JsonSerializable {
    */
   function __toString(): string {
     $lines = array_map('strval', $this->getData()->getArrayCopy());
-    $lines[] = Token::BRANCHES_FOUND.":{$this->getFound()}";
-    $lines[] = Token::BRANCHES_HIT.":{$this->getHit()}";
+    $lines[] = Token::branchesFound.":{$this->getFound()}";
+    $lines[] = Token::branchesHit.":{$this->getHit()}";
     return implode(PHP_EOL, $lines);
   }
 

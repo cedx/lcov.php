@@ -35,7 +35,7 @@ class BranchData implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function __toString(): string {
-    $token = Token::BRANCH_DATA;
+    $token = Token::branchData;
     $value = "$token:{$this->getLineNumber()},{$this->getBlockNumber()},{$this->getBranchNumber()}";
     return ($taken = $this->getTaken()) > 0 ? "$value,$taken" : "$value,-";
   }

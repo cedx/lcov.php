@@ -5,41 +5,41 @@ namespace Lcov;
 abstract class Token {
 
   /** @var string The coverage data of a branch. */
-  const BRANCH_DATA = 'BRDA';
+  const branchData = 'BRDA';
 
   /** @var string The number of branches found. */
-  const BRANCHES_FOUND = 'BRF';
+  const branchesFound = 'BRF';
 
   /** @var string The number of branches hit. */
-  const BRANCHES_HIT = 'BRH';
+  const branchesHit = 'BRH';
 
   /** @var string The end of a section. */
-  const END_OF_RECORD = 'end_of_record';
+  const endOfRecord = 'end_of_record';
 
   /** @var string The coverage data of a function. */
-  const FUNCTION_DATA = 'FNDA';
+  const functionData = 'FNDA';
 
   /** @var string A function name. */
-  const FUNCTION_NAME = 'FN';
+  const functionName = 'FN';
 
   /** @var string The number of functions found. */
-  const FUNCTIONS_FOUND = 'FNF';
+  const functionsFound = 'FNF';
 
   /** @var string The number of functions hit. */
-  const FUNCTIONS_HIT = 'FNH';
+  const functionsHit = 'FNH';
 
   /** @var string The coverage data of a line. */
-  const LINE_DATA = 'DA';
+  const lineData = 'DA';
 
   /** @var string The number of lines found. */
-  const LINES_FOUND = 'LF';
+  const linesFound = 'LF';
 
   /** @var string The number of lines hit. */
-  const LINES_HIT = 'LH';
+  const linesHit = 'LH';
 
   /** @var string The path to a source file. */
-  const SOURCE_FILE = 'SF';
+  const sourceFile = 'SF';
 
   /** @var string A test name. */
-  const TEST_NAME = 'TN';
+  const testName = 'TN';
 }

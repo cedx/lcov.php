@@ -98,7 +98,7 @@ class FunctionData implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function toString(bool $asDefinition = false): string {
-    $token = $asDefinition ? Token::FUNCTION_NAME : Token::FUNCTION_DATA;
+    $token = $asDefinition ? Token::functionName : Token::functionData;
     $number = $asDefinition ? $this->getLineNumber() : $this->getExecutionCount();
     return "$token:$number,{$this->getFunctionName()}";
   }

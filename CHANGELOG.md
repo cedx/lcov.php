@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [7.0.0](https://github.com/cedx/lcov.php/compare/v6.2.0...v7.0.0)
+- Breaking change: using camelcase instead of all caps for constants.
+
 ## Version [6.2.0](https://github.com/cedx/lcov.php/compare/v6.1.0...v6.2.0)
 - Modified the package layout.
 - Updated the package dependencies.

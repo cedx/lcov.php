@@ -25,7 +25,7 @@ class Report implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function __toString(): string {
-    $token = Token::TEST_NAME;
+    $token = Token::testName;
     $lines = mb_strlen($testName = $this->getTestName()) ? ["$token:$testName"] : [];
     $lines = array_merge($lines, array_map('strval', $this->getRecords()->getArrayCopy()));
     return implode(PHP_EOL, $lines);
@@ -49,27 +49,27 @@ class Report implements \JsonSerializable {
         if (!mb_strlen($line)) continue;
 
         $parts = explode(':', $line);
-        if (count($parts) < 2 && $parts[0] != Token::END_OF_RECORD) throw new \DomainException('Invalid token format');
+        if (count($parts) < 2 && $parts[0] != Token::endOfRecord) throw new \DomainException('Invalid token format');
 
         $token = array_shift($parts);
         $data = explode(',', implode(':', $parts));
         $length = count($data);
 
         switch ($token) {
-          case Token::TEST_NAME:
+          case Token::testName:
             $report->setTestName($data[0]);
             break;
 
-          case Token::SOURCE_FILE:
+          case Token::sourceFile:
             $record = new Record($data[0], new FunctionCoverage, new BranchCoverage, new LineCoverage);
             break;
 
-          case Token::FUNCTION_NAME:
+          case Token::functionName:
             if ($length < 2) throw new \DomainException('Invalid function name');
             if ($functions = $record->getFunctions()) $functions->getData()->append(new FunctionData($data[1], (int) $data[0]));
             break;
 
-          case Token::FUNCTION_DATA:
+          case Token::functionData:
             if ($length < 2) throw new \DomainException('Invalid function data');
             if ($functions = $record->getFunctions()) foreach ($functions->getData() as $item) {
               if ($item->getFunctionName() == $data[1]) {
@@ -79,15 +79,15 @@ class Report implements \JsonSerializable {
             }
             break;
 
-          case Token::FUNCTIONS_FOUND:
+          case Token::functionsFound:
             if ($functions = $record->getFunctions()) $functions->setFound((int) $data[0]);
             break;
 
-          case Token::FUNCTIONS_HIT:
+          case Token::functionsHit:
             if ($functions = $record->getFunctions()) $functions->setHit((int) $data[0]);
             break;
 
-          case Token::BRANCH_DATA:
+          case Token::branchData:
             if ($length < 4) throw new \DomainException('Invalid branch data');
             if ($branches = $record->getBranches()) $branches->getData()->append(new BranchData(
               (int) $data[0],
@@ -97,15 +97,15 @@ class Report implements \JsonSerializable {
             ));
             break;
 
-          case Token::BRANCHES_FOUND:
+          case Token::branchesFound:
             if ($branches = $record->getBranches()) $branches->setFound((int) $data[0]);
             break;
 
-          case Token::BRANCHES_HIT:
+          case Token::branchesHit:
             if ($branches = $record->getBranches()) $branches->setHit((int) $data[0]);
             break;
 
-          case Token::LINE_DATA:
+          case Token::lineData:
             if ($length < 2) throw new \DomainException('Invalid line data');
             if ($lines = $record->getLines()) $lines->getData()->append(new LineData(
               (int) $data[0],
@@ -114,15 +114,15 @@ class Report implements \JsonSerializable {
             ));
             break;
 
-          case Token::LINES_FOUND:
+          case Token::linesFound:
             if ($lines = $record->getLines()) $lines->setFound((int) $data[0]);
             break;
 
-          case Token::LINES_HIT:
+          case Token::linesHit:
             if ($lines = $record->getLines()) $lines->setHit((int) $data[0]);
             break;
 
-          case Token::END_OF_RECORD:
+          case Token::endOfRecord:
             $records->append($record);
             break;
         }

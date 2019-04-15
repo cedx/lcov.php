@@ -30,7 +30,7 @@ class LineData implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function __toString(): string {
-    $token = Token::LINE_DATA;
+    $token = Token::lineData;
     $value = "$token:{$this->getLineNumber()},{$this->getExecutionCount()}";
     return mb_strlen($checksum = $this->getChecksum()) ? "$value,$checksum" : $value;
   }
