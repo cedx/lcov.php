@@ -24,16 +24,6 @@ class LcovException extends \UnexpectedValueException {
   }
 
   /**
-   * Returns a string representation of this object.
-   * @return string The string representation of this object.
-   */
-  function __toString(): string {
-    $values = ["\"{$this->getMessage()}\""];
-    if (($offset = $this->getOffset()) >= 0) $values[] = "offset: $offset";
-    return sprintf('%s(%s)', static::class, implode(', ', $values));
-  }
-
-  /**
    * Gets the offset in `$source` where the error was detected.
    * @return int The offset in `$source` where the error was detected.
    */
