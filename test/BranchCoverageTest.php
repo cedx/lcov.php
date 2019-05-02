@@ -6,7 +6,7 @@ use PHPUnit\Framework\{TestCase};
 /** Tests the features of the `Lcov\BranchCoverage` class. */
 class BranchCoverageTest extends TestCase {
 
-  /** @test Tests the `BranchCoverage::fromJson()` method. */
+  /** @test BranchCoverage::fromJson() */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $coverage = BranchCoverage::fromJson(new \stdClass);
@@ -26,7 +26,7 @@ class BranchCoverageTest extends TestCase {
     assertThat($coverage->getHit(), equalTo(11));
   }
 
-  /** @test Tests the `BranchCoverage::jsonSerialize()` method. */
+  /** @test BranchCoverage->jsonSerialize() */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new BranchCoverage)->jsonSerialize();
@@ -44,7 +44,7 @@ class BranchCoverageTest extends TestCase {
     assertThat($map->hit, equalTo(11));
   }
 
-  /** @test Tests the `BranchCoverage::__toString()` method. */
+  /** @test BranchCoverage->__toString() */
   function testToString(): void {
     // It should return a format like "BRF:<found>\\n,BRH:<hit>".
     assertThat((string) new BranchCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0')));

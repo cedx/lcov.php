@@ -6,7 +6,7 @@ use PHPUnit\Framework\{TestCase};
 /** Tests the features of the `Lcov\FunctionData` class. */
 class FunctionDataTest extends TestCase {
 
-  /** @test Tests the `FunctionData::fromJson()` method. */
+  /** @test FunctionData::fromJson() */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $data = FunctionData::fromJson(new \stdClass);
@@ -21,7 +21,7 @@ class FunctionDataTest extends TestCase {
     assertThat($data->getLineNumber(), equalTo(127));
   }
 
-  /** @test Tests the `FunctionData::jsonSerialize()` method. */
+  /** @test FunctionData->jsonSerialize() */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $data = (new FunctionData('', 0))->jsonSerialize();
@@ -38,7 +38,7 @@ class FunctionDataTest extends TestCase {
     assertThat($data->lineNumber, equalTo(127));
   }
 
-  /** @test Tests the `FunctionData::__toString()` method. */
+  /** @test FunctionData->__toString() */
   function testToString(): void {
     // It should return a format like "FN:<lineNumber>,<functionName>" when used as definition.
     $data = new FunctionData('', 0);

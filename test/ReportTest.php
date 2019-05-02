@@ -6,7 +6,7 @@ use PHPUnit\Framework\{TestCase};
 /** Tests the features of the `Lcov\Report` class. */
 class ReportTest extends TestCase {
 
-  /** @test Tests the `Report::fromCoverage()` method. */
+  /** @test Report::fromCoverage() */
   function testFromCoverage(): void {
     $report = Report::fromCoverage((string) file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
@@ -59,7 +59,7 @@ class ReportTest extends TestCase {
     Report::fromCoverage('TN:Example');
   }
 
-  /** @test Tests the `Report::fromJson()` method. */
+  /** @test Report::fromJson() */
   function testFromJson(): void {
     // It should return an instance with default values for an empty map.
     $report = Report::fromJson(new \stdClass);
@@ -80,7 +80,7 @@ class ReportTest extends TestCase {
     assertThat($report->getTestName(), equalTo('LcovTest'));
   }
 
-  /** @test Tests the `Report::jsonSerialize()` method. */
+  /** @test Report->jsonSerialize() */
   function testJsonSerialize(): void {
     // It should return a map with default values for a newly created instance.
     $map = (new Report)->jsonSerialize();
@@ -96,7 +96,7 @@ class ReportTest extends TestCase {
     assertThat($map->testName, equalTo('LcovTest'));
   }
 
-  /** @test Tests the `Report::__toString()` method. */
+  /** @test Report->__toString() */
   function testToString(): void {
     // It should return a format like "TN:<testName>".
     assertThat((string) new Report, isEmpty());
