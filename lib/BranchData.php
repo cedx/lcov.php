@@ -46,7 +46,7 @@ class BranchData implements \JsonSerializable {
    * @return static The instance corresponding to the specified JSON map.
    */
   static function fromJson(object $map): self {
-    return new static(
+    return new self(
       isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
       isset($map->blockNumber) && is_int($map->blockNumber) ? $map->blockNumber : 0,
       isset($map->branchNumber) && is_int($map->branchNumber) ? $map->branchNumber : 0,

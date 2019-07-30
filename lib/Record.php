@@ -48,7 +48,7 @@ class Record implements \JsonSerializable {
    * @return static The instance corresponding to the specified JSON map.
    */
   static function fromJson(object $map): self {
-    return new static(
+    return new self(
       isset($map->sourceFile) && is_string($map->sourceFile) ? $map->sourceFile : '',
       isset($map->functions) && is_object($map->functions) ? FunctionCoverage::fromJson($map->functions) : null,
       isset($map->branches) && is_object($map->branches) ? BranchCoverage::fromJson($map->branches) : null,

@@ -41,7 +41,7 @@ class LineCoverage implements \JsonSerializable {
    * @return static The instance corresponding to the specified JSON map.
    */
   static function fromJson(object $map): self {
-    return new static(
+    return new self(
       isset($map->found) && is_int($map->found) ? $map->found : 0,
       isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
       isset($map->data) && is_array($map->data) ? array_map([LineData::class, 'fromJson'], $map->data) : []

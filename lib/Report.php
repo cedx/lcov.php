@@ -38,7 +38,7 @@ class Report implements \JsonSerializable {
    * @throws \UnexpectedValueException A parsing error occurred.
    */
   static function fromCoverage(string $coverage): self {
-    $report = new static;
+    $report = new self;
     $records = $report->getRecords();
 
     try {
@@ -143,7 +143,7 @@ class Report implements \JsonSerializable {
    * @return static The instance corresponding to the specified JSON map.
    */
   static function fromJson(object $map): self {
-    return new static(
+    return new self(
       isset($map->testName) && is_string($map->testName) ? $map->testName : '',
       isset($map->records) && is_array($map->records) ? array_map([Record::class, 'fromJson'], $map->records) : []
     );

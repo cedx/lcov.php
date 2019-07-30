@@ -39,7 +39,7 @@ class FunctionData implements \JsonSerializable {
    * @return static The instance corresponding to the specified JSON map.
    */
   static function fromJson(object $map): self {
-    return new static(
+    return new self(
       isset($map->functionName) && is_string($map->functionName) ? $map->functionName : '',
       isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
       isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0
