@@ -7,17 +7,17 @@ class LcovException extends \UnexpectedValueException {
   /** @var int The offset in `$source` where the error was detected. */
   private $offset;
 
-  /** @var mixed The actual source input which caused the error. */
+  /** @var string The actual source input which caused the error. */
   private $source;
 
   /**
    * Creates a new client exception.
    * @param string $message A message describing the error.
-   * @param mixed $source The actual source input which caused the error.
+   * @param string $source The actual source input which caused the error.
    * @param int $offset The offset in `$source` where the error was detected.
    * @param \Throwable|null $previous The previous exception used for the exception chaining.
    */
-  function __construct($message, $source = null, int $offset = -1, \Throwable $previous = null) {
+  function __construct($message, string $source = '', int $offset = -1, \Throwable $previous = null) {
     parent::__construct($message, 0, $previous);
     $this->offset = $offset;
     $this->source = $source;
@@ -33,9 +33,9 @@ class LcovException extends \UnexpectedValueException {
 
   /**
    * Gets the actual source input which caused the error.
-   * @return mixed The actual source input which caused the error.
+   * @return string The actual source input which caused the error.
    */
-  function getSource() {
+  function getSource(): string {
     return $this->source;
   }
 }
