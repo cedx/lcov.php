@@ -18,7 +18,7 @@
 - Dropped the dependency on [PHPUnit-Expect](https://dev.belin.io/phpunit-expect).
 
 ## Version [5.0.0](https://github.com/cedx/lcov.php/compare/v4.1.0...v5.0.0)
-- Breaking change: raised the required [PHP](https://secure.php.net) version.
+- Breaking change: raised the required [PHP](https://www.php.net) version.
 - Added the `offset` and `source` properties to the `LcovError` class.
 - Added support for [phpDocumentor](https://www.phpdoc.org).
 - Updated the package dependencies.
@@ -27,7 +27,7 @@
 - Added the `LcovException` class.
 
 ## Version [4.0.0](https://github.com/cedx/lcov.php/compare/v3.0.0...v4.0.0)
-- Breaking change: raised the required [PHP](https://secure.php.net) version.
+- Breaking change: raised the required [PHP](https://www.php.net) version.
 - Breaking change: using PHP 7.1 features, like nullable types and void functions.
 - Added a user guide based on [MkDocs](http://www.mkdocs.org).
 - Updated the package dependencies.
