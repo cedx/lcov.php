@@ -9,7 +9,7 @@ class ReportTest extends TestCase {
 
   /** @test Report::fromCoverage() */
   function testFromCoverage(): void {
-    $report = Report::fromCoverage((string) file_get_contents('test/fixtures/lcov.info'));
+    $report = Report::fromCoverage((string) @file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
     it('should have a test name', function() use ($report) {
