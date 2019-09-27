@@ -34,7 +34,7 @@ class Report implements \JsonSerializable {
   /**
    * Parses the specified coverage data in LCOV format.
    * @param string $coverage The coverage data.
-   * @return static The resulting coverage report.
+   * @return self The resulting coverage report.
    * @throws \UnexpectedValueException A parsing error occurred.
    */
   static function fromCoverage(string $coverage): self {
