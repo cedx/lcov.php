@@ -4,10 +4,10 @@ namespace Lcov;
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
-/** Tests the features of the `Lcov\Record` class. */
+/** @testdox Lcov\Record */
 class RecordTest extends TestCase {
 
-  /** @test Record::fromJson() */
+  /** @testdox ::fromJson() */
   function testFromJson(): void {
     it('should return an instance with default values for an empty map', function() {
       $record = Record::fromJson(new \stdClass);
@@ -32,7 +32,7 @@ class RecordTest extends TestCase {
     });
   }
 
-  /** @test Record->jsonSerialize() */
+  /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new Record(''))->jsonSerialize();
@@ -58,7 +58,7 @@ class RecordTest extends TestCase {
     });
   }
 
-  /** @test Record->__toString() */
+  /** @testdox ->__toString() */
   function testToString(): void {
     it('should return a format like "SF:<sourceFile>\\n,end_of_record"', function() {
       expect((string) new Record(''))->to->equal(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record'));

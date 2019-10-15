@@ -4,10 +4,10 @@ namespace Lcov;
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
-/** Tests the features of the `Lcov\Report` class. */
+/** @testdox Lcov\Report */
 class ReportTest extends TestCase {
 
-  /** @test Report::fromCoverage() */
+  /** @testdox ::fromCoverage() */
   function testFromCoverage(): void {
     $report = Report::fromCoverage((string) @file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
@@ -65,7 +65,7 @@ class ReportTest extends TestCase {
     });
   }
 
-  /** @test Report::fromJson() */
+  /** @testdox ::fromJson() */
   function testFromJson(): void {
     it('should return an instance with default values for an empty map', function() {
       $report = Report::fromJson(new \stdClass);
@@ -88,7 +88,7 @@ class ReportTest extends TestCase {
     });
   }
 
-  /** @test Report->jsonSerialize() */
+  /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new Report)->jsonSerialize();
@@ -106,7 +106,7 @@ class ReportTest extends TestCase {
     });
   }
 
-  /** @test Report->__toString() */
+  /** @testdox ->__toString() */
   function testToString(): void {
     it('should return a format like "TN:<testName>"', function() {
       expect((string) new Report)->to->be->empty;

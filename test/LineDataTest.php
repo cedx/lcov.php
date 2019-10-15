@@ -4,10 +4,10 @@ namespace Lcov;
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
-/** Tests the features of the `Lcov\LineData` class. */
+/** @testdox Lcov\LineData */
 class LineDataTest extends TestCase {
 
-  /** @test LineData::fromJson() */
+  /** @testdox ::fromJson() */
   function testFromJson(): void {
     it('should return an instance with default values for an empty map', function() {
       $data = LineData::fromJson(new \stdClass);
@@ -24,7 +24,7 @@ class LineDataTest extends TestCase {
     });
   }
 
-  /** @test LineData->jsonSerialize() */
+  /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $data = (new LineData(0))->jsonSerialize();
@@ -43,7 +43,7 @@ class LineDataTest extends TestCase {
     });
   }
 
-  /** @test LineData->__toString() */
+  /** @testdox ->__toString() */
   function testToString(): void {
     it('should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]"', function() {
       expect((string) new LineData(0))->to->equal('DA:0,0');

@@ -4,10 +4,10 @@ namespace Lcov;
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
-/** Tests the features of the `Lcov\BranchData` class. */
+/** @testdox Lcov\BranchData */
 class BranchDataTest extends TestCase {
 
-  /** @test BranchData::fromJson() */
+  /** @testdox ::fromJson() */
   function testFromJson(): void {
     it('should return an instance with default values for an empty map', function() {
       $data = BranchData::fromJson(new \stdClass);
@@ -26,7 +26,7 @@ class BranchDataTest extends TestCase {
     });
   }
 
-  /** @test BranchData->jsonSerialize() */
+  /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $data = (new BranchData(0, 0, 0))->jsonSerialize();
@@ -47,7 +47,7 @@ class BranchDataTest extends TestCase {
     });
   }
 
-  /** @test BranchData->__toString() */
+  /** @testdox ->__toString() */
   function testToString(): void {
     it('should return a format like "BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>"', function() {
       expect((string) new BranchData(0, 0, 0))->to->equal('BRDA:0,0,0,-');

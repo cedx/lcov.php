@@ -4,10 +4,10 @@ namespace Lcov;
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
-/** Tests the features of the `Lcov\FunctionData` class. */
+/** @testdox Lcov\FunctionData */
 class FunctionDataTest extends TestCase {
 
-  /** @test FunctionData::fromJson() */
+  /** @testdox ::fromJson() */
   function testFromJson(): void {
     it('should return an instance with default values for an empty map', function() {
       $data = FunctionData::fromJson(new \stdClass);
@@ -24,7 +24,7 @@ class FunctionDataTest extends TestCase {
     });
   }
 
-  /** @test FunctionData->jsonSerialize() */
+  /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $data = (new FunctionData('', 0))->jsonSerialize();
@@ -43,7 +43,7 @@ class FunctionDataTest extends TestCase {
     });
   }
 
-  /** @test FunctionData->__toString() */
+  /** @testdox ->__toString() */
   function testToString(): void {
     it('should return a format like "FN:<lineNumber>,<functionName>" when used as definition', function() {
       $data = new FunctionData('', 0);

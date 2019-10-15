@@ -4,10 +4,10 @@ namespace Lcov;
 use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
 
-/** Tests the features of the `Lcov\LineCoverage` class. */
+/** @testdox Lcov\LineCoverage */
 class LineCoverageTest extends TestCase {
 
-  /** @test LineCoverage::fromJson() */
+  /** @testdox ::fromJson() */
   function testFromJson(): void {
     it('should return an instance with default values for an empty map', function() {
       $coverage = LineCoverage::fromJson(new \stdClass);
@@ -29,7 +29,7 @@ class LineCoverageTest extends TestCase {
     });
   }
 
-  /** @test LineCoverage->jsonSerialize() */
+  /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
     it('should return a map with default values for a newly created instance', function() {
       $map = (new LineCoverage)->jsonSerialize();
@@ -49,7 +49,7 @@ class LineCoverageTest extends TestCase {
     });
   }
 
-  /** @test LineCoverage->__toString() */
+  /** @testdox ->__toString() */
   function testToString(): void {
     it('should return a format like "LF:<found>\\n,LH:<hit>"', function() {
       expect((string) new LineCoverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'LF:0{{eol}}LH:0'));
