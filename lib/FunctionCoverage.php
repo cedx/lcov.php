@@ -30,13 +30,12 @@ class FunctionCoverage implements \JsonSerializable {
    */
   function __toString(): string {
     $data = $this->getData()->getArrayCopy();
-    $lineNumbers = array_map(function(FunctionData $item) { return $item->toString(true); }, $data);
-    $executionCounts = array_map(function(FunctionData $item) { return $item->toString(false); }, $data);
-
-    $lines = array_merge($lineNumbers, $executionCounts);
-    $lines[] = Token::functionsFound.":{$this->getFound()}";
-    $lines[] = Token::functionsHit.":{$this->getHit()}";
-    return implode(PHP_EOL, $lines);
+    return implode(PHP_EOL, [
+      ...array_map(fn(FunctionData $item) => $item->toString(true), $data),
+      ...array_map(fn(FunctionData $item) => $item->toString(false), $data),
+      Token::functionsFound.":{$this->getFound()}",
+      Token::functionsHit.":{$this->getHit()}"
+    ]);
   }
 
   /**
@@ -84,9 +83,7 @@ class FunctionCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(function(FunctionData $item) {
-        return $item->jsonSerialize();
-      }, $this->getData()->getArrayCopy())
+      'data' => array_map(fn(FunctionData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
     ];
   }
 

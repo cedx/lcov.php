@@ -80,9 +80,7 @@ class BranchCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(function(BranchData $item) {
-        return $item->jsonSerialize();
-      }, $this->getData()->getArrayCopy())
+      'data' => array_map(fn(BranchData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
     ];
   }
 

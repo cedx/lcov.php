@@ -80,9 +80,7 @@ class LineCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(function(LineData $item) {
-        return $item->jsonSerialize();
-      }, $this->getData()->getArrayCopy())
+      'data' => array_map(fn(LineData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
     ];
   }
 
