@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [8.0.0](https://github.com/cedx/lcov.php/compare/v7.0.0...v8.0.0)
+- Breaking change: raised the required [PHP](https://www.php.net) version.
+- Breaking change: using PHP 7.4 features, like arrow functions and typed properties.
+
 ## Version [7.0.0](https://github.com/cedx/lcov.php/compare/v6.2.0...v7.0.0)
 - Breaking change: using camelcase instead of all caps for constants.
 
