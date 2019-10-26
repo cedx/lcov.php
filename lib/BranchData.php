@@ -5,16 +5,16 @@ namespace Lcov;
 class BranchData implements \JsonSerializable {
 
   /** @var int The block number. */
-  private $blockNumber;
+  private int $blockNumber;
 
   /** @var int The branch number. */
-  private $branchNumber;
+  private int $branchNumber;
 
   /** @var int The line number. */
-  private $lineNumber;
+  private int $lineNumber;
 
   /** @var int A number indicating how often this branch was taken. */
-  private $taken;
+  private int $taken;
 
   /**
    * Creates a new branch data.

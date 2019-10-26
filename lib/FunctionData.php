@@ -5,13 +5,13 @@ namespace Lcov;
 class FunctionData implements \JsonSerializable {
 
   /** @var int The execution count. */
-  private $executionCount;
+  private int $executionCount;
 
   /** @var string The function name. */
-  private $functionName;
+  private string $functionName;
 
   /** @var int The line number of the function start. */
-  private $lineNumber;
+  private int $lineNumber;
 
   /**
    * Creates a new function data.

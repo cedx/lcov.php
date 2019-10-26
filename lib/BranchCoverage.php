@@ -5,13 +5,13 @@ namespace Lcov;
 class BranchCoverage implements \JsonSerializable {
 
   /** @var \ArrayObject The coverage data. */
-  private $data;
+  private \ArrayObject $data;
 
   /** @var int The number of branches found. */
-  private $found;
+  private int $found;
 
   /** @var int The number of branches hit. */
-  private $hit;
+  private int $hit;
 
   /**
    * Creates a new branch coverage.

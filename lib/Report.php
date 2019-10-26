@@ -5,10 +5,10 @@ namespace Lcov;
 class Report implements \JsonSerializable {
 
   /** @var \ArrayObject The record list. */
-  private $records;
+  private \ArrayObject $records;
 
   /** @var string The test name. */
-  private $testName;
+  private string $testName;
 
   /**
    * Creates a new report.

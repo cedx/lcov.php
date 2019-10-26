@@ -5,13 +5,13 @@ namespace Lcov;
 class LineCoverage implements \JsonSerializable {
 
   /** @var \ArrayObject The coverage data. */
-  private $data;
+  private \ArrayObject $data;
 
   /** @var int The number of lines found. */
-  private $found;
+  private int $found;
 
   /** @var int The number of lines hit. */
-  private $hit;
+  private int $hit;
 
   /**
    * Creates a new line coverage.

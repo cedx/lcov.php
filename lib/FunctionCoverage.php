@@ -5,13 +5,13 @@ namespace Lcov;
 class FunctionCoverage implements \JsonSerializable {
 
   /** @var \ArrayObject The coverage data. */
-  private $data;
+  private \ArrayObject $data;
 
   /** @var int The number of functions found. */
-  private $found;
+  private int $found;
 
   /** @var int The number of functions hit. */
-  private $hit;
+  private int $hit;
 
   /**
    * Creates a new function coverage.
