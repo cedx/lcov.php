@@ -61,7 +61,7 @@ class ReportTest extends TestCase {
     });
 
     it('should throw an error if the report is invalid or empty', function() {
-      expect(function() { Report::fromCoverage('TN:Example'); })->to->throw(LcovException::class);
+      expect(fn() => Report::fromCoverage('TN:Example'))->to->throw(LcovException::class);
     });
   }
 

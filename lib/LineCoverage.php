@@ -5,13 +5,13 @@ namespace Lcov;
 class LineCoverage implements \JsonSerializable {
 
   /** @var \ArrayObject The coverage data. */
-  private $data;
+  private \ArrayObject $data;
 
   /** @var int The number of lines found. */
-  private $found;
+  private int $found;
 
   /** @var int The number of lines hit. */
-  private $hit;
+  private int $hit;
 
   /**
    * Creates a new line coverage.
@@ -80,9 +80,7 @@ class LineCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(function(LineData $item) {
-        return $item->jsonSerialize();
-      }, $this->getData()->getArrayCopy())
+      'data' => array_map(fn(LineData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
     ];
   }
 

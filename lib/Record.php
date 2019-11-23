@@ -5,25 +5,25 @@ namespace Lcov;
 class Record implements \JsonSerializable {
 
   /** @var BranchCoverage|null The branch coverage. */
-  private $branches;
+  private ?BranchCoverage $branches;
 
   /** @var FunctionCoverage|null The function coverage. */
-  private $functions;
+  private ?FunctionCoverage $functions;
 
   /** @var LineCoverage|null The line coverage. */
-  private $lines;
+  private ?LineCoverage $lines;
 
   /** @var string The path to the source file. */
-  private $sourceFile;
+  private string $sourceFile;
 
   /**
    * Creates a new record.
    * @param string $sourceFile The path to the source file.
-   * @param FunctionCoverage $functions The function coverage.
-   * @param BranchCoverage $branches The branch coverage.
-   * @param LineCoverage $lines The line coverage.
+   * @param FunctionCoverage|null $functions The function coverage.
+   * @param BranchCoverage|null $branches The branch coverage.
+   * @param LineCoverage|null $lines The line coverage.
    */
-  function __construct(string $sourceFile, FunctionCoverage $functions = null, BranchCoverage $branches = null, LineCoverage $lines = null) {
+  function __construct(string $sourceFile, ?FunctionCoverage $functions = null, ?BranchCoverage $branches = null, ?LineCoverage $lines = null) {
     $this->sourceFile = $sourceFile;
     $this->setFunctions($functions)->setBranches($branches)->setLines($lines);
   }

@@ -5,13 +5,13 @@ namespace Lcov;
 class BranchCoverage implements \JsonSerializable {
 
   /** @var \ArrayObject The coverage data. */
-  private $data;
+  private \ArrayObject $data;
 
   /** @var int The number of branches found. */
-  private $found;
+  private int $found;
 
   /** @var int The number of branches hit. */
-  private $hit;
+  private int $hit;
 
   /**
    * Creates a new branch coverage.
@@ -80,9 +80,7 @@ class BranchCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(function(BranchData $item) {
-        return $item->jsonSerialize();
-      }, $this->getData()->getArrayCopy())
+      'data' => array_map(fn(BranchData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
     ];
   }
 

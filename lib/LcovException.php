@@ -5,10 +5,10 @@ namespace Lcov;
 class LcovException extends \UnexpectedValueException {
 
   /** @var int The offset in `$source` where the error was detected. */
-  private $offset;
+  private int $offset;
 
   /** @var string The actual source input which caused the error. */
-  private $source;
+  private string $source;
 
   /**
    * Creates a new client exception.
@@ -17,7 +17,7 @@ class LcovException extends \UnexpectedValueException {
    * @param int $offset The offset in `$source` where the error was detected.
    * @param \Throwable|null $previous The previous exception used for the exception chaining.
    */
-  function __construct($message, string $source = '', int $offset = -1, \Throwable $previous = null) {
+  function __construct($message, string $source = '', int $offset = -1, ?\Throwable $previous = null) {
     parent::__construct($message, 0, $previous);
     $this->offset = $offset;
     $this->source = $source;

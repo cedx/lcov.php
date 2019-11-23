@@ -5,13 +5,13 @@ namespace Lcov;
 class LineData implements \JsonSerializable {
 
   /** @var string The data checksum. */
-  private $checksum;
+  private string $checksum;
 
   /** @var int The execution count. */
-  private $executionCount;
+  private int $executionCount;
 
   /** @var int The line number. */
-  private $lineNumber;
+  private int $lineNumber;
 
   /**
    * Creates a new line data.
