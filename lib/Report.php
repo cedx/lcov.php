@@ -71,6 +71,7 @@ class Report implements \JsonSerializable {
           case Token::functionData:
             if ($length < 2) throw new \DomainException('Invalid function data');
             if ($functions = $record->getFunctions()) foreach ($functions->getData() as $item) {
+              /** @var FunctionData $item */
               if ($item->getFunctionName() == $data[1]) {
                 $item->setExecutionCount((int) $data[0]);
                 break;
