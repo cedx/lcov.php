@@ -4,7 +4,7 @@ namespace Lcov;
 /** Provides the coverage data of functions. */
 class FunctionCoverage implements \JsonSerializable {
 
-  /** @var \ArrayObject The coverage data. */
+  /** @var \ArrayObject<int, FunctionData> The coverage data. */
   private \ArrayObject $data;
 
   /** @var int The number of functions found. */
@@ -53,7 +53,7 @@ class FunctionCoverage implements \JsonSerializable {
 
   /**
    * Gets the coverage data.
-   * @return \ArrayObject The coverage data.
+   * @return \ArrayObject<int, FunctionData> The coverage data.
    */
   function getData(): \ArrayObject {
     return $this->data;

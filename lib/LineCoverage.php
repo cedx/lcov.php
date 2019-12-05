@@ -4,7 +4,7 @@ namespace Lcov;
 /** Provides the coverage data of lines.*/
 class LineCoverage implements \JsonSerializable {
 
-  /** @var \ArrayObject The coverage data. */
+  /** @var \ArrayObject<int, LineData> The coverage data. */
   private \ArrayObject $data;
 
   /** @var int The number of lines found. */
@@ -50,7 +50,7 @@ class LineCoverage implements \JsonSerializable {
 
   /**
    * Gets the coverage data.
-   * @return \ArrayObject The coverage data.
+   * @return \ArrayObject<int, LineData> The coverage data.
    */
   function getData(): \ArrayObject {
     return $this->data;

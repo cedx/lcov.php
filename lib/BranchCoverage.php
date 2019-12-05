@@ -4,7 +4,7 @@ namespace Lcov;
 /** Provides the coverage data of branches. */
 class BranchCoverage implements \JsonSerializable {
 
-  /** @var \ArrayObject The coverage data. */
+  /** @var \ArrayObject<int, BranchData> The coverage data. */
   private \ArrayObject $data;
 
   /** @var int The number of branches found. */
@@ -50,7 +50,7 @@ class BranchCoverage implements \JsonSerializable {
 
   /**
    * Gets the coverage data.
-   * @return \ArrayObject The coverage data.
+   * @return \ArrayObject<int, BranchData> The coverage data.
    */
   function getData(): \ArrayObject {
     return $this->data;

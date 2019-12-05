@@ -4,7 +4,7 @@ namespace Lcov;
 /** Provides the coverage data of a source file. */
 class Report implements \JsonSerializable {
 
-  /** @var \ArrayObject The record list. */
+  /** @var \ArrayObject<int, Record> The record list. */
   private \ArrayObject $records;
 
   /** @var string The test name. */
@@ -150,7 +150,7 @@ class Report implements \JsonSerializable {
 
   /**
    * Gets the record list.
-   * @return \ArrayObject The record list.
+   * @return \ArrayObject<int, Record> The record list.
    */
   function getRecords(): \ArrayObject {
     return $this->records;
