@@ -18,14 +18,16 @@ class BranchCoverageTest extends TestCase {
 
     it('should return an initialized instance for a non-empty map', function() {
       $coverage = BranchCoverage::fromJson((object) ['data' => [(object) ['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
+      expect($coverage->getFound())->to->equal(23);
+      expect($coverage->getHit())->to->equal(11);
 
       $entries = $coverage->getData();
       expect($entries)->to->have->lengthOf(1);
-      expect($entries[0])->to->be->an->instanceOf(BranchData::class);
-      expect($entries[0]->getLineNumber())->to->equal(127);
 
-      expect($coverage->getFound())->to->equal(23);
-      expect($coverage->getHit())->to->equal(11);
+      /** @var BranchData $entry */
+      $entry = $entries[0];
+      expect($entry)->to->be->an->instanceOf(BranchData::class);
+      expect($entry->getLineNumber())->to->equal(127);
     });
   }
 

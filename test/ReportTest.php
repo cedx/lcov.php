@@ -12,6 +12,15 @@ class ReportTest extends TestCase {
     $report = Report::fromCoverage((string) @file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
+    /** @var Record $firstRecord */
+    $firstRecord = $records[0];
+
+    /** @var Record $secondRecord */
+    $secondRecord = $records[1];
+
+    /** @var Record $thirdRecord */
+    $thirdRecord = $records[2];
+
     it('should have a test name', function() use ($report) {
       expect($report->getTestName())->to->equal('Example');
     });
@@ -32,8 +41,11 @@ class ReportTest extends TestCase {
 
       $data = $branches->getData();
       expect($data)->to->have->lengthOf(4);
-      expect($data[0])->to->be->an->instanceOf(BranchData::class);
-      expect($data[0]->getLineNumber())->to->equal(8);
+
+      /** @var BranchData $branch */
+      $branch = $data[0];
+      expect($branch)->to->be->an->instanceOf(BranchData::class);
+      expect($branch->getLineNumber())->to->equal(8);
     });
 
     it('should have detailed function coverage', function() use ($records) {
@@ -44,8 +56,11 @@ class ReportTest extends TestCase {
 
       $data = $functions->getData();
       expect($data)->to->have->lengthOf(1);
-      expect($data[0])->to->be->an->instanceOf(FunctionData::class);
-      expect($data[0]->getFunctionName())->to->equal('func1');
+
+      /** @var FunctionData $function */
+      $function = $data[0];
+      expect($function)->to->be->an->instanceOf(FunctionData::class);
+      expect($function->getFunctionName())->to->equal('func1');
     });
 
     it('should have detailed line coverage', function() use ($records) {
@@ -56,8 +71,11 @@ class ReportTest extends TestCase {
 
       $data = $lines->getData();
       expect($data)->to->have->lengthOf(9);
-      expect($data[0])->to->be->an->instanceOf(LineData::class);
-      expect($data[0]->getChecksum())->to->equal('5kX7OTfHFcjnS98fjeVqNA');
+
+      /** @var LineData $line */
+      $line = $data[0];
+      expect($line)->to->be->an->instanceOf(LineData::class);
+      expect($line->getChecksum())->to->equal('5kX7OTfHFcjnS98fjeVqNA');
     });
 
     it('should throw an error if the report is invalid or empty', function() {
