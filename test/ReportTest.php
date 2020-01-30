@@ -12,30 +12,33 @@ class ReportTest extends TestCase {
     $report = Report::fromCoverage((string) @file_get_contents('test/fixtures/lcov.info'));
     $records = $report->getRecords();
 
-    /** @var Record $firstRecord */
-    $firstRecord = $records[0];
-
-    /** @var Record $secondRecord */
-    $secondRecord = $records[1];
-
-    /** @var Record $thirdRecord */
-    $thirdRecord = $records[2];
-
     it('should have a test name', function() use ($report) {
       expect($report->getTestName())->to->equal('Example');
     });
 
     it('should contain three records', function() use ($records) {
       expect($records)->to->have->lengthOf(3);
-      expect($records[0])->to->be->an->instanceOf(Record::class);
-      expect($records[0]->getSourceFile())->to->equal('/home/cedx/lcov.php/fixture.php');
-      expect($records[1]->getSourceFile())->to->equal('/home/cedx/lcov.php/func1.php');
-      expect($records[2]->getSourceFile())->to->equal('/home/cedx/lcov.php/func2.php');
+
+      /** @var Record $firstRecord */
+      $firstRecord = $records[0];
+      expect($firstRecord)->to->be->an->instanceOf(Record::class);
+      expect($firstRecord->getSourceFile())->to->equal('/home/cedx/lcov.php/fixture.php');
+
+      /** @var Record $secondRecord */
+      $secondRecord = $records[1];
+      expect($secondRecord->getSourceFile())->to->equal('/home/cedx/lcov.php/func1.php');
+
+      /** @var Record $thirdRecord */
+      $thirdRecord = $records[2];
+      expect($thirdRecord->getSourceFile())->to->equal('/home/cedx/lcov.php/func2.php');
     });
 
     it('should have detailed branch coverage', function() use ($records) {
+      /** @var Record $record */
+      $record = $records[1];
+
       /** @var BranchCoverage $branches */
-      $branches = $records[1]->getBranches();
+      $branches = $record->getBranches();
       expect($branches->getFound())->to->equal(4);
       expect($branches->getHit())->to->equal(4);
 
@@ -49,8 +52,11 @@ class ReportTest extends TestCase {
     });
 
     it('should have detailed function coverage', function() use ($records) {
+      /** @var Record $record */
+      $record = $records[1];
+
       /** @var FunctionCoverage $functions */
-      $functions = $records[1]->getFunctions();
+      $functions = $record->getFunctions();
       expect($functions->getFound())->to->equal(1);
       expect($functions->getHit())->to->equal(1);
 
@@ -64,8 +70,11 @@ class ReportTest extends TestCase {
     });
 
     it('should have detailed line coverage', function() use ($records) {
+      /** @var Record $record */
+      $record = $records[1];
+
       /** @var LineCoverage $lines */
-      $lines = $records[1]->getLines();
+      $lines = $record->getLines();
       expect($lines->getFound())->to->equal(9);
       expect($lines->getHit())->to->equal(9);
 

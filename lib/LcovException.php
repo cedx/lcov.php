@@ -17,8 +17,8 @@ class LcovException extends \UnexpectedValueException {
    * @param int $offset The offset in `$source` where the error was detected.
    * @param \Throwable|null $previous The previous exception used for the exception chaining.
    */
-  function __construct($message, string $source = '', int $offset = -1, ?\Throwable $previous = null) {
-    assert(mb_strlen($message) > 0);
+  function __construct($message, string $source = '', int $offset = 0, ?\Throwable $previous = null) {
+    assert($offset >= 0);
     parent::__construct($message, 0, $previous);
     $this->offset = $offset;
     $this->source = $source;

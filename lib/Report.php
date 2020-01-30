@@ -130,7 +130,7 @@ class Report implements \JsonSerializable {
     }
 
     catch (\Throwable $e) {
-      throw new LcovException('The coverage data has an invalid LCOV format', $coverage, -1, $e);
+      throw new LcovException('The coverage data has an invalid LCOV format', $coverage, 0, $e);
     }
 
     if (!count($records)) throw new LcovException('The coverage data is empty', $coverage);

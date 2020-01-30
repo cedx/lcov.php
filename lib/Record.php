@@ -24,7 +24,6 @@ class Record implements \JsonSerializable {
    * @param LineCoverage|null $lines The line coverage.
    */
   function __construct(string $sourceFile, ?FunctionCoverage $functions = null, ?BranchCoverage $branches = null, ?LineCoverage $lines = null) {
-    assert(mb_strlen($sourceFile) > 0);
     $this->sourceFile = $sourceFile;
     $this->setFunctions($functions)->setBranches($branches)->setLines($lines);
   }
