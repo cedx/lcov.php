@@ -20,7 +20,8 @@ class LineData implements \JsonSerializable {
    * @param string $checksum The data checksum.
    */
   function __construct(int $lineNumber, int $executionCount = 0, string $checksum = '') {
-    $this->lineNumber = max(0, $lineNumber);
+    assert($lineNumber >= 0);
+    $this->lineNumber = $lineNumber;
     $this->setExecutionCount($executionCount);
     $this->checksum = $checksum;
   }
@@ -90,7 +91,8 @@ class LineData implements \JsonSerializable {
    * @return $this This instance.
    */
   function setExecutionCount(int $value): self {
-    $this->executionCount = max(0, $value);
+    assert($value >= 0);
+    $this->executionCount = $value;
     return $this;
   }
 }

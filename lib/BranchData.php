@@ -24,9 +24,13 @@ class BranchData implements \JsonSerializable {
    * @param int $taken A number indicating how often this branch was taken.
    */
   function __construct(int $lineNumber, int $blockNumber, int $branchNumber, int $taken = 0) {
-    $this->lineNumber = max(0, $lineNumber);
-    $this->blockNumber = max(0, $blockNumber);
-    $this->branchNumber = max(0, $branchNumber);
+    assert($lineNumber >= 0);
+    assert($blockNumber >= 0);
+    assert($branchNumber >= 0);
+
+    $this->lineNumber = $lineNumber;
+    $this->blockNumber = $blockNumber;
+    $this->branchNumber = $branchNumber;
     $this->setTaken($taken);
   }
 
@@ -105,7 +109,8 @@ class BranchData implements \JsonSerializable {
    * @return $this This instance.
    */
   function setTaken(int $value): self {
-    $this->taken = max(0, $value);
+    assert($value >= 0);
+    $this->taken = $value;
     return $this;
   }
 }
