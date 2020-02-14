@@ -3,7 +3,7 @@ site_description: Parse and format LCOV coverage reports, in PHP.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://dev.belin.io/lcov.php
 
-docs_dir: ../doc
+docs_dir: .
 site_dir: ../web
 
 repo_name: GitHub
