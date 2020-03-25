@@ -82,14 +82,8 @@ class ReportTest extends TestCase {
     assertThat($line->getChecksum(), equalTo('5kX7OTfHFcjnS98fjeVqNA'));
 
     // It should throw an exception if the report is invalid or empty.
-    try {
-      Report::fromCoverage('TN:Example');
-      Assert::fail('Exception not thrown');
-    }
-
-    catch (\Throwable $e) {
-      assertThat($e, isInstanceOf(LcovException::class));
-    }
+    $this->expectException(LcovException::class);
+    Report::fromCoverage('TN:Example');
   }
 
   /** @testdox ::fromJson() */
