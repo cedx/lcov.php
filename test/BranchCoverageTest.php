@@ -1,64 +1,59 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-use function PHPUnit\Expect\{expect, it};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf, isType, logicalAnd};
 
 /** @testdox Lcov\BranchCoverage */
 class BranchCoverageTest extends TestCase {
 
   /** @testdox ::fromJson() */
   function testFromJson(): void {
-    it('should return an instance with default values for an empty map', function() {
-      $coverage = BranchCoverage::fromJson(new \stdClass);
-      expect($coverage->getData())->to->be->empty;
-      expect($coverage->getFound())->to->equal(0);
-      expect($coverage->getHit())->to->equal(0);
-    });
+    // It should return an instance with default values for an empty map.
+    $coverage = BranchCoverage::fromJson(new \stdClass);
+    assertThat($coverage->getData(), isEmpty());
+    assertThat($coverage->getFound(), equalTo(0));
+    assertThat($coverage->getHit(), equalTo(0));
 
-    it('should return an initialized instance for a non-empty map', function() {
-      $coverage = BranchCoverage::fromJson((object) ['data' => [(object) ['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
-      expect($coverage->getFound())->to->equal(23);
-      expect($coverage->getHit())->to->equal(11);
+    // It should return an initialized instance for a non-empty map.
+    $coverage = BranchCoverage::fromJson((object) ['data' => [(object) ['lineNumber' => 127]], 'found' => 23, 'hit' => 11]);
+    assertThat($coverage->getFound(), equalTo(23));
+    assertThat($coverage->getHit(), equalTo(11));
 
-      $entries = $coverage->getData();
-      expect($entries)->to->have->lengthOf(1);
+    $entries = $coverage->getData();
+    assertThat($entries, countOf(1));
 
-      /** @var BranchData $entry */
-      $entry = $entries[0];
-      expect($entry)->to->be->an->instanceOf(BranchData::class);
-      expect($entry->getLineNumber())->to->equal(127);
-    });
+    /** @var BranchData $entry */
+    $entry = $entries[0];
+    assertThat($entry, isInstanceOf(BranchData::class));
+    assertThat($entry->getLineNumber(), equalTo(127));
   }
 
   /** @testdox ->jsonSerialize() */
   function testJsonSerialize(): void {
-    it('should return a map with default values for a newly created instance', function() {
-      $map = (new BranchCoverage)->jsonSerialize();
-      expect(get_object_vars($map))->to->have->lengthOf(3);
-      expect($map->data)->to->be->an('array')->and->be->empty;
-      expect($map->found)->to->equal(0);
-      expect($map->hit)->to->equal(0);
-    });
+    // It should return a map with default values for a newly created instance.
+    $map = (new BranchCoverage)->jsonSerialize();
+    assertThat(get_object_vars($map), countOf(3));
+    assertThat($map->data, logicalAnd(isType('array'), isEmpty()));
+    assertThat($map->found, equalTo(0));
+    assertThat($map->hit, equalTo(0));
 
-    it('should return a non-empty map for an initialized instance', function() {
-      $map = (new BranchCoverage(23, 11, [new BranchData(0, 0, 0)]))->jsonSerialize();
-      expect(get_object_vars($map))->to->have->lengthOf(3);
-      expect($map->data)->to->be->an('array')->and->have->lengthOf(1);
-      expect($map->data[0]->lineNumber)->to->equal(0);
-      expect($map->found)->to->equal(23);
-      expect($map->hit)->to->equal(11);
-    });
+    // It should return a non-empty map for an initialized instance.
+    $map = (new BranchCoverage(23, 11, [new BranchData(0, 0, 0)]))->jsonSerialize();
+    assertThat(get_object_vars($map), countOf(3));
+    assertThat($map->data, logicalAnd(isType('array'), countOf(1)));
+    assertThat($map->data[0]->lineNumber, equalTo(0));
+    assertThat($map->found, equalTo(23));
+    assertThat($map->hit, equalTo(11));
   }
 
   /** @testdox ->__toString() */
   function testToString(): void {
-    it('should return a format like "BRF:<found>\\n,BRH:<hit>"', function() {
-      expect((string) new BranchCoverage)->to->equal(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0'));
+    // It should return a format like "BRF:<found>\\n,BRH:<hit>".
+    assertThat((string) new BranchCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0')));
 
-      $data = new BranchData(127, 3, 2);
-      $coverage = new BranchCoverage(23, 11, [$data]);
-      expect((string) $coverage)->to->equal(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}BRF:23{{eol}}BRH:11"));
-    });
+    $data = new BranchData(127, 3, 2);
+    $coverage = new BranchCoverage(23, 11, [$data]);
+    assertThat((string) $coverage, equalTo(str_replace('{{eol}}', PHP_EOL, "$data{{eol}}BRF:23{{eol}}BRH:11")));
   }
 }
