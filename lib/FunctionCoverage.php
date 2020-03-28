@@ -30,7 +30,7 @@ class FunctionCoverage implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function __toString(): string {
-    $data = $this->getData()->getArrayCopy();
+    $data = (array) $this->getData();
     return implode(PHP_EOL, [
       ...array_map(fn(FunctionData $item) => $item->toString(true), $data),
       ...array_map(fn(FunctionData $item) => $item->toString(false), $data),
@@ -84,7 +84,7 @@ class FunctionCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(fn(FunctionData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
+      'data' => array_map(fn(FunctionData $item) => $item->jsonSerialize(), (array) $this->getData())
     ];
   }
 

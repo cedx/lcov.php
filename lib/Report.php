@@ -27,7 +27,7 @@ class Report implements \JsonSerializable {
   function __toString(): string {
     $token = Token::testName;
     $lines = mb_strlen($testName = $this->getTestName()) ? ["$token:$testName"] : [];
-    return implode(PHP_EOL, [...$lines, ...array_map('strval', $this->getRecords()->getArrayCopy())]);
+    return implode(PHP_EOL, [...$lines, ...array_map('strval', (array) $this->getRecords())]);
   }
 
   /**
@@ -172,7 +172,7 @@ class Report implements \JsonSerializable {
   function jsonSerialize(): \stdClass {
     return (object) [
       'testName' => $this->getTestName(),
-      'records' => array_map(fn(Record $item) => $item->jsonSerialize(), $this->getRecords()->getArrayCopy())
+      'records' => array_map(fn(Record $item) => $item->jsonSerialize(), (array) $this->getRecords())
     ];
   }
 

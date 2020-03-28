@@ -30,7 +30,7 @@ class LineCoverage implements \JsonSerializable {
    * @return string The string representation of this object.
    */
   function __toString(): string {
-    $lines = array_map('strval', $this->getData()->getArrayCopy());
+    $lines = array_map('strval', (array) $this->getData());
     $lines[] = Token::linesFound.":{$this->getFound()}";
     $lines[] = Token::linesHit.":{$this->getHit()}";
     return implode(PHP_EOL, $lines);
@@ -81,7 +81,7 @@ class LineCoverage implements \JsonSerializable {
     return (object) [
       'found' => $this->getFound(),
       'hit' => $this->getHit(),
-      'data' => array_map(fn(LineData $item) => $item->jsonSerialize(), $this->getData()->getArrayCopy())
+      'data' => array_map(fn(LineData $item) => $item->jsonSerialize(), (array) $this->getData())
     ];
   }
 
