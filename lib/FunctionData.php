@@ -21,9 +21,9 @@ class FunctionData implements \JsonSerializable {
    */
   function __construct(string $functionName, int $lineNumber, int $executionCount = 0) {
     assert($lineNumber >= 0);
+    $this->executionCount = $executionCount;
     $this->functionName = $functionName;
     $this->lineNumber = $lineNumber;
-    $this->setExecutionCount($executionCount);
   }
 
   /**

@@ -17,7 +17,7 @@ class Report implements \JsonSerializable {
    */
   function __construct(string $testName = '', array $records = []) {
     $this->records = new \ArrayObject($records);
-    $this->setTestName($testName);
+    $this->testName = $testName;
   }
 
   /**

@@ -21,7 +21,8 @@ class LineCoverage implements \JsonSerializable {
    */
   function __construct(int $found = 0, int $hit = 0, array $data = []) {
     $this->data = new \ArrayObject($data);
-    $this->setFound($found)->setHit($hit);
+    $this->found = $found;
+    $this->hit = $hit;
   }
 
   /**
