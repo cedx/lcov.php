@@ -49,7 +49,7 @@ class BranchCoverageTest extends TestCase {
 
   /** @testdox ->__toString() */
   function testToString(): void {
-    // It should return a format like "BRF:<found>\\n,BRH:<hit>".
+    // It should return a format like "BRF:<found>\\nBRH:<hit>".
     assertThat((string) new BranchCoverage, equalTo(str_replace('{{eol}}', PHP_EOL, 'BRF:0{{eol}}BRH:0')));
 
     $data = new BranchData(127, 3, 2);

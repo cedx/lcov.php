@@ -57,7 +57,7 @@ class RecordTest extends TestCase {
 
   /** @testdox ->__toString() */
   function testToString(): void {
-    // It should return a format like "SF:<sourceFile>\\n,end_of_record".
+    // It should return a format like "SF:<sourceFile>\\nend_of_record".
     assertThat((string) new Record(''), equalTo(str_replace('{{eol}}', PHP_EOL, 'SF:{{eol}}end_of_record')));
 
     $record = (new Record('/home/cedx/lcov.php'))
