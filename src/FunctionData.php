@@ -20,7 +20,6 @@ class FunctionData implements \JsonSerializable {
    * @param int $executionCount The execution count.
    */
   function __construct(string $functionName, int $lineNumber, int $executionCount = 0) {
-    assert(mb_strlen($functionName) >= 0);
     assert($lineNumber >= 0);
     $this->functionName = $functionName;
     $this->lineNumber = $lineNumber;
