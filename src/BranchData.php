@@ -31,7 +31,7 @@ class BranchData implements \JsonSerializable {
     $this->lineNumber = $lineNumber;
     $this->blockNumber = $blockNumber;
     $this->branchNumber = $branchNumber;
-    $this->taken = $taken;
+    $this->setTaken($taken);
   }
 
   /**

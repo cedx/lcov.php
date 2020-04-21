@@ -22,8 +22,8 @@ class LineData implements \JsonSerializable {
   function __construct(int $lineNumber, int $executionCount = 0, string $checksum = '') {
     assert($lineNumber >= 0);
     $this->checksum = $checksum;
-    $this->executionCount = $executionCount;
     $this->lineNumber = $lineNumber;
+    $this->setExecutionCount($executionCount);
   }
 
   /**
