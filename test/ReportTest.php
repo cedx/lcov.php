@@ -16,27 +16,22 @@ class ReportTest extends TestCase {
 
     // It should contain three records.
     $records = $report->getRecords();
+    [$firstRecord, $secondRecord, $thirdRecord] = $records;
     assertThat($records, countOf(3));
 
     /** @var Record $firstRecord */
-    $firstRecord = $records[0];
     assertThat($firstRecord, isInstanceOf(Record::class));
     assertThat($firstRecord->getSourceFile(), equalTo('/home/cedx/lcov.php/fixture.php'));
 
     /** @var Record $secondRecord */
-    $secondRecord = $records[1];
     assertThat($secondRecord->getSourceFile(), equalTo('/home/cedx/lcov.php/func1.php'));
 
     /** @var Record $thirdRecord */
-    $thirdRecord = $records[2];
     assertThat($thirdRecord->getSourceFile(), equalTo('/home/cedx/lcov.php/func2.php'));
 
     // It should have detailed branch coverage.
-    /** @var Record $record */
-    $record = $records[1];
-
     /** @var BranchCoverage $branches */
-    $branches = $record->getBranches();
+    $branches = $secondRecord->getBranches();
     assertThat($branches->getFound(), equalTo(4));
     assertThat($branches->getHit(), equalTo(4));
 
@@ -44,16 +39,13 @@ class ReportTest extends TestCase {
     assertThat($data, countOf(4));
 
     /** @var BranchData $branch */
-    $branch = $data[0];
+    [$branch] = $data;
     assertThat($branch, isInstanceOf(BranchData::class));
     assertThat($branch->getLineNumber(), equalTo(8));
 
     // It should have detailed function coverage.
-    /** @var Record $record */
-    $record = $records[1];
-
     /** @var FunctionCoverage $functions */
-    $functions = $record->getFunctions();
+    $functions = $secondRecord->getFunctions();
     assertThat($functions->getFound(), equalTo(1));
     assertThat($functions->getHit(), equalTo(1));
 
@@ -61,16 +53,13 @@ class ReportTest extends TestCase {
     assertThat($data, countOf(1));
 
     /** @var FunctionData $function */
-    $function = $data[0];
+    [$function] = $data;
     assertThat($function, isInstanceOf(FunctionData::class));
     assertThat($function->getFunctionName(), equalTo('func1'));
 
     // It should have detailed line coverage.
-    /** @var Record $record */
-    $record = $records[1];
-
     /** @var LineCoverage $lines */
-    $lines = $record->getLines();
+    $lines = $secondRecord->getLines();
     assertThat($lines->getFound(), equalTo(9));
     assertThat($lines->getHit(), equalTo(9));
 
@@ -78,7 +67,7 @@ class ReportTest extends TestCase {
     assertThat($data, countOf(9));
 
     /** @var LineData $line */
-    $line = $data[0];
+    [$line] = $data;
     assertThat($line, isInstanceOf(LineData::class));
     assertThat($line->getChecksum(), equalTo('5kX7OTfHFcjnS98fjeVqNA'));
 

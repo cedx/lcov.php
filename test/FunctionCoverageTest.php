@@ -24,7 +24,7 @@ class FunctionCoverageTest extends TestCase {
     assertThat($entries, countOf(1));
 
     /** @var FunctionData $entry */
-    $entry = $entries[0];
+    [$entry] = $entries;
     assertThat($entry, isInstanceOf(FunctionData::class));
     assertThat($entry->getLineNumber(), equalTo(127));
   }

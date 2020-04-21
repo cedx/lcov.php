@@ -24,7 +24,7 @@ class BranchCoverageTest extends TestCase {
     assertThat($entries, countOf(1));
 
     /** @var BranchData $entry */
-    $entry = $entries[0];
+    [$entry] = $entries;
     assertThat($entry, isInstanceOf(BranchData::class));
     assertThat($entry->getLineNumber(), equalTo(127));
   }

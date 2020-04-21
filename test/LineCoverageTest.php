@@ -24,7 +24,7 @@ class LineCoverageTest extends TestCase {
     assertThat($entries, countOf(1));
 
     /** @var LineData $entry */
-    $entry = $entries[0];
+    [$entry] = $entries;
     assertThat($entry, isInstanceOf(LineData::class));
     assertThat($entry->getLineNumber(), equalTo(127));
   }
