@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 use PHPUnit\Framework\{TestCase};
+use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 
 /** @testdox Lcov\LineCoverage */
 class LineCoverageTest extends TestCase {

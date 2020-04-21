@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
+use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf, isType};
-use PHPUnit\Framework\{Assert, TestCase};
 
 /** @testdox Lcov\Report */
 class ReportTest extends TestCase {
