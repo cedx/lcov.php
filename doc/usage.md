@@ -15,7 +15,7 @@ The `Report::fromCoverage()` static method parses a [LCOV](http://ltp.sourceforg
 use Lcov\{LcovException, Report};
 
 try {
-  $coverage = @file_get_contents('lcov.info');
+  $coverage = file_get_contents('/path/to/lcov.info');
   $report = Report::fromCoverage($coverage);
   
   $count = count($report->getRecords());

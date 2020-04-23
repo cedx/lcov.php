@@ -19,7 +19,7 @@ function formatReport(): void {
 /** Parses a LCOV report to coverage data. */
 function parseReport(): void {
   try {
-    $coverage = @file_get_contents('lcov.info');
+    $coverage = file_get_contents('/path/to/lcov.info');
     $report = Report::fromCoverage($coverage);
 
     $count = count($report->getRecords());
