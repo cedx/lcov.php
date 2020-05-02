@@ -96,7 +96,7 @@ class FunctionData implements \JsonSerializable {
 
   /**
    * Returns a string representation of this object.
-   * @param bool $asDefinition Value indicating whether to return the function definition (e.g. name and line number) instead of its data (e.g. name and execution count).
+   * @param bool $asDefinition Value indicating whether to return the function definition (i.e. name and line number) instead of its data (i.e. name and execution count).
    * @return string The string representation of this object.
    */
   function toString(bool $asDefinition = false): string {
