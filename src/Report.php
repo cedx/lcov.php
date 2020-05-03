@@ -41,8 +41,7 @@ class Report implements \JsonSerializable {
     $records = $report->getRecords();
 
     try {
-      /** @var Record $record */
-      $record = null;
+      $record = new Record('');
       foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
         $line = trim($line);
         if (!mb_strlen($line)) continue;
