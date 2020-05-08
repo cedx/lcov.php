@@ -4,6 +4,7 @@
   "license": "MIT",
   "name": "cedx/lcov",
   "type": "library",
+  "version": "8.2.0",
   "authors": [
     {"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
   ],
@@ -34,7 +35,6 @@
     "ext-spl": "*"
   },
   "require-dev": {
-    "consolidation/robo": "^2.0.3",
     "phpstan/phpstan": "^0.12.23",
     "phpunit/phpunit": "^9.1.4"
   },
