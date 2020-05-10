@@ -125,6 +125,9 @@ class Report implements \JsonSerializable {
           case Token::endOfRecord:
             $records->append($record);
             break;
+
+          default:
+            throw new \DomainException('Unknown token');
         }
       }
     }
