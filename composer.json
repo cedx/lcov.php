@@ -1,49 +1,49 @@
 {
-  "description": "Parse and format to LCOV your code coverage reports. The best way to share your code coverage stats.",
-  "homepage": "https://docs.belin.io/lcov.php",
-  "license": "MIT",
-  "name": "cedx/lcov",
-  "type": "library",
-  "version": "8.2.0",
-  "authors": [
-    {"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
-  ],
-  "autoload": {
-    "psr-4": {"Lcov\\": "src/"}
-  },
-  "autoload-dev": {
-    "psr-4": {"Lcov\\": "test/"}
-  },
-  "config": {
-    "optimize-autoloader": true
-  },
-  "funding": [
-    {"type": "patreon", "url": "https://www.patreon.com/cedx"}
-  ],
-  "keywords": [
-    "coverage",
-    "formatter",
-    "lcov",
-    "parser",
-    "test"
-  ],
-  "require": {
-    "php": ">=7.4.0",
-    "ext-json": "*",
-    "ext-mbstring": "*",
-    "ext-pcre": "*",
-    "ext-spl": "*"
-  },
-  "require-dev": {
-    "phpstan/phpstan": "^0.12.25",
-    "phpunit/phpunit": "^9.1.4"
-  },
-  "scripts": {
-    "coverage": "composer global exec coveralls var/coverage.xml",
-    "test": "phpunit --configuration=etc/phpunit.xml"
-  },
-  "support": {
-    "docs": "https://api.belin.io/lcov.php",
-    "issues": "https://git.belin.io/cedx/lcov.php/issues"
-  }
+	"description": "Parse and format to LCOV your code coverage reports. The best way to share your code coverage stats.",
+	"homepage": "https://docs.belin.io/lcov.php",
+	"license": "MIT",
+	"name": "cedx/lcov",
+	"type": "library",
+	"version": "8.2.0",
+	"authors": [
+		{"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
+	],
+	"autoload": {
+		"psr-4": {"Lcov\\": "src/"}
+	},
+	"autoload-dev": {
+		"psr-4": {"Lcov\\": "test/"}
+	},
+	"config": {
+		"optimize-autoloader": true
+	},
+	"funding": [
+		{"type": "patreon", "url": "https://www.patreon.com/cedx"}
+	],
+	"keywords": [
+		"coverage",
+		"formatter",
+		"lcov",
+		"parser",
+		"test"
+	],
+	"require": {
+		"php": ">=7.4.0",
+		"ext-json": "*",
+		"ext-mbstring": "*",
+		"ext-pcre": "*",
+		"ext-spl": "*"
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^0.12.25",
+		"phpunit/phpunit": "^9.1.4"
+	},
+	"scripts": {
+		"coverage": "composer global exec coveralls var/coverage.xml",
+		"test": "phpunit --configuration=etc/phpunit.xml"
+	},
+	"support": {
+		"docs": "https://api.belin.io/lcov.php",
+		"issues": "https://git.belin.io/cedx/lcov.php/issues"
+	}
 }

@@ -6,7 +6,7 @@ Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage r
 ## Quick start
 Install the latest version of **LCOV Reports for PHP** with [Composer](https://getcomposer.org):
 
-```shell
+``` shell
 composer require cedx/lcov
 ```
 
