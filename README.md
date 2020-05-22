@@ -3,14 +3,17 @@
 
 Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports, in [PHP](https://www.php.net).
 
+> WARNING:  
+> This package has been renamed to `cedx/lcov.hx`, and its version number resetted. Please update your `composer.json` file.
+
 ## Documentation
-- [User guide](https://docs.belin.io/lcov.php)
-- [API reference](https://api.belin.io/lcov.php)
+- [User guide](https://docs.belin.io/lcov.hx)
+- [API reference](https://api.belin.io/lcov.hx)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/lcov.php)
-- [Packagist package](https://packagist.org/packages/cedx/lcov)
-- [Submit an issue](https://git.belin.io/cedx/lcov.php/issues)
+- [Git repository](https://git.belin.io/cedx/lcov.hx)
+- [Packagist package](https://packagist.org/packages/cedx/lcov.hx)
+- [Submit an issue](https://git.belin.io/cedx/lcov.hx/issues)
 
 ## License
-[LCOV Reports for PHP](https://docs.belin.io/lcov.php) is distributed under the MIT License.
+[LCOV Reports for PHP](https://docs.belin.io/lcov.hx) is distributed under the MIT License.

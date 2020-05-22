@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [8.3.0](https://git.belin.io/cedx/lcov.php/compare/v8.2.0...v8.3.0)
+- Deprecated this package in favor of [`cedx/lcov.hx`](https://docs.belin.io/lcov.hx).
+- Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://docs.microsoft.com/en-us/powershell) scripts.
+
 ## Version [8.2.0](https://git.belin.io/cedx/lcov.php/compare/v8.1.0...v8.2.0)
 - Updated the documentation.
 - Updated the package dependencies.

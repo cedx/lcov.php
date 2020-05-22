@@ -3,6 +3,10 @@
 
 Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage reports, in [PHP](https://www.php.net).
 
+!!! danger
+	This package has been renamed to [`cedx/lcov.hx`](https://docs.belin.io/lcov.hx), and its version number resetted.  
+	Please update your `composer.json` file.
+
 ## Quick start
 Install the latest version of **LCOV Reports for PHP** with [Composer](https://getcomposer.org):
 
