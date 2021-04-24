@@ -1,7 +1,7 @@
 {
 	"abandoned": "cedx/lcov.hx",
 	"description": "Parse and format to LCOV your code coverage reports. The best way to share your code coverage stats.",
-	"homepage": "https://docs.belin.io/lcov.php",
+	"homepage": "https://cedx.github.io/lcov.php",
 	"license": "MIT",
 	"name": "cedx/lcov",
 	"type": "library",
@@ -44,7 +44,7 @@
 		"test": "phpunit --configuration=etc/phpunit.xml"
 	},
 	"support": {
-		"docs": "https://api.belin.io/lcov.php",
-		"issues": "https://git.belin.io/cedx/lcov.php/issues"
+		"docs": "https://cedx.github.io/lcov.php/api",
+		"issues": "https://github.com/cedx/lcov.php/issues"
 	}
 }
