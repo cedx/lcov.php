@@ -1,8 +1,3 @@
----
-path: src/branch/master
-source: src/Report.php
----
-
 # Usage
 **LCOV Reports for PHP** provides a set of classes representing a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage report and its data.
 The `Lcov\Report` class, the main one, provides the parsing and formatting features.
@@ -10,7 +5,7 @@ The `Lcov\Report` class, the main one, provides the parsing and formatting featu
 ## Parse coverage data from a LCOV file
 The `Report::fromCoverage()` static method parses a [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage report provided as string, and creates a `Lcov\Report` instance giving detailed information about this coverage report:
 
-``` php
+```php
 <?php
 use Lcov\{LcovException, Report};
 
@@ -28,12 +23,11 @@ catch (LcovException $e) {
 }
 ```
 
-!!! info
-	A `Lcov\LcovException` is thrown if any error occurred while parsing the coverage report.
+?> A `Lcov\LcovException` is thrown if any error occurred while parsing the coverage report.
 
 The `Report->jsonSerialize()` instance method will return a [JSON](https://www.json.org) map like this:
 
-``` json
+```json
 {
 	"testName": "Example",
 	"records": [
@@ -68,7 +62,7 @@ The `Report->jsonSerialize()` instance method will return a [JSON](https://www.j
 Each provided class has a dedicated `__toString()` instance method returning the corresponding data formatted as [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) string.
 All you have to do is to create the adequate structure using these different classes, and to export the final result:
 
-``` php
+```php
 <?php
 use Lcov\{FunctionCoverage, LineCoverage, LineData, Record, Report};
 
