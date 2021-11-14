@@ -1,7 +1,3 @@
-/.*/
-!/.github/
-!/.vscode/
-
 /build/
 /var/
 /vendor/
@@ -9,4 +5,3 @@
 /*.code-workspace
 /*.iml
 /**/.DS_Store
-/composer.lock
