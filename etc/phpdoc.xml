@@ -8,7 +8,7 @@
 	<title>LCOV Reports for PHP</title>
 	<paths>
 		<cache>../var/phpdoc</cache>
-		<output>../docs/api</output>
+		<output>../docs</output>
 	</paths>
 	<version number="8.3.0">
 		<api>
