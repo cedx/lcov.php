@@ -1,7 +1,7 @@
 {
-	"abandoned": "cedx/lcov.hx",
+	"abandoned": true,
 	"description": "Parse and format to LCOV your code coverage reports. The best way to share your code coverage stats.",
-	"homepage": "https://cedx.github.io/lcov.php",
+	"homepage": "https://bitbucket.org/cedx/lcov.php",
 	"license": "MIT",
 	"name": "cedx/lcov",
 	"type": "library",
@@ -16,10 +16,11 @@
 		"psr-4": {"Lcov\\": "test/"}
 	},
 	"config": {
-		"optimize-autoloader": true
+		"optimize-autoloader": true,
+		"platform-check": false
 	},
 	"funding": [
-		{"type": "patreon", "url": "https://www.patreon.com/cedx"}
+		{"type": "github", "url": "https://github.com/sponsors/cedx"}
 	],
 	"keywords": [
 		"coverage",
