@@ -1,23 +1,23 @@
 {
-	"abandoned": true,
-	"description": "Parse and format to LCOV your code coverage reports. The best way to share your code coverage stats.",
-	"homepage": "https://bitbucket.org/cedx/lcov.php",
+	"description": "Parse and format to LCOV your code coverage reports.",
+	"homepage": "https://github.com/cedx/lcov.php",
 	"license": "MIT",
 	"name": "cedx/lcov",
 	"type": "library",
-	"version": "8.3.0",
+	"version": "9.0.0",
 	"authors": [
 		{"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
 	],
 	"autoload": {
-		"psr-4": {"Lcov\\": "src/"}
+		"psr-4": {"Lcov\\": "lib/"}
 	},
 	"autoload-dev": {
 		"psr-4": {"Lcov\\": "test/"}
 	},
 	"config": {
 		"optimize-autoloader": true,
-		"platform-check": false
+		"platform-check": false,
+		"process-timeout": 0
 	},
 	"funding": [
 		{"type": "github", "url": "https://github.com/sponsors/cedx"}
@@ -30,21 +30,21 @@
 		"test"
 	],
 	"require": {
-		"php": ">=7.4.0",
+		"php": ">=8.1.0",
 		"ext-json": "*",
 		"ext-mbstring": "*",
 		"ext-pcre": "*",
 		"ext-spl": "*"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^9.5.10"
+		"phpunit/phpunit": "^9.5.20"
 	},
 	"scripts": {
-		"coverage": "composer global exec coveralls var/coverage.xml",
+		"coverage": "@php TODO",
 		"test": "phpunit --configuration=etc/phpunit.xml"
 	},
 	"support": {
-		"docs": "https://bitbucket.org/cedx/lcov.php/wiki",
-		"issues": "https://bitbucket.org/cedx/lcov.php/issues"
+		"docs": "https://github.com/cedx/lcov.php/wiki",
+		"issues": "https://github.com/cedx/lcov.php/issues"
 	}
 }

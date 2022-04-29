@@ -24,13 +24,12 @@ jobs:
       - name: Install dependencies
         run: composer install
       - name: Run tests
-        env:
-          AKISMET_API_KEY: ${{secrets.AKISMET_API_KEY}}
         run: composer run test
-      - name: Collect code coverage
+      # - name: Collect code coverage
+      #   run: composer run lcov
+      - name: Upload code coverage
         if: success()
-        env:
-          COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        run: |
-          composer global require php-coveralls/php-coveralls
-          php-coveralls --coverage_clover=var/coverage.xml --json_path=var/coverage.json
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          path-to-lcov: var/lcov.info

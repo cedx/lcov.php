@@ -1,7 +1,4 @@
-/build/
+/**/.DS_Store
+/share/
 /var/
 /vendor/
-
-/*.code-workspace
-/*.iml
-/**/.DS_Store
