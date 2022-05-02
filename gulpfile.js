@@ -28,7 +28,7 @@ export async function install() {
 
 /** Performs the static analysis of source code. */
 export async function lint() {
-	// TODO: phpstan!!!
+	await exec("vendor/bin/phpstan", ["analyse", "--configuration=etc/phpstan.neon"]);
 	return exec("tsc", ["--project", "jsconfig.json"]);
 }
 

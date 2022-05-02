@@ -14,7 +14,7 @@ class ReportTest extends TestCase {
 	 */
 	function testFromString(): void {
 		// It should have a test name.
-		$report = Report::fromString(file_get_contents("test/fixtures/lcov.info"));
+		$report = Report::fromString(file_get_contents("test/fixtures/lcov.info") ?: "");
 		assertThat($report->testName, equalTo("Example"));
 
 		// It should contain three files.
@@ -25,6 +25,7 @@ class ReportTest extends TestCase {
 		assertThat($report->files[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
 
 		// It should have detailed branch coverage.
+		/** @var BranchCoverage $branches */
 		$branches = $report->files[1]->branches;
 		assertThat($branches->data, countOf(4));
 		assertThat($branches->found, equalTo(4));
@@ -35,6 +36,7 @@ class ReportTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(8));
 
 		// It should have detailed function coverage.
+		/** @var FunctionCoverage $functions */
 		$functions = $report->files[1]->functions;
 		assertThat($functions->data, countOf(1));
 		assertThat($functions->found, equalTo(1));
@@ -45,6 +47,7 @@ class ReportTest extends TestCase {
 		assertThat($data->functionName, equalTo("func1"));
 
 		// It should have detailed line coverage.
+		/** @var LineCoverage $lines */
 		$lines = $report->files[1]->lines;
 		assertThat($lines->data, countOf(9));
 		assertThat($lines->found, equalTo(9));
