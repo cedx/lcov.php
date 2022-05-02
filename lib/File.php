@@ -49,12 +49,11 @@ class File implements \JsonSerializable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$token = Token::sourceFile;
-		$output = ["$token:{$this->path}"];
+		$output = [Token::sourceFile->value.":{$this->path}"];
 		if ($this->functions) $output[] = (string) $this->functions;
 		if ($this->branches) $output[] = (string) $this->branches;
 		if ($this->lines) $output[] = (string) $this->lines;
-		$output[] = Token::endOfRecord;
+		$output[] = Token::endOfRecord->value;
 		return implode(PHP_EOL, $output);
 	}
 

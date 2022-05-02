@@ -33,8 +33,7 @@ class Report implements \JsonSerializable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$token = Token::testName;
-		$lines = $this->testName ? ["$token:{$this->testName}"] : [];
+		$lines = $this->testName ? [Token::testName->value.":{$this->testName}"] : [];
 		return implode(PHP_EOL, [...$lines, ...array_map("strval", $this->files)]);
 	}
 
@@ -55,9 +54,10 @@ class Report implements \JsonSerializable {
 			if (!mb_strlen($line)) continue;
 
 			$parts = explode(":", $line);
-			if (count($parts) < 2 && $parts[0] != Token::endOfRecord) throw new \UnexpectedValueException("Invalid token format at line #$offset.");
+			if (count($parts) < 2 && $parts[0] != Token::endOfRecord->value)
+				throw new \UnexpectedValueException("Invalid token format at line #$offset.");
 
-			$token = array_shift($parts);
+			$token = Token::tryFrom(array_shift($parts));
 			$data = explode(",", implode(":", $parts));
 			$length = count($data);
 

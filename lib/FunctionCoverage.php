@@ -44,8 +44,8 @@ class FunctionCoverage implements \JsonSerializable {
 		return implode(PHP_EOL, [
 			...array_map(fn(FunctionData $item) => $item->toString(true), $this->data),
 			...array_map(fn(FunctionData $item) => $item->toString(false), $this->data),
-			Token::functionsFound.":{$this->found}",
-			Token::functionsHit.":{$this->hit}"
+			Token::functionsFound->value.":{$this->found}",
+			Token::functionsHit->value.":{$this->hit}"
 		]);
 	}
 

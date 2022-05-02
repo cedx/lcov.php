@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version [9.0.0](https://github.com/cedx/lcov.php/branches/compare/v8.3.0..9.0.0)
-- Breaking change: using PHP 8 features, like final class constants, first-class callables and named arguments.
+- Breaking change: using PHP 8 features, like enumerations, first-class callables and named arguments.
 - Breaking change: raised the required [PHP](https://www.php.net) version.
 - Breaking change: removed the `LcovException` class and replaced it by the `UnexpectedValueException` one.
 - Breaking change: renamed the `Record` class to `File`.
