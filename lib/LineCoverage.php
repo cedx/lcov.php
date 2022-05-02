@@ -1,17 +1,28 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/** Provides the coverage data of lines.*/
+/**
+ * Provides the coverage data of lines.
+ */
 class LineCoverage implements \JsonSerializable {
 
-	/** @var \ArrayObject<int, LineData> The coverage data. */
-	private \ArrayObject $data;
+	/**
+	 * The coverage data.
+	 * @var LineData[]
+	 */
+	public array $data;
 
-	/** @var int The number of lines found. */
-	private int $found;
+	/**
+	 * The number of lines found.
+	 * @var int
+	 */
+	public int $found;
 
-	/** @var int The number of lines hit. */
-	private int $hit;
+	/**
+	 * The number of lines hit.
+	 * @var int
+	 */
+	public int $hit;
 
 	/**
 	 * Creates a new line coverage.
@@ -20,8 +31,9 @@ class LineCoverage implements \JsonSerializable {
 	 * @param LineData[] $data The coverage data.
 	 */
 	function __construct(int $found = 0, int $hit = 0, array $data = []) {
-		$this->data = new \ArrayObject($data);
-		$this->setFound($found)->setHit($hit);
+		$this->data = $data;
+		$this->found = $found;
+		$this->hit = $hit;
 	}
 
 	/**
@@ -29,10 +41,11 @@ class LineCoverage implements \JsonSerializable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$lines = array_map("strval", (array) $this->getData());
-		$lines[] = Token::linesFound.":{$this->getFound()}";
-		$lines[] = Token::linesHit.":{$this->getHit()}";
-		return implode(PHP_EOL, $lines);
+		return implode(PHP_EOL, [
+			...array_map("strval", $this->data),
+			Token::linesFound.":{$this->found}",
+			Token::linesHit.":{$this->hit}"
+		]);
 	}
 
 	/**
@@ -42,34 +55,10 @@ class LineCoverage implements \JsonSerializable {
 	 */
 	static function fromJson(object $map): self {
 		return new self(
-			isset($map->found) && is_int($map->found) ? $map->found : 0,
-			isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
-			isset($map->data) && is_array($map->data) ? array_map([LineData::class, "fromJson"], $map->data) : []
+			data: isset($map->data) && is_array($map->data) ? array_map([LineData::class, "fromJson"], $map->data) : [],
+			found: isset($map->found) && is_int($map->found) ? $map->found : 0,
+			hit: isset($map->hit) && is_int($map->hit) ? $map->hit : 0
 		);
-	}
-
-	/**
-	 * Gets the coverage data.
-	 * @return \ArrayObject<int, LineData> The coverage data.
-	 */
-	function getData(): \ArrayObject {
-		return $this->data;
-	}
-
-	/**
-	 * Gets the number of lines found.
-	 * @return int The number of lines found.
-	 */
-	function getFound(): int {
-		return $this->found;
-	}
-
-	/**
-	 * Gets the number of lines hit.
-	 * @return int The number of lines hit.
-	 */
-	function getHit(): int {
-		return $this->hit;
 	}
 
 	/**
@@ -78,31 +67,9 @@ class LineCoverage implements \JsonSerializable {
 	 */
 	function jsonSerialize(): \stdClass {
 		return (object) [
-			"found" => $this->getFound(),
-			"hit" => $this->getHit(),
-			"data" => array_map(fn(LineData $item) => $item->jsonSerialize(), (array) $this->getData())
+			"data" => array_map(fn(LineData $item) => $item->jsonSerialize(), $this->data),
+			"found" => $this->found,
+			"hit" => $this->hit
 		];
-	}
-
-	/**
-	 * Sets the number of branches found.
-	 * @param int $value The new number of branches found.
-	 * @return $this This instance.
-	 */
-	function setFound(int $value): self {
-		assert($value >= 0);
-		$this->found = $value;
-		return $this;
-	}
-
-	/**
-	 * Sets the number of branches hit.
-	 * @param int $value The new number of branches hit.
-	 * @return $this This instance.
-	 */
-	function setHit(int $value): self {
-		assert($value >= 0);
-		$this->hit = $value;
-		return $this;
 	}
 }

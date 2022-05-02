@@ -1,17 +1,28 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/** Provides details for line coverage.*/
+/**
+ * Provides details for line coverage.
+ */
 class LineData implements \JsonSerializable {
 
-	/** @var string The data checksum. */
-	private string $checksum;
+	/**
+	 * The data checksum.
+	 * @var string
+	 */
+	public string $checksum;
 
-	/** @var int The execution count. */
-	private int $executionCount;
+	/**
+	 * The execution count.
+	 * @var int
+	 */
+	public int $executionCount;
 
-	/** @var int The line number. */
-	private int $lineNumber;
+	/**
+	 * The line number.
+	 * @var int
+	 */
+	public int $lineNumber;
 
 	/**
 	 * Creates a new line data.
@@ -19,11 +30,10 @@ class LineData implements \JsonSerializable {
 	 * @param int $executionCount The execution count.
 	 * @param string $checksum The data checksum.
 	 */
-	function __construct(int $lineNumber, int $executionCount = 0, string $checksum = "") {
-		assert($lineNumber >= 0);
+	function __construct(int $lineNumber = 0, int $executionCount = 0, string $checksum = "") {
 		$this->checksum = $checksum;
+		$this->executionCount = $executionCount;
 		$this->lineNumber = $lineNumber;
-		$this->setExecutionCount($executionCount);
 	}
 
 	/**
@@ -31,9 +41,8 @@ class LineData implements \JsonSerializable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$token = Token::lineData;
-		$value = "$token:{$this->getLineNumber()},{$this->getExecutionCount()}";
-		return mb_strlen($checksum = $this->getChecksum()) ? "$value,$checksum" : $value;
+		$value = Token::lineData.":{$this->lineNumber},{$this->executionCount}";
+		return $this->checksum ? "$value,{$this->checksum}" : $value;
 	}
 
 	/**
@@ -43,34 +52,10 @@ class LineData implements \JsonSerializable {
 	 */
 	static function fromJson(object $map): self {
 		return new self(
-			isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
-			isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
-			isset($map->checksum) && is_string($map->checksum) ? $map->checksum : ""
+			checksum: isset($map->checksum) && is_string($map->checksum) ? $map->checksum : "",
+			executionCount: isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
+			lineNumber: isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
 		);
-	}
-
-	/**
-	 * Gets the data checksum.
-	 * @return string The data checksum.
-	 */
-	function getChecksum(): string {
-		return $this->checksum;
-	}
-
-	/**
-	 * Gets the execution count.
-	 * @return int The execution count.
-	 */
-	function getExecutionCount(): int {
-		return $this->executionCount;
-	}
-
-	/**
-	 * Gets the line number.
-	 * @return int The line number.
-	 */
-	function getLineNumber(): int {
-		return $this->lineNumber;
 	}
 
 	/**
@@ -79,20 +64,9 @@ class LineData implements \JsonSerializable {
 	 */
 	function jsonSerialize(): \stdClass {
 		return (object) [
-			"lineNumber" => $this->getLineNumber(),
-			"executionCount" => $this->getExecutionCount(),
-			"checksum" => $this->getChecksum()
+			"checksum" => $this->checksum,
+			"executionCount" => $this->executionCount,
+			"lineNumber" => $this->lineNumber
 		];
-	}
-
-	/**
-	 * Sets the execution count.
-	 * @param int $value The new execution count.
-	 * @return $this This instance.
-	 */
-	function setExecutionCount(int $value): self {
-		assert($value >= 0);
-		$this->executionCount = $value;
-		return $this;
 	}
 }

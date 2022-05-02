@@ -1,17 +1,28 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/** Provides the coverage data of functions. */
+/**
+ * Provides the coverage data of functions.
+ */
 class FunctionCoverage implements \JsonSerializable {
 
-	/** @var \ArrayObject<int, FunctionData> The coverage data. */
-	private \ArrayObject $data;
+	/**
+	 * The coverage data.
+	 * @var FunctionData[]
+	 */
+	public array $data;
 
-	/** @var int The number of functions found. */
-	private int $found;
+	/**
+	 * The number of functions found.
+	 * @var int
+	 */
+	public int $found;
 
-	/** @var int The number of functions hit. */
-	private int $hit;
+	/**
+	 * The number of functions hit.
+	 * @var int
+	 */
+	public int $hit;
 
 	/**
 	 * Creates a new function coverage.
@@ -20,8 +31,9 @@ class FunctionCoverage implements \JsonSerializable {
 	 * @param FunctionData[] $data The coverage data.
 	 */
 	function __construct(int $found = 0, int $hit = 0, array $data = []) {
-		$this->data = new \ArrayObject($data);
-		$this->setFound($found)->setHit($hit);
+		$this->data = $data;
+		$this->found = $found;
+		$this->hit = $hit;
 	}
 
 	/**
@@ -29,12 +41,11 @@ class FunctionCoverage implements \JsonSerializable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$data = (array) $this->getData();
 		return implode(PHP_EOL, [
-			...array_map(fn(FunctionData $item) => $item->toString(true), $data),
-			...array_map(fn(FunctionData $item) => $item->toString(false), $data),
-			Token::functionsFound.":{$this->getFound()}",
-			Token::functionsHit.":{$this->getHit()}"
+			...array_map(fn(FunctionData $item) => $item->toString(true), $this->data),
+			...array_map(fn(FunctionData $item) => $item->toString(false), $this->data),
+			Token::functionsFound.":{$this->found}",
+			Token::functionsHit.":{$this->hit}"
 		]);
 	}
 
@@ -45,34 +56,10 @@ class FunctionCoverage implements \JsonSerializable {
 	 */
 	static function fromJson(object $map): self {
 		return new self(
-			isset($map->found) && is_int($map->found) ? $map->found : 0,
-			isset($map->hit) && is_int($map->hit) ? $map->hit : 0,
-			isset($map->data) && is_array($map->data) ? array_map([FunctionData::class, "fromJson"], $map->data) : []
+			data: isset($map->data) && is_array($map->data) ? array_map(FunctionData::fromJson(...), $map->data) : [],
+			found: isset($map->found) && is_int($map->found) ? $map->found : 0,
+			hit: isset($map->hit) && is_int($map->hit) ? $map->hit : 0
 		);
-	}
-
-	/**
-	 * Gets the coverage data.
-	 * @return \ArrayObject<int, FunctionData> The coverage data.
-	 */
-	function getData(): \ArrayObject {
-		return $this->data;
-	}
-
-	/**
-	 * Gets the number of functions found.
-	 * @return int The number of functions found.
-	 */
-	function getFound(): int {
-		return $this->found;
-	}
-
-	/**
-	 * Gets the number of functions hit.
-	 * @return int The number of functions hit.
-	 */
-	function getHit(): int {
-		return $this->hit;
 	}
 
 	/**
@@ -81,31 +68,9 @@ class FunctionCoverage implements \JsonSerializable {
 	 */
 	function jsonSerialize(): \stdClass {
 		return (object) [
-			"found" => $this->getFound(),
-			"hit" => $this->getHit(),
-			"data" => array_map(fn(FunctionData $item) => $item->jsonSerialize(), (array) $this->getData())
+			"data" => array_map(fn(FunctionData $item) => $item->jsonSerialize(), $this->data),
+			"found" => $this->found,
+			"hit" => $this->hit
 		];
-	}
-
-	/**
-	 * Sets the number of branches found.
-	 * @param int $value The new number of branches found.
-	 * @return $this This instance.
-	 */
-	function setFound(int $value): self {
-		assert($value >= 0);
-		$this->found = $value;
-		return $this;
-	}
-
-	/**
-	 * Sets the number of branches hit.
-	 * @param int $value The new number of branches hit.
-	 * @return $this This instance.
-	 */
-	function setHit(int $value): self {
-		assert($value >= 0);
-		$this->hit = $value;
-		return $this;
 	}
 }
