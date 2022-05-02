@@ -75,7 +75,7 @@ class FileTest extends TestCase {
 			path: "/home/cedx/lcov.php"
 		);
 
-		$format = "SF:/home/cedx/lcov.php{eol}{$file->functions}{eol}{$file->branches}{eol}{$file->lines}{eol}end_of_file";
+		$format = "SF:/home/cedx/lcov.php{eol}{$file->functions}{eol}{$file->branches}{eol}{$file->lines}{eol}end_of_record";
 		assertThat((string) $file, equalTo(str_replace("{eol}", PHP_EOL, $format)));
 	}
 }

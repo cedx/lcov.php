@@ -10,25 +10,25 @@ class File implements \JsonSerializable {
 	 * The branch coverage.
 	 * @var BranchCoverage|null
 	 */
-	private ?BranchCoverage $branches;
+	public ?BranchCoverage $branches;
 
 	/**
 	 * The function coverage.
 	 * @var FunctionCoverage|null
 	 */
-	private ?FunctionCoverage $functions;
+	public ?FunctionCoverage $functions;
 
 	/**
 	 * The line coverage.
 	 * @var LineCoverage|null
 	 */
-	private ?LineCoverage $lines;
+	public ?LineCoverage $lines;
 
 	/**
 	 * The path to the source file.
 	 * @var string
 	 */
-	private string $path;
+	public string $path;
 
 	/**
 	 * Creates a new file.
