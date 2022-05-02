@@ -27,13 +27,15 @@
 		"formatter",
 		"lcov",
 		"parser",
-		"test"
+		"test",
+		"writer"
 	],
 	"require": {
 		"php": ">=8.1.0",
 		"ext-json": "*",
 		"ext-mbstring": "*",
 		"ext-pcre": "*",
+		"ext-simplexml": "*",
 		"ext-spl": "*"
 	},
 	"require-dev": {
