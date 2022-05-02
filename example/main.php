@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-use Lcov\{FunctionCoverage, LcovException, LineCoverage, LineData, Record, Report};
+use Lcov\{File, FunctionCoverage, LcovException, LineCoverage, LineData, Report};
 
 /** Formats coverage data as LCOV report. */
 function formatReport(): void {
@@ -8,11 +8,11 @@ function formatReport(): void {
 		new LineData(7, 2, "yGMB6FhEEAd8OyASe3Ni1w")
 	]);
 
-	$record = (new Record("/home/cedx/lcov.php/fixture.php"))
+	$file = (new File("/home/cedx/lcov.php/fixture.php"))
 		->setFunctions(new FunctionCoverage(1, 1))
 		->setLines($lineCoverage);
 
-	$report = new Report("Example", [$record]);
+	$report = new Report("Example", [$file]);
 	echo $report;
 }
 
@@ -22,8 +22,8 @@ function parseReport(): void {
 		$coverage = file_get_contents("/path/to/lcov.info");
 		$report = Report::fromCoverage($coverage);
 
-		$count = count($report->getRecords());
-		echo "The coverage report contains $count records:";
+		$count = count($report->getFiles());
+		echo "The coverage report contains $count files:";
 		print_r($report->jsonSerialize());
 	}
 
