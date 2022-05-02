@@ -7,7 +7,7 @@
 	"private": true,
 	"repository": "github:cedx/lcov.php",
 	"type": "module",
-	"version": "3.0.1",
+	"version": "9.0.0",
 	"author": {
 		"email": "cedric@belin.io",
 		"name": "Cédric Belin",
