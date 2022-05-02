@@ -1,45 +1,86 @@
 <?php declare(strict_types=1);
 namespace Lcov;
 
-/** Provides the list of tokens supported by the parser. */
+/**
+ * Provides the list of tokens supported by the parser.
+ */
 abstract class Token {
 
-	/** @var string The coverage data of a branch. */
-	const branchData = "BRDA";
+	/**
+	 * The coverage data of a branch.
+	 * @var string
+	 */
+	final const branchData = "BRDA";
 
-	/** @var string The number of branches found. */
-	const branchesFound = "BRF";
+	/**
+	 * The number of branches found.
+	 * @var string
+	 */
+	final const branchesFound = "BRF";
 
-	/** @var string The number of branches hit. */
-	const branchesHit = "BRH";
+	/**
+	 * The number of branches hit.
+	 * @var string
+	 */
+	final const branchesHit = "BRH";
 
-	/** @var string The end of a section. */
-	const endOfRecord = "end_of_record";
+	/**
+	 * The end of a section.
+	 * @var string
+	 */
+	final const endOfRecord = "end_of_record";
 
-	/** @var string The coverage data of a function. */
-	const functionData = "FNDA";
+	/**
+	 * The coverage data of a function.
+	 * @var string
+	 */
+	final const functionData = "FNDA";
 
-	/** @var string A function name. */
-	const functionName = "FN";
+	/**
+	 * A function name.
+	 * @var string
+	 */
+	final const functionName = "FN";
 
-	/** @var string The number of functions found. */
-	const functionsFound = "FNF";
+	/**
+	 * The number of functions found.
+	 * @var string
+	 */
+	final const functionsFound = "FNF";
 
-	/** @var string The number of functions hit. */
-	const functionsHit = "FNH";
+	/**
+	 * The number of functions hit.
+	 * @var string
+	 */
+	final const functionsHit = "FNH";
 
-	/** @var string The coverage data of a line. */
-	const lineData = "DA";
+	/**
+	 * The coverage data of a line.
+	 * @var string
+	 */
+	final const lineData = "DA";
 
-	/** @var string The number of lines found. */
-	const linesFound = "LF";
+	/**
+	 * The number of lines found.
+	 * @var string
+	 */
+	final const linesFound = "LF";
 
-	/** @var string The number of lines hit. */
-	const linesHit = "LH";
+	/**
+	 * The number of lines hit.
+	 * @var string
+	 */
+	final const linesHit = "LH";
 
-	/** @var string The path to a source file. */
-	const sourceFile = "SF";
+	/**
+	 * The path to a source file.
+	 * @var string
+	 */
+	final const sourceFile = "SF";
 
-	/** @var string A test name. */
-	const testName = "TN";
+	/**
+	 * A test name.
+	 * @var string
+	 */
+	final const testName = "TN";
 }
