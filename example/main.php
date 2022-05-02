@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-use Lcov\{File, FunctionCoverage, LcovException, LineCoverage, LineData, Report};
+use Lcov\{File, FunctionCoverage, LineCoverage, LineData, Report};
 
 /** Formats coverage data as LCOV report. */
 function formatReport(): void {
@@ -20,14 +20,14 @@ function formatReport(): void {
 function parseReport(): void {
 	try {
 		$coverage = file_get_contents("/path/to/lcov.info");
-		$report = Report::fromCoverage($coverage);
+		$report = Report::fromString($coverage);
 
 		$count = count($report->getFiles());
 		echo "The coverage report contains $count files:";
 		print_r($report->jsonSerialize());
 	}
 
-	catch (LcovException $e) {
+	catch (UnexpectedValueException $e) {
 		echo "An error occurred: ", $e->getMessage();
 	}
 }

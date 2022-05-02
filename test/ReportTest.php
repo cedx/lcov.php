@@ -4,117 +4,103 @@ namespace Lcov;
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf, isType};
 
-/** @testdox Lcov\Report */
+/**
+ * @testdox Lcov\Report
+ */
 class ReportTest extends TestCase {
 
-	/** @testdox ::fromCoverage() */
-	function testFromCoverage(): void {
+	/**
+	 * @testdox ::fromString()
+	 */
+	function testFromString(): void {
 		// It should have a test name.
-		$coverage = new \SplFileObject("test/fixtures/lcov.info");
-		$report = Report::fromCoverage((string) $coverage->fread($coverage->getSize()));
-		assertThat($report->getTestName(), equalTo("Example"));
+		$report = Report::fromString(file_get_contents("test/fixtures/lcov.info"));
+		assertThat($report->testName, equalTo("Example"));
 
-		// It should contain three records.
-		$records = $report->getRecords();
-		[$firstRecord, $secondRecord, $thirdRecord] = $records;
-		assertThat($records, countOf(3));
-
-		/** @var Record $firstRecord */
-		assertThat($firstRecord, isInstanceOf(Record::class));
-		assertThat($firstRecord->getSourceFile(), equalTo("/home/cedx/lcov.php/fixture.php"));
-
-		/** @var Record $secondRecord */
-		assertThat($secondRecord->getSourceFile(), equalTo("/home/cedx/lcov.php/func1.php"));
-
-		/** @var Record $thirdRecord */
-		assertThat($thirdRecord->getSourceFile(), equalTo("/home/cedx/lcov.php/func2.php"));
+		// It should contain three files.
+		assertThat($report->files, countOf(3));
+		assertThat($report->files[0], isInstanceOf(File::class));
+		assertThat($report->files[0]->path, equalTo("/home/cedx/lcov.php/fixture.php"));
+		assertThat($report->files[1]->path, equalTo("/home/cedx/lcov.php/func1.php"));
+		assertThat($report->files[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
 
 		// It should have detailed branch coverage.
-		/** @var BranchCoverage $branches */
-		$branches = $secondRecord->getBranches();
-		assertThat($branches->getFound(), equalTo(4));
-		assertThat($branches->getHit(), equalTo(4));
+		$branches = $report->files[1]->branches;
+		assertThat($branches->data, countOf(4));
+		assertThat($branches->found, equalTo(4));
+		assertThat($branches->hit, equalTo(4));
 
-		$data = $branches->getData();
-		assertThat($data, countOf(4));
-
-		/** @var BranchData $branch */
-		[$branch] = $data;
-		assertThat($branch, isInstanceOf(BranchData::class));
-		assertThat($branch->getLineNumber(), equalTo(8));
+		[$data] = $branches->data;
+		assertThat($data, isInstanceOf(BranchData::class));
+		assertThat($data->lineNumber, equalTo(8));
 
 		// It should have detailed function coverage.
-		/** @var FunctionCoverage $functions */
-		$functions = $secondRecord->getFunctions();
-		assertThat($functions->getFound(), equalTo(1));
-		assertThat($functions->getHit(), equalTo(1));
+		$functions = $report->files[1]->functions;
+		assertThat($functions->data, countOf(1));
+		assertThat($functions->found, equalTo(1));
+		assertThat($functions->hit, equalTo(1));
 
-		$data = $functions->getData();
-		assertThat($data, countOf(1));
-
-		/** @var FunctionData $function */
-		[$function] = $data;
-		assertThat($function, isInstanceOf(FunctionData::class));
-		assertThat($function->getFunctionName(), equalTo("func1"));
+		[$data] = $functions->data;
+		assertThat($data, isInstanceOf(FunctionData::class));
+		assertThat($data->functionName, equalTo("func1"));
 
 		// It should have detailed line coverage.
-		/** @var LineCoverage $lines */
-		$lines = $secondRecord->getLines();
-		assertThat($lines->getFound(), equalTo(9));
-		assertThat($lines->getHit(), equalTo(9));
+		$lines = $report->files[1]->lines;
+		assertThat($lines->data, countOf(9));
+		assertThat($lines->found, equalTo(9));
+		assertThat($lines->hit, equalTo(9));
 
-		$data = $lines->getData();
-		assertThat($data, countOf(9));
-
-		/** @var LineData $line */
-		[$line] = $data;
-		assertThat($line, isInstanceOf(LineData::class));
-		assertThat($line->getChecksum(), equalTo("5kX7OTfHFcjnS98fjeVqNA"));
+		[$data] = $lines->data;
+		assertThat($data, isInstanceOf(LineData::class));
+		assertThat($data->checksum, equalTo("5kX7OTfHFcjnS98fjeVqNA"));
 
 		// It should throw an exception if the report is invalid or empty.
-		$this->expectException(LcovException::class);
-		Report::fromCoverage("TN:Example");
+		$this->expectException(\UnexpectedValueException::class);
+		Report::fromString("TN:Example");
 	}
 
-	/** @testdox ::fromJson() */
+	/**
+	 * @testdox ::fromJson()
+	 */
 	function testFromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$report = Report::fromJson(new \stdClass);
-		assertThat($report->getRecords(), isEmpty());
-		assertThat($report->getTestName(), isEmpty());
+		assertThat($report->files, isEmpty());
+		assertThat($report->testName, isEmpty());
 
 		// It should return an initialized instance for a non-empty map.
-		$report = Report::fromJson((object) ["records" => [new \stdClass], "testName" => "LcovTest"]);
-		assertThat($report->getTestName(), equalTo("LcovTest"));
-
-		$records = $report->getRecords();
-		assertThat($records, countOf(1));
-		assertThat($records[0], isInstanceOf(Record::class));
-		assertThat($report->getTestName(), equalTo("LcovTest"));
+		$report = Report::fromJson((object) ["files" => [new \stdClass], "testName" => "LcovTest"]);
+		assertThat($report->files, countOf(1));
+		assertThat($report->files[0], isInstanceOf(File::class));
+		assertThat($report->testName, equalTo("LcovTest"));
 	}
 
-	/** @testdox ->jsonSerialize() */
+	/**
+	 * @testdox ->jsonSerialize()
+	 */
 	function testJsonSerialize(): void {
 		// It should return a map with default values for a newly created instance.
-		$map = (new Report)->jsonSerialize();
+		$map = (new Report(""))->jsonSerialize();
 		assertThat(get_object_vars($map), countOf(2));
-		assertThat($map->records, isEmpty());
+		assertThat($map->files, isEmpty());
 		assertThat($map->testName, isEmpty());
 
 		// It should return a non-empty map for an initialized instance.
-		$map = (new Report("LcovTest", [new Record("")]))->jsonSerialize();
+		$map = (new Report("LcovTest", [new File("")]))->jsonSerialize();
 		assertThat(get_object_vars($map), countOf(2));
-		assertThat($map->records, countOf(1));
-		assertThat($map->records[0], isType("object"));
+		assertThat($map->files, countOf(1));
+		assertThat($map->files[0], isType("object"));
 		assertThat($map->testName, equalTo("LcovTest"));
 	}
 
-	/** @testdox ->__toString() */
+	/**
+	 * @testdox ->__toString()
+	 */
 	function testToString(): void {
 		// It should return a format like "TN:<testName>".
-		assertThat((string) new Report, isEmpty());
+		assertThat((string) new Report(""), isEmpty());
 
-		$record = new Record("");
-		assertThat((string) new Report("LcovTest", [$record]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$record")));
+		$file = new File("");
+		assertThat((string) new Report("LcovTest", [$file]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$file")));
 	}
 }
