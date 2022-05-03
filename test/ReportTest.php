@@ -17,16 +17,16 @@ class ReportTest extends TestCase {
 		$report = Report::fromString(file_get_contents("test/fixtures/lcov.info") ?: "");
 		assertThat($report->testName, equalTo("Example"));
 
-		// It should contain three files.
-		assertThat($report->files, countOf(3));
-		assertThat($report->files[0], isInstanceOf(File::class));
-		assertThat($report->files[0]->path, equalTo("/home/cedx/lcov.php/fixture.php"));
-		assertThat($report->files[1]->path, equalTo("/home/cedx/lcov.php/func1.php"));
-		assertThat($report->files[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
+		// It should contain three source files.
+		assertThat($report->sourceFiles, countOf(3));
+		assertThat($report->sourceFiles[0], isInstanceOf(File::class));
+		assertThat($report->sourceFiles[0]->path, equalTo("/home/cedx/lcov.php/fixture.php"));
+		assertThat($report->sourceFiles[1]->path, equalTo("/home/cedx/lcov.php/func1.php"));
+		assertThat($report->sourceFiles[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
 
 		// It should have detailed branch coverage.
 		/** @var BranchCoverage $branches */
-		$branches = $report->files[1]->branches;
+		$branches = $report->sourceFiles[1]->branches;
 		assertThat($branches->data, countOf(4));
 		assertThat($branches->found, equalTo(4));
 		assertThat($branches->hit, equalTo(4));
@@ -37,7 +37,7 @@ class ReportTest extends TestCase {
 
 		// It should have detailed function coverage.
 		/** @var FunctionCoverage $functions */
-		$functions = $report->files[1]->functions;
+		$functions = $report->sourceFiles[1]->functions;
 		assertThat($functions->data, countOf(1));
 		assertThat($functions->found, equalTo(1));
 		assertThat($functions->hit, equalTo(1));
@@ -48,7 +48,7 @@ class ReportTest extends TestCase {
 
 		// It should have detailed line coverage.
 		/** @var LineCoverage $lines */
-		$lines = $report->files[1]->lines;
+		$lines = $report->sourceFiles[1]->lines;
 		assertThat($lines->data, countOf(9));
 		assertThat($lines->found, equalTo(9));
 		assertThat($lines->hit, equalTo(9));
@@ -68,13 +68,13 @@ class ReportTest extends TestCase {
 	function testFromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$report = Report::fromJson(new \stdClass);
-		assertThat($report->files, isEmpty());
+		assertThat($report->sourceFiles, isEmpty());
 		assertThat($report->testName, isEmpty());
 
 		// It should return an initialized instance for a non-empty map.
-		$report = Report::fromJson((object) ["files" => [new \stdClass], "testName" => "LcovTest"]);
-		assertThat($report->files, countOf(1));
-		assertThat($report->files[0], isInstanceOf(File::class));
+		$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
+		assertThat($report->sourceFiles, countOf(1));
+		assertThat($report->sourceFiles[0], isInstanceOf(File::class));
 		assertThat($report->testName, equalTo("LcovTest"));
 	}
 
@@ -85,14 +85,14 @@ class ReportTest extends TestCase {
 		// It should return a map with default values for a newly created instance.
 		$map = (new Report(""))->jsonSerialize();
 		assertThat(get_object_vars($map), countOf(2));
-		assertThat($map->files, isEmpty());
+		assertThat($map->sourceFiles, isEmpty());
 		assertThat($map->testName, isEmpty());
 
 		// It should return a non-empty map for an initialized instance.
 		$map = (new Report("LcovTest", [new File("")]))->jsonSerialize();
 		assertThat(get_object_vars($map), countOf(2));
-		assertThat($map->files, countOf(1));
-		assertThat($map->files[0], isType("object"));
+		assertThat($map->sourceFiles, countOf(1));
+		assertThat($map->sourceFiles[0], isType("object"));
 		assertThat($map->testName, equalTo("LcovTest"));
 	}
 

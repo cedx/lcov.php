@@ -7,10 +7,10 @@ namespace Lcov;
 class Report implements \JsonSerializable {
 
 	/**
-	 * The file list.
+	 * The source file list.
 	 * @var File[]
 	 */
-	public array $files;
+	public array $sourceFiles;
 
 	/**
 	 * The test name.
@@ -21,10 +21,10 @@ class Report implements \JsonSerializable {
 	/**
 	 * Creates a new report.
 	 * @param string $testName The test name.
-	 * @param File[] $files The file list.
+	 * @param File[] $sourceFiles The sourcefile list.
 	 */
-	function __construct(string $testName, array $files = []) {
-		$this->files = $files;
+	function __construct(string $testName, array $sourceFiles = []) {
+		$this->sourceFiles = $sourceFiles;
 		$this->testName = $testName;
 	}
 
@@ -34,7 +34,7 @@ class Report implements \JsonSerializable {
 	 */
 	function __toString(): string {
 		$lines = $this->testName ? [Token::testName->value.":{$this->testName}"] : [];
-		return implode(PHP_EOL, [...$lines, ...array_map("strval", $this->files)]);
+		return implode(PHP_EOL, [...$lines, ...array_map(strval(...), $this->sourceFiles)]);
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Report implements \JsonSerializable {
 
 			switch ($token) {
 				case Token::testName: if (!$report->testName) $report->testName = $data[0]; break;
-				case Token::endOfRecord: $report->files[] = $file; break;
+				case Token::endOfRecord: $report->sourceFiles[] = $file; break;
 
 				case Token::branchData:
 					if ($length < 4) throw new \UnexpectedValueException("Invalid branch data at line #$offset.");
@@ -116,7 +116,7 @@ class Report implements \JsonSerializable {
 			}
 		}
 
-		if (!$report->files) throw new \UnexpectedValueException("The coverage data is empty or invalid.");
+		if (!$report->sourceFiles) throw new \UnexpectedValueException("The coverage data is empty or invalid.");
 		return $report;
 	}
 
@@ -128,7 +128,7 @@ class Report implements \JsonSerializable {
 	static function fromJson(object $map): self {
 		return new self(
 			isset($map->testName) && is_string($map->testName) ? $map->testName : "",
-			isset($map->files) && is_array($map->files) ? array_map([File::class, "fromJson"], $map->files) : []
+			isset($map->sourceFiles) && is_array($map->sourceFiles) ? array_map(File::fromJson(...), $map->sourceFiles) : []
 		);
 	}
 
@@ -139,7 +139,7 @@ class Report implements \JsonSerializable {
 	function jsonSerialize(): \stdClass {
 		return (object) [
 			"testName" => $this->testName,
-			"files" => array_map(fn(File $item) => $item->jsonSerialize(), $this->files)
+			"sourceFiles" => array_map($this->jsonSerialize(...), $this->sourceFiles)
 		];
 	}
 }

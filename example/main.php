@@ -22,8 +22,8 @@ function parseReport(): void {
 		$coverage = file_get_contents("/path/to/lcov.info");
 		$report = Report::fromString($coverage);
 
-		$count = count($report->getFiles());
-		echo "The coverage report contains $count files:";
+		$count = count($report->sourceFiles);
+		echo "The coverage report contains $count source files:";
 		print_r($report->jsonSerialize());
 	}
 
