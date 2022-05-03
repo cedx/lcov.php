@@ -1,13 +1,13 @@
 # Changelog
 
 ## Version [9.0.0](https://github.com/cedx/lcov.php/branches/compare/v8.3.0..9.0.0)
-- Breaking change: using PHP 8 features, like enumerations, first-class callables and named arguments.
 - Breaking change: raised the required [PHP](https://www.php.net) version.
 - Breaking change: removed the `LcovException` class and replaced it by the `UnexpectedValueException` one.
 - Breaking change: renamed the `Record` class to `SourceFile`.
 - Breaking change: renamed the `Report->records` property to `sourceFiles`.
 - Breaking change: renamed the `Report::fromCoverage()` method to `fromString()`.
 - Breaking change: replaced the getter/setter methods of most classes by properties.
+- Breaking change: using PHP 8 features, like enumerations, first-class callables and named arguments.
 
 ## Version [8.3.0](https://github.com/cedx/lcov.php/branches/compare/v8.3.0..v8.2.0)
 - Deprecated this package in favor of [`cedx/lcov.hx`](https://github.com/cedx/lcov.hx).
