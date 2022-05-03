@@ -42,7 +42,7 @@ class LineCoverage implements \JsonSerializable {
 	 */
 	function __toString(): string {
 		return implode(PHP_EOL, [
-			...array_map("strval", $this->data),
+			...array_map(strval(...), $this->data),
 			Token::linesFound->value.":{$this->found}",
 			Token::linesHit->value.":{$this->hit}"
 		]);
@@ -55,7 +55,7 @@ class LineCoverage implements \JsonSerializable {
 	 */
 	static function fromJson(object $map): self {
 		return new self(
-			data: isset($map->data) && is_array($map->data) ? array_map([LineData::class, "fromJson"], $map->data) : [],
+			data: isset($map->data) && is_array($map->data) ? array_map(LineData::fromJson(...), $map->data) : [],
 			found: isset($map->found) && is_int($map->found) ? $map->found : 0,
 			hit: isset($map->hit) && is_int($map->hit) ? $map->hit : 0
 		);

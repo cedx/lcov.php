@@ -103,7 +103,7 @@ class ReportTest extends TestCase {
 		// It should return a format like "TN:<testName>".
 		assertThat((string) new Report(""), isEmpty());
 
-		$file = new File("");
-		assertThat((string) new Report("LcovTest", [$file]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$file")));
+		$sourceFile = new File("");
+		assertThat((string) new Report("LcovTest", [$sourceFile]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$sourceFile")));
 	}
 }

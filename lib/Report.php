@@ -44,9 +44,9 @@ class Report implements \JsonSerializable {
 	 * @throws \UnexpectedValueException A parsing error occurred.
 	 */
 	static function fromString(string $coverage): self {
-		$file = new File("");
 		$offset = 0;
 		$report = new self("");
+		$sourceFile = new File("");
 
 		foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
 			$offset++;
@@ -63,11 +63,11 @@ class Report implements \JsonSerializable {
 
 			switch ($token) {
 				case Token::testName: if (!$report->testName) $report->testName = $data[0]; break;
-				case Token::endOfRecord: $report->sourceFiles[] = $file; break;
+				case Token::endOfRecord: $report->sourceFiles[] = $sourceFile; break;
 
 				case Token::branchData:
 					if ($length < 4) throw new \UnexpectedValueException("Invalid branch data at line #$offset.");
-					if ($file->branches) $file->branches->data[] = new BranchData(
+					if ($sourceFile->branches) $sourceFile->branches->data[] = new BranchData(
 						blockNumber: (int) $data[1],
 						branchNumber: (int) $data[2],
 						lineNumber: (int) $data[0],
@@ -77,7 +77,7 @@ class Report implements \JsonSerializable {
 
 				case Token::functionData:
 					if ($length < 2) throw new \UnexpectedValueException("Invalid function data at line #$offset.");
-					if ($file->functions) foreach ($file->functions->data as $item) if ($item->functionName == $data[1]) {
+					if ($sourceFile->functions) foreach ($sourceFile->functions->data as $item) if ($item->functionName == $data[1]) {
 						$item->executionCount = (int) $data[0];
 						break;
 					}
@@ -85,12 +85,12 @@ class Report implements \JsonSerializable {
 
 				case Token::functionName:
 					if ($length < 2) throw new \UnexpectedValueException("Invalid function name at line #$offset.");
-					if ($file->functions) $file->functions->data[] = new FunctionData(functionName: $data[1], lineNumber: (int) $data[0]);
+					if ($sourceFile->functions) $sourceFile->functions->data[] = new FunctionData(functionName: $data[1], lineNumber: (int) $data[0]);
 					break;
 
 				case Token::lineData:
 					if ($length < 2) throw new \UnexpectedValueException("Invalid line data at line #$offset.");
-					if ($file->lines) $file->lines->data[] = new LineData(
+					if ($sourceFile->lines) $sourceFile->lines->data[] = new LineData(
 						checksum: $length >= 3 ? $data[2] : "",
 						executionCount: (int) $data[1],
 						lineNumber: (int) $data[0]
@@ -98,7 +98,7 @@ class Report implements \JsonSerializable {
 					break;
 
 				case Token::sourceFile:
-					$file = new File(
+					$sourceFile = new File(
 						branches: new BranchCoverage,
 						functions: new FunctionCoverage,
 						lines: new LineCoverage,
@@ -106,12 +106,12 @@ class Report implements \JsonSerializable {
 					);
 					break;
 
-				case Token::branchesFound: if ($file->branches) $file->branches->found = (int) $data[0]; break;
-				case Token::branchesHit: if ($file->branches) $file->branches->hit = (int) $data[0]; break;
-				case Token::functionsFound: if ($file->functions) $file->functions->found = (int) $data[0]; break;
-				case Token::functionsHit: if ($file->functions) $file->functions->hit = (int) $data[0]; break;
-				case Token::linesFound: if ($file->lines) $file->lines->found = (int) $data[0]; break;
-				case Token::linesHit: if ($file->lines) $file->lines->hit = (int) $data[0]; break;
+				case Token::branchesFound: if ($sourceFile->branches) $sourceFile->branches->found = (int) $data[0]; break;
+				case Token::branchesHit: if ($sourceFile->branches) $sourceFile->branches->hit = (int) $data[0]; break;
+				case Token::functionsFound: if ($sourceFile->functions) $sourceFile->functions->found = (int) $data[0]; break;
+				case Token::functionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
+				case Token::linesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
+				case Token::linesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
 				default: throw new \UnexpectedValueException("Unknown token at line #$offset.");
 			}
 		}
@@ -138,8 +138,8 @@ class Report implements \JsonSerializable {
 	 */
 	function jsonSerialize(): \stdClass {
 		return (object) [
-			"testName" => $this->testName,
-			"sourceFiles" => array_map($this->jsonSerialize(...), $this->sourceFiles)
+			"sourceFiles" => array_map(fn(File $item) => $item->jsonSerialize(), $this->sourceFiles),
+			"testName" => $this->testName
 		];
 	}
 }

@@ -14,24 +14,24 @@ class FileTest extends TestCase {
 	 */
 	function testFromJson(): void {
 		// It should return an instance with default values for an empty map.
-		$file = File::fromJson(new \stdClass);
-		assertThat($file->branches, isNull());
-		assertThat($file->functions, isNull());
-		assertThat($file->lines, isNull());
-		assertThat($file->path, isEmpty());
+		$sourceFile = File::fromJson(new \stdClass);
+		assertThat($sourceFile->branches, isNull());
+		assertThat($sourceFile->functions, isNull());
+		assertThat($sourceFile->lines, isNull());
+		assertThat($sourceFile->path, isEmpty());
 
 		// It should return an initialized instance for a non-empty map.
-		$file = File::fromJson((object) [
+		$sourceFile = File::fromJson((object) [
 			"branches" => new \stdClass,
 			"functions" => new \stdClass,
 			"lines" => new \stdClass,
 			"path" => "/home/cedx/lcov.php"
 		]);
 
-		assertThat($file->branches, logicalNot(isNull()));
-		assertThat($file->functions, logicalNot(isNull()));
-		assertThat($file->lines, logicalNot(isNull()));
-		assertThat($file->path, equalTo("/home/cedx/lcov.php"));
+		assertThat($sourceFile->branches, logicalNot(isNull()));
+		assertThat($sourceFile->functions, logicalNot(isNull()));
+		assertThat($sourceFile->lines, logicalNot(isNull()));
+		assertThat($sourceFile->path, equalTo("/home/cedx/lcov.php"));
 	}
 
 	/**
@@ -68,14 +68,14 @@ class FileTest extends TestCase {
 		// It should return a format like "SF:<path>\\nend_of_record".
 		assertThat((string) new File(""), equalTo(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record")));
 
-		$file = new File(
+		$sourceFile = new File(
 			branches: new BranchCoverage,
 			functions: new FunctionCoverage,
 			lines: new LineCoverage,
 			path: "/home/cedx/lcov.php"
 		);
 
-		$format = "SF:/home/cedx/lcov.php{eol}{$file->functions}{eol}{$file->branches}{eol}{$file->lines}{eol}end_of_record";
-		assertThat((string) $file, equalTo(str_replace("{eol}", PHP_EOL, $format)));
+		$format = "SF:/home/cedx/lcov.php{eol}{$sourceFile->functions}{eol}{$sourceFile->branches}{eol}{$sourceFile->lines}{eol}end_of_record";
+		assertThat((string) $sourceFile, equalTo(str_replace("{eol}", PHP_EOL, $format)));
 	}
 }
