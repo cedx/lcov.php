@@ -25,11 +25,8 @@ jobs:
         run: composer install
       - name: Run tests
         run: composer run test
-      # - name: Collect code coverage
-      #   run: composer run lcov
-      # - name: Upload code coverage
-      #   if: success()
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{secrets.GITHUB_TOKEN}}
-      #     path-to-lcov: var/lcov.info
+      - name: Collect code coverage
+        if: success()
+        uses: codecov/codecov-action@v2
+        with:
+          files: var/coverage.xml

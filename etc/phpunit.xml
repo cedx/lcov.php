@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <phpunit
 	bootstrap="../vendor/autoload.php"
-	cacheResult="false"
+	cacheResultFile="../var/phpunit.json"
 	testdox="true"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd">
@@ -16,7 +16,7 @@
 	</coverage>
 	<logging/>
 	<testsuites>
-		<testsuite name="all">
+		<testsuite name="main">
 			<directory suffix="Test.php">../test</directory>
 		</testsuite>
 	</testsuites>

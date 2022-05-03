@@ -34,7 +34,6 @@
 		"ext-json": "*",
 		"ext-mbstring": "*",
 		"ext-pcre": "*",
-		"ext-simplexml": "*",
 		"ext-spl": "*"
 	},
 	"require-dev": {
