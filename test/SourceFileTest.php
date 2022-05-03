@@ -5,23 +5,23 @@ use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isNull, isType, logicalNot};
 
 /**
- * @testdox Lcov\File
+ * @testdox Lcov\SourceFile
  */
-class FileTest extends TestCase {
+class SourceFileTest extends TestCase {
 
 	/**
 	 * @testdox ::fromJson()
 	 */
 	function testFromJson(): void {
 		// It should return an instance with default values for an empty map.
-		$sourceFile = File::fromJson(new \stdClass);
+		$sourceFile = SourceFile::fromJson(new \stdClass);
 		assertThat($sourceFile->branches, isNull());
 		assertThat($sourceFile->functions, isNull());
 		assertThat($sourceFile->lines, isNull());
 		assertThat($sourceFile->path, isEmpty());
 
 		// It should return an initialized instance for a non-empty map.
-		$sourceFile = File::fromJson((object) [
+		$sourceFile = SourceFile::fromJson((object) [
 			"branches" => new \stdClass,
 			"functions" => new \stdClass,
 			"lines" => new \stdClass,
@@ -39,7 +39,7 @@ class FileTest extends TestCase {
 	 */
 	function testJsonSerialize(): void {
 		// It should return a map with default values for a newly created instance.
-		$map = (new File(""))->jsonSerialize();
+		$map = (new SourceFile(""))->jsonSerialize();
 		assertThat(get_object_vars($map), countOf(4));
 		assertThat($map->branches, isNull());
 		assertThat($map->functions, isNull());
@@ -47,7 +47,7 @@ class FileTest extends TestCase {
 		assertThat($map->path, isEmpty());
 
 		// It should return a non-empty map for an initialized instance.
-		$map = (new File(
+		$map = (new SourceFile(
 			branches: new BranchCoverage,
 			functions: new FunctionCoverage,
 			lines: new LineCoverage,
@@ -66,9 +66,9 @@ class FileTest extends TestCase {
 	 */
 	function testToString(): void {
 		// It should return a format like "SF:<path>\\nend_of_record".
-		assertThat((string) new File(""), equalTo(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record")));
+		assertThat((string) new SourceFile(""), equalTo(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record")));
 
-		$sourceFile = new File(
+		$sourceFile = new SourceFile(
 			branches: new BranchCoverage,
 			functions: new FunctionCoverage,
 			lines: new LineCoverage,

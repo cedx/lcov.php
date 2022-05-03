@@ -4,7 +4,7 @@ namespace Lcov;
 /**
  * Provides the coverage data of a source file.
  */
-class File implements \JsonSerializable {
+class SourceFile implements \JsonSerializable {
 
 	/**
 	 * The branch coverage.
@@ -31,7 +31,7 @@ class File implements \JsonSerializable {
 	public string $path;
 
 	/**
-	 * Creates a new file.
+	 * Creates a new source file.
 	 * @param string $path The path to the source file.
 	 * @param FunctionCoverage|null $functions The function coverage.
 	 * @param BranchCoverage|null $branches The branch coverage.

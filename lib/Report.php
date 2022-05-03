@@ -8,7 +8,7 @@ class Report implements \JsonSerializable {
 
 	/**
 	 * The source file list.
-	 * @var File[]
+	 * @var SourceFile[]
 	 */
 	public array $sourceFiles;
 
@@ -21,7 +21,7 @@ class Report implements \JsonSerializable {
 	/**
 	 * Creates a new report.
 	 * @param string $testName The test name.
-	 * @param File[] $sourceFiles The sourcefile list.
+	 * @param SourceFile[] $sourceFiles The source file list.
 	 */
 	function __construct(string $testName, array $sourceFiles = []) {
 		$this->sourceFiles = $sourceFiles;
@@ -46,7 +46,7 @@ class Report implements \JsonSerializable {
 	static function fromString(string $coverage): self {
 		$offset = 0;
 		$report = new self("");
-		$sourceFile = new File("");
+		$sourceFile = new SourceFile("");
 
 		foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
 			$offset++;
@@ -98,7 +98,7 @@ class Report implements \JsonSerializable {
 					break;
 
 				case Token::sourceFile:
-					$sourceFile = new File(
+					$sourceFile = new SourceFile(
 						branches: new BranchCoverage,
 						functions: new FunctionCoverage,
 						lines: new LineCoverage,
@@ -128,7 +128,7 @@ class Report implements \JsonSerializable {
 	static function fromJson(object $map): self {
 		return new self(
 			isset($map->testName) && is_string($map->testName) ? $map->testName : "",
-			isset($map->sourceFiles) && is_array($map->sourceFiles) ? array_map(File::fromJson(...), $map->sourceFiles) : []
+			isset($map->sourceFiles) && is_array($map->sourceFiles) ? array_map(SourceFile::fromJson(...), $map->sourceFiles) : []
 		);
 	}
 
@@ -138,7 +138,7 @@ class Report implements \JsonSerializable {
 	 */
 	function jsonSerialize(): \stdClass {
 		return (object) [
-			"sourceFiles" => array_map(fn(File $item) => $item->jsonSerialize(), $this->sourceFiles),
+			"sourceFiles" => array_map(fn(SourceFile $item) => $item->jsonSerialize(), $this->sourceFiles),
 			"testName" => $this->testName
 		];
 	}

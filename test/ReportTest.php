@@ -19,7 +19,7 @@ class ReportTest extends TestCase {
 
 		// It should contain three source files.
 		assertThat($report->sourceFiles, countOf(3));
-		assertThat($report->sourceFiles[0], isInstanceOf(File::class));
+		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
 		assertThat($report->sourceFiles[0]->path, equalTo("/home/cedx/lcov.php/fixture.php"));
 		assertThat($report->sourceFiles[1]->path, equalTo("/home/cedx/lcov.php/func1.php"));
 		assertThat($report->sourceFiles[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
@@ -74,7 +74,7 @@ class ReportTest extends TestCase {
 		// It should return an initialized instance for a non-empty map.
 		$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
 		assertThat($report->sourceFiles, countOf(1));
-		assertThat($report->sourceFiles[0], isInstanceOf(File::class));
+		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
 		assertThat($report->testName, equalTo("LcovTest"));
 	}
 
@@ -89,7 +89,7 @@ class ReportTest extends TestCase {
 		assertThat($map->testName, isEmpty());
 
 		// It should return a non-empty map for an initialized instance.
-		$map = (new Report("LcovTest", [new File("")]))->jsonSerialize();
+		$map = (new Report("LcovTest", [new SourceFile("")]))->jsonSerialize();
 		assertThat(get_object_vars($map), countOf(2));
 		assertThat($map->sourceFiles, countOf(1));
 		assertThat($map->sourceFiles[0], isType("object"));
@@ -103,7 +103,7 @@ class ReportTest extends TestCase {
 		// It should return a format like "TN:<testName>".
 		assertThat((string) new Report(""), isEmpty());
 
-		$sourceFile = new File("");
+		$sourceFile = new SourceFile("");
 		assertThat((string) new Report("LcovTest", [$sourceFile]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$sourceFile")));
 	}
 }

@@ -8,7 +8,7 @@
 
 	<coverage processUncoveredFiles="true">
 		<include>
-			<directory suffix=".php">../lib</directory>
+			<directory>../lib</directory>
 		</include>
 		<report>
 			<clover outputFile="../var/coverage.xml"/>
@@ -17,7 +17,7 @@
 	<logging/>
 	<testsuites>
 		<testsuite name="main">
-			<directory suffix="Test.php">../test</directory>
+			<directory>../test</directory>
 		</testsuite>
 	</testsuites>
 </phpunit>
