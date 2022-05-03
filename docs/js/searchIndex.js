@@ -18,38 +18,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020a\u0020new\u0020branch\u0020coverage\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-BranchCoverage.html#method_fromJson"
-        },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "Gets\u0020the\u0020coverage\u0020data.",
-            "url": "classes/Lcov-BranchCoverage.html#method_getData"
-        },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AgetFound\u0028\u0029",
-            "name": "getFound",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020branches\u0020found.",
-            "url": "classes/Lcov-BranchCoverage.html#method_getFound"
-        },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AgetHit\u0028\u0029",
-            "name": "getHit",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020branches\u0020hit.",
-            "url": "classes/Lcov-BranchCoverage.html#method_getHit"
         },                {
             "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-BranchCoverage.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AsetFound\u0028\u0029",
-            "name": "setFound",
-            "summary": "Sets\u0020the\u0020number\u0020of\u0020branches\u0020found.",
-            "url": "classes/Lcov-BranchCoverage.html#method_setFound"
+            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "The\u0020coverage\u0020data.",
+            "url": "classes/Lcov-BranchCoverage.html#property_data"
         },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AsetHit\u0028\u0029",
-            "name": "setHit",
-            "summary": "Sets\u0020the\u0020number\u0020of\u0020branches\u0020hit.",
-            "url": "classes/Lcov-BranchCoverage.html#method_setHit"
+            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024found",
+            "name": "found",
+            "summary": "The\u0020number\u0020of\u0020branches\u0020found.",
+            "url": "classes/Lcov-BranchCoverage.html#property_found"
+        },                {
+            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024hit",
+            "name": "hit",
+            "summary": "The\u0020number\u0020of\u0020branches\u0020hit.",
+            "url": "classes/Lcov-BranchCoverage.html#property_hit"
         },                {
             "fqsen": "\\Lcov\\BranchData",
             "name": "BranchData",
@@ -71,35 +61,30 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-BranchData.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003AgetBlockNumber\u0028\u0029",
-            "name": "getBlockNumber",
-            "summary": "Gets\u0020the\u0020block\u0020number.",
-            "url": "classes/Lcov-BranchData.html#method_getBlockNumber"
-        },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003AgetBranchNumber\u0028\u0029",
-            "name": "getBranchNumber",
-            "summary": "Gets\u0020the\u0020branch\u0020number.",
-            "url": "classes/Lcov-BranchData.html#method_getBranchNumber"
-        },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003AgetLineNumber\u0028\u0029",
-            "name": "getLineNumber",
-            "summary": "Gets\u0020the\u0020line\u0020number.",
-            "url": "classes/Lcov-BranchData.html#method_getLineNumber"
-        },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003AgetTaken\u0028\u0029",
-            "name": "getTaken",
-            "summary": "Gets\u0020a\u0020number\u0020indicating\u0020how\u0020often\u0020this\u0020branch\u0020was\u0020taken.",
-            "url": "classes/Lcov-BranchData.html#method_getTaken"
-        },                {
             "fqsen": "\\Lcov\\BranchData\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-BranchData.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003AsetTaken\u0028\u0029",
-            "name": "setTaken",
-            "summary": "Sets\u0020a\u0020number\u0020indicating\u0020how\u0020often\u0020this\u0020branch\u0020was\u0020taken.",
-            "url": "classes/Lcov-BranchData.html#method_setTaken"
+            "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024blockNumber",
+            "name": "blockNumber",
+            "summary": "The\u0020block\u0020number.",
+            "url": "classes/Lcov-BranchData.html#property_blockNumber"
+        },                {
+            "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024branchNumber",
+            "name": "branchNumber",
+            "summary": "The\u0020branch\u0020number.",
+            "url": "classes/Lcov-BranchData.html#property_branchNumber"
+        },                {
+            "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024lineNumber",
+            "name": "lineNumber",
+            "summary": "The\u0020line\u0020number.",
+            "url": "classes/Lcov-BranchData.html#property_lineNumber"
+        },                {
+            "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024taken",
+            "name": "taken",
+            "summary": "A\u0020number\u0020indicating\u0020how\u0020often\u0020this\u0020branch\u0020was\u0020taken.",
+            "url": "classes/Lcov-BranchData.html#property_taken"
         },                {
             "fqsen": "\\Lcov\\FunctionCoverage",
             "name": "FunctionCoverage",
@@ -121,35 +106,25 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-FunctionCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "Gets\u0020the\u0020coverage\u0020data.",
-            "url": "classes/Lcov-FunctionCoverage.html#method_getData"
-        },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AgetFound\u0028\u0029",
-            "name": "getFound",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020functions\u0020found.",
-            "url": "classes/Lcov-FunctionCoverage.html#method_getFound"
-        },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AgetHit\u0028\u0029",
-            "name": "getHit",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020functions\u0020hit.",
-            "url": "classes/Lcov-FunctionCoverage.html#method_getHit"
-        },                {
             "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-FunctionCoverage.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AsetFound\u0028\u0029",
-            "name": "setFound",
-            "summary": "Sets\u0020the\u0020number\u0020of\u0020branches\u0020found.",
-            "url": "classes/Lcov-FunctionCoverage.html#method_setFound"
+            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "The\u0020coverage\u0020data.",
+            "url": "classes/Lcov-FunctionCoverage.html#property_data"
         },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AsetHit\u0028\u0029",
-            "name": "setHit",
-            "summary": "Sets\u0020the\u0020number\u0020of\u0020branches\u0020hit.",
-            "url": "classes/Lcov-FunctionCoverage.html#method_setHit"
+            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024found",
+            "name": "found",
+            "summary": "The\u0020number\u0020of\u0020functions\u0020found.",
+            "url": "classes/Lcov-FunctionCoverage.html#property_found"
+        },                {
+            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024hit",
+            "name": "hit",
+            "summary": "The\u0020number\u0020of\u0020functions\u0020hit.",
+            "url": "classes/Lcov-FunctionCoverage.html#property_hit"
         },                {
             "fqsen": "\\Lcov\\FunctionData",
             "name": "FunctionData",
@@ -171,55 +146,30 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020function\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-FunctionData.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\FunctionData\u003A\u003AgetExecutionCount\u0028\u0029",
-            "name": "getExecutionCount",
-            "summary": "Gets\u0020the\u0020execution\u0020count.",
-            "url": "classes/Lcov-FunctionData.html#method_getExecutionCount"
-        },                {
-            "fqsen": "\\Lcov\\FunctionData\u003A\u003AgetFunctionName\u0028\u0029",
-            "name": "getFunctionName",
-            "summary": "Gets\u0020the\u0020function\u0020name.",
-            "url": "classes/Lcov-FunctionData.html#method_getFunctionName"
-        },                {
-            "fqsen": "\\Lcov\\FunctionData\u003A\u003AgetLineNumber\u0028\u0029",
-            "name": "getLineNumber",
-            "summary": "Gets\u0020the\u0020line\u0020number\u0020of\u0020the\u0020function\u0020start.",
-            "url": "classes/Lcov-FunctionData.html#method_getLineNumber"
-        },                {
             "fqsen": "\\Lcov\\FunctionData\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-FunctionData.html#method_jsonSerialize"
-        },                {
-            "fqsen": "\\Lcov\\FunctionData\u003A\u003AsetExecutionCount\u0028\u0029",
-            "name": "setExecutionCount",
-            "summary": "Sets\u0020the\u0020execution\u0020count.",
-            "url": "classes/Lcov-FunctionData.html#method_setExecutionCount"
         },                {
             "fqsen": "\\Lcov\\FunctionData\u003A\u003AtoString\u0028\u0029",
             "name": "toString",
             "summary": "Returns\u0020a\u0020string\u0020representation\u0020of\u0020this\u0020object.",
             "url": "classes/Lcov-FunctionData.html#method_toString"
         },                {
-            "fqsen": "\\Lcov\\LcovException",
-            "name": "LcovException",
-            "summary": "An\u0020exception\u0020caused\u0020by\u0020a\u0020parsing\u0020error.",
-            "url": "classes/Lcov-LcovException.html"
+            "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024executionCount",
+            "name": "executionCount",
+            "summary": "The\u0020execution\u0020count.",
+            "url": "classes/Lcov-FunctionData.html#property_executionCount"
         },                {
-            "fqsen": "\\Lcov\\LcovException\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Creates\u0020a\u0020new\u0020client\u0020exception.",
-            "url": "classes/Lcov-LcovException.html#method___construct"
+            "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024functionName",
+            "name": "functionName",
+            "summary": "The\u0020function\u0020name.",
+            "url": "classes/Lcov-FunctionData.html#property_functionName"
         },                {
-            "fqsen": "\\Lcov\\LcovException\u003A\u003AgetOffset\u0028\u0029",
-            "name": "getOffset",
-            "summary": "Gets\u0020the\u0020offset\u0020in\u0020\u0060\u0024source\u0060\u0020where\u0020the\u0020error\u0020was\u0020detected.",
-            "url": "classes/Lcov-LcovException.html#method_getOffset"
-        },                {
-            "fqsen": "\\Lcov\\LcovException\u003A\u003AgetSource\u0028\u0029",
-            "name": "getSource",
-            "summary": "Gets\u0020the\u0020actual\u0020source\u0020input\u0020which\u0020caused\u0020the\u0020error.",
-            "url": "classes/Lcov-LcovException.html#method_getSource"
+            "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024lineNumber",
+            "name": "lineNumber",
+            "summary": "The\u0020line\u0020number\u0020of\u0020the\u0020function\u0020start.",
+            "url": "classes/Lcov-FunctionData.html#property_lineNumber"
         },                {
             "fqsen": "\\Lcov\\LineCoverage",
             "name": "LineCoverage",
@@ -241,35 +191,25 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-LineCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "Gets\u0020the\u0020coverage\u0020data.",
-            "url": "classes/Lcov-LineCoverage.html#method_getData"
-        },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003AgetFound\u0028\u0029",
-            "name": "getFound",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020lines\u0020found.",
-            "url": "classes/Lcov-LineCoverage.html#method_getFound"
-        },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003AgetHit\u0028\u0029",
-            "name": "getHit",
-            "summary": "Gets\u0020the\u0020number\u0020of\u0020lines\u0020hit.",
-            "url": "classes/Lcov-LineCoverage.html#method_getHit"
-        },                {
             "fqsen": "\\Lcov\\LineCoverage\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-LineCoverage.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003AsetFound\u0028\u0029",
-            "name": "setFound",
-            "summary": "Sets\u0020the\u0020number\u0020of\u0020branches\u0020found.",
-            "url": "classes/Lcov-LineCoverage.html#method_setFound"
+            "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "The\u0020coverage\u0020data.",
+            "url": "classes/Lcov-LineCoverage.html#property_data"
         },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003AsetHit\u0028\u0029",
-            "name": "setHit",
-            "summary": "Sets\u0020the\u0020number\u0020of\u0020branches\u0020hit.",
-            "url": "classes/Lcov-LineCoverage.html#method_setHit"
+            "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024found",
+            "name": "found",
+            "summary": "The\u0020number\u0020of\u0020lines\u0020found.",
+            "url": "classes/Lcov-LineCoverage.html#property_found"
+        },                {
+            "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024hit",
+            "name": "hit",
+            "summary": "The\u0020number\u0020of\u0020lines\u0020hit.",
+            "url": "classes/Lcov-LineCoverage.html#property_hit"
         },                {
             "fqsen": "\\Lcov\\LineData",
             "name": "LineData",
@@ -291,94 +231,29 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-LineData.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003AgetChecksum\u0028\u0029",
-            "name": "getChecksum",
-            "summary": "Gets\u0020the\u0020data\u0020checksum.",
-            "url": "classes/Lcov-LineData.html#method_getChecksum"
-        },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003AgetExecutionCount\u0028\u0029",
-            "name": "getExecutionCount",
-            "summary": "Gets\u0020the\u0020execution\u0020count.",
-            "url": "classes/Lcov-LineData.html#method_getExecutionCount"
-        },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003AgetLineNumber\u0028\u0029",
-            "name": "getLineNumber",
-            "summary": "Gets\u0020the\u0020line\u0020number.",
-            "url": "classes/Lcov-LineData.html#method_getLineNumber"
-        },                {
             "fqsen": "\\Lcov\\LineData\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-LineData.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003AsetExecutionCount\u0028\u0029",
-            "name": "setExecutionCount",
-            "summary": "Sets\u0020the\u0020execution\u0020count.",
-            "url": "classes/Lcov-LineData.html#method_setExecutionCount"
+            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024checksum",
+            "name": "checksum",
+            "summary": "The\u0020data\u0020checksum.",
+            "url": "classes/Lcov-LineData.html#property_checksum"
         },                {
-            "fqsen": "\\Lcov\\Record",
-            "name": "Record",
-            "summary": "Provides\u0020the\u0020coverage\u0020data\u0020of\u0020a\u0020source\u0020file.",
-            "url": "classes/Lcov-Record.html"
+            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024executionCount",
+            "name": "executionCount",
+            "summary": "The\u0020execution\u0020count.",
+            "url": "classes/Lcov-LineData.html#property_executionCount"
         },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Creates\u0020a\u0020new\u0020record.",
-            "url": "classes/Lcov-Record.html#method___construct"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003A__toString\u0028\u0029",
-            "name": "__toString",
-            "summary": "Returns\u0020a\u0020string\u0020representation\u0020of\u0020this\u0020object.",
-            "url": "classes/Lcov-Record.html#method___toString"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AfromJson\u0028\u0029",
-            "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
-            "url": "classes/Lcov-Record.html#method_fromJson"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AgetBranches\u0028\u0029",
-            "name": "getBranches",
-            "summary": "Gets\u0020the\u0020branch\u0020coverage.",
-            "url": "classes/Lcov-Record.html#method_getBranches"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AgetFunctions\u0028\u0029",
-            "name": "getFunctions",
-            "summary": "Gets\u0020the\u0020function\u0020coverage.",
-            "url": "classes/Lcov-Record.html#method_getFunctions"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AgetLines\u0028\u0029",
-            "name": "getLines",
-            "summary": "Gets\u0020the\u0020line\u0020coverage.",
-            "url": "classes/Lcov-Record.html#method_getLines"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AgetSourceFile\u0028\u0029",
-            "name": "getSourceFile",
-            "summary": "Gets\u0020the\u0020path\u0020to\u0020the\u0020source\u0020file.",
-            "url": "classes/Lcov-Record.html#method_getSourceFile"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-Record.html#method_jsonSerialize"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AsetBranches\u0028\u0029",
-            "name": "setBranches",
-            "summary": "Sets\u0020the\u0020branch\u0020coverage.",
-            "url": "classes/Lcov-Record.html#method_setBranches"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AsetFunctions\u0028\u0029",
-            "name": "setFunctions",
-            "summary": "Sets\u0020the\u0020function\u0020coverage.",
-            "url": "classes/Lcov-Record.html#method_setFunctions"
-        },                {
-            "fqsen": "\\Lcov\\Record\u003A\u003AsetLines\u0028\u0029",
-            "name": "setLines",
-            "summary": "Sets\u0020the\u0020line\u0020coverage.",
-            "url": "classes/Lcov-Record.html#method_setLines"
+            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024lineNumber",
+            "name": "lineNumber",
+            "summary": "The\u0020line\u0020number.",
+            "url": "classes/Lcov-LineData.html#property_lineNumber"
         },                {
             "fqsen": "\\Lcov\\Report",
             "name": "Report",
-            "summary": "Provides\u0020the\u0020coverage\u0020data\u0020of\u0020a\u0020source\u0020file.",
+            "summary": "Represents\u0020a\u0020trace\u0020file,\u0020that\u0020is\u0020a\u0020coverage\u0020report.",
             "url": "classes/Lcov-Report.html"
         },                {
             "fqsen": "\\Lcov\\Report\u003A\u003A__construct\u0028\u0029",
@@ -391,35 +266,75 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020string\u0020representation\u0020of\u0020this\u0020object.",
             "url": "classes/Lcov-Report.html#method___toString"
         },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003AfromCoverage\u0028\u0029",
-            "name": "fromCoverage",
+            "fqsen": "\\Lcov\\Report\u003A\u003AfromString\u0028\u0029",
+            "name": "fromString",
             "summary": "Parses\u0020the\u0020specified\u0020coverage\u0020data\u0020in\u0020LCOV\u0020format.",
-            "url": "classes/Lcov-Report.html#method_fromCoverage"
+            "url": "classes/Lcov-Report.html#method_fromString"
         },                {
             "fqsen": "\\Lcov\\Report\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-Report.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003AgetRecords\u0028\u0029",
-            "name": "getRecords",
-            "summary": "Gets\u0020the\u0020record\u0020list.",
-            "url": "classes/Lcov-Report.html#method_getRecords"
-        },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003AgetTestName\u0028\u0029",
-            "name": "getTestName",
-            "summary": "Gets\u0020the\u0020test\u0020name.",
-            "url": "classes/Lcov-Report.html#method_getTestName"
-        },                {
             "fqsen": "\\Lcov\\Report\u003A\u003AjsonSerialize\u0028\u0029",
             "name": "jsonSerialize",
             "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
             "url": "classes/Lcov-Report.html#method_jsonSerialize"
         },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003AsetTestName\u0028\u0029",
-            "name": "setTestName",
-            "summary": "Sets\u0020the\u0020test\u0020name.",
-            "url": "classes/Lcov-Report.html#method_setTestName"
+            "fqsen": "\\Lcov\\Report\u003A\u003A\u0024sourceFiles",
+            "name": "sourceFiles",
+            "summary": "The\u0020source\u0020file\u0020list.",
+            "url": "classes/Lcov-Report.html#property_sourceFiles"
+        },                {
+            "fqsen": "\\Lcov\\Report\u003A\u003A\u0024testName",
+            "name": "testName",
+            "summary": "The\u0020test\u0020name.",
+            "url": "classes/Lcov-Report.html#property_testName"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile",
+            "name": "SourceFile",
+            "summary": "Provides\u0020the\u0020coverage\u0020data\u0020of\u0020a\u0020source\u0020file.",
+            "url": "classes/Lcov-SourceFile.html"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Creates\u0020a\u0020new\u0020source\u0020file.",
+            "url": "classes/Lcov-SourceFile.html#method___construct"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "Returns\u0020a\u0020string\u0020representation\u0020of\u0020this\u0020object.",
+            "url": "classes/Lcov-SourceFile.html#method___toString"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003AfromJson\u0028\u0029",
+            "name": "fromJson",
+            "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "url": "classes/Lcov-SourceFile.html#method_fromJson"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003AjsonSerialize\u0028\u0029",
+            "name": "jsonSerialize",
+            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
+            "url": "classes/Lcov-SourceFile.html#method_jsonSerialize"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024branches",
+            "name": "branches",
+            "summary": "The\u0020branch\u0020coverage.",
+            "url": "classes/Lcov-SourceFile.html#property_branches"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024functions",
+            "name": "functions",
+            "summary": "The\u0020function\u0020coverage.",
+            "url": "classes/Lcov-SourceFile.html#property_functions"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024lines",
+            "name": "lines",
+            "summary": "The\u0020line\u0020coverage.",
+            "url": "classes/Lcov-SourceFile.html#property_lines"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024path",
+            "name": "path",
+            "summary": "The\u0020path\u0020to\u0020the\u0020source\u0020file.",
+            "url": "classes/Lcov-SourceFile.html#property_path"
         },                {
             "fqsen": "\\Lcov\\Token",
             "name": "Token",
@@ -428,68 +343,68 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AbranchData",
             "name": "branchData",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_branchData"
+            "summary": "The\u0020coverage\u0020data\u0020of\u0020a\u0020branch.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AbranchesFound",
             "name": "branchesFound",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_branchesFound"
+            "summary": "The\u0020number\u0020of\u0020branches\u0020found.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AbranchesHit",
             "name": "branchesHit",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_branchesHit"
+            "summary": "The\u0020number\u0020of\u0020branches\u0020hit.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AendOfRecord",
             "name": "endOfRecord",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_endOfRecord"
+            "summary": "The\u0020end\u0020of\u0020a\u0020section.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AfunctionData",
             "name": "functionData",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_functionData"
+            "summary": "The\u0020coverage\u0020data\u0020of\u0020a\u0020function.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AfunctionName",
             "name": "functionName",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_functionName"
+            "summary": "A\u0020function\u0020name.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AfunctionsFound",
             "name": "functionsFound",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_functionsFound"
+            "summary": "The\u0020number\u0020of\u0020functions\u0020found.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AfunctionsHit",
             "name": "functionsHit",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_functionsHit"
+            "summary": "The\u0020number\u0020of\u0020functions\u0020hit.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AlineData",
             "name": "lineData",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_lineData"
+            "summary": "The\u0020coverage\u0020data\u0020of\u0020a\u0020line.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AlinesFound",
             "name": "linesFound",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_linesFound"
+            "summary": "The\u0020number\u0020of\u0020lines\u0020found.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AlinesHit",
             "name": "linesHit",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_linesHit"
+            "summary": "The\u0020number\u0020of\u0020lines\u0020hit.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AsourceFile",
             "name": "sourceFile",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_sourceFile"
+            "summary": "The\u0020path\u0020to\u0020a\u0020source\u0020file.",
+            "url": ""
         },                {
             "fqsen": "\\Lcov\\Token\u003A\u003AtestName",
             "name": "testName",
-            "summary": "",
-            "url": "classes/Lcov-Token.html#constant_testName"
+            "summary": "A\u0020test\u0020name.",
+            "url": ""
         },                {
             "fqsen": "\\",
             "name": "\\",

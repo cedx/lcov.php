@@ -88,7 +88,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    BranchData
+    SourceFile
 
     
             <div class="phpdocumentor-element__package">
@@ -105,13 +105,13 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Provides details for branch coverage.</p>
+            <p class="phpdocumentor-summary">Provides the coverage data of a source file.</p>
 
 
 
@@ -140,56 +140,56 @@
 
 <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Lcov-BranchData.html#property_blockNumber">$blockNumber</a>
+    <a href="classes/Lcov-SourceFile.html#property_branches">$branches</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: <a href="classes/Lcov-BranchCoverage.html"><abbr title="\Lcov\BranchCoverage">BranchCoverage</abbr></a>|null            </span>
 </dt>
-<dd>The block number.</dd>
+<dd>The branch coverage.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Lcov-BranchData.html#property_branchNumber">$branchNumber</a>
+    <a href="classes/Lcov-SourceFile.html#property_functions">$functions</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: <a href="classes/Lcov-FunctionCoverage.html"><abbr title="\Lcov\FunctionCoverage">FunctionCoverage</abbr></a>|null            </span>
 </dt>
-<dd>The branch number.</dd>
+<dd>The function coverage.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Lcov-BranchData.html#property_lineNumber">$lineNumber</a>
+    <a href="classes/Lcov-SourceFile.html#property_lines">$lines</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: <a href="classes/Lcov-LineCoverage.html"><abbr title="\Lcov\LineCoverage">LineCoverage</abbr></a>|null            </span>
 </dt>
-<dd>The line number.</dd>
+<dd>The line coverage.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/Lcov-BranchData.html#property_taken">$taken</a>
+    <a href="classes/Lcov-SourceFile.html#property_path">$path</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: string            </span>
 </dt>
-<dd>A number indicating how often this branch was taken.</dd>
+<dd>The path to the source file.</dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Lcov-BranchData.html#method___construct">__construct()</a>
+    <a href="classes/Lcov-SourceFile.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>Creates a new branch data.</dd>
+<dd>Creates a new source file.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Lcov-BranchData.html#method___toString">__toString()</a>
+    <a href="classes/Lcov-SourceFile.html#method___toString">__toString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Returns a string representation of this object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Lcov-BranchData.html#method_fromJson">fromJson()</a>
+    <a href="classes/Lcov-SourceFile.html#method_fromJson">fromJson()</a>
     <span>
                                 &nbsp;: self    </span>
 </dt>
-<dd>Creates a new branch data from the specified JSON object.</dd>
+<dd>Creates a new line data from the specified JSON object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Lcov-BranchData.html#method_jsonSerialize">jsonSerialize()</a>
+    <a href="classes/Lcov-SourceFile.html#method_jsonSerialize">jsonSerialize()</a>
     <span>
                                 &nbsp;: <abbr title="\stdClass">stdClass</abbr>    </span>
 </dt>
@@ -205,7 +205,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Lcov-BranchData.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Lcov-SourceFile.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="
@@ -214,25 +214,25 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_blockNumber">
-        $blockNumber
-        <a href="classes/Lcov-BranchData.html#property_blockNumber" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_branches">
+        $branches
+        <a href="classes/Lcov-SourceFile.html#property_branches" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The block number.</p>
+        <p class="phpdocumentor-summary">The branch coverage.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$blockNumber</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Lcov-BranchCoverage.html"><abbr title="\Lcov\BranchCoverage">BranchCoverage</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__name">$branches</span>
     </code>
 
     
@@ -247,25 +247,25 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_branchNumber">
-        $branchNumber
-        <a href="classes/Lcov-BranchData.html#property_branchNumber" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_functions">
+        $functions
+        <a href="classes/Lcov-SourceFile.html#property_functions" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The branch number.</p>
+        <p class="phpdocumentor-summary">The function coverage.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$branchNumber</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Lcov-FunctionCoverage.html"><abbr title="\Lcov\FunctionCoverage">FunctionCoverage</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__name">$functions</span>
     </code>
 
     
@@ -280,25 +280,25 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_lineNumber">
-        $lineNumber
-        <a href="classes/Lcov-BranchData.html#property_lineNumber" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_lines">
+        $lines
+        <a href="classes/Lcov-SourceFile.html#property_lines" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The line number.</p>
+        <p class="phpdocumentor-summary">The line coverage.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$lineNumber</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Lcov-LineCoverage.html"><abbr title="\Lcov\LineCoverage">LineCoverage</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__name">$lines</span>
     </code>
 
     
@@ -313,25 +313,25 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_taken">
-        $taken
-        <a href="classes/Lcov-BranchData.html#property_taken" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_path">
+        $path
+        <a href="classes/Lcov-SourceFile.html#property_path" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">A number indicating how often this branch was taken.</p>
+        <p class="phpdocumentor-summary">The path to the source file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$taken</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$path</span>
     </code>
 
     
@@ -344,7 +344,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Lcov-BranchData.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Lcov-SourceFile.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -354,57 +354,57 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Lcov-BranchData.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Lcov-SourceFile.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Creates a new branch data.</p>
+        <p class="phpdocumentor-summary">Creates a new source file.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lineNumber</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$blockNumber</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$branchNumber</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$taken</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Lcov-FunctionCoverage.html"><abbr title="\Lcov\FunctionCoverage">FunctionCoverage</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$functions</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Lcov-BranchCoverage.html"><abbr title="\Lcov\BranchCoverage">BranchCoverage</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$branches</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Lcov-LineCoverage.html"><abbr title="\Lcov\LineCoverage">LineCoverage</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lines</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$lineNumber</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                <span class="phpdocumentor-signature__argument__name">$path</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The line number.</p>
+                    <section class="phpdocumentor-description"><p>The path to the source file.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$blockNumber</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
+                <span class="phpdocumentor-signature__argument__name">$functions</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Lcov-FunctionCoverage.html"><abbr title="\Lcov\FunctionCoverage">FunctionCoverage</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The block number.</p>
+                    <section class="phpdocumentor-description"><p>The function coverage.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$branchNumber</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
+                <span class="phpdocumentor-signature__argument__name">$branches</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Lcov-BranchCoverage.html"><abbr title="\Lcov\BranchCoverage">BranchCoverage</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The branch number.</p>
+                    <section class="phpdocumentor-description"><p>The branch coverage.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$taken</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
+                <span class="phpdocumentor-signature__argument__name">$lines</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Lcov-LineCoverage.html"><abbr title="\Lcov\LineCoverage">LineCoverage</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>A number indicating how often this branch was taken.</p>
+                    <section class="phpdocumentor-description"><p>The line coverage.</p>
 </section>
 
             </dd>
@@ -426,10 +426,10 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___toString">
         __toString()
-        <a href="classes/Lcov-BranchData.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Lcov-SourceFile.html#method___toString" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">51</span>
 
@@ -461,16 +461,16 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_fromJson">
         fromJson()
-        <a href="classes/Lcov-BranchData.html#method_fromJson" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Lcov-SourceFile.html#method_fromJson" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Creates a new branch data from the specified JSON object.</p>
+        <p class="phpdocumentor-summary">Creates a new line data from the specified JSON object.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -484,7 +484,7 @@
                 : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>A JSON object representing a branch data.</p>
+                    <section class="phpdocumentor-description"><p>A JSON object representing a line data.</p>
 </section>
 
             </dd>
@@ -508,12 +508,12 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_jsonSerialize">
         jsonSerialize()
-        <a href="classes/Lcov-BranchData.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Lcov-SourceFile.html#method_jsonSerialize" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="lib/BranchData.php"><a href="files/lib-branchdata.html"><abbr title="lib/BranchData.php">BranchData.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="lib/SourceFile.php"><a href="files/lib-sourcefile.html"><abbr title="lib/SourceFile.php">SourceFile.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -613,7 +613,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Lcov-BranchData.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Lcov-SourceFile.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
