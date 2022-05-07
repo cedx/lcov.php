@@ -14,7 +14,7 @@ class ReportTest extends TestCase {
 	 */
 	function testFromString(): void {
 		// It should have a test name.
-		$report = Report::fromString(file_get_contents("test/fixtures/lcov.info") ?: "");
+		$report = Report::fromString(file_get_contents("test/fixture/lcov.info") ?: "");
 		assertThat($report->testName, equalTo("Example"));
 
 		// It should contain three source files.
