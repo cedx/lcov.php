@@ -4,7 +4,7 @@ namespace Lcov;
 /**
  * Provides the coverage data of functions.
  */
-class FunctionCoverage implements \JsonSerializable {
+class FunctionCoverage implements \JsonSerializable, \Stringable {
 
 	/**
 	 * The coverage data.

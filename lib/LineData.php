@@ -4,7 +4,7 @@ namespace Lcov;
 /**
  * Provides details for line coverage.
  */
-class LineData implements \JsonSerializable {
+class LineData implements \JsonSerializable, \Stringable {
 
 	/**
 	 * The data checksum.

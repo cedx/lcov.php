@@ -4,7 +4,7 @@ namespace Lcov;
 /**
  * Represents a trace file, that is a coverage report.
  */
-class Report implements \JsonSerializable {
+class Report implements \JsonSerializable, \Stringable {
 
 	/**
 	 * The source file list.
