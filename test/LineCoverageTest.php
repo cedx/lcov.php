@@ -53,7 +53,9 @@ class LineCoverageTest extends TestCase {
 		assertThat($map->hit, equalTo(11));
 	}
 
-	/** @testdox ->__toString() */
+	/**
+	 * @testdox ->__toString()
+	 */
 	function testToString(): void {
 		// It should return a format like "LF:<found>\\nLH:<hit>".
 		assertThat((string) new LineCoverage, equalTo(str_replace("{eol}", PHP_EOL, "LF:0{eol}LH:0")));

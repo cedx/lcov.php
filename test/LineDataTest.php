@@ -26,7 +26,9 @@ class LineDataTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	/** @testdox ->jsonSerialize() */
+	/**
+	 * @testdox ->jsonSerialize()
+	 */
 	function testJsonSerialize(): void {
 		// It should return a map with default values for a newly created instance.
 		$data = (new LineData)->jsonSerialize();
@@ -43,7 +45,9 @@ class LineDataTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	/** @testdox ->__toString() */
+	/**
+	 * @testdox ->__toString()
+	 */
 	function testToString(): void {
 		// It should return a format like "DA:<lineNumber>,<executionCount>[,<checksum>]".
 		assertThat((string) new LineData, equalTo("DA:0,0"));
