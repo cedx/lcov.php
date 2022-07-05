@@ -1,5 +1,4 @@
-<?php declare(strict_types=1);
-namespace Lcov;
+<?php namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isNull, isType, logicalNot};
