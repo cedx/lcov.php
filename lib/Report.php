@@ -121,13 +121,13 @@ class Report implements \JsonSerializable, \Stringable {
 
 	/**
 	 * Creates a new line data from the specified JSON object.
-	 * @param object $map A JSON object representing a line data.
+	 * @param object $json A JSON object representing a line data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
-	static function fromJson(object $map): self {
+	static function fromJson(object $json): self {
 		return new self(
-			isset($map->testName) && is_string($map->testName) ? $map->testName : "",
-			isset($map->sourceFiles) && is_array($map->sourceFiles) ? array_map(SourceFile::fromJson(...), $map->sourceFiles) : []
+			isset($json->testName) && is_string($json->testName) ? $json->testName : "",
+			isset($json->sourceFiles) && is_array($json->sourceFiles) ? array_map(SourceFile::fromJson(...), $json->sourceFiles) : []
 		);
 	}
 

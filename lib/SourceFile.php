@@ -58,15 +58,15 @@ class SourceFile implements \JsonSerializable, \Stringable {
 
 	/**
 	 * Creates a new line data from the specified JSON object.
-	 * @param object $map A JSON object representing a line data.
+	 * @param object $json A JSON object representing a line data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
-	static function fromJson(object $map): self {
+	static function fromJson(object $json): self {
 		return new self(
-			branches: isset($map->branches) && is_object($map->branches) ? BranchCoverage::fromJson($map->branches) : null,
-			functions: isset($map->functions) && is_object($map->functions) ? FunctionCoverage::fromJson($map->functions) : null,
-			lines: isset($map->lines) && is_object($map->lines) ? LineCoverage::fromJson($map->lines) : null,
-			path: isset($map->path) && is_string($map->path) ? $map->path : ""
+			branches: isset($json->branches) && is_object($json->branches) ? BranchCoverage::fromJson($json->branches) : null,
+			functions: isset($json->functions) && is_object($json->functions) ? FunctionCoverage::fromJson($json->functions) : null,
+			lines: isset($json->lines) && is_object($json->lines) ? LineCoverage::fromJson($json->lines) : null,
+			path: isset($json->path) && is_string($json->path) ? $json->path : ""
 		);
 	}
 

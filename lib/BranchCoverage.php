@@ -49,14 +49,14 @@ class BranchCoverage implements \JsonSerializable, \Stringable {
 
 	/**
 	 * Creates a new branch coverage from the specified JSON object.
-	 * @param object $map A JSON object representing a branch coverage.
+	 * @param object $json A JSON object representing a branch coverage.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
-	static function fromJson(object $map): self {
+	static function fromJson(object $json): self {
 		return new self(
-			data: isset($map->data) && is_array($map->data) ? array_map(BranchData::fromJson(...), $map->data) : [],
-			found: isset($map->found) && is_int($map->found) ? $map->found : 0,
-			hit: isset($map->hit) && is_int($map->hit) ? $map->hit : 0
+			data: isset($json->data) && is_array($json->data) ? array_map(BranchData::fromJson(...), $json->data) : [],
+			found: isset($json->found) && is_int($json->found) ? $json->found : 0,
+			hit: isset($json->hit) && is_int($json->hit) ? $json->hit : 0
 		);
 	}
 
