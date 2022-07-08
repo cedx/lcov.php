@@ -46,14 +46,14 @@ class LineData implements \JsonSerializable, \Stringable {
 
 	/**
 	 * Creates a new line data from the specified JSON object.
-	 * @param object $map A JSON object representing a line data.
+	 * @param \stdClass $map A JSON object representing a line data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
-	static function fromJson(object $map): self {
+	static function fromJson(\stdClass $map): self {
 		return new self(
-			checksum: isset($map->checksum) && is_string($map->checksum) ? $map->checksum : "",
-			executionCount: isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
-			lineNumber: isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
+			checksum: is_string($map->checksum) ? $map->checksum : "",
+			executionCount: is_int($map->executionCount) ? $map->executionCount : 0,
+			lineNumber: is_int($map->lineNumber) ? $map->lineNumber : 0,
 		);
 	}
 

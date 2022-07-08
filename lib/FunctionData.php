@@ -45,14 +45,14 @@ class FunctionData implements \JsonSerializable, \Stringable {
 
 	/**
 	 * Creates a new function data from the specified JSON object.
-	 * @param object $map A JSON object representing a function data.
+	 * @param \stdClass $map A JSON object representing a function data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
-	static function fromJson(object $map): self {
+	static function fromJson(\stdClass $map): self {
 		return new self(
-			executionCount: isset($map->executionCount) && is_int($map->executionCount) ? $map->executionCount : 0,
-			functionName: isset($map->functionName) && is_string($map->functionName) ? $map->functionName : "",
-			lineNumber: isset($map->lineNumber) && is_int($map->lineNumber) ? $map->lineNumber : 0,
+			executionCount: is_int($map->executionCount) ? $map->executionCount : 0,
+			functionName: is_string($map->functionName) ? $map->functionName : "",
+			lineNumber: is_int($map->lineNumber) ? $map->lineNumber : 0,
 		);
 	}
 
