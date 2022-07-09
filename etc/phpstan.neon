@@ -1,5 +1,5 @@
 parameters:
 	level: max
-	paths: [../lib, ../test]
+	paths: [../src, ../test]
 	ignoreErrors:
 		- '/Function PHPUnit\\Framework\\logicalAnd invoked with 2 parameters, 0 required/'
