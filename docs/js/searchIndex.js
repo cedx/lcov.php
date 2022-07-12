@@ -21,11 +21,6 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020coverage\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-BranchCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-BranchCoverage.html#method_jsonSerialize"
-        },                {
             "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024data",
             "name": "data",
             "summary": "The\u0020coverage\u0020data.",
@@ -60,11 +55,6 @@ Search.appendIndex(
             "name": "fromJson",
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-BranchData.html#method_fromJson"
-        },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-BranchData.html#method_jsonSerialize"
         },                {
             "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024blockNumber",
             "name": "blockNumber",
@@ -106,11 +96,6 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-FunctionCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-FunctionCoverage.html#method_jsonSerialize"
-        },                {
             "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024data",
             "name": "data",
             "summary": "The\u0020coverage\u0020data.",
@@ -145,11 +130,6 @@ Search.appendIndex(
             "name": "fromJson",
             "summary": "Creates\u0020a\u0020new\u0020function\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-FunctionData.html#method_fromJson"
-        },                {
-            "fqsen": "\\Lcov\\FunctionData\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-FunctionData.html#method_jsonSerialize"
         },                {
             "fqsen": "\\Lcov\\FunctionData\u003A\u003AtoString\u0028\u0029",
             "name": "toString",
@@ -191,11 +171,6 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-LineCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-LineCoverage.html#method_jsonSerialize"
-        },                {
             "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024data",
             "name": "data",
             "summary": "The\u0020coverage\u0020data.",
@@ -230,11 +205,6 @@ Search.appendIndex(
             "name": "fromJson",
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-LineData.html#method_fromJson"
-        },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-LineData.html#method_jsonSerialize"
         },                {
             "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024checksum",
             "name": "checksum",
@@ -276,11 +246,6 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-Report.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-Report.html#method_jsonSerialize"
-        },                {
             "fqsen": "\\Lcov\\Report\u003A\u003A\u0024sourceFiles",
             "name": "sourceFiles",
             "summary": "The\u0020source\u0020file\u0020list.",
@@ -310,11 +275,6 @@ Search.appendIndex(
             "name": "fromJson",
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-SourceFile.html#method_fromJson"
-        },                {
-            "fqsen": "\\Lcov\\SourceFile\u003A\u003AjsonSerialize\u0028\u0029",
-            "name": "jsonSerialize",
-            "summary": "Converts\u0020this\u0020object\u0020to\u0020a\u0020map\u0020in\u0020JSON\u0020format.",
-            "url": "classes/Lcov-SourceFile.html#method_jsonSerialize"
         },                {
             "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024branches",
             "name": "branches",
