@@ -30,29 +30,6 @@ class LineCoverageTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$map = (new LineCoverage)->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(3));
-		assertThat($map->data, logicalAnd(isType("array"), isEmpty()));
-		assertThat($map->found, equalTo(0));
-		assertThat($map->hit, equalTo(0));
-
-		// It should return a non-empty map for an initialized instance.
-		$map = (new LineCoverage(23, 11, [new LineData(0)]))->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(3));
-		assertThat($map->data, logicalAnd(isType("array"), countOf(1)));
-
-		[$data] = $map->data;
-		assertThat($data, isType("object"));
-		assertThat($data->lineNumber, equalTo(0));
-		assertThat($map->found, equalTo(23));
-		assertThat($map->hit, equalTo(11));
-	}
-
-	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {

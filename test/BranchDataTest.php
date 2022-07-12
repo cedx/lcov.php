@@ -28,27 +28,6 @@ class BranchDataTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$map = (new BranchData)->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(4));
-		assertThat($map->blockNumber, equalTo(0));
-		assertThat($map->branchNumber, equalTo(0));
-		assertThat($map->lineNumber, equalTo(0));
-		assertThat($map->taken, equalTo(0));
-
-		// It should return a non-empty map for an initialized instance.
-		$map = (new BranchData(blockNumber: 3, branchNumber: 2, lineNumber: 127, taken: 1))->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(4));
-		assertThat($map->blockNumber, equalTo(3));
-		assertThat($map->branchNumber, equalTo(2));
-		assertThat($map->lineNumber, equalTo(127));
-		assertThat($map->taken, equalTo(1));
-	}
-
-	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {

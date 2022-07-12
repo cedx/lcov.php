@@ -3,7 +3,7 @@
 /**
  * Provides the coverage data of branches.
  */
-class BranchCoverage implements \JsonSerializable, \Stringable {
+class BranchCoverage implements \Stringable {
 
 	/**
 	 * The coverage data.
@@ -58,17 +58,5 @@ class BranchCoverage implements \JsonSerializable, \Stringable {
 			found: isset($json->found) && is_int($json->found) ? $json->found : 0,
 			hit: isset($json->hit) && is_int($json->hit) ? $json->hit : 0
 		);
-	}
-
-	/**
-	 * Converts this object to a map in JSON format.
-	 * @return \stdClass The map in JSON format corresponding to this object.
-	 */
-	function jsonSerialize(): \stdClass {
-		return (object) [
-			"data" => array_map(fn(BranchData $item) => $item->jsonSerialize(), $this->data),
-			"found" => $this->found,
-			"hit" => $this->hit
-		];
 	}
 }

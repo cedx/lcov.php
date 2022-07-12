@@ -3,7 +3,7 @@
 /**
  * Represents a trace file, that is a coverage report.
  */
-class Report implements \JsonSerializable, \Stringable {
+class Report implements \Stringable {
 
 	/**
 	 * The source file list.
@@ -129,16 +129,5 @@ class Report implements \JsonSerializable, \Stringable {
 			isset($json->testName) && is_string($json->testName) ? $json->testName : "",
 			isset($json->sourceFiles) && is_array($json->sourceFiles) ? array_map(SourceFile::fromJson(...), $json->sourceFiles) : []
 		);
-	}
-
-	/**
-	 * Converts this object to a map in JSON format.
-	 * @return \stdClass The map in JSON format corresponding to this object.
-	 */
-	function jsonSerialize(): \stdClass {
-		return (object) [
-			"sourceFiles" => array_map(fn(SourceFile $item) => $item->jsonSerialize(), $this->sourceFiles),
-			"testName" => $this->testName
-		];
 	}
 }

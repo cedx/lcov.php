@@ -26,25 +26,6 @@ class FunctionDataTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$data = (new FunctionData("", 0))->jsonSerialize();
-		assertThat(get_object_vars($data), countOf(3));
-		assertThat($data->executionCount, equalTo(0));
-		assertThat($data->functionName, isEmpty());
-		assertThat($data->lineNumber, equalTo(0));
-
-		// It should return a non-empty map for an initialized instance.
-		$data = (new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127))->jsonSerialize();
-		assertThat(get_object_vars($data), countOf(3));
-		assertThat($data->executionCount, equalTo(3));
-		assertThat($data->functionName, equalTo("main"));
-		assertThat($data->lineNumber, equalTo(127));
-	}
-
-	/**
 	 * @testdox ->toString()
 	 */
 	function testToString(): void {

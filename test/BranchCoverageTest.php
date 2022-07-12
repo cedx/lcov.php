@@ -30,29 +30,6 @@ class BranchCoverageTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$map = (new BranchCoverage)->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(3));
-		assertThat($map->data, logicalAnd(isType("array"), isEmpty()));
-		assertThat($map->found, equalTo(0));
-		assertThat($map->hit, equalTo(0));
-
-		// It should return a non-empty map for an initialized instance.
-		$map = (new BranchCoverage(found: 23, hit: 11, data: [new BranchData]))->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(3));
-		assertThat($map->data, logicalAnd(isType("array"), countOf(1)));
-
-		[$data] = $map->data;
-		assertThat($data, isType("object"));
-		assertThat($data->lineNumber, equalTo(0));
-		assertThat($map->found, equalTo(23));
-		assertThat($map->hit, equalTo(11));
-	}
-
-	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {

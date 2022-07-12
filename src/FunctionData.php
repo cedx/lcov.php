@@ -3,7 +3,7 @@
 /**
  * Provides details for function coverage.
  */
-class FunctionData implements \JsonSerializable, \Stringable {
+class FunctionData implements \Stringable {
 
 	/**
 	 * The execution count.
@@ -39,7 +39,7 @@ class FunctionData implements \JsonSerializable, \Stringable {
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	function __toString(): string {
+	final function __toString(): string {
 		return $this->toString();
 	}
 
@@ -54,18 +54,6 @@ class FunctionData implements \JsonSerializable, \Stringable {
 			functionName: isset($json->functionName) && is_string($json->functionName) ? $json->functionName : "",
 			lineNumber: isset($json->lineNumber) && is_int($json->lineNumber) ? $json->lineNumber : 0,
 		);
-	}
-
-	/**
-	 * Converts this object to a map in JSON format.
-	 * @return \stdClass The map in JSON format corresponding to this object.
-	 */
-	function jsonSerialize(): \stdClass {
-		return (object) [
-			"executionCount" => $this->executionCount,
-			"functionName" => $this->functionName,
-			"lineNumber" => $this->lineNumber
-		];
 	}
 
 	/**

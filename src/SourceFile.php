@@ -3,7 +3,7 @@
 /**
  * Provides the coverage data of a source file.
  */
-class SourceFile implements \JsonSerializable, \Stringable {
+class SourceFile implements \Stringable {
 
 	/**
 	 * The branch coverage.
@@ -68,18 +68,5 @@ class SourceFile implements \JsonSerializable, \Stringable {
 			lines: isset($json->lines) && is_object($json->lines) ? LineCoverage::fromJson($json->lines) : null,
 			path: isset($json->path) && is_string($json->path) ? $json->path : ""
 		);
-	}
-
-	/**
-	 * Converts this object to a map in JSON format.
-	 * @return \stdClass The map in JSON format corresponding to this object.
-	 */
-	function jsonSerialize(): \stdClass {
-		return (object) [
-			"branches" => $this->branches ? $this->branches->jsonSerialize() : null,
-			"functions" => $this->functions ? $this->functions->jsonSerialize() : null,
-			"lines" => $this->lines ? $this->lines->jsonSerialize() : null,
-			"path" => $this->path
-		];
 	}
 }

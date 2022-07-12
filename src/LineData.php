@@ -3,7 +3,7 @@
 /**
  * Provides details for line coverage.
  */
-class LineData implements \JsonSerializable, \Stringable {
+class LineData implements \Stringable {
 
 	/**
 	 * The data checksum.
@@ -55,17 +55,5 @@ class LineData implements \JsonSerializable, \Stringable {
 			executionCount: isset($json->executionCount) && is_int($json->executionCount) ? $json->executionCount : 0,
 			lineNumber: isset($json->lineNumber) && is_int($json->lineNumber) ? $json->lineNumber : 0,
 		);
-	}
-
-	/**
-	 * Converts this object to a map in JSON format.
-	 * @return \stdClass The map in JSON format corresponding to this object.
-	 */
-	function jsonSerialize(): \stdClass {
-		return (object) [
-			"checksum" => $this->checksum,
-			"executionCount" => $this->executionCount,
-			"lineNumber" => $this->lineNumber
-		];
 	}
 }

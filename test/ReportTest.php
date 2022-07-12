@@ -78,24 +78,6 @@ class ReportTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$map = (new Report(""))->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(2));
-		assertThat($map->sourceFiles, isEmpty());
-		assertThat($map->testName, isEmpty());
-
-		// It should return a non-empty map for an initialized instance.
-		$map = (new Report("LcovTest", [new SourceFile("")]))->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(2));
-		assertThat($map->sourceFiles, countOf(1));
-		assertThat($map->sourceFiles[0], isType("object"));
-		assertThat($map->testName, equalTo("LcovTest"));
-	}
-
-	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {

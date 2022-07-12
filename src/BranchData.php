@@ -3,7 +3,7 @@
 /**
  * Provides details for branch coverage.
  */
-class BranchData implements \JsonSerializable, \Stringable {
+class BranchData implements \Stringable {
 
 	/**
 	 * The block number.
@@ -64,18 +64,5 @@ class BranchData implements \JsonSerializable, \Stringable {
 			lineNumber: isset($json->lineNumber) && is_int($json->lineNumber) ? $json->lineNumber : 0,
 			taken: isset($json->taken) && is_int($json->taken) ? $json->taken : 0,
 		);
-	}
-
-	/**
-	 * Converts this object to a map in JSON format.
-	 * @return \stdClass The map in JSON format corresponding to this object.
-	 */
-	function jsonSerialize(): \stdClass {
-		return (object) [
-			"blockNumber" => $this->blockNumber,
-			"branchNumber" => $this->branchNumber,
-			"lineNumber" => $this->lineNumber,
-			"taken" => $this->taken
-		];
 	}
 }

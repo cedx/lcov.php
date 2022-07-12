@@ -34,33 +34,6 @@ class SourceFileTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$map = (new SourceFile(""))->jsonSerialize();
-		assertThat(get_object_vars($map), countOf(4));
-		assertThat($map->branches, isNull());
-		assertThat($map->functions, isNull());
-		assertThat($map->lines, isNull());
-		assertThat($map->path, isEmpty());
-
-		// It should return a non-empty map for an initialized instance.
-		$map = (new SourceFile(
-			branches: new BranchCoverage,
-			functions: new FunctionCoverage,
-			lines: new LineCoverage,
-			path: "/home/cedx/lcov.php"
-		))->jsonSerialize();
-
-		assertThat(get_object_vars($map), countOf(4));
-		assertThat($map->branches, isType("object"));
-		assertThat($map->functions, isType("object"));
-		assertThat($map->lines, isType("object"));
-		assertThat($map->path, equalTo("/home/cedx/lcov.php"));
-	}
-
-	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {

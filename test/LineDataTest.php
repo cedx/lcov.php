@@ -26,25 +26,6 @@ class LineDataTest extends TestCase {
 	}
 
 	/**
-	 * @testdox ->jsonSerialize()
-	 */
-	function testJsonSerialize(): void {
-		// It should return a map with default values for a newly created instance.
-		$data = (new LineData)->jsonSerialize();
-		assertThat(get_object_vars($data), countOf(3));
-		assertThat($data->checksum, isEmpty());
-		assertThat($data->executionCount, equalTo(0));
-		assertThat($data->lineNumber, equalTo(0));
-
-		// It should return a non-empty map for an initialized instance.
-		$data = (new LineData(checksum: "ed076287532e86365e841e92bfc50d8c", executionCount: 3, lineNumber: 127))->jsonSerialize();
-		assertThat(get_object_vars($data), countOf(3));
-		assertThat($data->checksum, equalTo("ed076287532e86365e841e92bfc50d8c"));
-		assertThat($data->executionCount, equalTo(3));
-		assertThat($data->lineNumber, equalTo(127));
-	}
-
-	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {
