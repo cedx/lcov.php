@@ -1,7 +1,7 @@
 <?php namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
-use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty};
+use function PHPUnit\Framework\{assertThat, equalTo, isEmpty};
 
 /**
  * @testdox Lcov\LineData

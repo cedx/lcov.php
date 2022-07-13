@@ -1,7 +1,7 @@
 <?php namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
-use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isNull, isType, logicalNot};
+use function PHPUnit\Framework\{assertThat, equalTo, isEmpty, isNull, logicalNot};
 
 /**
  * @testdox Lcov\SourceFile
