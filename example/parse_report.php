@@ -11,6 +11,6 @@ try {
 	print json_encode($report);
 }
 
-catch (UnexpectedValueException $e) {
+catch (InvalidArgumentException $e) {
 	print $e->getMessage();
 }

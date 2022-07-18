@@ -52,7 +52,7 @@ class Report implements \Stringable {
 	 * Parses the specified coverage data in LCOV format.
 	 * @param string $coverage The coverage data.
 	 * @return self The resulting coverage report.
-	 * @throws \UnexpectedValueException A parsing error occurred.
+	 * @throws \InvalidArgumentException A parsing error occurred.
 	 */
 	static function parse(string $coverage): self {
 		$offset = 0;
@@ -66,7 +66,7 @@ class Report implements \Stringable {
 
 			$parts = explode(":", $line);
 			if (count($parts) < 2 && $parts[0] != Token::endOfRecord->value)
-				throw new \UnexpectedValueException("Invalid token format at line #$offset.");
+				throw new \InvalidArgumentException("Invalid token format at line #$offset.");
 
 			$token = Token::tryFrom(array_shift($parts));
 			$data = explode(",", implode(":", $parts));
@@ -77,7 +77,7 @@ class Report implements \Stringable {
 				case Token::endOfRecord: $report->sourceFiles[] = $sourceFile; break;
 
 				case Token::branchData:
-					if ($length < 4) throw new \UnexpectedValueException("Invalid branch data at line #$offset.");
+					if ($length < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.");
 					if ($sourceFile->branches) $sourceFile->branches->data[] = new BranchData(
 						blockNumber: (int) $data[1],
 						branchNumber: (int) $data[2],
@@ -87,7 +87,7 @@ class Report implements \Stringable {
 					break;
 
 				case Token::functionData:
-					if ($length < 2) throw new \UnexpectedValueException("Invalid function data at line #$offset.");
+					if ($length < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.");
 					if ($sourceFile->functions) foreach ($sourceFile->functions->data as $item) if ($item->functionName == $data[1]) {
 						$item->executionCount = (int) $data[0];
 						break;
@@ -95,12 +95,12 @@ class Report implements \Stringable {
 					break;
 
 				case Token::functionName:
-					if ($length < 2) throw new \UnexpectedValueException("Invalid function name at line #$offset.");
+					if ($length < 2) throw new \InvalidArgumentException("Invalid function name at line #$offset.");
 					if ($sourceFile->functions) $sourceFile->functions->data[] = new FunctionData(functionName: $data[1], lineNumber: (int) $data[0]);
 					break;
 
 				case Token::lineData:
-					if ($length < 2) throw new \UnexpectedValueException("Invalid line data at line #$offset.");
+					if ($length < 2) throw new \InvalidArgumentException("Invalid line data at line #$offset.");
 					if ($sourceFile->lines) $sourceFile->lines->data[] = new LineData(
 						checksum: $length >= 3 ? $data[2] : "",
 						executionCount: (int) $data[1],
@@ -123,11 +123,11 @@ class Report implements \Stringable {
 				case Token::functionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
 				case Token::linesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
 				case Token::linesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
-				default: throw new \UnexpectedValueException("Unknown token at line #$offset.");
+				default: throw new \InvalidArgumentException("Unknown token at line #$offset.");
 			}
 		}
 
-		if (!$report->sourceFiles) throw new \UnexpectedValueException("The coverage data is empty or invalid.");
+		if (!$report->sourceFiles) throw new \InvalidArgumentException("The coverage data is empty or invalid.");
 		return $report;
 	}
 }

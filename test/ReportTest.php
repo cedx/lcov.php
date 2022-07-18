@@ -73,7 +73,7 @@ class ReportTest extends TestCase {
 		assertThat($data->checksum, equalTo("5kX7OTfHFcjnS98fjeVqNA"));
 
 		// It should throw an exception if the report is invalid or empty.
-		$this->expectException(\UnexpectedValueException::class);
+		$this->expectException(\InvalidArgumentException::class);
 		Report::parse("TN:Example");
 	}
 
