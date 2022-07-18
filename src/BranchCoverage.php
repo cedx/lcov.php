@@ -42,8 +42,8 @@ class BranchCoverage implements \Stringable {
 	function __toString(): string {
 		return implode(PHP_EOL, [
 			...array_map(strval(...), $this->data),
-			Token::branchesFound->value.":{$this->found}",
-			Token::branchesHit->value.":{$this->hit}"
+			Token::branchesFound->value.":$this->found",
+			Token::branchesHit->value.":$this->hit"
 		]);
 	}
 
