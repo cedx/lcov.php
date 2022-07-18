@@ -37,12 +37,24 @@ class Report implements \Stringable {
 	}
 
 	/**
+	 * Creates a new line data from the specified JSON object.
+	 * @param object $json A JSON object representing a line data.
+	 * @return self The instance corresponding to the specified JSON object.
+	 */
+	static function fromJson(object $json): self {
+		return new self(
+			isset($json->testName) && is_string($json->testName) ? $json->testName : "",
+			isset($json->sourceFiles) && is_array($json->sourceFiles) ? array_map(SourceFile::fromJson(...), $json->sourceFiles) : []
+		);
+	}
+
+	/**
 	 * Parses the specified coverage data in LCOV format.
 	 * @param string $coverage The coverage data.
 	 * @return self The resulting coverage report.
 	 * @throws \UnexpectedValueException A parsing error occurred.
 	 */
-	static function fromString(string $coverage): self {
+	static function parse(string $coverage): self {
 		$offset = 0;
 		$report = new self("");
 		$sourceFile = new SourceFile("");
@@ -117,17 +129,5 @@ class Report implements \Stringable {
 
 		if (!$report->sourceFiles) throw new \UnexpectedValueException("The coverage data is empty or invalid.");
 		return $report;
-	}
-
-	/**
-	 * Creates a new line data from the specified JSON object.
-	 * @param object $json A JSON object representing a line data.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			isset($json->testName) && is_string($json->testName) ? $json->testName : "",
-			isset($json->sourceFiles) && is_array($json->sourceFiles) ? array_map(SourceFile::fromJson(...), $json->sourceFiles) : []
-		);
 	}
 }

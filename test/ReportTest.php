@@ -9,11 +9,27 @@ use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanc
 class ReportTest extends TestCase {
 
 	/**
-	 * @testdox ::fromString()
+	 * @testdox ::fromJson()
 	 */
-	function testFromString(): void {
+	function testFromJson(): void {
+		// It should return an instance with default values for an empty map.
+		$report = Report::fromJson(new \stdClass);
+		assertThat($report->sourceFiles, isEmpty());
+		assertThat($report->testName, isEmpty());
+
+		// It should return an initialized instance for a non-empty map.
+		$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
+		assertThat($report->sourceFiles, countOf(1));
+		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
+		assertThat($report->testName, equalTo("LcovTest"));
+	}
+
+	/**
+	 * @testdox ::parse()
+	 */
+	function testParse(): void {
 		// It should have a test name.
-		$report = Report::fromString(file_get_contents("test/fixture/lcov.info") ?: "");
+		$report = Report::parse(file_get_contents("test/fixture/lcov.info") ?: "");
 		assertThat($report->testName, equalTo("Example"));
 
 		// It should contain three source files.
@@ -58,23 +74,7 @@ class ReportTest extends TestCase {
 
 		// It should throw an exception if the report is invalid or empty.
 		$this->expectException(\UnexpectedValueException::class);
-		Report::fromString("TN:Example");
-	}
-
-	/**
-	 * @testdox ::fromJson()
-	 */
-	function testFromJson(): void {
-		// It should return an instance with default values for an empty map.
-		$report = Report::fromJson(new \stdClass);
-		assertThat($report->sourceFiles, isEmpty());
-		assertThat($report->testName, isEmpty());
-
-		// It should return an initialized instance for a non-empty map.
-		$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
-		assertThat($report->sourceFiles, countOf(1));
-		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
-		assertThat($report->testName, equalTo("LcovTest"));
+		Report::parse("TN:Example");
 	}
 
 	/**

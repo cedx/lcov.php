@@ -236,15 +236,15 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020string\u0020representation\u0020of\u0020this\u0020object.",
             "url": "classes/Lcov-Report.html#method___toString"
         },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003AfromString\u0028\u0029",
-            "name": "fromString",
-            "summary": "Parses\u0020the\u0020specified\u0020coverage\u0020data\u0020in\u0020LCOV\u0020format.",
-            "url": "classes/Lcov-Report.html#method_fromString"
-        },                {
             "fqsen": "\\Lcov\\Report\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-Report.html#method_fromJson"
+        },                {
+            "fqsen": "\\Lcov\\Report\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "Parses\u0020the\u0020specified\u0020coverage\u0020data\u0020in\u0020LCOV\u0020format.",
+            "url": "classes/Lcov-Report.html#method_parse"
         },                {
             "fqsen": "\\Lcov\\Report\u003A\u003A\u0024sourceFiles",
             "name": "sourceFiles",
