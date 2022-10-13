@@ -11,7 +11,7 @@
 
 ## Version [8.3.0](https://github.com/cedx/lcov.php/compare/v8.2.0...v8.3.0)
 - Deprecated this package in favor of [`cedx/lcov.hx`](https://github.com/cedx/lcov.hx).
-- Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://docs.microsoft.com/en-us/powershell) scripts.
+- Replaced the build system based on [Robo](https://robo.li) by [PowerShell](https://learn.microsoft.com/powershell) scripts.
 
 ## Version [8.2.0](https://github.com/cedx/lcov.php/compare/v8.1.0...v8.2.0)
 - Updated the documentation.
