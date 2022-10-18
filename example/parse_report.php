@@ -10,7 +10,6 @@ try {
 	print "The coverage report contains $count source files:" . PHP_EOL;
 	print json_encode($report);
 }
-
 catch (InvalidArgumentException $e) {
 	print $e->getMessage();
 }
