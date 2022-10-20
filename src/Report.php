@@ -6,26 +6,11 @@
 class Report implements \Stringable {
 
 	/**
-	 * The source file list.
-	 * @var SourceFile[]
-	 */
-	public array $sourceFiles;
-
-	/**
-	 * The test name.
-	 * @var string
-	 */
-	public string $testName;
-
-	/**
 	 * Creates a new report.
 	 * @param string $testName The test name.
 	 * @param SourceFile[] $sourceFiles The source file list.
 	 */
-	function __construct(string $testName, array $sourceFiles = []) {
-		$this->sourceFiles = $sourceFiles;
-		$this->testName = $testName;
-	}
+	function __construct(public string $testName, public array $sourceFiles = []) {}
 
 	/**
 	 * Returns a string representation of this object.

@@ -6,34 +6,12 @@
 class FunctionData implements \Stringable {
 
 	/**
-	 * The execution count.
-	 * @var int
-	 */
-	public int $executionCount;
-
-	/**
-	 * The function name.
-	 * @var string
-	 */
-	public string $functionName;
-
-	/**
-	 * The line number of the function start.
-	 * @var int
-	 */
-	public int $lineNumber;
-
-	/**
 	 * Creates a new function data.
 	 * @param string $functionName The function name.
 	 * @param int $lineNumber The line number of the function start.
 	 * @param int $executionCount The execution count.
 	 */
-	function __construct(string $functionName = "", int $lineNumber = 0, int $executionCount = 0) {
-		$this->executionCount = $executionCount;
-		$this->functionName = $functionName;
-		$this->lineNumber = $lineNumber;
-	}
+	function __construct(public string $functionName = "", public int $lineNumber = 0, public int $executionCount = 0) {}
 
 	/**
 	 * Returns a string representation of this object.

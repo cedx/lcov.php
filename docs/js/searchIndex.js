@@ -21,20 +21,20 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020coverage\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-BranchCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024data",
-            "name": "data",
-            "summary": "The\u0020coverage\u0020data.",
-            "url": "classes/Lcov-BranchCoverage.html#property_data"
-        },                {
             "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024found",
             "name": "found",
-            "summary": "The\u0020number\u0020of\u0020branches\u0020found.",
+            "summary": "",
             "url": "classes/Lcov-BranchCoverage.html#property_found"
         },                {
             "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024hit",
             "name": "hit",
-            "summary": "The\u0020number\u0020of\u0020branches\u0020hit.",
+            "summary": "",
             "url": "classes/Lcov-BranchCoverage.html#property_hit"
+        },                {
+            "fqsen": "\\Lcov\\BranchCoverage\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "",
+            "url": "classes/Lcov-BranchCoverage.html#property_data"
         },                {
             "fqsen": "\\Lcov\\BranchData",
             "name": "BranchData",
@@ -56,24 +56,24 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-BranchData.html#method_fromJson"
         },                {
+            "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024lineNumber",
+            "name": "lineNumber",
+            "summary": "",
+            "url": "classes/Lcov-BranchData.html#property_lineNumber"
+        },                {
             "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024blockNumber",
             "name": "blockNumber",
-            "summary": "The\u0020block\u0020number.",
+            "summary": "",
             "url": "classes/Lcov-BranchData.html#property_blockNumber"
         },                {
             "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024branchNumber",
             "name": "branchNumber",
-            "summary": "The\u0020branch\u0020number.",
+            "summary": "",
             "url": "classes/Lcov-BranchData.html#property_branchNumber"
-        },                {
-            "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024lineNumber",
-            "name": "lineNumber",
-            "summary": "The\u0020line\u0020number.",
-            "url": "classes/Lcov-BranchData.html#property_lineNumber"
         },                {
             "fqsen": "\\Lcov\\BranchData\u003A\u003A\u0024taken",
             "name": "taken",
-            "summary": "A\u0020number\u0020indicating\u0020how\u0020often\u0020this\u0020branch\u0020was\u0020taken.",
+            "summary": "",
             "url": "classes/Lcov-BranchData.html#property_taken"
         },                {
             "fqsen": "\\Lcov\\FunctionCoverage",
@@ -96,20 +96,20 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-FunctionCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024data",
-            "name": "data",
-            "summary": "The\u0020coverage\u0020data.",
-            "url": "classes/Lcov-FunctionCoverage.html#property_data"
-        },                {
             "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024found",
             "name": "found",
-            "summary": "The\u0020number\u0020of\u0020functions\u0020found.",
+            "summary": "",
             "url": "classes/Lcov-FunctionCoverage.html#property_found"
         },                {
             "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024hit",
             "name": "hit",
-            "summary": "The\u0020number\u0020of\u0020functions\u0020hit.",
+            "summary": "",
             "url": "classes/Lcov-FunctionCoverage.html#property_hit"
+        },                {
+            "fqsen": "\\Lcov\\FunctionCoverage\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "",
+            "url": "classes/Lcov-FunctionCoverage.html#property_data"
         },                {
             "fqsen": "\\Lcov\\FunctionData",
             "name": "FunctionData",
@@ -136,20 +136,20 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020string\u0020representation\u0020of\u0020this\u0020object.",
             "url": "classes/Lcov-FunctionData.html#method_toString"
         },                {
-            "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024executionCount",
-            "name": "executionCount",
-            "summary": "The\u0020execution\u0020count.",
-            "url": "classes/Lcov-FunctionData.html#property_executionCount"
-        },                {
             "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024functionName",
             "name": "functionName",
-            "summary": "The\u0020function\u0020name.",
+            "summary": "",
             "url": "classes/Lcov-FunctionData.html#property_functionName"
         },                {
             "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024lineNumber",
             "name": "lineNumber",
-            "summary": "The\u0020line\u0020number\u0020of\u0020the\u0020function\u0020start.",
+            "summary": "",
             "url": "classes/Lcov-FunctionData.html#property_lineNumber"
+        },                {
+            "fqsen": "\\Lcov\\FunctionData\u003A\u003A\u0024executionCount",
+            "name": "executionCount",
+            "summary": "",
+            "url": "classes/Lcov-FunctionData.html#property_executionCount"
         },                {
             "fqsen": "\\Lcov\\LineCoverage",
             "name": "LineCoverage",
@@ -171,20 +171,20 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-LineCoverage.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024data",
-            "name": "data",
-            "summary": "The\u0020coverage\u0020data.",
-            "url": "classes/Lcov-LineCoverage.html#property_data"
-        },                {
             "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024found",
             "name": "found",
-            "summary": "The\u0020number\u0020of\u0020lines\u0020found.",
+            "summary": "",
             "url": "classes/Lcov-LineCoverage.html#property_found"
         },                {
             "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024hit",
             "name": "hit",
-            "summary": "The\u0020number\u0020of\u0020lines\u0020hit.",
+            "summary": "",
             "url": "classes/Lcov-LineCoverage.html#property_hit"
+        },                {
+            "fqsen": "\\Lcov\\LineCoverage\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "",
+            "url": "classes/Lcov-LineCoverage.html#property_data"
         },                {
             "fqsen": "\\Lcov\\LineData",
             "name": "LineData",
@@ -206,20 +206,20 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-LineData.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024checksum",
-            "name": "checksum",
-            "summary": "The\u0020data\u0020checksum.",
-            "url": "classes/Lcov-LineData.html#property_checksum"
+            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024lineNumber",
+            "name": "lineNumber",
+            "summary": "",
+            "url": "classes/Lcov-LineData.html#property_lineNumber"
         },                {
             "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024executionCount",
             "name": "executionCount",
-            "summary": "The\u0020execution\u0020count.",
+            "summary": "",
             "url": "classes/Lcov-LineData.html#property_executionCount"
         },                {
-            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024lineNumber",
-            "name": "lineNumber",
-            "summary": "The\u0020line\u0020number.",
-            "url": "classes/Lcov-LineData.html#property_lineNumber"
+            "fqsen": "\\Lcov\\LineData\u003A\u003A\u0024checksum",
+            "name": "checksum",
+            "summary": "",
+            "url": "classes/Lcov-LineData.html#property_checksum"
         },                {
             "fqsen": "\\Lcov\\Report",
             "name": "Report",
@@ -246,15 +246,15 @@ Search.appendIndex(
             "summary": "Parses\u0020the\u0020specified\u0020coverage\u0020data\u0020in\u0020LCOV\u0020format.",
             "url": "classes/Lcov-Report.html#method_parse"
         },                {
-            "fqsen": "\\Lcov\\Report\u003A\u003A\u0024sourceFiles",
-            "name": "sourceFiles",
-            "summary": "The\u0020source\u0020file\u0020list.",
-            "url": "classes/Lcov-Report.html#property_sourceFiles"
-        },                {
             "fqsen": "\\Lcov\\Report\u003A\u003A\u0024testName",
             "name": "testName",
-            "summary": "The\u0020test\u0020name.",
+            "summary": "",
             "url": "classes/Lcov-Report.html#property_testName"
+        },                {
+            "fqsen": "\\Lcov\\Report\u003A\u003A\u0024sourceFiles",
+            "name": "sourceFiles",
+            "summary": "",
+            "url": "classes/Lcov-Report.html#property_sourceFiles"
         },                {
             "fqsen": "\\Lcov\\SourceFile",
             "name": "SourceFile",
@@ -276,25 +276,25 @@ Search.appendIndex(
             "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/Lcov-SourceFile.html#method_fromJson"
         },                {
-            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024branches",
-            "name": "branches",
-            "summary": "The\u0020branch\u0020coverage.",
-            "url": "classes/Lcov-SourceFile.html#property_branches"
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024path",
+            "name": "path",
+            "summary": "",
+            "url": "classes/Lcov-SourceFile.html#property_path"
         },                {
             "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024functions",
             "name": "functions",
-            "summary": "The\u0020function\u0020coverage.",
+            "summary": "",
             "url": "classes/Lcov-SourceFile.html#property_functions"
+        },                {
+            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024branches",
+            "name": "branches",
+            "summary": "",
+            "url": "classes/Lcov-SourceFile.html#property_branches"
         },                {
             "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024lines",
             "name": "lines",
-            "summary": "The\u0020line\u0020coverage.",
+            "summary": "",
             "url": "classes/Lcov-SourceFile.html#property_lines"
-        },                {
-            "fqsen": "\\Lcov\\SourceFile\u003A\u003A\u0024path",
-            "name": "path",
-            "summary": "The\u0020path\u0020to\u0020the\u0020source\u0020file.",
-            "url": "classes/Lcov-SourceFile.html#property_path"
         },                {
             "fqsen": "\\Lcov\\Token",
             "name": "Token",

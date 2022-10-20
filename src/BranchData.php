@@ -6,42 +6,13 @@
 class BranchData implements \Stringable {
 
 	/**
-	 * The block number.
-	 * @var int
-	 */
-	public int $blockNumber;
-
-	/**
-	 * The branch number.
-	 * @var int
-	 */
-	public int $branchNumber;
-
-	/**
-	 * The line number.
-	 * @var int
-	 */
-	public int $lineNumber;
-
-	/**
-	 * A number indicating how often this branch was taken.
-	 * @var int
-	 */
-	public int $taken;
-
-	/**
 	 * Creates a new branch data.
 	 * @param int $lineNumber The line number.
 	 * @param int $blockNumber The block number.
 	 * @param int $branchNumber The branch number.
 	 * @param int $taken A number indicating how often this branch was taken.
 	 */
-	function __construct(int $lineNumber = 0, int $blockNumber = 0, int $branchNumber = 0, int $taken = 0) {
-		$this->blockNumber = $blockNumber;
-		$this->branchNumber = $branchNumber;
-		$this->lineNumber = $lineNumber;
-		$this->taken = $taken;
-	}
+	function __construct(public int $lineNumber = 0, public int $blockNumber = 0, public int $branchNumber = 0, public int $taken = 0) {}
 
 	/**
 	 * Returns a string representation of this object.

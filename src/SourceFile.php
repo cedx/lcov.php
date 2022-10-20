@@ -6,42 +6,18 @@
 class SourceFile implements \Stringable {
 
 	/**
-	 * The branch coverage.
-	 * @var BranchCoverage|null
-	 */
-	public ?BranchCoverage $branches;
-
-	/**
-	 * The function coverage.
-	 * @var FunctionCoverage|null
-	 */
-	public ?FunctionCoverage $functions;
-
-	/**
-	 * The line coverage.
-	 * @var LineCoverage|null
-	 */
-	public ?LineCoverage $lines;
-
-	/**
-	 * The path to the source file.
-	 * @var string
-	 */
-	public string $path;
-
-	/**
 	 * Creates a new source file.
 	 * @param string $path The path to the source file.
 	 * @param FunctionCoverage|null $functions The function coverage.
 	 * @param BranchCoverage|null $branches The branch coverage.
 	 * @param LineCoverage|null $lines The line coverage.
 	 */
-	function __construct(string $path, ?FunctionCoverage $functions = null, ?BranchCoverage $branches = null, ?LineCoverage $lines = null) {
-		$this->branches = $branches;
-		$this->functions = $functions;
-		$this->lines = $lines;
-		$this->path = $path;
-	}
+	function __construct(
+		public string $path,
+		public ?FunctionCoverage $functions = null,
+		public ?BranchCoverage $branches = null,
+		public ?LineCoverage $lines = null
+	) {}
 
 	/**
 	 * Returns a string representation of this object.

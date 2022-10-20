@@ -6,34 +6,12 @@
 class BranchCoverage implements \Stringable {
 
 	/**
-	 * The coverage data.
-	 * @var BranchData[]
-	 */
-	public array $data;
-
-	/**
-	 * The number of branches found.
-	 * @var int
-	 */
-	public int $found;
-
-	/**
-	 * The number of branches hit.
-	 * @var int
-	 */
-	public int $hit;
-
-	/**
 	 * Creates a new branch coverage.
 	 * @param int $found The number of branches found.
 	 * @param int $hit The number of branches hit.
 	 * @param BranchData[] $data The coverage data.
 	 */
-	function __construct(int $found = 0, int $hit = 0, array $data = []) {
-		$this->data = $data;
-		$this->found = $found;
-		$this->hit = $hit;
-	}
+	function __construct(public int $found = 0, public int $hit = 0, public array $data = []) {}
 
 	/**
 	 * Returns a string representation of this object.
