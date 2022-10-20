@@ -1,7 +1,7 @@
 <?php namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
-use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
+use function PHPUnit\Expect\{expect, it};
 
 /**
  * @testdox Lcov\Report
@@ -12,79 +12,88 @@ class ReportTest extends TestCase {
 	 * @testdox ::fromJson()
 	 */
 	function testFromJson(): void {
-		// It should return an instance with default values for an empty map.
-		$report = Report::fromJson(new \stdClass);
-		assertThat($report->sourceFiles, isEmpty());
-		assertThat($report->testName, isEmpty());
+		it("should return an instance with default values for an empty map", function() {
+			$report = Report::fromJson(new \stdClass);
+			expect($report->sourceFiles)->to->be->empty;
+			expect($report->testName)->to->be->empty;
+		});
 
-		// It should return an initialized instance for a non-empty map.
-		$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
-		assertThat($report->sourceFiles, countOf(1));
-		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
-		assertThat($report->testName, equalTo("LcovTest"));
+		it("should return an initialized instance for a non-empty map", function() {
+			$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
+			expect($report->sourceFiles)->to->have->lengthOf(1);
+			expect($report->sourceFiles[0])->to->be->instanceOf(SourceFile::class);
+			expect($report->testName)->to->equal("LcovTest");
+		});
 	}
 
 	/**
 	 * @testdox ::parse()
 	 */
 	function testParse(): void {
-		// It should have a test name.
 		$report = Report::parse(file_get_contents("test/fixture/lcov.info") ?: "");
-		assertThat($report->testName, equalTo("Example"));
 
-		// It should contain three source files.
-		assertThat($report->sourceFiles, countOf(3));
-		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
-		assertThat($report->sourceFiles[0]->path, equalTo("/home/cedx/lcov.php/fixture.php"));
-		assertThat($report->sourceFiles[1]->path, equalTo("/home/cedx/lcov.php/func1.php"));
-		assertThat($report->sourceFiles[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
+		it("should have a test name", function() use ($report) {
+			expect($report->testName)->to->equal("Example");
+		});
 
-		// It should have detailed branch coverage.
-		/** @var BranchCoverage $branches */
-		$branches = $report->sourceFiles[1]->branches;
-		assertThat($branches->data, countOf(4));
-		assertThat($branches->found, equalTo(4));
-		assertThat($branches->hit, equalTo(4));
+		it("should contain three source files", function() use ($report) {
+			expect($report->sourceFiles)->to->have->lengthOf(3);
+			expect($report->sourceFiles[0])->to->be->instanceOf(SourceFile::class);
+			expect($report->sourceFiles[0]->path)->to->equal("/home/cedx/lcov.php/fixture.php");
+			expect($report->sourceFiles[1]->path)->to->equal("/home/cedx/lcov.php/func1.php");
+			expect($report->sourceFiles[2]->path)->to->equal("/home/cedx/lcov.php/func2.php");
+		});
 
-		[$data] = $branches->data;
-		assertThat($data, isInstanceOf(BranchData::class));
-		assertThat($data->lineNumber, equalTo(8));
+		it("should have detailed branch coverage", function() use ($report) {
+			/** @var BranchCoverage $branches */
+			$branches = $report->sourceFiles[1]->branches;
+			expect($branches->data)->to->have->lengthOf(4);
+			expect($branches->found)->to->equal(4);
+			expect($branches->hit)->to->equal(4);
 
-		// It should have detailed function coverage.
-		/** @var FunctionCoverage $functions */
-		$functions = $report->sourceFiles[1]->functions;
-		assertThat($functions->data, countOf(1));
-		assertThat($functions->found, equalTo(1));
-		assertThat($functions->hit, equalTo(1));
+			[$data] = $branches->data;
+			expect($data)->to->be->instanceOf(BranchData::class);
+			expect($data->lineNumber)->to->equal(8);
+		});
 
-		[$data] = $functions->data;
-		assertThat($data, isInstanceOf(FunctionData::class));
-		assertThat($data->functionName, equalTo("func1"));
+		it("should have detailed function coverage", function() use ($report) {
+			/** @var FunctionCoverage $functions */
+			$functions = $report->sourceFiles[1]->functions;
+			expect($functions->data)->to->have->lengthOf(1);
+			expect($functions->found)->to->equal(1);
+			expect($functions->hit)->to->equal(1);
 
-		// It should have detailed line coverage.
-		/** @var LineCoverage $lines */
-		$lines = $report->sourceFiles[1]->lines;
-		assertThat($lines->data, countOf(9));
-		assertThat($lines->found, equalTo(9));
-		assertThat($lines->hit, equalTo(9));
+			[$data] = $functions->data;
+			expect($data)->to->be->instanceOf(FunctionData::class);
+			expect($data->functionName)->to->equal("func1");
+		});
 
-		[$data] = $lines->data;
-		assertThat($data, isInstanceOf(LineData::class));
-		assertThat($data->checksum, equalTo("5kX7OTfHFcjnS98fjeVqNA"));
+		it("should have detailed line coverage", function() use ($report) {
+			/** @var LineCoverage $lines */
+			$lines = $report->sourceFiles[1]->lines;
+			expect($lines->data)->to->have->lengthOf(9);
+			expect($lines->found)->to->equal(9);
+			expect($lines->hit)->to->equal(9);
 
-		// It should throw an exception if the report is invalid or empty.
-		$this->expectException(\InvalidArgumentException::class);
-		Report::parse("TN:Example");
+			[$data] = $lines->data;
+			expect($data)->to->be->instanceOf(LineData::class);
+			expect($data->checksum)->to->equal("5kX7OTfHFcjnS98fjeVqNA");
+		});
+
+		it("should throw an exception if the report is invalid or empty", function() {
+			expect(fn() => Report::parse("TN:Example"))->to->throw(\InvalidArgumentException::class);
+		});
 	}
 
 	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {
-		// It should return a format like "TN:<testName>".
-		assertThat((string) new Report(""), isEmpty());
+		it("should return a format like 'TN:<testName>'", function() {
+			expect((string) new Report(""))->to->be->empty;
 
-		$sourceFile = new SourceFile("");
-		assertThat((string) new Report("LcovTest", [$sourceFile]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$sourceFile")));
+			$sourceFile = new SourceFile("");
+			expect((string) new Report("LcovTest", [$sourceFile]))->to->equal(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$sourceFile"));
+		});
 	}
 }

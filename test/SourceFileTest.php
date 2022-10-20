@@ -1,7 +1,7 @@
 <?php namespace Lcov;
 
 use PHPUnit\Framework\{TestCase};
-use function PHPUnit\Framework\{assertThat, equalTo, isEmpty, isNull, logicalNot};
+use function PHPUnit\Expect\{expect, it};
 
 /**
  * @testdox Lcov\SourceFile
@@ -12,42 +12,45 @@ class SourceFileTest extends TestCase {
 	 * @testdox ::fromJson()
 	 */
 	function testFromJson(): void {
-		// It should return an instance with default values for an empty map.
-		$sourceFile = SourceFile::fromJson(new \stdClass);
-		assertThat($sourceFile->branches, isNull());
-		assertThat($sourceFile->functions, isNull());
-		assertThat($sourceFile->lines, isNull());
-		assertThat($sourceFile->path, isEmpty());
+		it("should return an instance with default values for an empty map", function() {
+			$sourceFile = SourceFile::fromJson(new \stdClass);
+			expect($sourceFile->branches)->to->be->null;
+			expect($sourceFile->functions)->to->be->null;
+			expect($sourceFile->lines)->to->be->null;
+			expect($sourceFile->path)->to->be->empty;
+		});
 
-		// It should return an initialized instance for a non-empty map.
-		$sourceFile = SourceFile::fromJson((object) [
-			"branches" => new \stdClass,
-			"functions" => new \stdClass,
-			"lines" => new \stdClass,
-			"path" => "/home/cedx/lcov.php"
-		]);
+		it("should return an initialized instance for a non-empty map", function() {
+			$sourceFile = SourceFile::fromJson((object) [
+				"branches" => new \stdClass,
+				"functions" => new \stdClass,
+				"lines" => new \stdClass,
+				"path" => "/home/cedx/lcov.php"
+			]);
 
-		assertThat($sourceFile->branches, logicalNot(isNull()));
-		assertThat($sourceFile->functions, logicalNot(isNull()));
-		assertThat($sourceFile->lines, logicalNot(isNull()));
-		assertThat($sourceFile->path, equalTo("/home/cedx/lcov.php"));
+			expect($sourceFile->branches)->to->not->be->null;
+			expect($sourceFile->functions)->to->not->be->null;
+			expect($sourceFile->lines)->to->not->be->null;
+			expect($sourceFile->path)->to->equal("/home/cedx/lcov.php");
+		});
 	}
 
 	/**
 	 * @testdox ->__toString()
 	 */
 	function testToString(): void {
-		// It should return a format like "SF:<path>\\nend_of_record".
-		assertThat((string) new SourceFile(""), equalTo(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record")));
+		it("should return a format like 'SF:<path>\\nend_of_record'", function() {
+			expect((string) new SourceFile(""))->to->equal(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record"));
 
-		$sourceFile = new SourceFile(
-			branches: new BranchCoverage,
-			functions: new FunctionCoverage,
-			lines: new LineCoverage,
-			path: "/home/cedx/lcov.php"
-		);
+			$sourceFile = new SourceFile(
+				branches: new BranchCoverage,
+				functions: new FunctionCoverage,
+				lines: new LineCoverage,
+				path: "/home/cedx/lcov.php"
+			);
 
-		$format = "SF:/home/cedx/lcov.php{eol}{$sourceFile->functions}{eol}{$sourceFile->branches}{eol}{$sourceFile->lines}{eol}end_of_record";
-		assertThat((string) $sourceFile, equalTo(str_replace("{eol}", PHP_EOL, $format)));
+			$format = "SF:/home/cedx/lcov.php{eol}{$sourceFile->functions}{eol}{$sourceFile->branches}{eol}{$sourceFile->lines}{eol}end_of_record";
+			expect((string) $sourceFile)->to->equal(str_replace("{eol}", PHP_EOL, $format));
+		});
 	}
 }
