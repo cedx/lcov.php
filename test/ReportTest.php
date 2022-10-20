@@ -21,7 +21,7 @@ class ReportTest extends TestCase {
 		it("should return an initialized instance for a non-empty map", function() {
 			$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
 			expect($report->sourceFiles)->to->have->lengthOf(1);
-			expect($report->sourceFiles[0])->to->be->instanceOf(SourceFile::class);
+			expect($report->sourceFiles[0])->to->be->an->instanceOf(SourceFile::class);
 			expect($report->testName)->to->equal("LcovTest");
 		});
 	}
@@ -38,7 +38,7 @@ class ReportTest extends TestCase {
 
 		it("should contain three source files", function() use ($report) {
 			expect($report->sourceFiles)->to->have->lengthOf(3);
-			expect($report->sourceFiles[0])->to->be->instanceOf(SourceFile::class);
+			expect($report->sourceFiles[0])->to->be->an->instanceOf(SourceFile::class);
 			expect($report->sourceFiles[0]->path)->to->equal("/home/cedx/lcov.php/fixture.php");
 			expect($report->sourceFiles[1]->path)->to->equal("/home/cedx/lcov.php/func1.php");
 			expect($report->sourceFiles[2]->path)->to->equal("/home/cedx/lcov.php/func2.php");
@@ -52,7 +52,7 @@ class ReportTest extends TestCase {
 			expect($branches->hit)->to->equal(4);
 
 			[$data] = $branches->data;
-			expect($data)->to->be->instanceOf(BranchData::class);
+			expect($data)->to->be->an->instanceOf(BranchData::class);
 			expect($data->lineNumber)->to->equal(8);
 		});
 
@@ -64,7 +64,7 @@ class ReportTest extends TestCase {
 			expect($functions->hit)->to->equal(1);
 
 			[$data] = $functions->data;
-			expect($data)->to->be->instanceOf(FunctionData::class);
+			expect($data)->to->be->an->instanceOf(FunctionData::class);
 			expect($data->functionName)->to->equal("func1");
 		});
 
@@ -76,7 +76,7 @@ class ReportTest extends TestCase {
 			expect($lines->hit)->to->equal(9);
 
 			[$data] = $lines->data;
-			expect($data)->to->be->instanceOf(LineData::class);
+			expect($data)->to->be->an->instanceOf(LineData::class);
 			expect($data->checksum)->to->equal("5kX7OTfHFcjnS98fjeVqNA");
 		});
 

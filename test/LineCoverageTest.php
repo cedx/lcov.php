@@ -26,7 +26,7 @@ class LineCoverageTest extends TestCase {
 			expect($coverage->hit)->to->equal(11);
 
 			[$data] = $coverage->data;
-			expect($data)->to->be->instanceOf(LineData::class);
+			expect($data)->to->be->an->instanceOf(LineData::class);
 			expect($data->lineNumber)->to->equal(127);
 		});
 	}
