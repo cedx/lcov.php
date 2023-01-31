@@ -1,5 +1,5 @@
 <?php
-use Lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
+use lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
 
 /**
  * Formats coverage data as LCOV report.

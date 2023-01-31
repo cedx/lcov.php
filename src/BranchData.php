@@ -1,4 +1,4 @@
-<?php namespace Lcov;
+<?php namespace lcov;
 
 /**
  * Provides details for branch coverage.

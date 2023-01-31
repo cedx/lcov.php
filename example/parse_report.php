@@ -1,5 +1,5 @@
 <?php
-use Lcov\Report;
+use lcov\Report;
 
 /**
  * Parses a LCOV report to coverage data.

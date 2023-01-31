@@ -1,4 +1,4 @@
-<?php namespace Lcov;
+<?php namespace lcov;
 
 /**
  * Provides the list of tokens supported by the parser.

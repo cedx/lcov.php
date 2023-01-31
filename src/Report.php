@@ -1,4 +1,4 @@
-<?php namespace Lcov;
+<?php namespace lcov;
 
 /**
  * Represents a trace file, that is a coverage report.
