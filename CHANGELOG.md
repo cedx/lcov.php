@@ -2,6 +2,9 @@
 
 ## Version [10.0.0](https://github.com/cedx/lcov.php/compare/v9.0.0...v10.0.0)
 - Breaking change: lowercased the `Lcov` namespace.
+- Breaking change: renamed the `Report::fromString()` method to `parse()`.
+- Breaking change: the `Report::parse()` method throws `InvalidArgumentException` exceptions instead of `UnexpectedValueException`.
+- The data classes now implement the `Stringable` interface.
 - Updated the package dependencies.
 
 ## Version [9.0.0](https://github.com/cedx/lcov.php/compare/v8.3.0...v9.0.0)
