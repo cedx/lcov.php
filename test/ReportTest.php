@@ -1,10 +1,10 @@
-<?php namespace Lcov;
+<?php namespace lcov;
 
 use PHPUnit\Framework\{TestCase};
-use function PHPUnit\Expect\{expect, it};
+use function phpunit\expect\{expect, it};
 
 /**
- * @testdox Lcov\Report
+ * @testdox lcov\Report
  */
 class ReportTest extends TestCase {
 

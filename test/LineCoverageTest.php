@@ -1,10 +1,10 @@
-<?php namespace Lcov;
+<?php namespace lcov;
 
 use PHPUnit\Framework\{TestCase};
-use function PHPUnit\Expect\{expect, it};
+use function phpunit\expect\{expect, it};
 
 /**
- * @testdox Lcov\LineCoverage
+ * @testdox lcov\LineCoverage
  */
 class LineCoverageTest extends TestCase {
 
