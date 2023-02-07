@@ -8,7 +8,7 @@ use function phpunit\expect\{expect, it};
  * Tests the features of the {@see Report} class.
  */
 #[TestDox('lcov\Report')]
-class ReportTest extends TestCase {
+final class ReportTest extends TestCase {
 
 	#[TestDox("::fromJson()")]
 	function testFromJson(): void {

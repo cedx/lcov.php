@@ -8,7 +8,7 @@ use function phpunit\expect\{expect, it};
  * Tests the features of the {@see SourceFile} class.
  */
 #[TestDox('lcov\SourceFile')]
-class SourceFileTest extends TestCase {
+final class SourceFileTest extends TestCase {
 
 	#[TestDox("::fromJson()")]
 	function testFromJson(): void {

@@ -8,7 +8,7 @@ use function phpunit\expect\{expect, it};
  * Tests the features of the {@see BranchData} class.
  */
 #[TestDox('lcov\BranchData')]
-class BranchDataTest extends TestCase {
+final class BranchDataTest extends TestCase {
 
 	#[TestDox("::fromJson()")]
 	function testFromJson(): void {
