@@ -1,16 +1,16 @@
 <?php namespace lcov;
 
-use PHPUnit\Framework\{TestCase};
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\TestDox;
 use function phpunit\expect\{expect, it};
 
 /**
- * @testdox lcov\BranchCoverage
+ * Tests the features of the {@see BranchCoverage} class.
  */
+#[TestDox('lcov\BranchCoverage')]
 class BranchCoverageTest extends TestCase {
 
-	/**
-	 * @testdox ::fromJson()
-	 */
+	#[TestDox("::fromJson()")]
 	function testFromJson(): void {
 		it("should return an instance with default values for an empty map", function() {
 			$coverage = BranchCoverage::fromJson(new \stdClass);
@@ -31,9 +31,7 @@ class BranchCoverageTest extends TestCase {
 		});
 	}
 
-	/**
-	 * @testdox ->__toString()
-	 */
+	#[TestDox("->__toString()")]
 	function testToString(): void {
 		it("should return a format like 'BRF:<found>\\nBRH:<hit>'", function() {
 			expect((string) new BranchCoverage)->to->equal(str_replace("{eol}", PHP_EOL, "BRF:0{eol}BRH:0"));

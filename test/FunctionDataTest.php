@@ -1,16 +1,16 @@
 <?php namespace lcov;
 
-use PHPUnit\Framework\{TestCase};
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\TestDox;
 use function phpunit\expect\{expect, it};
 
 /**
- * @testdox lcov\FunctionData
+ * Tests the features of the {@see FunctionData} class.
  */
+#[TestDox('lcov\FunctionData')]
 class FunctionDataTest extends TestCase {
 
-	/**
-	 * @testdox ::fromJson()
-	 */
+	#[TestDox("::fromJson()")]
 	function testFromJson(): void {
 		it("should return an instance with default values for an empty map", function() {
 			$data = FunctionData::fromJson(new \stdClass);
@@ -27,9 +27,7 @@ class FunctionDataTest extends TestCase {
 		});
 	}
 
-	/**
-	 * @testdox ->toString()
-	 */
+	#[TestDox("->toString()")]
 	function testToString(): void {
 		it("should return a format like 'FN:<lineNumber>,<functionName>' when used as definition", function() {
 			expect((new FunctionData)->toString(true))->to->equal("FN:0,");

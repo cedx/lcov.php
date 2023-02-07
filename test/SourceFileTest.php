@@ -1,16 +1,16 @@
 <?php namespace lcov;
 
-use PHPUnit\Framework\{TestCase};
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\TestDox;
 use function phpunit\expect\{expect, it};
 
 /**
- * @testdox lcov\SourceFile
+ * Tests the features of the {@see SourceFile} class.
  */
+#[TestDox('lcov\SourceFile')]
 class SourceFileTest extends TestCase {
 
-	/**
-	 * @testdox ::fromJson()
-	 */
+	#[TestDox("::fromJson()")]
 	function testFromJson(): void {
 		it("should return an instance with default values for an empty map", function() {
 			$sourceFile = SourceFile::fromJson(new \stdClass);
@@ -35,9 +35,7 @@ class SourceFileTest extends TestCase {
 		});
 	}
 
-	/**
-	 * @testdox ->__toString()
-	 */
+	#[TestDox("->__toString()")]
 	function testToString(): void {
 		it("should return a format like 'SF:<path>\\nend_of_record'", function() {
 			expect((string) new SourceFile(""))->to->equal(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record"));

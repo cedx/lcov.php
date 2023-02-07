@@ -1,16 +1,16 @@
 <?php namespace lcov;
 
-use PHPUnit\Framework\{TestCase};
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\TestDox;
 use function phpunit\expect\{expect, it};
 
 /**
- * @testdox lcov\FunctionCoverage
+ * Tests the features of the {@see FunctionCoverage} class.
  */
+#[TestDox('lcov\FunctionCoverage')]
 class FunctionCoverageTest extends TestCase {
 
-	/**
-	 * @testdox ::fromJson()
-	 */
+	#[TestDox("::fromJson()")]
 	function testFromJson(): void {
 		it("should return an instance with default values for an empty map", function() {
 			$coverage = FunctionCoverage::fromJson(new \stdClass);
@@ -31,9 +31,7 @@ class FunctionCoverageTest extends TestCase {
 		});
 	}
 
-	/**
-	 * @testdox ->__toString()
-	 */
+	#[TestDox("->__toString()")]
 	function testToString(): void {
 		it("should return a format like 'FNF:<found>\\nFNH:<hit>'", function() {
 			expect((string) new FunctionCoverage)->to->equal(str_replace("{eol}", PHP_EOL, "FNF:0{eol}FNH:0"));
