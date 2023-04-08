@@ -6,7 +6,7 @@ in [PHP](https://www.php.net).
 
 ## Documentation
 - [User guide](https://github.com/cedx/lcov.php/wiki)
-- [API reference](https://cedx.github.io/lcov.php)
+- [API reference](https://docs.belin.io/lcov.php)
 
 ## Development
 - [Git repository](https://github.com/cedx/lcov.php)
