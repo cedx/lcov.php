@@ -5,8 +5,8 @@ Parse and format [LCOV](http://ltp.sourceforge.net/coverage/lcov.php) coverage r
 in [PHP](https://www.php.net).
 
 ## Documentation
-- [User guide](https://github.com/cedx/lcov.php/wiki)
-- [API reference](https://docs.belin.io/lcov.php)
+- [User guide](https://docs.belin.io/lcov.php)
+- [API reference](https://docs.belin.io/lcov.php/api)
 
 ## Development
 - [Git repository](https://github.com/cedx/lcov.php)
@@ -14,4 +14,4 @@ in [PHP](https://www.php.net).
 - [Submit an issue](https://github.com/cedx/lcov.php/issues)
 
 ## License
-[LCOV Reports for PHP](https://github.com/cedx/lcov.php) is distributed under the MIT License.
+[LCOV Reports for PHP](https://docs.belin.io/lcov.php) is distributed under the MIT License.
