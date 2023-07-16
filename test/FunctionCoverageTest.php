@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
-use function phpunit\expect\{expect, it};
+use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 
 /**
  * Tests the features of the {@see FunctionCoverage} class.
@@ -12,32 +12,29 @@ final class FunctionCoverageTest extends TestCase {
 
 	#[TestDox("::fromJson()")]
 	function testFromJson(): void {
-		it("should return an instance with default values for an empty map", function() {
-			$coverage = FunctionCoverage::fromJson(new \stdClass);
-			expect($coverage->data)->to->be->empty;
-			expect($coverage->found)->to->equal(0);
-			expect($coverage->hit)->to->equal(0);
-		});
+		// It should return an instance with default values for an empty map.
+		$coverage = FunctionCoverage::fromJson(new \stdClass);
+		assertThat($coverage->data, isEmpty());
+		assertThat($coverage->found, equalTo(0));
+		assertThat($coverage->hit, equalTo(0));
 
-		it("should return an initialized instance for a non-empty map", function() {
-			$coverage = FunctionCoverage::fromJson((object) ["data" => [(object) ["lineNumber" => 127]], "found" => 23, "hit" => 11]);
-			expect($coverage->data)->to->have->lengthOf(1);
-			expect($coverage->found)->to->equal(23);
-			expect($coverage->hit)->to->equal(11);
+		// It should return an initialized instance for a non-empty map.
+		$coverage = FunctionCoverage::fromJson((object) ["data" => [(object) ["lineNumber" => 127]], "found" => 23, "hit" => 11]);
+		assertThat($coverage->data, countOf(1));
+		assertThat($coverage->found, equalTo(23));
+		assertThat($coverage->hit, equalTo(11));
 
-			[$data] = $coverage->data;
-			expect($data)->to->be->an->instanceOf(FunctionData::class);
-			expect($data->lineNumber)->to->equal(127);
-		});
+		[$data] = $coverage->data;
+		assertThat($data, isInstanceOf(FunctionData::class));
+		assertThat($data->lineNumber, equalTo(127));
 	}
 
 	#[TestDox("->__toString()")]
 	function testToString(): void {
-		it("should return a format like 'FNF:<found>\\nFNH:<hit>'", function() {
-			expect((string) new FunctionCoverage)->to->equal(str_replace("{eol}", PHP_EOL, "FNF:0{eol}FNH:0"));
+		// It should return a format like 'FNF:<found>\\nFNH:<hit>'.
+		assertThat((string) new FunctionCoverage, equalTo(str_replace("{eol}", PHP_EOL, "FNF:0{eol}FNH:0")));
 
-			$coverage = new FunctionCoverage(data: [new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127)], found: 23, hit: 11);
-			expect((string) $coverage)->to->equal(str_replace("{eol}", PHP_EOL, "FN:127,main{eol}FNDA:3,main{eol}FNF:23{eol}FNH:11"));
-		});
+		$coverage = new FunctionCoverage(data: [new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127)], found: 23, hit: 11);
+		assertThat((string) $coverage, equalTo(str_replace("{eol}", PHP_EOL, "FN:127,main{eol}FNDA:3,main{eol}FNF:23{eol}FNH:11")));
 	}
 }
