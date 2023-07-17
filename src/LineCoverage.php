@@ -26,8 +26,8 @@ class LineCoverage implements \Stringable {
 	}
 
 	/**
-	 * Creates a new branch data from the specified JSON object.
-	 * @param object $json A JSON object representing a branch data.
+	 * Creates a new line coverage from the specified JSON object.
+	 * @param object $json A JSON object representing a line coverage.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
 	static function fromJson(object $json): self {

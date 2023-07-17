@@ -33,8 +33,8 @@ class SourceFile implements \Stringable {
 	}
 
 	/**
-	 * Creates a new line data from the specified JSON object.
-	 * @param object $json A JSON object representing a line data.
+	 * Creates a new source file from the specified JSON object.
+	 * @param object $json A JSON object representing a source file.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
 	static function fromJson(object $json): self {

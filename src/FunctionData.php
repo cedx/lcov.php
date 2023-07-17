@@ -6,7 +6,7 @@
 class FunctionData implements \Stringable {
 
 	/**
-	 * Creates a new function data.
+	 * Creates new function data.
 	 * @param string $functionName The function name.
 	 * @param int $lineNumber The line number of the function start.
 	 * @param int $executionCount The execution count.
@@ -22,8 +22,8 @@ class FunctionData implements \Stringable {
 	}
 
 	/**
-	 * Creates a new function data from the specified JSON object.
-	 * @param object $json A JSON object representing a function data.
+	 * Creates new function data from the specified JSON object.
+	 * @param object $json A JSON object representing function data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
 	static function fromJson(object $json): self {

@@ -6,7 +6,7 @@
 class LineData implements \Stringable {
 
 	/**
-	 * Creates a new line data.
+	 * Creates new line data.
 	 * @param int $lineNumber The line number.
 	 * @param int $executionCount The execution count.
 	 * @param string $checksum The data checksum.
@@ -23,8 +23,8 @@ class LineData implements \Stringable {
 	}
 
 	/**
-	 * Creates a new line data from the specified JSON object.
-	 * @param object $json A JSON object representing a line data.
+	 * Creates new line data from the specified JSON object.
+	 * @param object $json A JSON object representing line data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
 	static function fromJson(object $json): self {

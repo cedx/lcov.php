@@ -43,7 +43,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\BranchData\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Creates\u0020a\u0020new\u0020branch\u0020data.",
+            "summary": "Creates\u0020new\u0020branch\u0020data.",
             "url": "classes/lcov-BranchData.html#method___construct"
         },                {
             "fqsen": "\\lcov\\BranchData\u003A\u003A__toString\u0028\u0029",
@@ -53,7 +53,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\BranchData\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-BranchData.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\BranchData\u003A\u003A\u0024lineNumber",
@@ -93,7 +93,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\FunctionCoverage\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020a\u0020new\u0020function\u0020coverage\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-FunctionCoverage.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\FunctionCoverage\u003A\u003A\u0024found",
@@ -118,7 +118,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\FunctionData\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Creates\u0020a\u0020new\u0020function\u0020data.",
+            "summary": "Creates\u0020new\u0020function\u0020data.",
             "url": "classes/lcov-FunctionData.html#method___construct"
         },                {
             "fqsen": "\\lcov\\FunctionData\u003A\u003A__toString\u0028\u0029",
@@ -128,7 +128,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\FunctionData\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020function\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020new\u0020function\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-FunctionData.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\FunctionData\u003A\u003AtoString\u0028\u0029",
@@ -168,7 +168,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\LineCoverage\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020branch\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020a\u0020new\u0020line\u0020coverage\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-LineCoverage.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\LineCoverage\u003A\u003A\u0024found",
@@ -193,7 +193,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\LineData\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Creates\u0020a\u0020new\u0020line\u0020data.",
+            "summary": "Creates\u0020new\u0020line\u0020data.",
             "url": "classes/lcov-LineData.html#method___construct"
         },                {
             "fqsen": "\\lcov\\LineData\u003A\u003A__toString\u0028\u0029",
@@ -203,7 +203,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\LineData\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-LineData.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\LineData\u003A\u003A\u0024lineNumber",
@@ -238,7 +238,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\Report\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020a\u0020new\u0020report\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-Report.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\Report\u003A\u003Aparse\u0028\u0029",
@@ -273,7 +273,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\lcov\\SourceFile\u003A\u003AfromJson\u0028\u0029",
             "name": "fromJson",
-            "summary": "Creates\u0020a\u0020new\u0020line\u0020data\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
+            "summary": "Creates\u0020a\u0020new\u0020source\u0020file\u0020from\u0020the\u0020specified\u0020JSON\u0020object.",
             "url": "classes/lcov-SourceFile.html#method_fromJson"
         },                {
             "fqsen": "\\lcov\\SourceFile\u003A\u003A\u0024path",

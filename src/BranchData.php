@@ -6,7 +6,7 @@
 class BranchData implements \Stringable {
 
 	/**
-	 * Creates a new branch data.
+	 * Creates new branch data.
 	 * @param int $lineNumber The line number.
 	 * @param int $blockNumber The block number.
 	 * @param int $branchNumber The branch number.
@@ -24,8 +24,8 @@ class BranchData implements \Stringable {
 	}
 
 	/**
-	 * Creates a new branch data from the specified JSON object.
-	 * @param object $json A JSON object representing a branch data.
+	 * Creates new branch data from the specified JSON object.
+	 * @param object $json A JSON object representing branch data.
 	 * @return self The instance corresponding to the specified JSON object.
 	 */
 	static function fromJson(object $json): self {
