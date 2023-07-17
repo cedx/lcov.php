@@ -18,7 +18,7 @@ class FunctionData implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	final function __toString(): string {
-		return $this->toString();
+		return implode(PHP_EOL, [$this->toString(true), $this->toString(false)]);
 	}
 
 	/**

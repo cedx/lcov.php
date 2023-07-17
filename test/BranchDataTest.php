@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, equalTo};
 
 /**
  * Tests the features of the {@see BranchData} class.
  */
-#[TestDox('lcov\BranchData')]
+#[TestDox("BranchData")]
 final class BranchDataTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$data = BranchData::fromJson(new \stdClass);
 		assertThat($data->blockNumber, equalTo(0));
@@ -27,7 +28,8 @@ final class BranchDataTest extends TestCase {
 		assertThat($data->taken, equalTo(1));
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>'.
 		assertThat((string) new BranchData, equalTo("BRDA:0,0,0,-"));

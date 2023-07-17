@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, equalTo, isEmpty};
 
 /**
  * Tests the features of the {@see LineData} class.
  */
-#[TestDox('lcov\LineData')]
+#[TestDox("LineData")]
 final class LineDataTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$data = LineData::fromJson(new \stdClass);
 		assertThat($data->checksum, isEmpty());
@@ -25,7 +26,8 @@ final class LineDataTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'DA:<lineNumber>,<executionCount>[,<checksum>]'.
 		assertThat((string) new LineData, equalTo("DA:0,0"));

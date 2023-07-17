@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 
 /**
  * Tests the features of the {@see Report} class.
  */
-#[TestDox('lcov\Report')]
+#[TestDox("Report")]
 final class ReportTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$report = Report::fromJson(new \stdClass);
 		assertThat($report->sourceFiles, isEmpty());
@@ -24,8 +25,9 @@ final class ReportTest extends TestCase {
 		assertThat($report->testName, equalTo("LcovTest"));
 	}
 
-	#[TestDox("::parse()")]
-	function testParse(): void {
+	#[Test]
+	#[TestDox("parse()")]
+	function parse(): void {
 		$report = Report::parse(file_get_contents("share/lcov.info") ?: "");
 
 		// It should have a test name.
@@ -76,7 +78,8 @@ final class ReportTest extends TestCase {
 		Report::parse("TN:Example");
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'TN:<testName>'.
 		assertThat((string) new Report(""), isEmpty());

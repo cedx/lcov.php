@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 
 /**
  * Tests the features of the {@see BranchCoverage} class.
  */
-#[TestDox('lcov\BranchCoverage')]
+#[TestDox("BranchCoverage")]
 final class BranchCoverageTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$coverage = BranchCoverage::fromJson(new \stdClass);
 		assertThat($coverage->data, isEmpty());
@@ -29,7 +30,8 @@ final class BranchCoverageTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'BRF:<found>\\nBRH:<hit>'.
 		assertThat((string) new BranchCoverage, equalTo(str_replace("{eol}", PHP_EOL, "BRF:0{eol}BRH:0")));

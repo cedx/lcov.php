@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 
 /**
  * Tests the features of the {@see FunctionCoverage} class.
  */
-#[TestDox('lcov\FunctionCoverage')]
+#[TestDox("FunctionCoverage")]
 final class FunctionCoverageTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$coverage = FunctionCoverage::fromJson(new \stdClass);
 		assertThat($coverage->data, isEmpty());
@@ -29,12 +30,14 @@ final class FunctionCoverageTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'FNF:<found>\\nFNH:<hit>'.
 		assertThat((string) new FunctionCoverage, equalTo(str_replace("{eol}", PHP_EOL, "FNF:0{eol}FNH:0")));
 
-		$coverage = new FunctionCoverage(data: [new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127)], found: 23, hit: 11);
+		$data = new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127);
+		$coverage = new FunctionCoverage(data: [$data], found: 23, hit: 11);
 		assertThat((string) $coverage, equalTo(str_replace("{eol}", PHP_EOL, "FN:127,main{eol}FNDA:3,main{eol}FNF:23{eol}FNH:11")));
 	}
 }

@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, equalTo, isEmpty};
 
 /**
  * Tests the features of the {@see FunctionData} class.
  */
-#[TestDox('lcov\FunctionData')]
+#[TestDox("FunctionData")]
 final class FunctionDataTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$data = FunctionData::fromJson(new \stdClass);
 		assertThat($data->executionCount, equalTo(0));
@@ -25,7 +26,8 @@ final class FunctionDataTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[TestDox("->toString()")]
+	#[Test]
+	#[TestDox("toString()")]
 	function testToString(): void {
 		// It should return a format like 'FN:<lineNumber>,<functionName>' when used as definition.
 		assertThat((new FunctionData)->toString(true), equalTo("FN:0,"));

@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, equalTo, isEmpty, isNull, logicalNot};
 
 /**
  * Tests the features of the {@see SourceFile} class.
  */
-#[TestDox('lcov\SourceFile')]
+#[TestDox("SourceFile")]
 final class SourceFileTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$sourceFile = SourceFile::fromJson(new \stdClass);
 		assertThat($sourceFile->branches, isNull());
@@ -33,7 +34,8 @@ final class SourceFileTest extends TestCase {
 		assertThat($sourceFile->path, equalTo("/home/cedx/lcov.php"));
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'SF:<path>\\nend_of_record'.
 		assertThat((string) new SourceFile(""), equalTo(str_replace("{eol}", PHP_EOL, "SF:{eol}end_of_record")));

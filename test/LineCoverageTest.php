@@ -1,17 +1,18 @@
 <?php namespace lcov;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\{Test, TestDox};
 use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
 
 /**
  * Tests the features of the {@see LineCoverage} class.
  */
-#[TestDox('lcov\LineCoverage')]
+#[TestDox("LineCoverage")]
 final class LineCoverageTest extends TestCase {
 
-	#[TestDox("::fromJson()")]
-	function testFromJson(): void {
+	#[Test]
+	#[TestDox("fromJson()")]
+	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$coverage = LineCoverage::fromJson(new \stdClass);
 		assertThat($coverage->data, isEmpty());
@@ -29,12 +30,14 @@ final class LineCoverageTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[TestDox("->__toString()")]
+	#[Test]
+	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'LF:<found>\\nLH:<hit>'.
 		assertThat((string) new LineCoverage, equalTo(str_replace("{eol}", PHP_EOL, "LF:0{eol}LH:0")));
 
 		$data = new LineData(executionCount: 3, lineNumber: 127);
-		assertThat((string) new LineCoverage(data: [$data], found: 23, hit: 11), equalTo(str_replace("{eol}", PHP_EOL, "$data{eol}LF:23{eol}LH:11")));
+		$coverage = new LineCoverage(data: [$data], found: 23, hit: 11);
+		assertThat((string) $coverage, equalTo(str_replace("{eol}", PHP_EOL, "$data{eol}LF:23{eol}LH:11")));
 	}
 }
