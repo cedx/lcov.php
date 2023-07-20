@@ -36,7 +36,7 @@ class FunctionData implements \Stringable {
 
 	/**
 	 * Returns a string representation of this object.
-	 * @param bool $asDefinition Value indicating whether to return the function definition (i.e. name and line number) instead of its data (i.e. name and execution count).
+	 * @param bool $asDefinition Whether to return the function definition instead of its data.
 	 * @return string The string representation of this object.
 	 */
 	function toString(bool $asDefinition = false): string {
