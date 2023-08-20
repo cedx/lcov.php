@@ -21,7 +21,7 @@ print $report;
 
 The `Report->__toString()` method will return a [LCOV](https://github.com/linux-test-project/lcov) report formatted like this:
 
-```
+```lcov
 TN:Example
 SF:/home/cedx/lcov.php/fixture.php
 FNF:1
