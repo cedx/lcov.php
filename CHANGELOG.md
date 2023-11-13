@@ -46,7 +46,7 @@
 - Breaking change: changed the signature of the `fromJson()` methods.
 
 ## Version [5.1.0](https://github.com/cedx/lcov.php/compare/v5.0.0...v5.1.0)
-- Dropped the dependency on [PHPUnit-Expect](https://docs.belin.io/phpunit-expect).
+- Dropped the dependency on [PHPUnit-Expect](https://cedx.github.io/phpunit-expect).
 
 ## Version [5.0.0](https://github.com/cedx/lcov.php/compare/v4.1.0...v5.0.0)
 - Breaking change: raised the required [PHP](https://www.php.net) version.

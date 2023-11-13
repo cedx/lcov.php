@@ -304,67 +304,67 @@ Search.appendIndex(
             "fqsen": "\\lcov\\Token\u003A\u003AbranchData",
             "name": "branchData",
             "summary": "The\u0020coverage\u0020data\u0020of\u0020a\u0020branch.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_branchData"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AbranchesFound",
             "name": "branchesFound",
             "summary": "The\u0020number\u0020of\u0020branches\u0020found.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_branchesFound"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AbranchesHit",
             "name": "branchesHit",
             "summary": "The\u0020number\u0020of\u0020branches\u0020hit.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_branchesHit"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AendOfRecord",
             "name": "endOfRecord",
             "summary": "The\u0020end\u0020of\u0020a\u0020section.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_endOfRecord"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AfunctionData",
             "name": "functionData",
             "summary": "The\u0020coverage\u0020data\u0020of\u0020a\u0020function.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_functionData"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AfunctionName",
             "name": "functionName",
             "summary": "A\u0020function\u0020name.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_functionName"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AfunctionsFound",
             "name": "functionsFound",
             "summary": "The\u0020number\u0020of\u0020functions\u0020found.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_functionsFound"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AfunctionsHit",
             "name": "functionsHit",
             "summary": "The\u0020number\u0020of\u0020functions\u0020hit.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_functionsHit"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AlineData",
             "name": "lineData",
             "summary": "The\u0020coverage\u0020data\u0020of\u0020a\u0020line.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_lineData"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AlinesFound",
             "name": "linesFound",
             "summary": "The\u0020number\u0020of\u0020lines\u0020found.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_linesFound"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AlinesHit",
             "name": "linesHit",
             "summary": "The\u0020number\u0020of\u0020lines\u0020hit.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_linesHit"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AsourceFile",
             "name": "sourceFile",
             "summary": "The\u0020path\u0020to\u0020a\u0020source\u0020file.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_sourceFile"
         },                {
             "fqsen": "\\lcov\\Token\u003A\u003AtestName",
             "name": "testName",
             "summary": "A\u0020test\u0020name.",
-            "url": ""
+            "url": "classes/lcov-Token.html#enumcase_testName"
         },                {
             "fqsen": "\\",
             "name": "\\",

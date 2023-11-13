@@ -1,6 +1,6 @@
 {
 	"description": "Parse and format to LCOV your code coverage reports.",
-	"homepage": "https://docs.belin.io/lcov.php",
+	"homepage": "https://cedx.github.io/lcov.php",
 	"license": "MIT",
 	"name": "cedx/lcov",
 	"type": "library",
@@ -44,7 +44,7 @@
 		"test": ["@putenv XDEBUG_MODE=coverage", "phpunit --configuration=etc/phpunit.xml"]
 	},
 	"support": {
-		"docs": "https://docs.belin.io/lcov.php",
+		"docs": "https://cedx.github.io/lcov.php",
 		"issues": "https://github.com/cedx/lcov.php/issues"
 	}
 }
