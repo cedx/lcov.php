@@ -14,4 +14,4 @@ in [PHP](https://www.php.net).
 - [Submit an issue](https://github.com/cedx/lcov.php/issues)
 
 ## License
-[LCOV Reports for PHP](https://cedx.github.io/lcov.php) is distributed under the MIT License.
+[LCOV Reports for PHP](https://github.com/cedx/lcov.php) is distributed under the MIT License.
