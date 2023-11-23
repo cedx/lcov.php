@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [10.1.0](https://github.com/cedx/lcov.php/compare/v10.0.0...v10.1.0)
+- Updated the output of the `FunctionData->__toString()` method.
+
 ## Version [10.0.0](https://github.com/cedx/lcov.php/compare/v9.0.0...v10.0.0)
 - Breaking change: lowercased the `Lcov` namespace.
 - Breaking change: renamed the `Report::fromString()` method to `parse()`.
