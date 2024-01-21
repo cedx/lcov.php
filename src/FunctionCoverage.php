@@ -19,8 +19,8 @@ class FunctionCoverage implements \Stringable {
 	 */
 	function __toString(): string {
 		return implode(PHP_EOL, [
-			...array_map(fn(FunctionData $item) => $item->toString(true), $this->data),
-			...array_map(fn(FunctionData $item) => $item->toString(false), $this->data),
+			...array_map(fn(FunctionData $item) => $item->toString(asDefinition: true), $this->data),
+			...array_map(fn(FunctionData $item) => $item->toString(asDefinition: false), $this->data),
 			Token::functionsFound->value.":$this->found",
 			Token::functionsHit->value.":$this->hit"
 		]);

@@ -47,7 +47,7 @@ final class SourceFileTest extends TestCase {
 			path: "/home/cedx/lcov.php"
 		);
 
-		$format = "SF:/home/cedx/lcov.php{eol}{$sourceFile->functions}{eol}{$sourceFile->branches}{eol}{$sourceFile->lines}{eol}end_of_record";
+		$format = "SF:/home/cedx/lcov.php{eol}$sourceFile->functions{eol}$sourceFile->branches{eol}$sourceFile->lines{eol}end_of_record";
 		assertThat((string) $sourceFile, equalTo(str_replace("{eol}", PHP_EOL, $format)));
 	}
 }
