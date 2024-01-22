@@ -28,7 +28,7 @@ final class ReportTest extends TestCase {
 	#[Test]
 	#[TestDox("parse()")]
 	function parse(): void {
-		$report = Report::parse(file_get_contents("share/lcov.info") ?: "");
+		$report = Report::parse(file_get_contents("res/lcov.info") ?: "");
 
 		// It should have a test name.
 		assertThat($report->testName, equalTo("Example"));
