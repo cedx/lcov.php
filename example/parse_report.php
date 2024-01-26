@@ -1,9 +1,7 @@
 <?php
 use lcov\Report;
 
-/**
- * Parses a LCOV report to coverage data.
- */
+// Parses a LCOV report to coverage data.
 try {
 	$report = Report::parse((string) file_get_contents("/path/to/lcov.info"));
 	$count = count($report->sourceFiles);

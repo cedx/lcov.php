@@ -1,9 +1,7 @@
 <?php
 use lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
 
-/**
- * Formats coverage data as LCOV report.
- */
+// Formats coverage data as LCOV report.
 $sourceFile = new SourceFile(
 	path: "/home/cedx/lcov.php/fixture.php",
 	functions: new FunctionCoverage(found: 1, hit: 1),
