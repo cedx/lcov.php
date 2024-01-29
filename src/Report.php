@@ -46,23 +46,18 @@ class Report implements \Stringable {
 
 		foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
 			$offset++;
-			$line = trim($line);
-			if (!mb_strlen($line)) continue;
+			if (!mb_strlen($line = trim($line))) continue;
 
 			$parts = explode(":", $line);
-			if (count($parts) < 2 && $parts[0] != Token::endOfRecord->value)
-				throw new \InvalidArgumentException("Invalid token format at line #$offset.");
-
 			$token = Token::tryFrom(array_shift($parts));
 			$data = explode(",", implode(":", $parts));
-			$length = count($data);
 
 			switch ($token) {
 				case Token::testName: if (!$report->testName) $report->testName = $data[0]; break;
 				case Token::endOfRecord: $report->sourceFiles[] = $sourceFile; break;
 
 				case Token::branchData:
-					if ($length < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.");
+					if (count($data) < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.");
 					if ($sourceFile->branches) $sourceFile->branches->data[] = new BranchData(
 						blockNumber: (int) $data[1],
 						branchNumber: (int) $data[2],
@@ -72,7 +67,7 @@ class Report implements \Stringable {
 					break;
 
 				case Token::functionData:
-					if ($length < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.");
+					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.");
 					if ($sourceFile->functions) foreach ($sourceFile->functions->data as $item) if ($item->functionName == $data[1]) {
 						$item->executionCount = (int) $data[0];
 						break;
@@ -80,12 +75,12 @@ class Report implements \Stringable {
 					break;
 
 				case Token::functionName:
-					if ($length < 2) throw new \InvalidArgumentException("Invalid function name at line #$offset.");
+					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function name at line #$offset.");
 					if ($sourceFile->functions) $sourceFile->functions->data[] = new FunctionData(functionName: $data[1], lineNumber: (int) $data[0]);
 					break;
 
 				case Token::lineData:
-					if ($length < 2) throw new \InvalidArgumentException("Invalid line data at line #$offset.");
+					if (($length = count($data)) < 2) throw new \InvalidArgumentException("Invalid line data at line #$offset.");
 					if ($sourceFile->lines) $sourceFile->lines->data[] = new LineData(
 						checksum: $length >= 3 ? $data[2] : "",
 						executionCount: (int) $data[1],
