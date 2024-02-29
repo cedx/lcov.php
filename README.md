@@ -5,8 +5,8 @@ Parse and format [LCOV](https://github.com/linux-test-project/lcov) coverage rep
 in [PHP](https://www.php.net).
 
 ## Documentation
-- [User guide](https://cedx.github.io/lcov.php)
-- [API reference](https://cedx.github.io/lcov.php/api)
+- [User guide](https://docs.belin.io/lcov.php)
+- [API reference](https://docs.belin.io/lcov.php/api)
 
 ## Development
 - [Git repository](https://github.com/cedx/lcov.php)

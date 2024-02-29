@@ -44,7 +44,7 @@
 		"test": "phpunit --configuration=etc/phpunit.xml"
 	},
 	"support": {
-		"docs": "https://cedx.github.io/lcov.php",
+		"docs": "https://docs.belin.io/lcov.php",
 		"issues": "https://github.com/cedx/lcov.php/issues"
 	}
 }
