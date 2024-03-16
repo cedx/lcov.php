@@ -85,6 +85,6 @@ final class ReportTest extends TestCase {
 		assertThat((string) new Report(""), isEmpty());
 
 		$sourceFile = new SourceFile("");
-		assertThat((string) new Report("LcovTest", [$sourceFile]), equalTo(str_replace("{eol}", PHP_EOL, "TN:LcovTest{eol}$sourceFile")));
+		assertThat((string) new Report("LcovTest", [$sourceFile]), equalTo(strtr("TN:LcovTest{eol}$sourceFile", ["{eol}" => PHP_EOL])));
 	}
 }

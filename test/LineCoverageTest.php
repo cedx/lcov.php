@@ -34,10 +34,10 @@ final class LineCoverageTest extends TestCase {
 	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'LF:<found>\\nLH:<hit>'.
-		assertThat((string) new LineCoverage, equalTo(str_replace("{eol}", PHP_EOL, "LF:0{eol}LH:0")));
+		assertThat((string) new LineCoverage, equalTo(strtr("LF:0{eol}LH:0", ["{eol}" => PHP_EOL])));
 
 		$data = new LineData(executionCount: 3, lineNumber: 127);
 		$coverage = new LineCoverage(data: [$data], found: 23, hit: 11);
-		assertThat((string) $coverage, equalTo(str_replace("{eol}", PHP_EOL, "$data{eol}LF:23{eol}LH:11")));
+		assertThat((string) $coverage, equalTo(strtr("$data{eol}LF:23{eol}LH:11", ["{eol}" => PHP_EOL])));
 	}
 }

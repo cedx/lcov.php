@@ -34,10 +34,10 @@ final class FunctionCoverageTest extends TestCase {
 	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'FNF:<found>\\nFNH:<hit>'.
-		assertThat((string) new FunctionCoverage, equalTo(str_replace("{eol}", PHP_EOL, "FNF:0{eol}FNH:0")));
+		assertThat((string) new FunctionCoverage, equalTo(strtr("FNF:0{eol}FNH:0", ["{eol}" => PHP_EOL])));
 
 		$data = new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127);
 		$coverage = new FunctionCoverage(data: [$data], found: 23, hit: 11);
-		assertThat((string) $coverage, equalTo(str_replace("{eol}", PHP_EOL, "FN:127,main{eol}FNDA:3,main{eol}FNF:23{eol}FNH:11")));
+		assertThat((string) $coverage, equalTo(strtr("FN:127,main{eol}FNDA:3,main{eol}FNF:23{eol}FNH:11", ["{eol}" => PHP_EOL])));
 	}
 }

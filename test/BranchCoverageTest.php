@@ -34,10 +34,10 @@ final class BranchCoverageTest extends TestCase {
 	#[TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'BRF:<found>\\nBRH:<hit>'.
-		assertThat((string) new BranchCoverage, equalTo(str_replace("{eol}", PHP_EOL, "BRF:0{eol}BRH:0")));
+		assertThat((string) new BranchCoverage, equalTo(strtr("BRF:0{eol}BRH:0", ["{eol}" => PHP_EOL])));
 
 		$data = new BranchData(blockNumber: 3, branchNumber: 2, lineNumber: 127, taken: 1);
 		$coverage = new BranchCoverage(data: [$data], found: 23, hit: 11);
-		assertThat((string) $coverage, equalTo(str_replace("{eol}", PHP_EOL, "$data{eol}BRF:23{eol}BRH:11")));
+		assertThat((string) $coverage, equalTo(strtr("$data{eol}BRF:23{eol}BRH:11", ["{eol}" => PHP_EOL])));
 	}
 }
