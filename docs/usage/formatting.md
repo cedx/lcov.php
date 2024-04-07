@@ -3,7 +3,7 @@ Each class provided by this library has a dedicated `__toString()` instance meth
 formatted as [LCOV](https://github.com/linux-test-project/lcov) string.
 All you have to do is to create the adequate structure using these different classes, and to export the final result:
 
-```php
+``` php
 use lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
 
 $sourceFile = new SourceFile(
@@ -21,7 +21,7 @@ print $report;
 
 The `Report->__toString()` method will return a [LCOV](https://github.com/linux-test-project/lcov) report formatted like this:
 
-```lcov
+``` lcov
 TN:Example
 SF:/home/cedx/lcov.php/fixture.php
 FNF:1
