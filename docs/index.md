@@ -16,7 +16,3 @@ The `Report` class, the main one, provides the parsing and formatting features.
 
 - [Parse coverage data from a LCOV file](usage/parsing.md)
 - [Format coverage data to the LCOV format](usage/formatting.md)
-
-## See also
-- [API reference](api/)
-- [Packagist package](https://packagist.org/packages/cedx/lcov)

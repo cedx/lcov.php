@@ -27,7 +27,7 @@ composer require cedx/lcov
 Now in your [PHP](https://www.php.net) code, you can use:
 
 ```php
-use lcov\{
+<?php use lcov\{
   BranchCoverage, BranchData,
   FunctionCoverage, FunctionData,
   LineCoverage, LineData,

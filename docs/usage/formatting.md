@@ -4,7 +4,7 @@ formatted as [LCOV](https://github.com/linux-test-project/lcov) string.
 All you have to do is to create the adequate structure using these different classes, and to export the final result:
 
 ```php
-use lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
+<?php use lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
 
 $sourceFile = new SourceFile(
   path: "/home/cedx/lcov.php/fixture.php",
@@ -33,4 +33,5 @@ LH:2
 end_of_record
 ```
 
-> See the [API reference](api/) of this library for detailed information on the available classes.
+!!! tip
+    See the [API reference](../api/) of this library for detailed information on the available classes.

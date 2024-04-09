@@ -3,7 +3,7 @@ The `Report::parse()` static method parses a [LCOV](https://github.com/linux-tes
 and creates a `Report` instance giving detailed information about this coverage report:
 
 ```php
-use lcov\Report;
+<?php use lcov\Report;
 
 try {
   $report = Report::parse((string) file_get_contents("/path/to/lcov.info"));
@@ -16,7 +16,8 @@ catch (InvalidArgumentException $e) {
 }
 ```
 
-> An `InvalidArgumentException` is thrown if any error occurred while parsing the coverage report.
+!!! note
+    An `InvalidArgumentException` is thrown if any error occurred while parsing the coverage report.
 
 Converting the `Report` instance to [JSON](https://www.json.org) format will return a map like this:
 
@@ -51,4 +52,5 @@ Converting the `Report` instance to [JSON](https://www.json.org) format will ret
 }
 ```
 
-> See the [API reference](api/) of this library for more information on the `Report` class.
+!!! tip
+    See the [API reference](../api/) of this library for more information on the `Report` class.
