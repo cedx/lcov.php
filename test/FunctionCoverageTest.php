@@ -10,8 +10,7 @@ use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanc
 #[TestDox("FunctionCoverage")]
 final class FunctionCoverageTest extends TestCase {
 
-	#[Test]
-	#[TestDox("fromJson()")]
+	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$coverage = FunctionCoverage::fromJson(new \stdClass);
@@ -30,8 +29,7 @@ final class FunctionCoverageTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[Test]
-	#[TestDox("__toString()")]
+	#[Test, TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'FNF:<found>\\nFNH:<hit>'.
 		assertThat((string) new FunctionCoverage, equalTo(strtr("FNF:0{eol}FNH:0", ["{eol}" => PHP_EOL])));

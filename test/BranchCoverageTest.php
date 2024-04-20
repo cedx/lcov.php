@@ -10,8 +10,7 @@ use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanc
 #[TestDox("BranchCoverage")]
 final class BranchCoverageTest extends TestCase {
 
-	#[Test]
-	#[TestDox("fromJson()")]
+	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$coverage = BranchCoverage::fromJson(new \stdClass);
@@ -30,8 +29,7 @@ final class BranchCoverageTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[Test]
-	#[TestDox("__toString()")]
+	#[Test, TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'BRF:<found>\\nBRH:<hit>'.
 		assertThat((string) new BranchCoverage, equalTo(strtr("BRF:0{eol}BRH:0", ["{eol}" => PHP_EOL])));

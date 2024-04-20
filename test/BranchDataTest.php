@@ -10,8 +10,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 #[TestDox("BranchData")]
 final class BranchDataTest extends TestCase {
 
-	#[Test]
-	#[TestDox("fromJson()")]
+	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$data = BranchData::fromJson(new \stdClass);
@@ -28,8 +27,7 @@ final class BranchDataTest extends TestCase {
 		assertThat($data->taken, equalTo(1));
 	}
 
-	#[Test]
-	#[TestDox("__toString()")]
+	#[Test, TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>'.
 		assertThat((string) new BranchData, equalTo("BRDA:0,0,0,-"));

@@ -10,8 +10,7 @@ use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanc
 #[TestDox("Report")]
 final class ReportTest extends TestCase {
 
-	#[Test]
-	#[TestDox("fromJson()")]
+	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$report = Report::fromJson(new \stdClass);
@@ -25,8 +24,7 @@ final class ReportTest extends TestCase {
 		assertThat($report->testName, equalTo("LcovTest"));
 	}
 
-	#[Test]
-	#[TestDox("parse()")]
+	#[Test, TestDox("parse()")]
 	function parse(): void {
 		$report = Report::parse(file_get_contents("res/lcov.info") ?: "");
 
@@ -78,8 +76,7 @@ final class ReportTest extends TestCase {
 		Report::parse("TN:Example");
 	}
 
-	#[Test]
-	#[TestDox("__toString()")]
+	#[Test, TestDox("__toString()")]
 	function testToString(): void {
 		// It should return a format like 'TN:<testName>'.
 		assertThat((string) new Report(""), isEmpty());

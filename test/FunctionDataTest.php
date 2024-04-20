@@ -10,8 +10,7 @@ use function PHPUnit\Framework\{assertThat, equalTo, isEmpty};
 #[TestDox("FunctionData")]
 final class FunctionDataTest extends TestCase {
 
-	#[Test]
-	#[TestDox("fromJson()")]
+	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
 		$data = FunctionData::fromJson(new \stdClass);
@@ -26,8 +25,7 @@ final class FunctionDataTest extends TestCase {
 		assertThat($data->lineNumber, equalTo(127));
 	}
 
-	#[Test]
-	#[TestDox("toString()")]
+	#[Test, TestDox("toString()")]
 	function testToString(): void {
 		// It should return a format like 'FN:<lineNumber>,<functionName>' when used as definition.
 		assertThat((new FunctionData)->toString(true), equalTo("FN:0,"));
