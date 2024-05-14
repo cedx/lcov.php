@@ -28,9 +28,9 @@ class FunctionData implements \Stringable {
 	 */
 	static function fromJson(object $json): self {
 		return new self(
-			executionCount: isset($json->executionCount) && is_int($json->executionCount) ? $json->executionCount : 0,
-			functionName: isset($json->functionName) && is_string($json->functionName) ? $json->functionName : "",
-			lineNumber: isset($json->lineNumber) && is_int($json->lineNumber) ? $json->lineNumber : 0,
+			executionCount: (int) ($json->executionCount ?? 0),
+			functionName: (string) ($json->functionName ?? ""),
+			lineNumber: (int) ($json->lineNumber ?? 0),
 		);
 	}
 

@@ -28,8 +28,8 @@ class Report implements \Stringable {
 	 */
 	static function fromJson(object $json): self {
 		return new self(
-			isset($json->testName) && is_string($json->testName) ? $json->testName : "",
-			isset($json->sourceFiles) && is_array($json->sourceFiles) ? array_map(SourceFile::fromJson(...), $json->sourceFiles) : []
+			testName: (string) ($json->testName ?? ""),
+			sourceFiles: array_map(SourceFile::fromJson(...), (array) ($json->sourceFiles ?? []))
 		);
 	}
 

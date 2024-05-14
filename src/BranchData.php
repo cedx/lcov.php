@@ -30,10 +30,10 @@ class BranchData implements \Stringable {
 	 */
 	static function fromJson(object $json): self {
 		return new self(
-			blockNumber: isset($json->blockNumber) && is_int($json->blockNumber) ? $json->blockNumber : 0,
-			branchNumber: isset($json->branchNumber) && is_int($json->branchNumber) ? $json->branchNumber : 0,
-			lineNumber: isset($json->lineNumber) && is_int($json->lineNumber) ? $json->lineNumber : 0,
-			taken: isset($json->taken) && is_int($json->taken) ? $json->taken : 0,
+			blockNumber: (int) ($json->blockNumber ?? 0),
+			branchNumber: (int) ($json->branchNumber ?? 0),
+			lineNumber: (int) ($json->lineNumber ?? 0),
+			taken: (int) ($json->taken ?? 0),
 		);
 	}
 }

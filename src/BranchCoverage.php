@@ -32,9 +32,9 @@ class BranchCoverage implements \Stringable {
 	 */
 	static function fromJson(object $json): self {
 		return new self(
-			data: isset($json->data) && is_array($json->data) ? array_map(BranchData::fromJson(...), $json->data) : [],
-			found: isset($json->found) && is_int($json->found) ? $json->found : 0,
-			hit: isset($json->hit) && is_int($json->hit) ? $json->hit : 0
+			data: array_map(BranchData::fromJson(...), (array) ($json->data ?? [])),
+			found: (int) ($json->found ?? 0),
+			hit: (int) ($json->hit ?? 0)
 		);
 	}
 }

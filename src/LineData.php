@@ -29,9 +29,9 @@ class LineData implements \Stringable {
 	 */
 	static function fromJson(object $json): self {
 		return new self(
-			checksum: isset($json->checksum) && is_string($json->checksum) ? $json->checksum : "",
-			executionCount: isset($json->executionCount) && is_int($json->executionCount) ? $json->executionCount : 0,
-			lineNumber: isset($json->lineNumber) && is_int($json->lineNumber) ? $json->lineNumber : 0,
+			checksum: (string) ($json->checksum ?? ""),
+			executionCount: (int) ($json->executionCount ?? 0),
+			lineNumber: (int) ($json->lineNumber ?? 0),
 		);
 	}
 }

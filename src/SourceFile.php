@@ -39,10 +39,10 @@ class SourceFile implements \Stringable {
 	 */
 	static function fromJson(object $json): self {
 		return new self(
-			branches: isset($json->branches) && is_object($json->branches) ? BranchCoverage::fromJson($json->branches) : null,
-			functions: isset($json->functions) && is_object($json->functions) ? FunctionCoverage::fromJson($json->functions) : null,
-			lines: isset($json->lines) && is_object($json->lines) ? LineCoverage::fromJson($json->lines) : null,
-			path: isset($json->path) && is_string($json->path) ? $json->path : ""
+			branches: is_object($branches = $json->branches ?? null) ? BranchCoverage::fromJson($branches) : null,
+			functions: is_object($functions = $json->functions ?? null) ? FunctionCoverage::fromJson($functions) : null,
+			lines: is_object($lines = $json->lines ?? null) ? LineCoverage::fromJson($lines) : null,
+			path: (string) ($json->path ?? "")
 		);
 	}
 }
