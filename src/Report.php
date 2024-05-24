@@ -103,7 +103,7 @@ class Report implements \Stringable {
 				case Token::functionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
 				case Token::linesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
 				case Token::linesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
-				default: throw new \InvalidArgumentException("Unknown token at line #$offset.", 400);
+				default: throw new \InvalidArgumentException("Unknown token at line #$offset.", 422);
 			}
 		}
 
