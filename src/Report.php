@@ -57,7 +57,7 @@ class Report implements \Stringable {
 				case Token::endOfRecord: $report->sourceFiles[] = $sourceFile; break;
 
 				case Token::branchData:
-					if (count($data) < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.");
+					if (count($data) < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.", 422);
 					if ($sourceFile->branches) $sourceFile->branches->data[] = new BranchData(
 						blockNumber: (int) $data[1],
 						branchNumber: (int) $data[2],
@@ -67,7 +67,7 @@ class Report implements \Stringable {
 					break;
 
 				case Token::functionData:
-					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.");
+					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.", 422);
 					if ($sourceFile->functions) foreach ($sourceFile->functions->data as $item) if ($item->functionName == $data[1]) {
 						$item->executionCount = (int) $data[0];
 						break;
@@ -75,12 +75,12 @@ class Report implements \Stringable {
 					break;
 
 				case Token::functionName:
-					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function name at line #$offset.");
+					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function name at line #$offset.", 422);
 					if ($sourceFile->functions) $sourceFile->functions->data[] = new FunctionData(functionName: $data[1], lineNumber: (int) $data[0]);
 					break;
 
 				case Token::lineData:
-					if (($length = count($data)) < 2) throw new \InvalidArgumentException("Invalid line data at line #$offset.");
+					if (($length = count($data)) < 2) throw new \InvalidArgumentException("Invalid line data at line #$offset.", 422);
 					if ($sourceFile->lines) $sourceFile->lines->data[] = new LineData(
 						checksum: $length >= 3 ? $data[2] : "",
 						executionCount: (int) $data[1],
@@ -103,11 +103,11 @@ class Report implements \Stringable {
 				case Token::functionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
 				case Token::linesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
 				case Token::linesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
-				default: throw new \InvalidArgumentException("Unknown token at line #$offset.");
+				default: throw new \InvalidArgumentException("Unknown token at line #$offset.", 400);
 			}
 		}
 
-		if (!$report->sourceFiles) throw new \InvalidArgumentException("The coverage data is empty or invalid.");
+		if (!$report->sourceFiles) throw new \InvalidArgumentException("The coverage data is empty or invalid.", 400);
 		return $report;
 	}
 }
