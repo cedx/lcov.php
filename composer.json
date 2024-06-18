@@ -33,7 +33,7 @@
 		"ext-spl": "*"
 	},
 	"require-dev": {
-		"phpstan/phpstan": "^1.11.4",
+		"phpstan/phpstan": "^1.11.5",
 		"phpunit/phpunit": "^11.2.2"
 	},
 	"scripts": {
