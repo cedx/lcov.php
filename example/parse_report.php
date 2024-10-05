@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 use lcov\Report;
 
 // Parses a LCOV report to coverage data.

@@ -1,4 +1,5 @@
-<?php namespace lcov;
+<?php declare(strict_types=1);
+namespace lcov;
 
 /**
  * Provides the coverage data of lines.

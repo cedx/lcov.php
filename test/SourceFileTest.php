@@ -1,4 +1,5 @@
-<?php namespace lcov;
+<?php declare(strict_types=1);
+namespace lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};
