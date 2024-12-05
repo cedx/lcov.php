@@ -47,7 +47,7 @@ class Report implements \Stringable {
 
 		foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
 			$offset++;
-			if (!mb_strlen($line = trim($line))) continue;
+			if (!mb_strlen($line = mb_trim($line))) continue;
 
 			$parts = explode(":", $line);
 			$token = Token::tryFrom(array_shift($parts));
