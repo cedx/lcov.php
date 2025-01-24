@@ -1,6 +1,6 @@
 # Changelog
 
-## Version [10.2.0](https://github.com/cedx/lcov.php/compare/v10.1.0...v10.2.0)
+## Version [11.0.0](https://github.com/cedx/lcov.php/compare/v10.1.0...v11.0.0)
 - Breaking change: raised the required [PHP](https://www.php.net) version.
 - Added the `Report::tryParse()` method.
 
