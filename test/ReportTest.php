@@ -79,7 +79,7 @@ final class ReportTest extends TestCase {
 
 	#[Test, TestDox("tryParse()")]
 	function tryParse(): void {
-		assertThat(Report::tryParse("foo"), isNull());
+		assertThat(Report::tryParse("TN:Example"), isNull());
 	}
 
 	#[Test, TestDox("__toString()")]
