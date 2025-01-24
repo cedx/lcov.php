@@ -111,4 +111,13 @@ class Report implements \Stringable {
 		if (!$report->sourceFiles) throw new \InvalidArgumentException("The coverage data is empty or invalid.", 400);
 		return $report;
 	}
+	/**
+	 * Parses the specified coverage data in LCOV format.
+	 * @param string $coverage The coverage data.
+	 * @return self|null The resulting coverage report, or `null` if an error occurred.
+	 */
+	static function tryParse(string $coverage): ?self {
+		try { return self::parse($coverage); }
+		catch (\InvalidArgumentException) { return null; }
+	}
 }

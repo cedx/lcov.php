@@ -3,7 +3,7 @@ namespace lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};
-use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf};
+use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf, isNull};
 
 /**
  * Tests the features of the {@see Report} class.
@@ -75,6 +75,11 @@ final class ReportTest extends TestCase {
 		// It should throw an exception if the report is invalid or empty.
 		$this->expectException(\InvalidArgumentException::class);
 		Report::parse("TN:Example");
+	}
+
+	#[Test, TestDox("tryParse()")]
+	function tryParse(): void {
+		assertThat(Report::tryParse("foo"), isNull());
 	}
 
 	#[Test, TestDox("__toString()")]
