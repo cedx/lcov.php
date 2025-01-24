@@ -11,6 +11,18 @@ use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanc
 #[TestDox("Report")]
 final class ReportTest extends TestCase {
 
+	/**
+	 * The test fixture.
+	 */
+	private static string $coverage;
+
+	/**
+	 * Method invoked before the first test is run.
+	 */
+	static function setUpBeforeClass(): void {
+		self::$coverage = file_get_contents("res/lcov.info") ?: "";
+	}
+
 	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {
 		// It should return an instance with default values for an empty map.
@@ -27,7 +39,7 @@ final class ReportTest extends TestCase {
 
 	#[Test, TestDox("parse()")]
 	function parse(): void {
-		$report = Report::parse(file_get_contents("res/lcov.info") ?: "");
+		$report = Report::parse(self::$coverage);
 
 		// It should have a test name.
 		assertThat($report->testName, equalTo("Example"));
@@ -79,6 +91,7 @@ final class ReportTest extends TestCase {
 
 	#[Test, TestDox("tryParse()")]
 	function tryParse(): void {
+		assertThat(Report::tryParse(self::$coverage), isInstanceOf(Report::class));
 		assertThat(Report::tryParse("TN:Example"), isNull());
 	}
 
