@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [10.2.0](https://github.com/cedx/lcov.php/compare/v10.1.0...v10.2.0)
+- Added the `Report::tryParse()` method.
+
 ## Version [10.1.0](https://github.com/cedx/lcov.php/compare/v10.0.0...v10.1.0)
 - Updated the output of the `FunctionData->__toString()` method.
 
