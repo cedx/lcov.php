@@ -39,7 +39,7 @@ class Report implements \Stringable {
 
 			$parts = explode(":", $line);
 			$token = Token::tryFrom(array_shift($parts));
-			$data = explode(",", implode(":", $parts));
+			$data = implode(":", $parts) |> (fn($value) => explode(",", $value));
 
 			switch ($token) {
 				case Token::TestName: if (!$report->testName) $report->testName = $data[0]; break;
