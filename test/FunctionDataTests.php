@@ -9,7 +9,7 @@ use function PHPUnit\Framework\{assertThat, equalTo, isEmpty};
  * Tests the features of the {@see FunctionData} class.
  */
 #[TestDox("FunctionData")]
-final class FunctionDataTest extends TestCase {
+final class FunctionDataTests extends TestCase {
 
 	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {

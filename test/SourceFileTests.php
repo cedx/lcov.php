@@ -9,7 +9,7 @@ use function PHPUnit\Framework\{assertThat, equalTo, isEmpty, isNull, logicalNot
  * Tests the features of the {@see SourceFile} class.
  */
 #[TestDox("SourceFile")]
-final class SourceFileTest extends TestCase {
+final class SourceFileTests extends TestCase {
 
 	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {

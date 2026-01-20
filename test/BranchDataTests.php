@@ -9,7 +9,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
  * Tests the features of the {@see BranchData} class.
  */
 #[TestDox("BranchData")]
-final class BranchDataTest extends TestCase {
+final class BranchDataTests extends TestCase {
 
 	#[Test, TestDox("fromJson()")]
 	function fromJson(): void {

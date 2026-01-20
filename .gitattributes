@@ -9,6 +9,7 @@
 *.esproj text
 *.html text diff=html
 *.http text
+*.info text
 *.ini text
 *.js text
 *.json text

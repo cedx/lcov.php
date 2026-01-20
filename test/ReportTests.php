@@ -9,7 +9,7 @@ use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanc
  * Tests the features of the {@see Report} class.
  */
 #[TestDox("Report")]
-final class ReportTest extends TestCase {
+final class ReportTests extends TestCase {
 
 	/**
 	 * The test fixture.
@@ -20,7 +20,7 @@ final class ReportTest extends TestCase {
 	 * Method invoked before the first test is run.
 	 */
 	static function setUpBeforeClass(): void {
-		self::$coverage = file_get_contents("res/lcov.info") ?: "";
+		self::$coverage = file_get_contents("res/Lcov.info") ?: "";
 	}
 
 	#[Test, TestDox("fromJson()")]
