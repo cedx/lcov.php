@@ -3,7 +3,7 @@ namespace Belin\Lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};
-use function PHPUnit\Framework\{assertThat, equalTo, isEmpty};
+use function PHPUnit\Framework\{assertThat, equalTo};
 
 /**
  * Tests the features of the {@see FunctionData} class.

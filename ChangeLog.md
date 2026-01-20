@@ -1,5 +1,11 @@
 # Changelog
 
+## Version [12.0.0](https://github.com/cedx/lcov.php/compare/v11.0.0...v12.0.0)
+- Breaking change: raised the required [PHP](https://www.php.net) version.
+- Breaking change: removed the `fromJson()` static methods.
+- Breaking change: renamed the root namespace to `Belin\Lcov`.
+- Breaking change: using PHP 8.5 features, like the pipe operator.
+
 ## Version [11.0.0](https://github.com/cedx/lcov.php/compare/v10.1.0...v11.0.0)
 - Breaking change: raised the required [PHP](https://www.php.net) version.
 - Added the `Report::tryParse()` method.
