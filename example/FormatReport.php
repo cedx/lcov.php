@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-use lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
+use Belin\Lcov\{FunctionCoverage, LineCoverage, LineData, Report, SourceFile};
 
 // Formats coverage data as LCOV report.
 $sourceFile = new SourceFile(

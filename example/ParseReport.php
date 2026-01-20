@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-use lcov\Report;
+use Belin\Lcov\Report;
 
 // Parses a LCOV report to coverage data.
 try {
