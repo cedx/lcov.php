@@ -19,7 +19,7 @@ class LineData implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$value = Token::lineData->value.":$this->lineNumber,$this->executionCount";
+		$value = Token::LineData->value.":$this->lineNumber,$this->executionCount";
 		return $this->checksum ? "$value,$this->checksum" : $value;
 	}
 

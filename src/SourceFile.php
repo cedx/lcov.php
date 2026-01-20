@@ -25,11 +25,11 @@ class SourceFile implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$output = [Token::sourceFile->value.":$this->path"];
+		$output = [Token::SourceFile->value.":$this->path"];
 		if ($this->functions) $output[] = (string) $this->functions;
 		if ($this->branches) $output[] = (string) $this->branches;
 		if ($this->lines) $output[] = (string) $this->lines;
-		$output[] = Token::endOfRecord->value;
+		$output[] = Token::EndOfRecord->value;
 		return implode(PHP_EOL, $output);
 	}
 

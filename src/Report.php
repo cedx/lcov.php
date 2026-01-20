@@ -18,7 +18,7 @@ class Report implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	function __toString(): string {
-		$lines = $this->testName ? [Token::testName->value.":$this->testName"] : [];
+		$lines = $this->testName ? [Token::TestName->value.":$this->testName"] : [];
 		return implode(PHP_EOL, [...$lines, ...array_map(strval(...), $this->sourceFiles)]);
 	}
 
@@ -54,10 +54,10 @@ class Report implements \Stringable {
 			$data = explode(",", implode(":", $parts));
 
 			switch ($token) {
-				case Token::testName: if (!$report->testName) $report->testName = $data[0]; break;
-				case Token::endOfRecord: $report->sourceFiles[] = $sourceFile; break;
+				case Token::TestName: if (!$report->testName) $report->testName = $data[0]; break;
+				case Token::EndOfRecord: $report->sourceFiles[] = $sourceFile; break;
 
-				case Token::branchData:
+				case Token::BranchData:
 					if (count($data) < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.", 422);
 					if ($sourceFile->branches) $sourceFile->branches->data[] = new BranchData(
 						blockNumber: (int) $data[1],
@@ -67,7 +67,7 @@ class Report implements \Stringable {
 					);
 					break;
 
-				case Token::functionData:
+				case Token::FunctionData:
 					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.", 422);
 					if ($sourceFile->functions) foreach ($sourceFile->functions->data as $item) if ($item->functionName == $data[1]) {
 						$item->executionCount = (int) $data[0];
@@ -75,12 +75,12 @@ class Report implements \Stringable {
 					}
 					break;
 
-				case Token::functionName:
+				case Token::FunctionName:
 					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function name at line #$offset.", 422);
 					if ($sourceFile->functions) $sourceFile->functions->data[] = new FunctionData(functionName: $data[1], lineNumber: (int) $data[0]);
 					break;
 
-				case Token::lineData:
+				case Token::LineData:
 					if (($length = count($data)) < 2) throw new \InvalidArgumentException("Invalid line data at line #$offset.", 422);
 					if ($sourceFile->lines) $sourceFile->lines->data[] = new LineData(
 						checksum: $length >= 3 ? $data[2] : "",
@@ -89,7 +89,7 @@ class Report implements \Stringable {
 					);
 					break;
 
-				case Token::sourceFile:
+				case Token::SourceFile:
 					$sourceFile = new SourceFile(
 						branches: new BranchCoverage,
 						functions: new FunctionCoverage,
@@ -98,12 +98,12 @@ class Report implements \Stringable {
 					);
 					break;
 
-				case Token::branchesFound: if ($sourceFile->branches) $sourceFile->branches->found = (int) $data[0]; break;
-				case Token::branchesHit: if ($sourceFile->branches) $sourceFile->branches->hit = (int) $data[0]; break;
-				case Token::functionsFound: if ($sourceFile->functions) $sourceFile->functions->found = (int) $data[0]; break;
-				case Token::functionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
-				case Token::linesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
-				case Token::linesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
+				case Token::BranchesFound: if ($sourceFile->branches) $sourceFile->branches->found = (int) $data[0]; break;
+				case Token::BranchesHit: if ($sourceFile->branches) $sourceFile->branches->hit = (int) $data[0]; break;
+				case Token::FunctionsFound: if ($sourceFile->functions) $sourceFile->functions->found = (int) $data[0]; break;
+				case Token::FunctionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
+				case Token::LinesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
+				case Token::LinesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
 				default: throw new \InvalidArgumentException("Unknown token at line #$offset.", 422);
 			}
 		}

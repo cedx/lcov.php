@@ -41,7 +41,7 @@ class FunctionData implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	function toString(bool $asDefinition = false): string {
-		$token = $asDefinition ? Token::functionName : Token::functionData;
+		$token = $asDefinition ? Token::FunctionName : Token::FunctionData;
 		$number = $asDefinition ? $this->lineNumber : $this->executionCount;
 		return "{$token->value}:$number,$this->functionName";
 	}
