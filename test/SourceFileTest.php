@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace lcov;
+namespace Belin\Lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};

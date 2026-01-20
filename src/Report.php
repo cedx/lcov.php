@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace lcov;
+namespace Belin\Lcov;
 
 /**
  * Represents a trace file, that is a coverage report.
