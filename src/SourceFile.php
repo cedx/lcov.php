@@ -32,18 +32,4 @@ class SourceFile implements \Stringable {
 		$output[] = Token::EndOfRecord->value;
 		return implode(PHP_EOL, $output);
 	}
-
-	/**
-	 * Creates a new source file from the specified JSON object.
-	 * @param object $json A JSON object representing a source file.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			branches: is_object($branches = $json->branches ?? null) ? BranchCoverage::fromJson($branches) : null,
-			functions: is_object($functions = $json->functions ?? null) ? FunctionCoverage::fromJson($functions) : null,
-			lines: is_object($lines = $json->lines ?? null) ? LineCoverage::fromJson($lines) : null,
-			path: (string) ($json->path ?? "")
-		);
-	}
 }

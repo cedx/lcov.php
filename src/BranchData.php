@@ -23,18 +23,4 @@ class BranchData implements \Stringable {
 		$value = Token::BranchData->value.":$this->lineNumber,$this->blockNumber,$this->branchNumber";
 		return $this->taken > 0 ? "$value,$this->taken" : "$value,-";
 	}
-
-	/**
-	 * Creates new branch data from the specified JSON object.
-	 * @param object $json A JSON object representing branch data.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			blockNumber: (int) ($json->blockNumber ?? 0),
-			branchNumber: (int) ($json->branchNumber ?? 0),
-			lineNumber: (int) ($json->lineNumber ?? 0),
-			taken: (int) ($json->taken ?? 0),
-		);
-	}
 }

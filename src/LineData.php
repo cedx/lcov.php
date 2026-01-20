@@ -22,17 +22,4 @@ class LineData implements \Stringable {
 		$value = Token::LineData->value.":$this->lineNumber,$this->executionCount";
 		return $this->checksum ? "$value,$this->checksum" : $value;
 	}
-
-	/**
-	 * Creates new line data from the specified JSON object.
-	 * @param object $json A JSON object representing line data.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			checksum: (string) ($json->checksum ?? ""),
-			executionCount: (int) ($json->executionCount ?? 0),
-			lineNumber: (int) ($json->lineNumber ?? 0),
-		);
-	}
 }

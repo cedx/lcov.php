@@ -23,19 +23,6 @@ class FunctionData implements \Stringable {
 	}
 
 	/**
-	 * Creates new function data from the specified JSON object.
-	 * @param object $json A JSON object representing function data.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			executionCount: (int) ($json->executionCount ?? 0),
-			functionName: (string) ($json->functionName ?? ""),
-			lineNumber: (int) ($json->lineNumber ?? 0),
-		);
-	}
-
-	/**
 	 * Returns a string representation of this object.
 	 * @param bool $asDefinition Value indicating whether to return the function definition instead of its data.
 	 * @return string The string representation of this object.

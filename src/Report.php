@@ -23,18 +23,6 @@ class Report implements \Stringable {
 	}
 
 	/**
-	 * Creates a new report from the specified JSON object.
-	 * @param object $json A JSON object representing a report.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			testName: (string) ($json->testName ?? ""),
-			sourceFiles: array_map(SourceFile::fromJson(...), (array) ($json->sourceFiles ?? []))
-		);
-	}
-
-	/**
 	 * Parses the specified coverage data in LCOV format.
 	 * @param string $coverage The coverage data.
 	 * @return self The resulting coverage report.

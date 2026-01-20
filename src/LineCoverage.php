@@ -25,17 +25,4 @@ class LineCoverage implements \Stringable {
 			Token::LinesHit->value.":$this->hit"
 		]);
 	}
-
-	/**
-	 * Creates a new line coverage from the specified JSON object.
-	 * @param object $json A JSON object representing a line coverage.
-	 * @return self The instance corresponding to the specified JSON object.
-	 */
-	static function fromJson(object $json): self {
-		return new self(
-			data: array_map(LineData::fromJson(...), (array) ($json->data ?? [])),
-			found: (int) ($json->found ?? 0),
-			hit: (int) ($json->hit ?? 0)
-		);
-	}
 }

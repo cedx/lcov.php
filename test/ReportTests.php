@@ -23,20 +23,6 @@ final class ReportTests extends TestCase {
 		self::$coverage = file_get_contents("res/Lcov.info") ?: "";
 	}
 
-	#[Test, TestDox("fromJson()")]
-	function fromJson(): void {
-		// It should return an instance with default values for an empty map.
-		$report = Report::fromJson(new \stdClass);
-		assertThat($report->sourceFiles, isEmpty());
-		assertThat($report->testName, isEmpty());
-
-		// It should return an initialized instance for a non-empty map.
-		$report = Report::fromJson((object) ["sourceFiles" => [new \stdClass], "testName" => "LcovTest"]);
-		assertThat($report->sourceFiles, countOf(1));
-		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
-		assertThat($report->testName, equalTo("LcovTest"));
-	}
-
 	#[Test, TestDox("parse()")]
 	function parse(): void {
 		$report = Report::parse(self::$coverage);
