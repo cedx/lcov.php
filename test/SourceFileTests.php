@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class SourceFileTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'SF:<path>\\nend_of_record'.
 		assertThat((string) new SourceFile(""), equalTo(strtr("SF:{eol}end_of_record", ["{eol}" => PHP_EOL])));
 

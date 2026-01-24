@@ -13,7 +13,7 @@ class SourceFile implements \Stringable {
 	 * @param BranchCoverage|null $branches The branch coverage.
 	 * @param LineCoverage|null $lines The line coverage.
 	 */
-	function __construct(
+	public function __construct(
 		public string $path,
 		public ?FunctionCoverage $functions = null,
 		public ?BranchCoverage $branches = null,
@@ -24,7 +24,7 @@ class SourceFile implements \Stringable {
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	function __toString(): string {
+	public function __toString(): string {
 		$output = [Token::SourceFile->value.":$this->path"];
 		if ($this->functions) $output[] = (string) $this->functions;
 		if ($this->branches) $output[] = (string) $this->branches;

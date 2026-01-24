@@ -12,13 +12,13 @@ class FunctionData implements \Stringable {
 	 * @param int $lineNumber The line number of the function start.
 	 * @param int $executionCount The execution count.
 	 */
-	function __construct(public string $functionName = "", public int $lineNumber = 0, public int $executionCount = 0) {}
+	public function __construct(public string $functionName = "", public int $lineNumber = 0, public int $executionCount = 0) {}
 
 	/**
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	final function __toString(): string {
+	public final function __toString(): string {
 		return implode(PHP_EOL, [$this->toString(true), $this->toString(false)]);
 	}
 
@@ -27,7 +27,7 @@ class FunctionData implements \Stringable {
 	 * @param bool $asDefinition Value indicating whether to return the function definition instead of its data.
 	 * @return string The string representation of this object.
 	 */
-	function toString(bool $asDefinition = false): string {
+	public function toString(bool $asDefinition = false): string {
 		$token = $asDefinition ? Token::FunctionName : Token::FunctionData;
 		$number = $asDefinition ? $this->lineNumber : $this->executionCount;
 		return "{$token->value}:$number,$this->functionName";

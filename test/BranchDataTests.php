@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class BranchDataTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>'.
 		assertThat((string) new BranchData, equalTo("BRDA:0,0,0,-"));
 		assertThat((string) new BranchData(blockNumber: 3, branchNumber: 2, lineNumber: 127, taken: 1), equalTo("BRDA:127,3,2,1"));

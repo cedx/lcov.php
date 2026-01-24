@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class BranchCoverageTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'BRF:<found>\\nBRH:<hit>'.
 		assertThat((string) new BranchCoverage, equalTo(strtr("BRF:0{eol}BRH:0", ["{eol}" => PHP_EOL])));
 

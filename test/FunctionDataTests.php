@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class FunctionDataTests extends TestCase {
 
 	#[Test, TestDox("toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'FN:<lineNumber>,<functionName>' when used as definition.
 		assertThat(new FunctionData()->toString(asDefinition: true), equalTo("FN:0,"));
 		assertThat(new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127)->toString(asDefinition: true), equalTo("FN:127,main"));

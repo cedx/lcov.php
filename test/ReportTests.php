@@ -19,12 +19,12 @@ final class ReportTests extends TestCase {
 	/**
 	 * Method invoked before the first test is run.
 	 */
-	static function setUpBeforeClass(): void {
+	public static function setUpBeforeClass(): void {
 		self::$coverage = file_get_contents("res/Lcov.info") ?: "";
 	}
 
 	#[Test, TestDox("parse()")]
-	function parse(): void {
+	public function parse(): void {
 		$report = Report::parse(self::$coverage);
 
 		// It should have a test name.
@@ -76,13 +76,13 @@ final class ReportTests extends TestCase {
 	}
 
 	#[Test, TestDox("tryParse()")]
-	function tryParse(): void {
+	public function tryParse(): void {
 		assertThat(Report::tryParse(self::$coverage), isInstanceOf(Report::class));
 		assertThat(Report::tryParse("TN:Example"), isNull());
 	}
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'TN:<testName>'.
 		assertThat((string) new Report(""), isEmpty());
 

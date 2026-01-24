@@ -11,13 +11,13 @@ class Report implements \Stringable {
 	 * @param string $testName The test name.
 	 * @param SourceFile[] $sourceFiles The source file list.
 	 */
-	function __construct(public string $testName, public array $sourceFiles = []) {}
+	public function __construct(public string $testName, public array $sourceFiles = []) {}
 
 	/**
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	function __toString(): string {
+	public function __toString(): string {
 		$lines = $this->testName ? [Token::TestName->value.":$this->testName"] : [];
 		return implode(PHP_EOL, [...$lines, ...array_map(strval(...), $this->sourceFiles)]);
 	}
@@ -28,7 +28,7 @@ class Report implements \Stringable {
 	 * @return self The resulting coverage report.
 	 * @throws \InvalidArgumentException A parsing error occurred.
 	 */
-	static function parse(string $coverage): self {
+	public static function parse(string $coverage): self {
 		$offset = 0;
 		$report = new self("");
 		$sourceFile = new SourceFile("");
@@ -104,7 +104,7 @@ class Report implements \Stringable {
 	 * @param string $coverage The coverage data.
 	 * @return self|null The resulting coverage report, or `null` if an error occurred.
 	 */
-	static function tryParse(string $coverage): ?self {
+	public static function tryParse(string $coverage): ?self {
 		try { return self::parse($coverage); }
 		catch (\InvalidArgumentException) { return null; }
 	}

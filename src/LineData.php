@@ -12,13 +12,13 @@ class LineData implements \Stringable {
 	 * @param int $executionCount The execution count.
 	 * @param string $checksum The data checksum.
 	 */
-	function __construct(public int $lineNumber = 0, public int $executionCount = 0, public string $checksum = "") {}
+	public function __construct(public int $lineNumber = 0, public int $executionCount = 0, public string $checksum = "") {}
 
 	/**
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	function __toString(): string {
+	public function __toString(): string {
 		$value = Token::LineData->value.":$this->lineNumber,$this->executionCount";
 		return $this->checksum ? "$value,$this->checksum" : $value;
 	}

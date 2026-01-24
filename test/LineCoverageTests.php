@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class LineCoverageTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'LF:<found>\\nLH:<hit>'.
 		assertThat((string) new LineCoverage, equalTo(strtr("LF:0{eol}LH:0", ["{eol}" => PHP_EOL])));
 

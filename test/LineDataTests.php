@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class LineDataTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'DA:<lineNumber>,<executionCount>[,<checksum>]'.
 		assertThat((string) new LineData, equalTo("DA:0,0"));
 

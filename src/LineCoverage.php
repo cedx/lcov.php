@@ -12,13 +12,13 @@ class LineCoverage implements \Stringable {
 	 * @param int $hit The number of lines hit.
 	 * @param LineData[] $data The coverage data.
 	 */
-	function __construct(public int $found = 0, public int $hit = 0, public array $data = []) {}
+	public function __construct(public int $found = 0, public int $hit = 0, public array $data = []) {}
 
 	/**
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	function __toString(): string {
+	public function __toString(): string {
 		return implode(PHP_EOL, [
 			...array_map(strval(...), $this->data),
 			Token::LinesFound->value.":$this->found",

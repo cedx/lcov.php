@@ -12,7 +12,7 @@ use function PHPUnit\Framework\{assertThat, equalTo};
 final class FunctionCoverageTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
-	function testToString(): void {
+	public function testToString(): void {
 		// It should return a format like 'FNF:<found>\\nFNH:<hit>'.
 		assertThat((string) new FunctionCoverage, equalTo(strtr("FNF:0{eol}FNH:0", ["{eol}" => PHP_EOL])));
 
