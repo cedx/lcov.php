@@ -7,18 +7,38 @@ namespace Belin\Lcov;
 class SourceFile implements \Stringable {
 
 	/**
+	 * The branch coverage.
+	 */
+	public ?BranchCoverage $branches;
+
+	/**
+	 * The function coverage.
+	 */
+	public ?FunctionCoverage $functions;
+
+	/**
+	 * The line coverage.
+	 */
+	public ?LineCoverage $lines;
+
+	/**
+	 * The path to the source file.
+	 */
+	public string $path;
+
+	/**
 	 * Creates a new source file.
 	 * @param string $path The path to the source file.
 	 * @param FunctionCoverage|null $functions The function coverage.
 	 * @param BranchCoverage|null $branches The branch coverage.
 	 * @param LineCoverage|null $lines The line coverage.
 	 */
-	public function __construct(
-		public string $path,
-		public ?FunctionCoverage $functions = null,
-		public ?BranchCoverage $branches = null,
-		public ?LineCoverage $lines = null
-	) {}
+	public function __construct(string $path, ?FunctionCoverage $functions = null, ?BranchCoverage $branches = null, ?LineCoverage $lines = null) {
+		$this->branches = $branches;
+		$this->functions = $functions;
+		$this->lines = $lines;
+		$this->path = $path;
+	}
 
 	/**
 	 * Returns a string representation of this object.

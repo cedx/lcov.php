@@ -7,12 +7,32 @@ namespace Belin\Lcov;
 class LineCoverage implements \Stringable {
 
 	/**
+	 * The coverage data.
+	 * @var LineData[]
+	 */
+	public array $data;
+
+	/**
+	 * The number of lines found.
+	 */
+	public int $found;
+
+	/**
+	 * The number of lines hit.
+	 */
+	public int $hit;
+
+	/**
 	 * Creates a new line coverage.
 	 * @param int $found The number of lines found.
 	 * @param int $hit The number of lines hit.
 	 * @param LineData[] $data The coverage data.
 	 */
-	public function __construct(public int $found = 0, public int $hit = 0, public array $data = []) {}
+	public function __construct(int $found = 0, int $hit = 0, array $data = []) {
+		$this->data = $data;
+		$this->found = $found;
+		$this->hit = $hit;
+	}
 
 	/**
 	 * Returns a string representation of this object.

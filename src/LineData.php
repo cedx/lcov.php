@@ -7,12 +7,31 @@ namespace Belin\Lcov;
 class LineData implements \Stringable {
 
 	/**
+	 * The data checksum.
+	 */
+	public string $checksum;
+
+	/**
+	 * The execution count.
+	 */
+	public int $executionCount;
+
+	/**
+	 * The line number.
+	 */
+	public int $lineNumber;
+
+	/**
 	 * Creates new line data.
 	 * @param int $lineNumber The line number.
 	 * @param int $executionCount The execution count.
 	 * @param string $checksum The data checksum.
 	 */
-	public function __construct(public int $lineNumber = 0, public int $executionCount = 0, public string $checksum = "") {}
+	public function __construct(int $lineNumber = 0, int $executionCount = 0, string $checksum = "") {
+		$this->checksum = $checksum;
+		$this->executionCount = $executionCount;
+		$this->lineNumber = $lineNumber;
+	}
 
 	/**
 	 * Returns a string representation of this object.

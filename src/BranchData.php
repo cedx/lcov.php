@@ -7,13 +7,38 @@ namespace Belin\Lcov;
 class BranchData implements \Stringable {
 
 	/**
+	 * The block number.
+	 */
+	public int $blockNumber;
+
+	/**
+	 * The branch number.
+	 */
+	public int $branchNumber;
+
+	/**
+	 * The line number.
+	 */
+	public int $lineNumber;
+
+	/**
+	 * A number indicating how often this branch was taken.
+	 */
+	public int $taken;
+
+	/**
 	 * Creates new branch data.
 	 * @param int $lineNumber The line number.
 	 * @param int $blockNumber The block number.
 	 * @param int $branchNumber The branch number.
 	 * @param int $taken A number indicating how often this branch was taken.
 	 */
-	public function __construct(public int $lineNumber = 0, public int $blockNumber = 0, public int $branchNumber = 0, public int $taken = 0) {}
+	public function __construct(int $lineNumber = 0, int $blockNumber = 0, int $branchNumber = 0, int $taken = 0) {
+		$this->blockNumber = $blockNumber;
+		$this->branchNumber = $branchNumber;
+		$this->lineNumber = $lineNumber;
+		$this->taken = $taken;
+	}
 
 	/**
 	 * Returns a string representation of this object.

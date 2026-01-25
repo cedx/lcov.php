@@ -7,12 +7,32 @@ namespace Belin\Lcov;
 class FunctionCoverage implements \Stringable {
 
 	/**
+	 * The coverage data.
+	 * @var FunctionData[]
+	 */
+	public array $data;
+
+	/**
+	 * The number of functions found.
+	 */
+	public int $found;
+
+	/**
+	 * The number of functions hit.
+	 */
+	public int $hit;
+
+	/**
 	 * Creates a new function coverage.
 	 * @param int $found The number of functions found.
 	 * @param int $hit The number of functions hit.
 	 * @param FunctionData[] $data The coverage data.
 	 */
-	public function __construct(public int $found = 0, public int $hit = 0, public array $data = []) {}
+	public function __construct(int $found = 0, int $hit = 0, array $data = []) {
+		$this->data = $data;
+		$this->found = $found;
+		$this->hit = $hit;
+	}
 
 	/**
 	 * Returns a string representation of this object.

@@ -7,11 +7,25 @@ namespace Belin\Lcov;
 class Report implements \Stringable {
 
 	/**
+	 * The source file list.
+	 * @var SourceFile[]
+	 */
+	public array $sourceFiles;
+
+	/**
+	 * The test name.
+	 */
+	public string $testName;
+
+	/**
 	 * Creates a new report.
 	 * @param string $testName The test name.
 	 * @param SourceFile[] $sourceFiles The source file list.
 	 */
-	public function __construct(public string $testName, public array $sourceFiles = []) {}
+	public function __construct(string $testName, array $sourceFiles = []) {
+		$this->sourceFiles = $sourceFiles;
+		$this->testName = $testName;
+	}
 
 	/**
 	 * Returns a string representation of this object.
