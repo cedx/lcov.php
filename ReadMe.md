@@ -1,6 +1,4 @@
 # LCOV Reports for PHP
-![PHP](https://badgen.net/packagist/php/cedx/lcov) ![Packagist](https://badgen.net/packagist/v/cedx/lcov) ![License](https://badgen.net/packagist/license/cedx/lcov) ![Downloads](https://badgen.net/packagist/dt/cedx/lcov)
-
 Parse and format [LCOV](https://github.com/linux-test-project/lcov) coverage reports,
 in [PHP](https://www.php.net).
 
