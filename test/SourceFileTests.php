@@ -3,7 +3,7 @@ namespace Belin\Lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};
-use function PHPUnit\Framework\{assertThat, equalTo};
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * Tests the features of the {@see SourceFile} class.
@@ -14,7 +14,7 @@ final class SourceFileTests extends TestCase {
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
 		// It should return a format like 'SF:<path>\\nend_of_record'.
-		assertThat((string) new SourceFile(""), equalTo(strtr("SF:{eol}end_of_record", ["{eol}" => PHP_EOL])));
+		assertEquals(strtr("SF:{eol}end_of_record", ["{eol}" => PHP_EOL]), (string) new SourceFile(""));
 
 		$sourceFile = new SourceFile(
 			branches: new BranchCoverage,
@@ -24,6 +24,6 @@ final class SourceFileTests extends TestCase {
 		);
 
 		$format = "SF:/home/cedx/lcov.php{eol}$sourceFile->functions{eol}$sourceFile->branches{eol}$sourceFile->lines{eol}end_of_record";
-		assertThat((string) $sourceFile, equalTo(strtr($format, ["{eol}" => PHP_EOL])));
+		assertEquals(strtr($format, ["{eol}" => PHP_EOL]), (string) $sourceFile);
 	}
 }

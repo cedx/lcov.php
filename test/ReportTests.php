@@ -3,7 +3,7 @@ namespace Belin\Lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};
-use function PHPUnit\Framework\{assertThat, countOf, equalTo, isEmpty, isInstanceOf, isNull};
+use function PHPUnit\Framework\{assertCount, assertEmpty, assertEquals, assertInstanceOf, assertNull};
 
 /**
  * Tests the features of the {@see Report} class.
@@ -28,47 +28,47 @@ final class ReportTests extends TestCase {
 		$report = Report::parse(self::$coverage);
 
 		// It should have a test name.
-		assertThat($report->testName, equalTo("Example"));
+		assertEquals("Example", $report->testName);
 
 		// It should contain three source files.
-		assertThat($report->sourceFiles, countOf(3));
-		assertThat($report->sourceFiles[0], isInstanceOf(SourceFile::class));
-		assertThat($report->sourceFiles[0]->path, equalTo("/home/cedx/lcov.php/fixture.php"));
-		assertThat($report->sourceFiles[1]->path, equalTo("/home/cedx/lcov.php/func1.php"));
-		assertThat($report->sourceFiles[2]->path, equalTo("/home/cedx/lcov.php/func2.php"));
+		assertCount(3, $report->sourceFiles);
+		assertInstanceOf(SourceFile::class, $report->sourceFiles[0]);
+		assertEquals("/home/cedx/lcov.php/fixture.php", $report->sourceFiles[0]->path);
+		assertEquals("/home/cedx/lcov.php/func1.php", $report->sourceFiles[1]->path);
+		assertEquals("/home/cedx/lcov.php/func2.php", $report->sourceFiles[2]->path);
 
 		// It should have detailed branch coverage.
 		/** @var BranchCoverage $branches */
 		$branches = $report->sourceFiles[1]->branches;
-		assertThat($branches->data, countOf(4));
-		assertThat($branches->found, equalTo(4));
-		assertThat($branches->hit, equalTo(4));
+		assertCount(4, $branches->data);
+		assertEquals(4, $branches->found);
+		assertEquals(4, $branches->hit);
 
 		[$data] = $branches->data;
-		assertThat($data, isInstanceOf(BranchData::class));
-		assertThat($data->lineNumber, equalTo(8));
+		assertInstanceOf(BranchData::class, $data);
+		assertEquals(8, $data->lineNumber);
 
 		// It should have detailed function coverage.
 		/** @var FunctionCoverage $functions */
 		$functions = $report->sourceFiles[1]->functions;
-		assertThat($functions->data, countOf(1));
-		assertThat($functions->found, equalTo(1));
-		assertThat($functions->hit, equalTo(1));
+		assertCount(1, $functions->data);
+		assertEquals(1, $functions->found);
+		assertEquals(1, $functions->hit);
 
 		[$data] = $functions->data;
-		assertThat($data, isInstanceOf(FunctionData::class));
-		assertThat($data->functionName, equalTo("func1"));
+		assertInstanceOf(FunctionData::class, $data);
+		assertEquals("func1", $data->functionName);
 
 		// It should have detailed line coverage.
 		/** @var LineCoverage $lines */
 		$lines = $report->sourceFiles[1]->lines;
-		assertThat($lines->data, countOf(9));
-		assertThat($lines->found, equalTo(9));
-		assertThat($lines->hit, equalTo(9));
+		assertCount(9, $lines->data);
+		assertEquals(9, $lines->found);
+		assertEquals(9, $lines->hit);
 
 		[$data] = $lines->data;
-		assertThat($data, isInstanceOf(LineData::class));
-		assertThat($data->checksum, equalTo("5kX7OTfHFcjnS98fjeVqNA"));
+		assertInstanceOf(LineData::class, $data);
+		assertEquals("5kX7OTfHFcjnS98fjeVqNA", $data->checksum);
 
 		// It should throw an exception if the report is invalid or empty.
 		$this->expectException(\InvalidArgumentException::class);
@@ -77,16 +77,16 @@ final class ReportTests extends TestCase {
 
 	#[Test, TestDox("tryParse()")]
 	public function tryParse(): void {
-		assertThat(Report::tryParse(self::$coverage), isInstanceOf(Report::class));
-		assertThat(Report::tryParse("TN:Example"), isNull());
+		assertInstanceOf(Report::class, Report::tryParse(self::$coverage));
+		assertNull(Report::tryParse("TN:Example"));
 	}
 
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
 		// It should return a format like 'TN:<testName>'.
-		assertThat((string) new Report(""), isEmpty());
+		assertEmpty((string) new Report(""));
 
 		$sourceFile = new SourceFile("");
-		assertThat((string) new Report("LcovTest", [$sourceFile]), equalTo(strtr("TN:LcovTest{eol}$sourceFile", ["{eol}" => PHP_EOL])));
+		assertEquals(strtr("TN:LcovTest{eol}$sourceFile", ["{eol}" => PHP_EOL]), (string) new Report("LcovTest", [$sourceFile]));
 	}
 }

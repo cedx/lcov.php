@@ -3,7 +3,7 @@ namespace Belin\Lcov;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\{Test, TestDox};
-use function PHPUnit\Framework\{assertThat, equalTo};
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * Tests the features of the {@see BranchData} class.
@@ -14,7 +14,7 @@ final class BranchDataTests extends TestCase {
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
 		// It should return a format like 'BRDA:<lineNumber>,<blockNumber>,<branchNumber>,<taken>'.
-		assertThat((string) new BranchData, equalTo("BRDA:0,0,0,-"));
-		assertThat((string) new BranchData(blockNumber: 3, branchNumber: 2, lineNumber: 127, taken: 1), equalTo("BRDA:127,3,2,1"));
+		assertEquals("BRDA:0,0,0,-", (string) new BranchData);
+		assertEquals("BRDA:127,3,2,1", (string) new BranchData(blockNumber: 3, branchNumber: 2, lineNumber: 127, taken: 1));
 	}
 }
