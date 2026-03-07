@@ -50,6 +50,6 @@ class SourceFile implements \Stringable {
 		if ($this->branches) $output[] = (string) $this->branches;
 		if ($this->lines) $output[] = (string) $this->lines;
 		$output[] = Token::EndOfRecord->value;
-		return implode(PHP_EOL, $output);
+		return implode("\n", $output);
 	}
 }

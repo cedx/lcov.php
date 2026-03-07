@@ -87,6 +87,6 @@ final class ReportTests extends TestCase {
 		assertEmpty((string) new Report(""));
 
 		$sourceFile = new SourceFile("");
-		assertEquals(strtr("TN:LcovTest{eol}$sourceFile", ["{eol}" => PHP_EOL]), (string) new Report("LcovTest", [$sourceFile]));
+		assertEquals("TN:LcovTest\n$sourceFile", (string) new Report("LcovTest", [$sourceFile]));
 	}
 }

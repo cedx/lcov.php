@@ -39,7 +39,7 @@ class BranchCoverage implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	public function __toString(): string {
-		return implode(PHP_EOL, [
+		return implode("\n", [
 			...array_map(strval(...), $this->data),
 			Token::BranchesFound->value.":$this->found",
 			Token::BranchesHit->value.":$this->hit"

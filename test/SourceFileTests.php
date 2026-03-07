@@ -14,7 +14,7 @@ final class SourceFileTests extends TestCase {
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
 		// It should return a format like 'SF:<path>\\nend_of_record'.
-		assertEquals(strtr("SF:{eol}end_of_record", ["{eol}" => PHP_EOL]), (string) new SourceFile(""));
+		assertEquals("SF:\nend_of_record", (string) new SourceFile(""));
 
 		$sourceFile = new SourceFile(
 			branches: new BranchCoverage,
@@ -23,7 +23,7 @@ final class SourceFileTests extends TestCase {
 			path: "/home/cedx/lcov.php"
 		);
 
-		$format = "SF:/home/cedx/lcov.php{eol}$sourceFile->functions{eol}$sourceFile->branches{eol}$sourceFile->lines{eol}end_of_record";
-		assertEquals(strtr($format, ["{eol}" => PHP_EOL]), (string) $sourceFile);
+		$format = "SF:/home/cedx/lcov.php\n$sourceFile->functions\n$sourceFile->branches\n$sourceFile->lines\nend_of_record";
+		assertEquals($format, (string) $sourceFile);
 	}
 }

@@ -39,7 +39,7 @@ class LineCoverage implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	public function __toString(): string {
-		return implode(PHP_EOL, [
+		return implode("\n", [
 			...array_map(strval(...), $this->data),
 			Token::LinesFound->value.":$this->found",
 			Token::LinesHit->value.":$this->hit"

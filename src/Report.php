@@ -33,7 +33,7 @@ class Report implements \Stringable {
 	 */
 	public function __toString(): string {
 		$lines = $this->testName ? [Token::TestName->value.":$this->testName"] : [];
-		return implode(PHP_EOL, [...$lines, ...array_map(strval(...), $this->sourceFiles)]);
+		return implode("\n", [...$lines, ...array_map(strval(...), $this->sourceFiles)]);
 	}
 
 	/**
