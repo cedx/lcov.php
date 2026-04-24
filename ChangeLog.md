@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [12.1.0](https://github.com/cedx/lcov.php/compare/v12.0.0...v12.1.0)
+- Removed the `FunctionData->toString()` method.
+
 ## Version [12.0.0](https://github.com/cedx/lcov.php/compare/v11.0.0...v12.0.0)
 - Breaking change: raised the required [PHP](https://www.php.net) version.
 - Breaking change: removed the `fromJson()` static methods.
