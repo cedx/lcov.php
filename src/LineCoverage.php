@@ -41,8 +41,8 @@ class LineCoverage implements \Stringable {
 	public function __toString(): string {
 		return implode("\n", [
 			...array_map(strval(...), $this->data),
-			Token::LinesFound->value.":$this->found",
-			Token::LinesHit->value.":$this->hit"
+			Token::LinesFound->value . ":$this->found",
+			Token::LinesHit->value . ":$this->hit"
 		]);
 	}
 }

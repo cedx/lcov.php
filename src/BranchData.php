@@ -45,7 +45,7 @@ class BranchData implements \Stringable {
 	 * @return string The string representation of this object.
 	 */
 	public function __toString(): string {
-		$value = Token::BranchData->value.":$this->lineNumber,$this->blockNumber,$this->branchNumber";
+		$value = Token::BranchData->value . ":$this->lineNumber,$this->blockNumber,$this->branchNumber";
 		return $this->taken > 0 ? "$value,$this->taken" : "$value,-";
 	}
 }

@@ -41,8 +41,8 @@ class BranchCoverage implements \Stringable {
 	public function __toString(): string {
 		return implode("\n", [
 			...array_map(strval(...), $this->data),
-			Token::BranchesFound->value.":$this->found",
-			Token::BranchesHit->value.":$this->hit"
+			Token::BranchesFound->value . ":$this->found",
+			Token::BranchesHit->value . ":$this->hit"
 		]);
 	}
 }
