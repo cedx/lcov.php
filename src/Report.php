@@ -45,7 +45,7 @@ class Report implements \Stringable {
 	public static function parse(string $coverage): self {
 		$offset = 0;
 		$report = new self("");
-		$sourceFile = new SourceFile("");
+		$sourceFile = new SourceFile("", branches: new BranchCoverage, functions: new FunctionCoverage, lines: new LineCoverage);
 
 		foreach (preg_split('/\r?\n/', $coverage) ?: [] as $line) {
 			$offset++;
