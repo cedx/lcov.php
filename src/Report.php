@@ -56,8 +56,9 @@ class Report implements \Stringable {
 			$data = implode(":", $parts) |> (fn($value) => explode(",", $value));
 
 			switch ($token) {
-				case Token::TestName: if (!$report->testName) $report->testName = $data[0]; break;
-				case Token::EndOfRecord: $report->sourceFiles[] = $sourceFile; break;
+				case Token::TestName:
+					if (!$report->testName) $report->testName = $data[0];
+					break;
 
 				case Token::BranchData:
 					if (count($data) < 4) throw new \InvalidArgumentException("Invalid branch data at line #$offset.", 422);
@@ -69,12 +70,28 @@ class Report implements \Stringable {
 					);
 					break;
 
+				case Token::BranchesFound:
+					if ($sourceFile->branches) $sourceFile->branches->found = (int) $data[0];
+					break;
+
+				case Token::BranchesHit:
+					if ($sourceFile->branches) $sourceFile->branches->hit = (int) $data[0];
+					break;
+
 				case Token::FunctionData:
 					if (count($data) < 2) throw new \InvalidArgumentException("Invalid function data at line #$offset.", 422);
-					if ($sourceFile->functions) foreach ($sourceFile->functions->data as $item) if ($item->functionName == $data[1]) {
-						$item->executionCount = (int) $data[0];
-						break;
+					if ($sourceFile->functions) {
+						$items = array_filter($sourceFile->functions->data, fn($item) => $item->functionName == $data[1]);
+						foreach ($items as $item) $item->executionCount = (int) $data[0];
 					}
+					break;
+
+				case Token::FunctionsFound:
+					if ($sourceFile->functions) $sourceFile->functions->found = (int) $data[0];
+					break;
+
+				case Token::FunctionsHit:
+					if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0];
 					break;
 
 				case Token::FunctionName:
@@ -91,27 +108,28 @@ class Report implements \Stringable {
 					);
 					break;
 
-				case Token::SourceFile:
-					$sourceFile = new SourceFile(
-						branches: new BranchCoverage,
-						functions: new FunctionCoverage,
-						lines: new LineCoverage,
-						path: $data[0]
-					);
+				case Token::LinesFound:
+					if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0];
 					break;
 
-				case Token::BranchesFound: if ($sourceFile->branches) $sourceFile->branches->found = (int) $data[0]; break;
-				case Token::BranchesHit: if ($sourceFile->branches) $sourceFile->branches->hit = (int) $data[0]; break;
-				case Token::FunctionsFound: if ($sourceFile->functions) $sourceFile->functions->found = (int) $data[0]; break;
-				case Token::FunctionsHit: if ($sourceFile->functions) $sourceFile->functions->hit = (int) $data[0]; break;
-				case Token::LinesFound: if ($sourceFile->lines) $sourceFile->lines->found = (int) $data[0]; break;
-				case Token::LinesHit: if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0]; break;
-				default: throw new \InvalidArgumentException("Unknown token at line #$offset.", 422);
+				case Token::LinesHit:
+					if ($sourceFile->lines) $sourceFile->lines->hit = (int) $data[0];
+					break;
+
+				case Token::SourceFile:
+					$sourceFile = new SourceFile($data[0], branches: new BranchCoverage, functions: new FunctionCoverage, lines: new LineCoverage);
+					break;
+
+				case Token::EndOfRecord:
+					$report->sourceFiles[] = $sourceFile;
+					break;
+
+				default:
+					throw new \InvalidArgumentException("Unknown token at line #$offset.", 422);
 			}
 		}
 
-		if (!$report->sourceFiles) throw new \InvalidArgumentException("The coverage data is empty or invalid.", 400);
-		return $report;
+		return $report->sourceFiles ? $report : throw new \InvalidArgumentException("The coverage data is empty or invalid.", 400);
 	}
 	/**
 	 * Parses the specified coverage data in LCOV format.
