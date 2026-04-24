@@ -13,11 +13,9 @@ final class FunctionCoverageTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
-		// It should return a format like 'FNF:<found>\\nFNH:<hit>'.
 		assertEquals("FNF:0\nFNH:0", (string) new FunctionCoverage);
 
 		$data = new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127);
-		$coverage = new FunctionCoverage(data: [$data], found: 23, hit: 11);
-		assertEquals("FN:127,main\nFNDA:3,main\nFNF:23\nFNH:11", (string) $coverage);
+		assertEquals("$data\nFNF:23\nFNH:11", (string) new FunctionCoverage(data: [$data], found: 23, hit: 11));
 	}
 }

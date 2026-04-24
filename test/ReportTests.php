@@ -83,7 +83,6 @@ final class ReportTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
-		// It should return a format like 'TN:<testName>'.
 		assertEmpty((string) new Report(""));
 
 		$sourceFile = new SourceFile("");

@@ -13,7 +13,6 @@ final class SourceFileTests extends TestCase {
 
 	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
-		// It should return a format like 'SF:<path>\\nend_of_record'.
 		assertEquals("SF:\nend_of_record", (string) new SourceFile(""));
 
 		$sourceFile = new SourceFile(
