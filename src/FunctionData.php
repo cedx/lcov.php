@@ -37,18 +37,10 @@ class FunctionData implements \Stringable {
 	 * Returns a string representation of this object.
 	 * @return string The string representation of this object.
 	 */
-	public final function __toString(): string {
-		return implode("\n", [$this->toString(true), $this->toString(false)]);
-	}
-
-	/**
-	 * Returns a string representation of this object.
-	 * @param bool $asDefinition Value indicating whether to return the function definition instead of its data.
-	 * @return string The string representation of this object.
-	 */
-	public function toString(bool $asDefinition = false): string {
-		$token = $asDefinition ? Token::FunctionName : Token::FunctionData;
-		$number = $asDefinition ? $this->lineNumber : $this->executionCount;
-		return "{$token->value}:$number,$this->functionName";
+	public function __toString(): string {
+		return implode("\n", [
+			Token::FunctionName->value . ":$this->lineNumber,$this->functionName",
+			Token::FunctionData->value . ":$this->executionCount,$this->functionName"
+		]);
 	}
 }

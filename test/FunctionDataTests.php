@@ -11,14 +11,9 @@ use function PHPUnit\Framework\assertEquals;
 #[TestDox("FunctionData")]
 final class FunctionDataTests extends TestCase {
 
-	#[Test, TestDox("toString()")]
+	#[Test, TestDox("__toString()")]
 	public function testToString(): void {
-		// It should return a format like 'FN:<lineNumber>,<functionName>' when used as definition.
-		assertEquals("FN:0,", new FunctionData()->toString(asDefinition: true));
-		assertEquals("FN:127,main", new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127)->toString(asDefinition: true));
-
-		// It should return a format like 'FNDA:<executionCount>,<functionName>' when used as data.
-		assertEquals("FNDA:0,", new FunctionData()->toString(asDefinition: false));
-		assertEquals("FNDA:3,main", new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127)->toString(asDefinition: false));
+		assertEquals("FN:0,\nFNDA:0,", (string) new FunctionData());
+		assertEquals("FN:127,main\nFNDA:3,main", (string) new FunctionData(executionCount: 3, functionName: "main", lineNumber: 127));
 	}
 }
