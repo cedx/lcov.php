@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b43f2bbcd63091198e2252ab81681c2",
+    "content-hash": "fc71542f4a7d34cebc327c4d2ffaa0cf",
     "packages": [],
     "packages-dev": [
         {
@@ -244,11 +244,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.2.5",
+            "version": "2.2.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/909c1e5fef7989ac0d0c1c5c42e32a5c4f6198a0",
-                "reference": "909c1e5fef7989ac0d0c1c5c42e32a5c4f6198a0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/692db47b9dddb0487934e5236e77d48594aef921",
+                "reference": "692db47b9dddb0487934e5236e77d48594aef921",
                 "shasum": ""
             },
             "require": {
@@ -304,7 +304,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-05T06:31:06+00:00"
+            "time": "2026-07-29T17:39:32+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -691,16 +691,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "13.2.5",
+            "version": "13.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2beef9f448c9e04914a273c89ff6d039f8b97bc8"
+                "reference": "5d2afe181339a56348ef9a80fa7eb806b7eae508"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2beef9f448c9e04914a273c89ff6d039f8b97bc8",
-                "reference": "2beef9f448c9e04914a273c89ff6d039f8b97bc8",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5d2afe181339a56348ef9a80fa7eb806b7eae508",
+                "reference": "5d2afe181339a56348ef9a80fa7eb806b7eae508",
                 "shasum": ""
             },
             "require": {
@@ -771,7 +771,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.2.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.2.6"
             },
             "funding": [
                 {
@@ -779,7 +779,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-07-25T06:59:14+00:00"
+            "time": "2026-07-28T14:00:09+00:00"
         },
         {
             "name": "sebastian/cli-parser",
